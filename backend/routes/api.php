@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// public routes
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
-Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
+
+
+// protectec routes

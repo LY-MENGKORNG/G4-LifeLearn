@@ -7,14 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Books extends Model
+class Assignment extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'author_id', 'published_at', 'price'];
+    protected $fillable = [
+        'title',
+        'subject_id',
+        'subject_id',
+        'calendar_id',
+    ];
 
-    public function author(): BelongsTo  // get author
+    public function subject(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Subject::class);
     }
 }
