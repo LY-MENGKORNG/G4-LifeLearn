@@ -24,6 +24,7 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
 
+        // dd($credentials);
         if (!Auth::attempt($credentials)) {
             return response()->json([
                 'message' => 'User not found'

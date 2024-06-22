@@ -22,4 +22,9 @@ class Notificaton extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function list()
+    {
+        return self::all();
+    }
 }

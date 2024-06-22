@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
@@ -25,4 +26,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 
 
-// protectec routes
+// protected routes
+Route::middleware('auth:sanctum')->group(function () {
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/systems', [SystemController::class, 'index']);
+    });
+});

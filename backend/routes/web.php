@@ -1,10 +1,16 @@
 <?php
 
+use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SystemController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     ProfileController,
     MailSettingController,
 };
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +32,7 @@ Route::get('/test-mail',function(){
 
     $message = "Testing mail";
 
-    \Mail::raw('Hi, welcome!', function ($message) {
+    Mail::raw('Hi, welcome!', function ($message) {
       $message->to('ajayydavex@gmail.com')
         ->subject('Testing mail');
     });
@@ -55,10 +61,11 @@ require __DIR__.'/auth.php';
 
 Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
     ->group(function(){
-        Route::resource('roles','RoleController');
-        Route::resource('permissions','PermissionController');
-        Route::resource('users','UserController');
-        Route::resource('posts','PostController');
+        Route::resource('roles',RoleController::class);
+        Route::resource('permissions',PermissionController::class);
+        Route::resource('users',UserController::class);
+        Route::resource('systems', SystemController::class);
+        Route::resource('notifications', NotificationController::class);
 
         Route::get('/profile',[ProfileController::class,'index'])->name('profile');
         Route::put('/profile-update',[ProfileController::class,'update'])->name('profile.update');

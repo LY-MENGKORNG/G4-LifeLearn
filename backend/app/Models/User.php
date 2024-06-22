@@ -19,9 +19,11 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'phone',
         'profile'
     ];
 
@@ -43,4 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function createOrUpdate($request, $id = null)
+    {
+        
+    }
 }

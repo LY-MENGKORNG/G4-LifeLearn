@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\System;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
@@ -18,27 +19,23 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $admin = User::create([
-            'name'=>'Admin',
+            'first_name'=>'My',
+            'last_name'=>'Admin',
             'email'=>'admin@gmail.com',
             'password'=>bcrypt('password'),
             'profile' => 'user.avif'
         ]);
 
         $writer = User::create([
-            'name'=>'User',
+            'first_name'=>'My',
+            'last_name'=>'User',
             'email'=>'user@gmail.com',
             'password'=>bcrypt('password')
         ]);
         
 
-
         $admin_role = Role::create(['name' => 'admin']);
         $writer_role = Role::create(['name' => 'user']);
-
-        $permission = Permission::create(['name' => 'Post access']);
-        $permission = Permission::create(['name' => 'Post edit']);
-        $permission = Permission::create(['name' => 'Post create']);
-        $permission = Permission::create(['name' => 'Post delete']);
 
         $permission = Permission::create(['name' => 'Role access']);
         $permission = Permission::create(['name' => 'Role edit']);
@@ -55,10 +52,19 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Permission create']);
         $permission = Permission::create(['name' => 'Permission delete']);
 
+        $permission = Permission::create(['name' => 'System access']);
+        $permission = Permission::create(['name' => 'System edit']);
+        $permission = Permission::create(['name' => 'System create']);
+        $permission = Permission::create(['name' => 'System delete']);
+
+        $permission = Permission::create(['name' => 'Notification access']);
+        $permission = Permission::create(['name' => 'Notification edit']);
+        $permission = Permission::create(['name' => 'Notification create']);
+        $permission = Permission::create(['name' => 'Notification delete']);
+
         $permission = Permission::create(['name' => 'Mail access']);
         $permission = Permission::create(['name' => 'Mail edit']);
-
-
+        
 
         $admin->assignRole($admin_role);
         $writer->assignRole($writer_role);

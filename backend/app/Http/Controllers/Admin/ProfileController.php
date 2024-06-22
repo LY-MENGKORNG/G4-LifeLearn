@@ -40,11 +40,11 @@ class ProfileController extends Controller
         $user = auth()->user();
 
         $validated = $request->validate([
-            'name'=>'required',
+            'first_name'=>'required',
+            'last_name'=>'required',
             'email' => 'required|email|unique:users,email,'.$user->id.',id',
+            'profile' => 'required'
         ]);
-
-
 
         if($request->password != null){
             $request->validate([
@@ -56,10 +56,11 @@ class ProfileController extends Controller
         if($request->hasFile('profile')){
             if($name = $this->saveImage($request->profile)){
                 $validated['profile'] = $name;
+                $user['profile'] = $validated['profile'];
             }
         }
 
-        $user->update($validated);
+        $user->update($validated); 
 
         return redirect()->back()->withSuccess('User updated !!!');
     }

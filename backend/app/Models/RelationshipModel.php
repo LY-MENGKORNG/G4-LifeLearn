@@ -64,7 +64,4 @@ class RelationshipModel extends Model
     {
         return $this->belongsTo(Grade::class);
     }
-
-    // HasMany relationships
-
 }
