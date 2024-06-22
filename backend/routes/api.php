@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\SystemController;
+use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +34,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/systems', [SystemController::class, 'index']);
     });
 });
+
+
+// category
+Route::get('category/list', [CategoryController::class, 'index']);
+Route::post('category/create', [CategoryController::class, 'store']);
+Route::get('category/{id}', [CategoryController::class, 'show']);
+Route::put('category/update/{id}', [CategoryController::class, 'update']);
+Route::delete('category/{id}', [CategoryController::class, 'destroy']);
