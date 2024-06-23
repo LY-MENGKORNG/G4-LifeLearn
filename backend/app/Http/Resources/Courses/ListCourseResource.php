@@ -16,9 +16,9 @@ class ListCourseResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'category' => $this->category->name ?? null,
-            'user' => $this->user->first_name ?? null,
-            'duration' => $this->duration ?? null,
+            'category' => $this->category->name,
+            'user' => $this->user->first_name,
+            'duration' => $this->duration ,
         ];
     }
 }

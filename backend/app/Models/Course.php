@@ -23,10 +23,9 @@ class Course extends RelationshipModel
     }
     public static function store($request, $id = null)
     {
-
-        $courseData = $request->only('price', 'duration', 'user_id', 'category_id');
+        $courseData = $request->only('category_id','price','user_id', 'duration');
         $courses = self::updateOrCreate(['id' => $id], $courseData);
-        return $category;
+        return $courses;
     }
 
     public function category(): BelongsTo 

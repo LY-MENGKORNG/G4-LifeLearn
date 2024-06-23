@@ -37,13 +37,16 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
+//course
 Route::resource('/course', CourseController::class);
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 
 // category
-Route::get('category/list', [CategoryController::class, 'index']);
-Route::post('category/create', [CategoryController::class, 'store']);
-Route::get('category/{id}', [CategoryController::class, 'show']);
-Route::put('category/update/{id}', [CategoryController::class, 'update']);
-Route::delete('category/{id}', [CategoryController::class, 'destroy']);
+Route::prefix('category')->group(function () {
+    Route::get('/list', [CategoryController::class, 'index']);
+    Route::post('/create', [CategoryController::class, 'store']);
+    Route::get('/{id}', [CategoryController::class, 'show']);
+    Route::put('/update/{id}', [CategoryController::class, 'update']);
+    Route::delete('/{id}', [CategoryController::class, 'destroy']);
+});

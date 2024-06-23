@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API\Courses;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\Category;
+use App\Models\User;
 use App\Http\Resources\Courses\CourseResource;
 
 class CourseController extends Controller
@@ -14,10 +16,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses= Course::list();
+        $course= Course::list();
         return response()->json([
             'success' => true,
-            'data' => CourseResource::collection($courses),
+            'data' => CourseResource::collection($course),
         ], 200);
     }
 
@@ -26,24 +28,15 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $price = $request->price;
-        $duration = $request->duration;
-        $user_id = $request->user_id;
-        $category_id = $request->category_id;
-        $courses = new Course();
-        $courses->price = $price;
-        $courses->duration = $duration;
-        $courses->user_id = $user_id;
-        $courses->category_id = $category_id;
-        $courses->save();
-        return response()->json([
-            'message' => 'Course created successfully',
-            'data' => $courses
-        ], 200);
+        $categoryIds = Category::pluck('id')->toArray();
+        $requestData = $request->only('category_id', 'price', 'user_id', 'duration');
 
+        if (!in_array($requestData['category_id'], $categoryIds)) {
+            return response()->json(['message' => 'Invalid category_id'], 400);
+        }
 
-     
-        
+        $course = Course::store($request);
+        return response()->json(['message' => 'Course created successfully', 'course' => $course], 200);
     }
 
     /**
@@ -51,7 +44,12 @@ class CourseController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $course = Course::find($id);
+        if ($course) {
+            return response()->json(['courses' => $course], 200);
+        } else {
+            return response()->json(['error' => 'Course not found'], 404);
+        }
     }
 
     /**
@@ -59,14 +57,49 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $course = Course::find($id);
+        if (!$course) {
+            return response()->json(['message' => 'Course not found'], 404);
+        }
 
+        $categoryIds = Category::pluck('id')->toArray();
+        $userIds = User::pluck('id')->toArray();
+
+        $requestData = $request->only('category_id', 'price', 'user_id', 'duration');
+        if (isset($requestData['category_id'], $requestData['user_id'])) {
+            if (!in_array($requestData['category_id'], $categoryIds)) {
+                return response()->json(['message' => 'Invalid category_id'], 400);
+            }
+            if (!in_array($requestData['user_id'], $userIds)) {
+                return response()->json(['message' => 'Invalid user_id'], 400);
+            }
+        }
+        $course = Course::store($request, $id);
+        return response()->json(['message' => 'Course updated successfully', 'course' => $course], 200);
+    }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        if (!$course) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Course not found',
+            ], 404);
+        }
+        $deletedCourse = $course->delete();
+        if ($deletedCourse) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Course deleted successfully',
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete the Course',
+            ], 500);
+        }
     }
 }
