@@ -32,7 +32,7 @@ Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 // protected routes
 Route::middleware('auth:sanctum')->group(function () {
 });
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 
 // category
