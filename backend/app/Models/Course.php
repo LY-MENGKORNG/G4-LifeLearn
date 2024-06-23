@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Course extends Model
+class Course extends RelationshipModel
 {
     use HasFactory, SoftDeletes;
 
@@ -17,6 +17,17 @@ class Course extends Model
         'user_id',
         'duration'
     ];
+    public static function list() {
+        $courses = self::all();
+        return $courses;
+    }
+    public static function store($request, $id = null)
+    {
+
+        $courseData = $request->only('price', 'duration', 'user_id', 'category_id');
+        $courses = self::updateOrCreate(['id' => $id], $courseData);
+        return $category;
+    }
 
     public function category(): BelongsTo 
     {

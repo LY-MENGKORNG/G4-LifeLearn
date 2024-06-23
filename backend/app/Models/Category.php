@@ -10,4 +10,19 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = ['name', 'description'];
+
+
+    public static function list() {
+        $category = self::all();
+        return $category;
+    }
+
+    public static function store($request, $id = null)
+    {
+
+        $categoryData = $request->only('name', 'description');
+        $category = self::updateOrCreate(['id' => $id], $categoryData);
+        return $category;
+    }
+    
 }
