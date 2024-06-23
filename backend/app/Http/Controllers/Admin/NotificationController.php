@@ -24,20 +24,7 @@ class NotificationController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'classroom_id' => 'required|exists:classrooms,id',
-            'user_id' => 'required|exists:users,id',
-        ]);
-        $notification = new Notificaton();
-        $notification->classroom_id = $request->classroom_id;
-        $notification->user_id = $request->user_id;
-        $notification->save();
-            
-        return response()->json([
-            'message' => 'Notification created successfully',
-            'data' => $notification
-        ], 201);
-
+        
     }
 
     /**

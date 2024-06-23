@@ -22,8 +22,8 @@ class NotificationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "user_id"=>'required',
-            "classroom_id"=>'required',
+            "user_id"=>'required|exists:users,id',
+            "classroom_id"=>'required|exists:classrooms,id',
         ];
     }
 }
