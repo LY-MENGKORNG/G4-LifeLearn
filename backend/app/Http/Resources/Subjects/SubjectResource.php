@@ -4,7 +4,7 @@ namespace App\Http\Resources\Subjects;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\Courses\CourseResource;
-use App\Http\Resources\Classrooms\ClassroomResource;
+use App\Http\Resources\Classroom\ClassroomResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SubjectResource extends JsonResource
