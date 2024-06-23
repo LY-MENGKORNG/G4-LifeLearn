@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\API\PostController;
@@ -30,10 +31,8 @@ Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 
 // protected routes
 Route::middleware('auth:sanctum')->group(function () {
-    Route::group(['prefix' => 'admin'], function () {
-        Route::get('/systems', [SystemController::class, 'index']);
-    });
 });
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 
 // category
