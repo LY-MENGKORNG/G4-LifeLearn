@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\API\PostController;
-use App\Http\Controllers\API\Courses\CourseController;
+use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\AuthController;
 use App\Models\Category;
 use Illuminate\Http\Request;

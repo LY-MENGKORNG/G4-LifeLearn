@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\Courses;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Http\Resources\Courses\CourseResource;
 
+
 class CourseController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $course= Course::list();
+        $course = Course::list();
         return response()->json([
             'success' => true,
             'data' => CourseResource::collection($course),
@@ -44,6 +45,7 @@ class CourseController extends Controller
      */
     public function show(string $id)
     {
+
         $course = Course::find($id);
         if ($course) {
             return response()->json(['courses' => $course], 200);
@@ -57,6 +59,7 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $course = Course::find($id);
         if (!$course) {
             return response()->json(['message' => 'Course not found'], 404);
@@ -77,10 +80,11 @@ class CourseController extends Controller
         $course = Course::store($request, $id);
         return response()->json(['message' => 'Course updated successfully', 'course' => $course], 200);
     }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         $course = Course::find($id);
         if (!$course) {
