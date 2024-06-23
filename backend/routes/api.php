@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\AuthController;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -39,6 +40,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
 //course
 Route::resource('/course', CourseController::class);
+//subject
+Route::resource('/subject', SubjectController::class);
+
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 

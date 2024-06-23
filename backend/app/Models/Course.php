@@ -37,7 +37,6 @@ class Course extends RelationshipModel
     {
         return $this->belongsTo(User::class);
     }
-
-    
+  
 
 }
