@@ -24,6 +24,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $category = Category::store($request);
         return response()->json(['message'=> 'Category','category' => $category], 200);
     }

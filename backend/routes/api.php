@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\SystemController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\FrontuserController;
 use Illuminate\Http\Request;
@@ -24,12 +25,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
 Route::post('/login', [FrontuserController::class, 'login']);
-Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 
 
 // protected routes
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/me', [AuthController::class, 'index']);
 
+    // system routes
+    Route::prefix('system')->group(function () {
+        Route::resource('/', SystemController::class);
+    });
+    
     // category routes
     Route::get('category/list', [CategoryController::class, 'index']);
     Route::post('category/create', [CategoryController::class, 'store']);
@@ -37,5 +43,3 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('category/update/{id}', [CategoryController::class, 'update']);
     Route::delete('category/{id}', [CategoryController::class, 'destroy']);
 });
-
-// category
