@@ -5,7 +5,10 @@ use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\Api\Assigment\AssigmentController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\API\ClassroomController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +35,16 @@ Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 
 // protected routes
 Route::middleware('auth:sanctum')->group(function () {
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/systems', [SystemController::class, 'index']);
+    });
 });
+
+//course
+Route::resource('/course', CourseController::class);
+//subject
+Route::resource('/subject', SubjectController::class);
+
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 
@@ -53,3 +65,6 @@ Route::prefix('assigment')->group(function () {
     Route::put('/update/{id}', [AssigmentController::class, 'update']);
     Route::delete('/{id}', [AssigmentController::class, 'destroy']);
 });
+//classroom
+Route::resource('/classroom',ClassroomController::class);
+

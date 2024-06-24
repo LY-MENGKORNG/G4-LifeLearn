@@ -17,4 +17,26 @@ class Course extends RelationshipModel
         'user_id',
         'duration'
     ];
+    public static function list() {
+        $courses = self::all();
+        return $courses;
+    }
+    public static function store($request, $id = null)
+    {
+        $courseData = $request->only('category_id','price','user_id', 'duration');
+        $courses = self::updateOrCreate(['id' => $id], $courseData);
+        return $courses;
+    }
+
+    public function category(): BelongsTo 
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function user(): BelongsTo 
+    {
+        return $this->belongsTo(User::class);
+    }
+  
+
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\Assigment;
 use App\Http\Controllers\Controller;
 use App\Models\Assignment;
 use App\Models\Category;
+use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AssigmentController extends Controller
@@ -23,8 +25,19 @@ class AssigmentController extends Controller
      */
     public function store(Request $request)
     {
-        $assigment = Assignment::store($request);
-        return response()->json(['message'=> 'assi$assigment','assi$assigment' => $assigment], 200);
+        $subjectId = Assignment::pluck('id')->toArray();
+        $userIds = User::pluck('id')->toArray();
+        $requestData = $request->only('title', 'description', 'subject_id');
+
+        if (!in_array($requestData['subject_id'], $subjectId)) {
+            return response()->json(['message' => 'Invalid subject_id'], 400);
+        }
+        // if (!in_array($requestData['calendar_id'], $userIds)) {
+        //     return response()->json(['message' => 'Invalid calendar_id'], 400);
+        // }
+
+        $assignment = Assignment::store($request);
+        return response()->json(['message' => 'Assignment created successfully', 'assignment' => $assignment], 200);
     }
 
     /**
