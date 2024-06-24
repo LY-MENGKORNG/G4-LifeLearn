@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SystemController;
+use App\Http\Controllers\Api\Assigment\AssigmentController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
@@ -42,4 +43,13 @@ Route::prefix('category')->group(function () {
     Route::get('/{id}', [CategoryController::class, 'show']);
     Route::put('/update/{id}', [CategoryController::class, 'update']);
     Route::delete('/{id}', [CategoryController::class, 'destroy']);
+});
+
+// assignment
+Route::prefix('assigment')->group(function () {
+    Route::get('/list', [AssigmentController::class, 'index']);
+    Route::post('/create', [AssigmentController::class, 'store']);
+    Route::get('/show/{id}', [AssigmentController::class, 'show']);
+    Route::put('/update/{id}', [AssigmentController::class, 'update']);
+    Route::delete('/{id}', [AssigmentController::class, 'destroy']);
 });
