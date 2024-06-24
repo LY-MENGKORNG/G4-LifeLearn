@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Resources\Category;
+namespace App\Http\Resources\Notifications;
 
 use App\Http\Resources\Users\UserResource;
+use App\Models\Classroom;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
-{   
+class NotificationResource extends JsonResource
+{
     /**
      * Transform the resource into an array.
      *
@@ -17,8 +18,11 @@ class CategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
+            'classroom_id' => $this->classroom_id,
+            'user_id' => new UserResource($this->user),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
+        
     }
 }

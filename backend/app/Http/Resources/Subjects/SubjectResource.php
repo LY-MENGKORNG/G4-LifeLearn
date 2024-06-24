@@ -16,11 +16,16 @@ class SubjectResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        // return [
+        //     'id' => $this->id,
+        //     'course_id' => new CourseResource($this->course),
+        //     'classroom_id' => new ClassroomResource($this->classroom),
+           
+        // ];
         return [
             'id' => $this->id,
-            'course_id' => new CourseResource($this->course),
-            'classroom_id' => new ClassroomResource($this->classroom),
-           
+            'course' => new CourseResource($this->course),
+            'classroom' => new ClassroomResource($this->classroom),
         ];
     }
 }
