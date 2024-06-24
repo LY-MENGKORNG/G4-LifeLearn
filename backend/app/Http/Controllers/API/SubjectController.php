@@ -8,7 +8,6 @@ use App\Models\Subject;
 use App\Models\Course;
 use App\Models\Classroom;
 use App\Http\Resources\Subjects\SubjectResource;
-use PhpParser\Builder\Class_;
 
 class SubjectController extends Controller
 {

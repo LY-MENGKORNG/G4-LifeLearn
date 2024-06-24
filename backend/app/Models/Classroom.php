@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Classroom extends Model
@@ -17,10 +18,15 @@ class Classroom extends Model
     // {
     //     return $this->belongsTo(Grade::class);
     // }
-    public function subject(): BelongsTo 
+    public function subject(): HasMany 
     {
-        return $this->belongsTo(Subject::class);
+        return $this->hasManyTo(Subject::class);
     }
+    public function comment(): HasMany
+    {
+        return $this->hasManyTo(Comment::class);
+    }
+
 
     
 }
