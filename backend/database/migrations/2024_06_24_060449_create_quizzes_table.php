@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->integer('subject_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
