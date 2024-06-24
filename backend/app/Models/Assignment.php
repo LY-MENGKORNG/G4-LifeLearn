@@ -30,17 +30,11 @@ class Assignment extends Model
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'subject_id' => 'required|integer',
-            'calendar_id' => 'required|date', // Validate as date
+            'calendar_id' => 'required|integer', 
         ]);
-    
-        // Extract the assignment data
+
         $assigmentData = $request->only('title', 'description', 'subject_id', 'calendar_id');
-        // Ensure calendar_id is a proper date format (Y-m-d)
-        $assigmentData['calendar_id'] = date('Y-m-d', strtotime($assigmentData['calendar_id']));
-    
-        // Create or update the assignment
         $assigment = self::updateOrCreate(['id' => $id], $assigmentData);
-    
         return $assigment;
     }
     

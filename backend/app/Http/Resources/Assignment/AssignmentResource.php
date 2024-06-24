@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Assignment;
 
+use App\Http\Resources\Calendar\CalendarResource;
 use App\Http\Resources\Subjects\SubjectResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -18,8 +19,8 @@ class AssignmentResource extends JsonResource
         return [
             'id' => $this->id,
             'description' => $this->description,
-            'subject' => new SubjectResource($this->subject),
-            'calendar_id' => $this->calendar_id,
+            'subject_id' => new SubjectResource($this->subject),
+            'calendar_id' => new CalendarResource($this->calendar),
         ];
     }
 }

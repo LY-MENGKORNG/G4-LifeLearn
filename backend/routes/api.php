@@ -61,7 +61,6 @@ Route::prefix('category')->group(function () {
     Route::delete('/{id}', [CategoryController::class, 'destroy']);
 });
 
-<<<<<<< HEAD
 // assignment
 Route::prefix('assigment')->group(function () {
     Route::get('/list', [AssigmentController::class, 'index']);
@@ -71,18 +70,14 @@ Route::prefix('assigment')->group(function () {
     Route::delete('/{id}', [AssigmentController::class, 'destroy']);
 });
 
-=======
->>>>>>> 520c3ea087252df17b1ec394ed02606389452c25
 //classroom
 Route::resource('/classroom',ClassroomController::class);
 
 //books
 Route::resource('books',BookController::class);
 
-<<<<<<< HEAD
 //calendar
 Route::resource('/calendar', CalendarController::class);
-=======
 
 Route::get('/notification/list', [NotificationController::class,'index']);
 Route::post('notification/create', [NotificationController::class, 'store']);
@@ -91,4 +86,3 @@ Route::put('notification/update/{id}', [NotificationController::class, 'update']
 Route::delete('notification/delete/{id}', [NotificationController::class, 'destroy']);
 
 
->>>>>>> 520c3ea087252df17b1ec394ed02606389452c25

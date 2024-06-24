@@ -26,15 +26,15 @@ class AssigmentController extends Controller
     public function store(Request $request)
     {
         $subjectId = Assignment::pluck('id')->toArray();
-        // $userIds = User::pluck('id')->toArray();
-        $requestData = $request->only('title', 'description', 'subject_id');
+        $calenderId = User::pluck('id')->toArray();
+        $requestData = $request->only('title', 'description', 'subject_id', 'calender_id');
 
         if (!in_array($requestData['subject_id'], $subjectId)) {
             return response()->json(['message' => 'Invalid subject_id'], 400);
         }
-        // if (!in_array($requestData['calendar_id'], $userIds)) {
-        //     return response()->json(['message' => 'Invalid calendar_id'], 400);
-        // }
+        if (!in_array($requestData['calendar_id'], $calenderId)) {
+            return response()->json(['message' => 'Invalid calendar_id'], 400);
+        }
 
         $assignment = Assignment::store($request);
         return response()->json(['message' => 'Assignment created successfully', 'assignment' => $assignment], 200);
@@ -59,7 +59,7 @@ class AssigmentController extends Controller
     public function update(Request $request, string $id)
     {
         $assigment = Assignment::store($request, $id);
-        return response()->json(['message'=> '$assigment updated successfully','assigment' => $assigment], 200);
+        return response()->json(['message'=> 'assigment updated successfully','assigment' => $assigment], 200);
     }
 
     /**
@@ -70,9 +70,9 @@ class AssigmentController extends Controller
         $assigment = Assignment::find($id);
         if ($assigment) {
             $assigment->delete();
-            return response()->json(['message'=> '$assigment deleted successfully'], 200);
+            return response()->json(['message'=> 'assigment deleted successfully'], 200);
         } else {
-            return response()->json(['error' => '$assigment not found'], 404);
+            return response()->json(['error' => 'assigment not found'], 404);
         }
     }
 }
