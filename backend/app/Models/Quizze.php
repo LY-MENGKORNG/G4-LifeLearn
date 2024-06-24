@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Quizze extends Model
+class Quizze extends RelationshipModel
 {
     use HasFactory;
     protected $fillable = ['subject_id'];
