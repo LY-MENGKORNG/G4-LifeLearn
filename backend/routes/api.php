@@ -9,6 +9,7 @@ use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ClassroomController;
+use App\Http\Controllers\API\BookController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -60,4 +61,6 @@ Route::prefix('category')->group(function () {
 });
 //classroom
 Route::resource('/classroom',ClassroomController::class);
+//books
+Route::resource('books',BookController::class);
 
