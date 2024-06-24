@@ -27,8 +27,12 @@ class Document extends Model
     }
     public static function store($request, $id = null)
     {
-        $data = $request->only('user_id',
-        'school_name','School_address','school_phone_number');
+        $data = [
+            'user_id' => $request->user()->id,
+            'school_name' => $request->school_name,
+            'School_address' => $request->school_address,
+            'school_phone_number' => $request->school_phone_number
+        ];
         $document = self::updateOrCreate(['id' => $id], $data);
         return $document;
     }

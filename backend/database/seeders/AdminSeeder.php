@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\System;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
@@ -23,6 +22,7 @@ class AdminSeeder extends Seeder
             'last_name'=>'Admin',
             'email'=>'admin@gmail.com',
             'password'=>bcrypt('password'),
+            'phone'=> '087861976',
             'profile' => 'user.avif'
         ]);
 
@@ -30,7 +30,9 @@ class AdminSeeder extends Seeder
             'first_name'=>'My',
             'last_name'=>'User',
             'email'=>'user@gmail.com',
-            'password'=>bcrypt('password')
+            'password'=>bcrypt('password'),
+            'phone'=> '087861976',
+            'profile'=> '1719084702_photo_2023-11-03_22-01-29.jpg'
         ]);
         
 

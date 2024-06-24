@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin\References;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ReferencesController extends Controller
@@ -20,13 +20,18 @@ class ReferencesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $document = Document::store($request);
+        return response()->json([
+            'success' => true,
+            'message'=> 'created successfully',
+            'document' => $document
+        ], 200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(References $references)
+    public function show(string $id)
     {
         //
     }
@@ -34,7 +39,7 @@ class ReferencesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, References $references)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -42,7 +47,7 @@ class ReferencesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(References $references)
+    public function destroy(string $id)
     {
         //
     }

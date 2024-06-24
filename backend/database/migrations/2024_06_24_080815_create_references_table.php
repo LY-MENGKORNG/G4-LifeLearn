@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('references', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable();
-            $table->string('school_name');
-            $table->string('school_address');
-            $table->string('school_phone_number')->nullable();
+            $table->integer('principle_id');
+            $table->integer('document_id');
+            $table->boolean('status');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('references');
     }
 };

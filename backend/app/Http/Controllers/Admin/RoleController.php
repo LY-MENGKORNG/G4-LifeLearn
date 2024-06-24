@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Gate;
-
+use Illuminate\Contracts\View\View;
 
 class RoleController extends Controller
 {
@@ -28,7 +28,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $role= Role::latest()->get();
 
@@ -40,7 +40,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         $permissions = Permission::get();
         return view('setting.role.new',['permissions'=>$permissions]);
@@ -80,7 +80,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Role $role): View
     {
         $permission = Permission::get();
         $role->permissions;

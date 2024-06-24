@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -30,7 +31,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $user= User::latest()->get();
 
@@ -42,7 +43,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         $roles = Role::get();
         return view('setting.user.new',['roles'=>$roles]);
@@ -58,12 +59,14 @@ class UserController extends Controller
     {
 
         $request->validate([
-            'name'=>'required',
+            'first_name'=>'required',
+            'last_name'=>'required',
             'email' => 'required|email|unique:users',
             'password'=>'required|confirmed'
         ]);
         $user = User::create([
-            'name'=>$request->name,
+            'first_name'=>$request->first_name,
+            'last_name'=>$request->last_name,
             'email'=>$request->email,
             'password'=> bcrypt($request->password),
         ]);
@@ -77,10 +80,6 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -88,7 +87,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $user): View
     {
         $role = Role::get();
         $user->roles;
