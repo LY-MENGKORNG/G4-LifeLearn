@@ -26,7 +26,7 @@ class AssigmentController extends Controller
     public function store(Request $request)
     {
         $subjectId = Assignment::pluck('id')->toArray();
-        $userIds = User::pluck('id')->toArray();
+        // $userIds = User::pluck('id')->toArray();
         $requestData = $request->only('title', 'description', 'subject_id');
 
         if (!in_array($requestData['subject_id'], $subjectId)) {

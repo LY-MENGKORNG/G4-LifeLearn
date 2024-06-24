@@ -10,6 +10,7 @@ use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\Api\Calendar\CalendarController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 //course
 Route::resource('/course', CourseController::class);
+
 //subject
 Route::resource('/subject', SubjectController::class);
 
@@ -66,8 +68,12 @@ Route::prefix('assigment')->group(function () {
     Route::put('/update/{id}', [AssigmentController::class, 'update']);
     Route::delete('/{id}', [AssigmentController::class, 'destroy']);
 });
+
 //classroom
 Route::resource('/classroom',ClassroomController::class);
+
 //books
 Route::resource('books',BookController::class);
 
+//calendar
+Route::resource('/calendar', CalendarController::class);

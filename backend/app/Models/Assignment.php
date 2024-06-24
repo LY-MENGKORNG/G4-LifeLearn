@@ -35,7 +35,6 @@ class Assignment extends Model
     
         // Extract the assignment data
         $assigmentData = $request->only('title', 'description', 'subject_id', 'calendar_id');
-    
         // Ensure calendar_id is a proper date format (Y-m-d)
         $assigmentData['calendar_id'] = date('Y-m-d', strtotime($assigmentData['calendar_id']));
     
