@@ -37,9 +37,6 @@ Route::get('/test-mail',function(){
       $message->to('ajayydavex@gmail.com')
         ->subject('Testing mail');
     });
-
-    dd('sent');
-
 });
 
 
@@ -65,7 +62,6 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('users',UserController::class);
         Route::resource('systems', SystemController::class);
         Route::resource('notifications', NotificationController::class);
-        // Route::resource('course', ::class);
 
         Route::get('/profile',[ProfileController::class,'index'])->name('profile');
         Route::put('/profile-update',[ProfileController::class,'update'])->name('profile.update');

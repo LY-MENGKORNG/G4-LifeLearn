@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Calendar;
 use App\Models\Payment;
 use App\Models\System;
 use App\Models\User;
@@ -22,7 +23,7 @@ class DashboardController extends Controller
         $dashboard = [
             'systems' => $systems,
             'users' => $users,
-            'payments' => $payments
+            'payments' => $payments,
         ];
         return view('dashboard', ['dashboard' => $dashboard]);
     }

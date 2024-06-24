@@ -5,7 +5,7 @@
         <div class="flex flex-wrap">
             <section class="!mx-auto px-8 w-full">
                 <div class="flex justify-between items-center py-3">
-                    <h2 class="font-bold text-xl py-5">Notification</h2>
+                    <h2 class="font-bold text-xl py-5">Systems</h2>
                     <a href="">
                         <button type="button" data-ripple-light="true"
                             class="align-middle select-none  font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none">
@@ -33,15 +33,21 @@
                                                 </svg>
                                             </div>
                                             <div>
-                                                <p
-                                                    class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 mb-1 font-bold">
-                                                    {{ $system->name}}
+                                                <span class="">
+                                                    School:
+                                                    <span
+                                                        class="antialiased font-sans text-sm leading-normal text-blue-gray-900 mb-1 font-bold">
+                                                        {{ $system->name }}
+                                                    </span>
+                                                </span>
+                                                <p >
+                                                  Location:
+                                                  <span
+                                                      class="antialiased font-sans text-base font-light leading-relaxed text-inherit !text-gray-600 text-xs font-bold">
+                                                      {{ $system->location }}
+                                                  </span>
                                                 </p>
-                                                <p
-                                                    class="block antialiased font-sans text-base font-light leading-relaxed text-inherit !text-gray-600 text-xs font-normal">
-                                                    {{ $system->location}}
-                                                </p>
-                                            </div>
+                                              </div>
                                         </div>
                                         <div class="flex items-center justify-between">
                                             <button
@@ -93,16 +99,6 @@
                                                 <p
                                                     class="block antialiased font-sans text-base leading-relaxed text-blue-gray-900  font-bold">
                                                     {{ $system->user->email }}
-                                                </p>
-                                            </div>
-                                            <div class="flex gap-1">
-                                                <p
-                                                    class="block antialiased font-sans text-base font-light leading-relaxed text-inherit mb-1 text-xs !font-medium !text-gray-600">
-                                                    VAT Number<!-- -->:
-                                                </p>
-                                                <p
-                                                    class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 text-xs !font-bold">
-                                                    FRB1235476
                                                 </p>
                                             </div>
                                         </div>
