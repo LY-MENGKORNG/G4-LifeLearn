@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Resources\Category;
+namespace App\Http\Resources\Assignment;
 
-use App\Http\Resources\Users\UserResource;
+use App\Http\Resources\Calendar\CalendarResource;
+use App\Http\Resources\Subjects\SubjectResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
-{   
+class AssignmentResource extends JsonResource
+{
     /**
      * Transform the resource into an array.
      *
@@ -17,8 +18,9 @@ class CategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
             'description' => $this->description,
+            'subject_id' => new SubjectResource($this->subject),
+            'calendar_id' => new CalendarResource($this->calendar),
         ];
     }
 }

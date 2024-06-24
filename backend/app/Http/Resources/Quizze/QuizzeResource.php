@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Resources\Category;
+namespace App\Http\Resources\Quizze;
 
-use App\Http\Resources\Users\UserResource;
+use App\Http\Resources\Subjects\SubjectResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
-{   
+class QuizzeResource extends JsonResource
+{
     /**
      * Transform the resource into an array.
      *
@@ -16,9 +16,8 @@ class CategoryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
+            'id'=>$this->id,
+            'subject_id' => new SubjectResource($this->subject),
         ];
     }
 }
