@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\SystemController;
+use App\Http\Controllers\Api\Assigment\AssigmentController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\API\CourseController;
@@ -10,8 +11,13 @@ use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
+<<<<<<< HEAD
 use App\Http\Controllers\Api\QuizController;
 use App\Http\Controllers\Api\QuizzeController;
+=======
+use App\Http\Controllers\Api\Calendar\CalendarController;
+use App\Http\Controllers\Front\FrontuserController;
+>>>>>>> 6c98a73ad28194d3be6d38f78ddfb11a189aa1ee
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +38,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // public routes
+Route::post('/register', [FrontuserController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 
@@ -45,6 +52,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 //course
 Route::resource('/course', CourseController::class);
+
 //subject
 Route::resource('/subject', SubjectController::class);
 
@@ -60,11 +68,25 @@ Route::prefix('category')->group(function () {
     Route::delete('/{id}', [CategoryController::class, 'destroy']);
 });
 
+// assignment
+Route::prefix('assigment')->group(function () {
+    Route::get('/list', [AssigmentController::class, 'index']);
+    Route::post('/create', [AssigmentController::class, 'store']);
+    Route::get('/show/{id}', [AssigmentController::class, 'show']);
+    Route::put('/update/{id}', [AssigmentController::class, 'update']);
+    Route::delete('/{id}', [AssigmentController::class, 'destroy']);
+});
+
 //classroom
 Route::resource('/classroom',ClassroomController::class);
+
+//documents
+// Route::post('/documents',[DocumentCon])
 //books
 Route::resource('books',BookController::class);
 
+//calendar
+Route::resource('/calendar', CalendarController::class);
 
 //Notifications
 Route::get('/notification/list', [NotificationController::class,'index']);
