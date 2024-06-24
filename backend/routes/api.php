@@ -58,3 +58,5 @@ Route::prefix('category')->group(function () {
 //classroom
 Route::resource('/classroom',ClassroomController::class);
 
+//documents
+// Route::post('/documents',[DocumentCon])
