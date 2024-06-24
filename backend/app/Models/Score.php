@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Score extends Model
+class Score extends RelationshipModel
 {
     use HasFactory;
 
@@ -20,6 +21,11 @@ class Score extends Model
         return $score;
     }
 
+    public function student(): BelongsTo 
+    {
+        return $this->belongsTo(User::class, 'student_id', 'id');
+    }
+
     public static function store($request, $id = null)
     {
 
@@ -28,10 +34,10 @@ class Score extends Model
         return $score;
     }
 
-    public function student(): BelongsTo 
-    {
-        return $this->belongsTo(User::class);
-    } 
+    // public function student(): BelongsTo 
+    // {
+    //     return $this->belongsTo(User::class);
+    // } 
 
     // public function subject(): BelongsTo 
     // {

@@ -34,7 +34,7 @@ class CommentController extends Controller
         $classroomIds = Classroom::pluck('id')->toArray();
         $assignmentIds = Assignment::pluck('id')->toArray();
 
-        $requestData = $request->only('text','user_id', 'classroom_id');
+        $requestData = $request->only('text','user_id', 'classroom_id','assignment_id');
         if (isset($requestData['user_id'], $requestData['classroom_id'])) {
             if (!in_array($requestData['user_id'], $userIds)) {
                 return response()->json(['message' => 'Invalid user_id'], 400);
@@ -78,8 +78,8 @@ class CommentController extends Controller
         $assignmentIds = Assignment::pluck('id')->toArray();
 
         $requestData = $request->only('text','user_id','classroom_id', 'assignment_id');
-        if (isset($requestData['course_id'], $requestData['classroom_id'])) {
-            if (!in_array($requestData['course_id'], $userIds)) {
+        if (isset($requestData['user_id'], $requestData['classroom_id'],$requestData['assignment_id'])) {
+            if (!in_array($requestData['user_id'], $userIds)) {
                 return response()->json(['message' => 'Invalid user_id'], 400);
             }
             if (!in_array($requestData['classroom_id'], $classroomIds)) {
@@ -89,8 +89,10 @@ class CommentController extends Controller
                 return response()->json(['message' => 'Invalid assignment_id'], 400);
             }
         }
-        $comment = Comment::store($request, $id);
-        return response()->json(['message' => 'Subject updated successfully', 'course' => $comment], 200);
+        $comment->user_id = $requestData['user_id'];
+        $comment->assignment_id = $requestData['assignment_id'];
+        $comment->save();
+        return response()->json(['message' => 'Subject updated successfully', 'comment' => $comment], 200);
     }
 
     /**

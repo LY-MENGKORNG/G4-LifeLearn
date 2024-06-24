@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Score;
 use App\Models\User;
 use App\Models\Subject;
+use App\Models\Semester;
 use App\Http\Resources\Scores\ScoreResource;
 
 class ScoreController extends Controller
@@ -17,11 +18,10 @@ class ScoreController extends Controller
     public function index()
     {
         $score = Score::list();
-        $score = ScoreResource::collection($score);
         return response()->json([
-           'success' => true,
-           'message' => 'This is all your score',
-            'data' => $score
+            'success' => true,
+            'message' => 'This is all your score',
+            'data' => ScoreResource::collection($score),
         ], 200);
     }
 
@@ -32,14 +32,18 @@ class ScoreController extends Controller
     {
         $studentId= User::pluck('id')->toArray();
         $subjectId = Subject::pluck('id')->toArray();
-        
-        $requestData =$request->only('student_id', 'subject_id');
+        $semesterId = Semester::pluck('id')->toArray();
+
+        $requestData =$request->only('student_id', 'subject_id', 'semester_id');
         if(isset($requestData['student_id'], $requestData['subject_id'])){
             if(!in_array($requestData['student_id'],$studentId)){
                 return response()->json(['message'=> 'Invalid student_id'],400);
             }
             if(!in_array($requestData['subject_id'], $subjectId)){
                 return response()->json(['message'=> 'Invalid subject_id'],400);
+            }
+            if(!in_array($requestData['semester_id'], $semesterId)){
+                return response()->json(['message'=> 'Invalid semester_id'],400);
             }
         }
         $score = Score::store($request);
@@ -50,7 +54,12 @@ class ScoreController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $score = Score::find($id);
+        if ($score) {
+            return response()->json(['score' => $score], 200);
+        } else {
+            return response()->json(['message' => 'Score not found'], 404);
+        }
     }
 
     /**
@@ -64,7 +73,8 @@ class ScoreController extends Controller
         }
         $studentId= User::pluck('id')->toArray();
         $subjectId = Subject::pluck('id')->toArray();
-        $requestData =$request->only('student_id', 'subject_id');
+        $semesterId = Semester::pluck('id')->toArray();
+        $requestData =$request->only('student_id', 'subject_id','semester_id');
         if(isset($requestData['student_id'], $requestData['subject_id'])){
             if(!in_array($requestData['student_id'],$studentId)){
                 return response()->json(['message'=> 'Invalid student_id'],400);
@@ -72,8 +82,14 @@ class ScoreController extends Controller
             if(!in_array($requestData['subject_id'], $subjectId)){
                 return response()->json(['message'=> 'Invalid subject_id'],400);
             }
+            if(!in_array($requestData['semester_id'], $semesterId)){
+                return response()->json(['message'=> 'Invalid semester_id'],400);
+            }
         }
-        $score = Score::store($request);
+        $score->student_id = $requestData['student_id'];
+        $score->subject_id = $requestData['subject_id'];
+        $score->semester_id = $requestData['semester_id'];
+        $score->save();
         return response()->json(['message'=>"Score updated successfully", "score"=>$score]);
     }
 

@@ -20,9 +20,9 @@ class ScoreResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'student_id' => new UserResource($this->user),
-            'subject_id' => new SubjectResource($this->subject),
-            'semester_id'=> new SemesterResource($this->classroom),
+            'student' => new UserResource($this->student),
+            'subject' => new SubjectResource($this->subject),
+            'semester'=> new SemesterResource($this->semester),
         ];
     }
 }

@@ -17,7 +17,7 @@ class SemesterResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'calendar_id' => new CalendarResource($this->calendar),
+            'calendar' => new CalendarResource($this->calendar),
         ];
     }
 }

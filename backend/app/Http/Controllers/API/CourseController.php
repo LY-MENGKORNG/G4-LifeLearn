@@ -20,6 +20,7 @@ class CourseController extends Controller
         $course = Course::list();
         return response()->json([
             'success' => true,
+            'message' => 'This is all your course',
             'data' => CourseResource::collection($course),
         ], 200);
     }
@@ -81,7 +82,9 @@ class CourseController extends Controller
                 return response()->json(['message' => 'Invalid user_id'], 400);
             }
         }
-        $course = Course::store($request, $id);
+        $course->user_id = $requestData['user_id'];
+        $course->category_id = $requestData['category_id'];
+        $course->save();
         return response()->json(['message' => 'Course updated successfully', 'course' => $course], 200);
     }
 

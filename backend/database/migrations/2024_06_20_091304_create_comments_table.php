@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->text('text');
             $table->integer('user_id');
-            $table->integer('comment_id')->nullable();
             $table->integer('classroom_id')->nullable();
             $table->integer('assignment_id')->nullable();
             $table->timestamps();

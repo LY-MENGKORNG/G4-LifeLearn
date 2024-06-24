@@ -64,4 +64,17 @@ class RelationshipModel extends Model
     {
         return $this->belongsTo(Grade::class);
     }
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class);
+    }
+
+    public function subject(): BelongsTo
+    {
+        return $this->belongsTo(Subject::class);
+    }
+    public function calendar(): BelongsTo
+    {
+        return $this->belongsTo(Calendar::class);
+    }
 }
