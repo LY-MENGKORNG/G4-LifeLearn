@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Resources\Category;
+namespace App\Http\Resources\Book;
 
 use App\Http\Resources\Users\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
-{   
+class BookResource extends JsonResource
+{
     /**
      * Transform the resource into an array.
      *
@@ -17,8 +17,11 @@ class CategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-        ];
+            'title' => $this->title,
+            'author' => $this->author,
+            'user' => new UserResource($this->user),
+            'published_at' => $this->published_at,
+            'price'=>$this->price,
+        ]; 
     }
 }

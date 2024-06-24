@@ -22,7 +22,6 @@ class CourseResource extends JsonResource
             'price' => $this->price,
             'user_id' => new UserResource($this->user),
             'duration'=>$this->duration,
-
         ];
     }
 }

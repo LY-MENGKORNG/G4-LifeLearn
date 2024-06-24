@@ -1,13 +1,18 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\SystemController;
+use App\Http\Controllers\Api\Assigment\AssigmentController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ClassroomController;
+use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\Api\Calendar\CalendarController;
+use App\Http\Controllers\Front\FrontuserController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +33,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // public routes
+Route::post('/register', [FrontuserController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 
@@ -41,6 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 //course
 Route::resource('/course', CourseController::class);
+
 //subject
 Route::resource('/subject', SubjectController::class);
 
@@ -55,8 +62,31 @@ Route::prefix('category')->group(function () {
     Route::put('/update/{id}', [CategoryController::class, 'update']);
     Route::delete('/{id}', [CategoryController::class, 'destroy']);
 });
+
+// assignment
+Route::prefix('assigment')->group(function () {
+    Route::get('/list', [AssigmentController::class, 'index']);
+    Route::post('/create', [AssigmentController::class, 'store']);
+    Route::get('/show/{id}', [AssigmentController::class, 'show']);
+    Route::put('/update/{id}', [AssigmentController::class, 'update']);
+    Route::delete('/{id}', [AssigmentController::class, 'destroy']);
+});
+
 //classroom
 Route::resource('/classroom',ClassroomController::class);
 
 //documents
 // Route::post('/documents',[DocumentCon])
+//books
+Route::resource('books',BookController::class);
+
+//calendar
+Route::resource('/calendar', CalendarController::class);
+
+Route::get('/notification/list', [NotificationController::class,'index']);
+Route::post('notification/create', [NotificationController::class, 'store']);
+Route::get('notification/{id}', [NotificationController::class, 'show']);
+Route::put('notification/update/{id}', [NotificationController::class, 'update']);
+Route::delete('notification/delete/{id}', [NotificationController::class, 'destroy']);
+
+
