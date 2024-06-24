@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Notificaton;
 use Illuminate\Http\Request;
+use App\Http\Requests\Notification\NotificationRequest;
 
 class NotificationController extends Controller
 {
@@ -23,7 +24,7 @@ class NotificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -31,7 +32,8 @@ class NotificationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+        
     }
 
     /**
@@ -39,7 +41,8 @@ class NotificationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+
     }
 
     /**
@@ -47,6 +50,6 @@ class NotificationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
     }
 }

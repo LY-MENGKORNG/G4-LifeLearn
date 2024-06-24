@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('category_id')->nullable();
             $table->integer('price')->nullable();
             $table->integer('user_id')->nullable();
-            $table->integer('durtion')->nullable();
+            $table->integer('duration')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
