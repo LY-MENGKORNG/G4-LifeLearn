@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Book extends Model
+class Book extends RelationshipModel
 {
     use HasFactory, SoftDeletes;
 
@@ -18,9 +18,4 @@ class Book extends Model
         'published_at', 
         'price'
     ];
-
-    public function user(): BelongsTo  // get author
-    {
-        return $this->belongsTo(User::class);
-    }
 }
