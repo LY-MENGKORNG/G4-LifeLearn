@@ -34,7 +34,7 @@ class CourseController extends Controller
         $requestData = $request->only('category_id', 'price', 'user_id', 'duration');
 
         if (!in_array($requestData['category_id'], $categoryIds)) {
-            return response()-2>json(['message' => 'Invalid category_id'], 400);
+            return response()->json(['message' => 'Invalid category_id'], 400);
         }
         if (!in_array($requestData['user_id'], $userIds)) {
             return response()->json(['message' => 'Invalid user_id'], 400);

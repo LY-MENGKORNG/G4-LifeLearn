@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Users\UserResource;
 use App\Http\Resources\Classroom\ClassroomResource;
-use App\Http\Resources\Assignments\AssignmentResource;
+use App\Http\Resources\Assignment\AssignmentResource;
 
 
 class CommentResource extends JsonResource

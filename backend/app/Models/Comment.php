@@ -28,13 +28,6 @@ class Comment extends RelationshipModel
         $comment = self::updateOrCreate(['id' => $id], $commentData);
         return $comment;
     }
-    public function user(): BelongsTo 
-    {
-        return $this->belongsTo(User::class);
-    }
-    public function classroom(): BelongsTo
-    {
-        return $this->belongsTo(Classroom::class);
-    }
+
 
 }

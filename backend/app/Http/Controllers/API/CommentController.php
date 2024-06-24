@@ -20,7 +20,7 @@ class CommentController extends Controller
         $comment = Comment::list();
         return response()->json([
             'success' => true,
-            'message' => 'This is all your comment ',
+            'message' => 'This is all your comment',
             'data' => CommentResource::collection($comment),
         ], 200);
     }

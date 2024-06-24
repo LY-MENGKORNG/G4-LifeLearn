@@ -18,13 +18,13 @@ class Classroom extends Model
     // {
     //     return $this->belongsTo(Grade::class);
     // }
-    public function subject(): HasMany 
+    public function subject(): BelongsTo 
     {
-        return $this->hasManyTo(Subject::class);
+        return $this->belongTo(Subject::class);
     }
-    public function comment(): HasMany
+    public function comment(): BelongsTo
     {
-        return $this->hasManyTo(Comment::class);
+        return $this->belongsTo(Comment::class);
     }
 
 

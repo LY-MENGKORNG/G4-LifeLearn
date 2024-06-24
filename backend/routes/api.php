@@ -7,6 +7,7 @@ use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\API\CommentController;
+use App\Http\Controllers\API\ScoreController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
@@ -47,6 +48,8 @@ Route::resource('/course', CourseController::class);
 Route::resource('/subject', SubjectController::class);
 //comments
 Route::resource('/comment', CommentController::class);
+//score
+Route::resource('/score', ScoreController::class);
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 

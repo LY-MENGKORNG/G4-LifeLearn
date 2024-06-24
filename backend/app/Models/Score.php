@@ -15,6 +15,18 @@ class Score extends Model
         'subject_id',
         'semester_id',
     ];
+    public static function list() {
+        $score = self::all();
+        return $score;
+    }
+
+    public static function store($request, $id = null)
+    {
+
+        $scoreData = $request->only('student_id', 'subject_id', 'semester_id');
+        $score = self::updateOrCreate(['id' => $id], $scoreData);
+        return $score;
+    }
 
     public function student(): BelongsTo 
     {
