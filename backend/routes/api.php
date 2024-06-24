@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\API\PostController;
@@ -55,6 +56,15 @@ Route::prefix('category')->group(function () {
     Route::put('/update/{id}', [CategoryController::class, 'update']);
     Route::delete('/{id}', [CategoryController::class, 'destroy']);
 });
+
 //classroom
 Route::resource('/classroom',ClassroomController::class);
+
+
+Route::get('/notification/list', [NotificationController::class,'index']);
+Route::post('notification/create', [NotificationController::class, 'store']);
+Route::get('notification/{id}', [NotificationController::class, 'show']);
+Route::put('notification/update/{id}', [NotificationController::class, 'update']);
+Route::delete('notification/delete/{id}', [NotificationController::class, 'destroy']);
+
 

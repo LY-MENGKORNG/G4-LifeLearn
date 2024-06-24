@@ -4,7 +4,6 @@
         <div class="flex flex-wrap">
             <section class="!mx-auto px-8 py-4 w-full">
                 <h2>List of your notifications</h2>
-                
             </section>
         </div>
     </main>
