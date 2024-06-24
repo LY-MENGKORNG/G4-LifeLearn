@@ -64,4 +64,9 @@ class RelationshipModel extends Model
     {
         return $this->belongsTo(Grade::class);
     }
+    public function favorite(): BelongsTo
+    {
+        return $this->belongsTo(Favorite::class);
+    }
+
 }

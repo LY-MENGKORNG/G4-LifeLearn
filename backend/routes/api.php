@@ -9,6 +9,7 @@ use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\FavoriteController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/systems', [SystemController::class, 'index']);
     });
+            
+    Route::resource('/favorites',FavoriteController::class);
 });
 
 //course
@@ -55,9 +58,12 @@ Route::prefix('category')->group(function () {
     Route::get('/{id}', [CategoryController::class, 'show']);
     Route::put('/update/{id}', [CategoryController::class, 'update']);
     Route::delete('/{id}', [CategoryController::class, 'destroy']);
+
 });
 //classroom
 Route::resource('/classroom',ClassroomController::class);
 //books
 Route::resource('books',BookController::class);
+
+
 
