@@ -1,12 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\SystemController;
-use App\Http\Controllers\Api\Category\CategoryController;
-use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\FrontuserController;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,16 +23,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [FrontuserController::class, 'login']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 
 
 // protected routes
+Route::middleware('auth:sanctum')->group(function () {
 
+    // category routes
+    Route::get('category/list', [CategoryController::class, 'index']);
+    Route::post('category/create', [CategoryController::class, 'store']);
+    Route::get('category/{id}', [CategoryController::class, 'show']);
+    Route::put('category/update/{id}', [CategoryController::class, 'update']);
+    Route::delete('category/{id}', [CategoryController::class, 'destroy']);
+});
 
 // category
-Route::get('category/list', [CategoryController::class, 'index']);
-Route::post('category/create', [CategoryController::class, 'store']);
-Route::get('category/{id}', [CategoryController::class, 'show']);
-Route::put('category/update/{id}', [CategoryController::class, 'update']);
-Route::delete('category/{id}', [CategoryController::class, 'destroy']);
