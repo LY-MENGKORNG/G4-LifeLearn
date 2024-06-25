@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -49,6 +50,34 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Login success',
             'data' =>$user,
+        ]);
+    }
+    public function loginadmin(Request $request) {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        $user = User::where('email', $request->email)->first();
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'message' => 'Invalid credentials',
+                'success' => false,
+            ], 401);
+        }
+
+        // Check if the user has the admin role
+        if (!$user->hasRole('admin')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+                'success' => false,
+            ], 403);
+        }
+        $access_token = $user->createToken('authToken')->plainTextToken;
+        return response()->json([
+            'message' => 'Login successful',
+            'success' => true,
+            'user' => $user,
+            'access_token' => $access_token,
         ]);
     }
 }
