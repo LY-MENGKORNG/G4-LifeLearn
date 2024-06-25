@@ -11,13 +11,11 @@ use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
-<<<<<<< HEAD
 use App\Http\Controllers\Api\QuizController;
 use App\Http\Controllers\Api\QuizzeController;
-=======
 use App\Http\Controllers\Api\Calendar\CalendarController;
+use App\Http\Controllers\Api\SubmiteController;
 use App\Http\Controllers\Front\FrontuserController;
->>>>>>> 6c98a73ad28194d3be6d38f78ddfb11a189aa1ee
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -78,23 +76,22 @@ Route::prefix('assigment')->group(function () {
 });
 
 //classroom
-Route::resource('/classroom',ClassroomController::class);
+Route::resource('/classroom', ClassroomController::class);
 
 //documents
 // Route::post('/documents',[DocumentCon])
 //books
-Route::resource('books',BookController::class);
+Route::resource('books', BookController::class);
 
 //calendar
 Route::resource('/calendar', CalendarController::class);
 
 //Notifications
-Route::get('/notification/list', [NotificationController::class,'index']);
+Route::get('/notification/list', [NotificationController::class, 'index']);
 Route::post('notification/create', [NotificationController::class, 'store']);
 Route::get('notification/{id}', [NotificationController::class, 'show']);
 Route::put('notification/update/{id}', [NotificationController::class, 'update']);
 Route::delete('notification/delete/{id}', [NotificationController::class, 'destroy']);
-
 
 //Quize
 Route::get('/quizze/list', [QuizzeController::class, 'index']);
@@ -103,3 +100,9 @@ Route::get('/quizze/show/{id}', [QuizzeController::class, 'show']);
 Route::put('/quizze/update/{id}', [QuizzeController::class, 'update']);
 Route::delete('/quizze/delete/{id}', [QuizzeController::class, 'destroy']);
 
+//submit
+Route::get('/submite/list', [SubmiteController::class, 'index']);
+Route::post('/submite/create', [SubmiteController::class, 'store']);
+Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
+Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
+Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);

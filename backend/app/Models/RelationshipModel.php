@@ -42,7 +42,7 @@ class RelationshipModel extends Model
 
     public function quiz(): BelongsTo
     {
-        return $this->belongsTo(Quiz::class);
+        return $this->belongsTo(Quizze::class);
     }
 
     public function notification(): BelongsTo
