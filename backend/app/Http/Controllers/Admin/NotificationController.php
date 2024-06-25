@@ -19,10 +19,6 @@ class NotificationController extends Controller
      */
     public function index()
     {
-
-
-        // return view('notification.index', ['notifications' => $notifications]);
-
         $notifications = Notificaton::list();
         return NotificationResource::collection($notifications);
     }
@@ -55,12 +51,12 @@ class NotificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-    
+
         $notification = Notificaton::find($id);
         $classrooms = Classroom::pluck('id')->toArray();
         $userIds = User::pluck('id')->toArray();
         $requestData = $request->only('classroom_id', 'user_id',);
-        return response()->json(['message' => 'Notificaton updated successfully', 'no$notification' => $notification], 200);
+        return response()->json(['message' => 'Notificaton updated successfully', '$notification' => $notification], 200);
     }
 
 
@@ -90,6 +86,4 @@ class NotificationController extends Controller
             ], 500);
         }
     }
-        
-    }
-
+}

@@ -42,7 +42,7 @@ class RelationshipModel extends Model
 
     public function quiz(): BelongsTo
     {
-        return $this->belongsTo(Quiz::class);
+        return $this->belongsTo(Quizze::class);
     }
 
     public function notification(): BelongsTo
@@ -64,9 +64,17 @@ class RelationshipModel extends Model
     {
         return $this->belongsTo(Grade::class);
     }
-
-    public function event(): BelongsTo
+    public function semester(): BelongsTo
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Semester::class);
+    }
+
+    public function subject(): BelongsTo
+    {
+        return $this->belongsTo(Subject::class);
+    }
+    public function calendar(): BelongsTo
+    {
+        return $this->belongsTo(Calendar::class);
     }
 }

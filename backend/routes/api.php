@@ -10,7 +10,8 @@ use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
 use App\Http\Controllers\Api\Calendar\CalendarController;
 use App\Http\Controllers\API\CategoryController;
-use App\Http\Controllers\Api\DocumentController;
+use App\Http\Controllers\Api\Payment\DocumnetController;
+use App\Http\Controllers\Api\Payment\PaymentController;
 use App\Http\Controllers\API\SystemController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\FrontuserController;
@@ -32,6 +33,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+
+
+
+
+
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -42,7 +49,7 @@ Route::post('/login', [FrontuserController::class, 'login']);
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::middleware('auth:sanctum')->group(function () {
-    
+
     // user login
     Route::get('/me', [AuthController::class, 'index']);
 
@@ -50,7 +57,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/systems', [SystemController::class, 'index']);
     });
     Route::resource('/course', CourseController::class);
-    
+
     //subject
     Route::resource('/subject', SubjectController::class);
 
@@ -61,7 +68,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/update/{id}', [CategoryController::class, 'update']);
         Route::delete('/{id}', [CategoryController::class, 'destroy']);
     });
-    
+
     // assignment
     Route::prefix('assigment')->group(function () {
         Route::get('/list', [AssigmentController::class, 'index']);
@@ -75,7 +82,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('system')->group(function () {
         Route::resource('/', SystemController::class);
     });
-    
+
     // category routes
     Route::get('/category/list', [CategoryController::class, 'index']);
     Route::post('/category/create', [CategoryController::class, 'store']);
@@ -84,35 +91,41 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/category/{id}', [CategoryController::class, 'destroy']);
 
     //classroom
-    Route::resource('/classroom',ClassroomController::class);
-    
-    //documents
-    Route::get('/document/list',[DocumentController::class, 'index']);
-    Route::post('/document',[DocumentController::class, 'store']);
-    Route::get('/document/show/{id}',[DocumentController::class, 'show']);
-    Route::put('/document/update/{id}',[DocumentController::class, 'update']);
-    Route::delete('/document/delete/{id}',[DocumentController::class, 'destroy']);
+    Route::resource('/classroom', ClassroomController::class);
 
     //documents
-    Route::get('/references/list',[ReferencesController::class, 'index']);
-    Route::post('/references',[ReferencesController::class, 'store']);
-    Route::get('/references/show/{id}',[ReferencesController::class, 'show']);
-    Route::put('/references/update/{id}',[ReferencesController::class, 'update']);
-    Route::delete('/references/delete/{id}',[ReferencesController::class, 'destroy']);
-
+    Route::prefix('/document')->group(function () {
+        Route::get('/list', [DocumnetController::class, 'index']);
+        Route::post('/create', [DocumnetController::class, 'store']);
+        Route::get('/show/{id}', [DocumnetController::class, 'show']);
+        Route::put('/update/{id}', [DocumnetController::class, 'update']);
+        Route::delete('/delete/{id}', [DocumnetController::class, 'destroy']);
+    });
+    //references   
+    Route::prefix('/references')->group(function () {
+        Route::get('/list', [ReferencesController::class, 'index']);
+        Route::post('/create', [ReferencesController::class, 'store']);
+        Route::get('/show/{id}', [ReferencesController::class, 'show']);
+        Route::put('/update/{id}', [ReferencesController::class, 'update']);
+        Route::delete('/delete/{id}', [ReferencesController::class, 'destroy']);
+    });
+    //payments  
+    Route::prefix('/payment')->group(function () {
+        Route::get('/list', [PaymentController::class, 'index']);
+        Route::post('/create', [PaymentController::class, 'store']);
+        Route::get('/show/{id}', [PaymentController::class, 'show']);
+        Route::put('/update/{id}', [PaymentController::class, 'update']);
+        Route::delete('/delete/{id}', [PaymentController::class, 'destroy']);
+    });
     //books
-    Route::resource('books',BookController::class);
-    
+    Route::resource('books', BookController::class);
+
     //calendar
     Route::resource('/calendar', CalendarController::class);
-    
-    Route::get('/notification/list', [NotificationController::class,'index']);
+
+    Route::get('/notification/list', [NotificationController::class, 'index']);
     Route::post('/notification/create', [NotificationController::class, 'store']);
     Route::get('/notification/{id}', [NotificationController::class, 'show']);
     Route::put('/notification/update/{id}', [NotificationController::class, 'update']);
     Route::delete('/notification/delete/{id}', [NotificationController::class, 'destroy']);
-
 });
-
-
-

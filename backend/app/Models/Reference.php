@@ -7,31 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Document extends RelationshipModel
+class Reference extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
     protected $fillable = [
-        'user_id',
-        'school_name',
-        'School_address',
-        'school_phone_number'
+        'principle_id',
+        'document_id',
+        'status'
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
-    public static function list() {
-        return self::all(); 
+    public function document(): BelongsTo
+    {
+        return $this->belongsTo(Document::class);
     }
+
+    public static function list()
+    {
+        return self::all();
+    }
+
     public static function store($request, $id = null)
     {
         $data = [
-            'user_id' => $request->user()->id,
-            'school_name' => $request->school_name,
-            'School_address' => $request->school_address,
-            'school_phone_number' => $request->school_phone_number
+            'principle_id' => $request->principle_id,
+            'document_id' => $request->document_id,
+            'status' => $request->status,
         ];
         $document = self::updateOrCreate(['id' => $id], $data);
         return $document;

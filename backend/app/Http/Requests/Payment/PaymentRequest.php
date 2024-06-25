@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Document;
+namespace App\Http\Requests\Payment;
 
 use App\Http\Requests\DefaultRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DocumentRequest extends DefaultRequest
+class PaymentRequest extends DefaultRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
 
     /**
      * Get the validation rules that apply to the request.
@@ -19,9 +16,10 @@ class DocumentRequest extends DefaultRequest
     public function rules(): array
     {
         return [
-            "school_name"=>'required|string|',
-            "school_address"=>'required|string',
-            "school_phone_number"
+            "method"=>'required|string',
+            "amount"=>'required|integer',
+            "course_id"=>'required|integer',
+            "system_id"=>'required|integer',
         ];
     }
 }
