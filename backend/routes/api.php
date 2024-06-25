@@ -2,34 +2,26 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NotificationController;
-<<<<<<< HEAD
 use App\Http\Controllers\Admin\ReferencesController;
-=======
 use App\Http\Controllers\Admin\SystemController;
 // use App\Http\Controllers\FrontuserController;
->>>>>>> 1d9d30c6b1d77f601ec092f95cebaf8a902f7fa3
 use App\Http\Controllers\Api\Assigment\AssigmentController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
-<<<<<<< HEAD
-use App\Http\Controllers\Api\Calendar\CalendarController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\Api\Payment\DocumnetController;
 use App\Http\Controllers\Api\Payment\PaymentController;
-use App\Http\Controllers\API\SystemController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Front\FrontuserController;
-=======
-use App\Http\Controllers\Api\QuizController;
 use App\Http\Controllers\Api\QuizzeController;
 use App\Http\Controllers\Api\Calendar\CalendarController;
+use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\Api\SubmiteController;
 use App\Http\Controllers\Front\FrontuserController;
 use App\Http\Controllers\API\FavoriteController;
+use App\Http\Controllers\API\ScoreController;
 use App\Models\Category;
->>>>>>> 1d9d30c6b1d77f601ec092f95cebaf8a902f7fa3
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -71,19 +63,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/systems', [SystemController::class, 'index']);
     });
-<<<<<<< HEAD
     Route::resource('/course', CourseController::class);
 
     //subject
     Route::resource('/subject', SubjectController::class);
-
-    Route::prefix('category')->group(function () {
-        Route::get('/list', [CategoryController::class, 'index']);
-        Route::post('/create', [CategoryController::class, 'store']);
-        Route::get('/{id}', [CategoryController::class, 'show']);
-        Route::put('/update/{id}', [CategoryController::class, 'update']);
-        Route::delete('/{id}', [CategoryController::class, 'destroy']);
-    });
 
     // assignment
     Route::prefix('assigment')->group(function () {
@@ -145,10 +128,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/notification/update/{id}', [NotificationController::class, 'update']);
     Route::delete('/notification/delete/{id}', [NotificationController::class, 'destroy']);
 });
-=======
             
     Route::resource('/favorites',FavoriteController::class);
-});
 
 //course
 Route::resource('/course', CourseController::class);
@@ -161,17 +142,6 @@ Route::resource('/comment', CommentController::class);
 Route::resource('/score', ScoreController::class);
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-
-
-// category
-Route::prefix('category')->group(function () {
-    Route::get('/list', [CategoryController::class, 'index']);
-    Route::post('/create', [CategoryController::class, 'store']);
-    Route::get('/{id}', [CategoryController::class, 'show']);
-    Route::put('/update/{id}', [CategoryController::class, 'update']);
-    Route::delete('/{id}', [CategoryController::class, 'destroy']);
-
-});
 
 // assignment
 Route::prefix('assigment')->group(function () {
@@ -213,4 +183,3 @@ Route::post('/submite/create', [SubmiteController::class, 'store']);
 Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
 Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
 Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
->>>>>>> 1d9d30c6b1d77f601ec092f95cebaf8a902f7fa3
