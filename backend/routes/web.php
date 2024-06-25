@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
+    DashboardController,
     ProfileController,
     MailSettingController,
 };
@@ -36,9 +37,6 @@ Route::get('/test-mail',function(){
       $message->to('ajayydavex@gmail.com')
         ->subject('Testing mail');
     });
-
-    dd('sent');
-
 });
 
 
@@ -50,9 +48,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/front_auth.php';
 
 // Admin routes
-Route::get('/admin/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('admin.dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -66,7 +62,6 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('users',UserController::class);
         Route::resource('systems', SystemController::class);
         Route::resource('notifications', NotificationController::class);
-        // Route::resource('course', ::class);
 
         Route::get('/profile',[ProfileController::class,'index'])->name('profile');
         Route::put('/profile-update',[ProfileController::class,'update'])->name('profile.update');

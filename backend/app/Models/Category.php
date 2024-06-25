@@ -19,10 +19,8 @@ class Category extends RelationshipModel
 
     public static function store($request, $id = null)
     {
-
         $categoryData = $request->only('name', 'description');
         $category = self::updateOrCreate(['id' => $id], $categoryData);
         return $category;
     }
-    
 }

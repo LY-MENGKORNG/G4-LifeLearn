@@ -1,38 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Payment;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Document\DocumentRequest;
 use App\Http\Resources\Payment\DocumentResource;
 use App\Models\Document;
 use Illuminate\Http\Request;
 
-class DocumentController extends Controller
+class DocumnetController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $document = Document::list();
-        $document = DocumentResource::collection($document);
+        $documnet = Document::list();
+        $documnet = DocumentResource::collection($documnet);
         return response()->json([
             'success' => true,
-            'data' =>$document,
+            'data' =>$documnet,
         ], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(DocumentRequest $request)
+    public function store(Request $request)
     {
-        $document = Document::store($request);
+        $documnet = Document::store($request);
         return response()->json([
             'success' => true,
             'message'=> 'created successfully',
-            'document' => $document
+            'data' => $documnet
         ], 200);
     }
 
@@ -41,23 +40,23 @@ class DocumentController extends Controller
      */
     public function show(string $id)
     {
-        $document = Document::find($id);
-        if ($document) {
-            return response()->json($document);
+        $documnet = Document::find($id);
+        if ($documnet) {
+            return response()->json($documnet);
         }
-        return response()->json(['message' => 'document not found'], 404);
+        return response()->json(['message' => 'Document not found'], 404);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(DocumentRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-            $document = Document::store($request,$id);
+        $documnet = Document::store($request,$id);
             return response()->json([
                 'success' => true,
                'message'=> 'updated successfully',
-               'data' => $document
+               'data' => $documnet
             ]);
     }
 
@@ -66,8 +65,8 @@ class DocumentController extends Controller
      */
     public function destroy(string $id)
     {
-        $document = Document::find($id);
-        $document->delete();
-        return ["success" => true, "Message" =>"document deleted successfully"];
+        $documnet = Document::find($id);
+        $documnet->delete();
+        return ["success" => true, "Message" =>"Document deleted successfully"];
     }
 }

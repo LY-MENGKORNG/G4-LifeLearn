@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class System extends RelationshipModel
 {
@@ -20,6 +19,8 @@ class System extends RelationshipModel
 
     public static function createOrUpdate($request, $id = null)
     {
-        
+        $system = $request->only('name', 'user_id', 'location');
+        $system = self::updateOrCreate(['id' => $id], $system);
+        return $system;
     }
 }

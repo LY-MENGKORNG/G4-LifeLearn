@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Mailsetting;
 
 use Config;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (\Schema::hasTable('mailsettings')) {
+        if (Schema::hasTable('mailsettings')) {
             $mailsetting = Mailsetting::first();
             if($mailsetting){
                 $data = [

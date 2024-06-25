@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Calendar;
+use App\Models\Payment;
 use App\Models\System;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,10 +17,15 @@ class DashboardController extends Controller
     public function index()
     {
         $systems = System::list();
-        return response()->json([
-            'success' => true,
-            'data' => $systems
-        ], 200);
+        $users = User::all();
+        $payments = Payment::all();
+
+        $dashboard = [
+            'systems' => $systems,
+            'users' => $users,
+            'payments' => $payments,
+        ];
+        return view('dashboard', ['dashboard' => $dashboard]);
     }
 
     /**
