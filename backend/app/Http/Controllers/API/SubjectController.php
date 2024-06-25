@@ -8,7 +8,6 @@ use App\Models\Subject;
 use App\Models\Course;
 use App\Models\Classroom;
 use App\Http\Resources\Subjects\SubjectResource;
-use PhpParser\Builder\Class_;
 
 class SubjectController extends Controller
 {
@@ -22,6 +21,7 @@ class SubjectController extends Controller
 
         return response()->json([
            'success' => true,
+           'message' => 'This is all your subject',
             'data' => $subject
         ]);
     }
@@ -83,8 +83,10 @@ class SubjectController extends Controller
                 return response()->json(['message' => 'Invalid classroom_id'], 400);
             }
         }
-        $subject = Subject::store($request, $id);
-        return response()->json(['message' => 'Subject updated successfully', 'course' => $subject], 200);
+        $subject->course_id = $requestData['course_id'];
+        $subject->classroom_id = $requestData['classroom_id'];
+        $subject->save();
+        return response()->json(['message' => 'Subject updated successfully', 'subject' => $subject], 200);
     }
 
     /**

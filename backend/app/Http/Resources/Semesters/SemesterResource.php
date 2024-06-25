@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Calendar;
+namespace App\Http\Resources\Semesters;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Calendar\CalendarResource;
 
-
-class CalendarResource extends JsonResource
+class SemesterResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,12 +17,7 @@ class CalendarResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'time' => $this->time,
-            'day' => $this->day,
-            'week' => $this->week,
-            'month' => $this->month,
-            'year' => $this->year,
-            'grade_id' => new GradeResource($this->grade),
+            'calendar' => new CalendarResource($this->calendar),
         ];
     }
 }

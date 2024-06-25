@@ -3,11 +3,14 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\SystemController;
+// use App\Http\Controllers\FrontuserController;
 use App\Http\Controllers\Api\Assigment\AssigmentController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
+use App\Http\Controllers\API\CommentController;
+use App\Http\Controllers\API\ScoreController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
@@ -16,6 +19,7 @@ use App\Http\Controllers\Api\QuizzeController;
 use App\Http\Controllers\Api\Calendar\CalendarController;
 use App\Http\Controllers\Api\SubmiteController;
 use App\Http\Controllers\Front\FrontuserController;
+use App\Http\Controllers\API\FavoriteController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +50,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/systems', [SystemController::class, 'index']);
     });
+            
+    Route::resource('/favorites',FavoriteController::class);
 });
 
 //course
@@ -53,6 +59,10 @@ Route::resource('/course', CourseController::class);
 
 //subject
 Route::resource('/subject', SubjectController::class);
+//comments
+Route::resource('/comment', CommentController::class);
+//score
+Route::resource('/score', ScoreController::class);
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -64,6 +74,7 @@ Route::prefix('category')->group(function () {
     Route::get('/{id}', [CategoryController::class, 'show']);
     Route::put('/update/{id}', [CategoryController::class, 'update']);
     Route::delete('/{id}', [CategoryController::class, 'destroy']);
+
 });
 
 // assignment
