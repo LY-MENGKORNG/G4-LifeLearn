@@ -48,6 +48,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
+// user login
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/login', [FrontuserController::class, 'login']);
 
@@ -56,9 +57,9 @@ Route::post('/login', [FrontuserController::class, 'login']);
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::middleware('auth:sanctum')->group(function () {
-
-    // user login
+    
     Route::get('/me', [AuthController::class, 'index']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/systems', [SystemController::class, 'index']);
