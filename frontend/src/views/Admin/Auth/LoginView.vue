@@ -28,38 +28,38 @@
 </template>
 
 <script setup lang="ts">
-// import axiosInstance from '@/plugins/axios'
-// import { useField, useForm } from 'vee-validate'
-// import * as yup from 'yup'
-// import { useRouter } from 'vue-router'
+import axiosInstance from '@/plugins/axios'
+import { useField, useForm } from 'vee-validate'
+import * as yup from 'yup'
+import { useRouter } from 'vue-router'
 
-// const router = useRouter()
+const router = useRouter()
 
-// const formSchema = yup.object({
-//   password: yup.string().required().label('Password'),
-//   email: yup.string().required().email().label('Email address')
-// })
+const formSchema = yup.object({
+  password: yup.string().required().label('Password'),
+  email: yup.string().required().email().label('Email address')
+});
 
-// const { handleSubmit, isSubmitting } = useForm({
-//   initialValues: {
-//     password: '',
-//     email: ''
-//   },
-//   validationSchema: formSchema
-// })
+const { handleSubmit, isSubmitting } = useForm({
+  initialValues: {
+    password: '',
+    email: ''
+  },
+  validationSchema: formSchema
+})
 
-// const onSubmit = handleSubmit(async (values) => {
-//   try {
-//     const { data } = await axiosInstance.post('/login', values)
-//     localStorage.setItem('access_token', data.access_token)
-//     router.push('/')
-//   } catch (error) {
-//     console.warn('Error')
-//   }
-// })
+const onSubmit = handleSubmit(async (values) => {
+  try {
+    const { data } = await axiosInstance.post('/login', values)
+    localStorage.setItem('access_token', data.access_token)
+    router.push('/')
+  } catch (error) {
+    console.warn('Error')
+  }
+})
 
-// const { value: password, errorMessage: nameError } = useField('password')
-// const { value: email, errorMessage: emailError } = useField('email')
+const { value: password, errorMessage: nameError } = useField('password')
+const { value: email, errorMessage: emailError } = useField('email')
 </script>
 
 
