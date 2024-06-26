@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\SystemController;
 use App\Http\Controllers\AuthController;
@@ -26,10 +27,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [FrontuserController::class, 'register']);
 Route::post('/login', [FrontuserController::class, 'login']);
 
+Route::post('/admin/login', [AuthController::class, 'login']); // admin login
+
+
 
 // protected routes
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/me', [AuthController::class, 'index']);
+    
+    Route::get('/me', [AuthController::class, 'index']); // get user information
 
     // system routes
     Route::prefix('system')->group(function () {
@@ -37,9 +42,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     
     // category routes
-    Route::get('category/list', [CategoryController::class, 'index']);
-    Route::post('category/create', [CategoryController::class, 'store']);
-    Route::get('category/{id}', [CategoryController::class, 'show']);
-    Route::put('category/update/{id}', [CategoryController::class, 'update']);
-    Route::delete('category/{id}', [CategoryController::class, 'destroy']);
+    Route::get('/category/list', [CategoryController::class, 'index']);
+    Route::post('/category/create', [CategoryController::class, 'store']);
+    Route::get('/category/{id}', [CategoryController::class, 'show']);
+    Route::put('/category/update/{id}', [CategoryController::class, 'update']);
+    Route::delete('/category/{id}', [CategoryController::class, 'destroy']);
 });

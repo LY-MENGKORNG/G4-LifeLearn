@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Auth\FrontRegisterRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -17,7 +15,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'email'     => 'required|string|max:255',
             'password'  => 'required|string'
-          ]);
+        ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors());
@@ -41,15 +39,27 @@ class AuthController extends Controller
             'token_type'    => 'Bearer'
         ]);
     }
-    
+
     public function index(Request $request)
     {
-        $user = $request->user();
-        // $permissions = $user->getAllPermissions();
-        // $roles = $user->getRoleNames();
+        // Get the authenticated user
+        $user = Auth::user()->load('permissions', 'roles');
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not authenticated'
+            ], 401);
+        }
+
+        // Assuming the User model has relationships for roles and permissions
+        $permissions = $user->permissions; // Adjust if using a method
+        $roles = $user->roles; // Adjust if using a method
+
         return response()->json([
-            'message' => 'Login success',
-            'data' =>$user,
+            'message' => 'Your information',
+            'data' => $user,
+            'permissions' => $permissions,
+            'roles' => $roles
         ]);
     }
 }

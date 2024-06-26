@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class Frontuser extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
     public $guard = 'front';
     /**
      * The attributes that are mass assignable.
@@ -24,6 +25,7 @@ class Frontuser extends Authenticatable
         'email',
         'password',
         'phone',
+        'profile'
     ];
 
     /**
@@ -44,7 +46,6 @@ class Frontuser extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
 
     public static function createOrUpdate($request, $id = null)
     {

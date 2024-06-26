@@ -14,10 +14,10 @@ class FrontMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
-        if(!Auth::guard('front')->check()){
-            return redirect('login');
+        if (!Auth::check() || !Auth::user()->hasRole($role)) {
+            abort(403, 'Unauthorized');
         }
         return $next($request);
     }
