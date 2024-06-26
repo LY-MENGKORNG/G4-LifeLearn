@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import WebLayout from '@/Components/Layouts/WebLayout.vue'
+import WebLayout from '@/Layouts/Web/WebLayout.vue';
 </script>
+
 <template>
   <WebLayout
     ><div
