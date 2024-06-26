@@ -51,6 +51,7 @@ require __DIR__ . '/front_auth.php';
 // Admin routes
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/systems', [DashboardController::class, 'index'])->name('admin.systems');
 });
 
 require __DIR__ . '/auth.php';

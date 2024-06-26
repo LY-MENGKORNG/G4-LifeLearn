@@ -49,25 +49,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [FrontuserController::class, 'register']);
 // user login
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
-Route::post('/admin/login', [AuthController::class, 'loginadmin']);
-Route::post('/login', [FrontuserController::class, 'login']);
+// Route::post('/login', [FrontuserController::class, 'login']);
 
-Route::post('/admin/login', [AuthController::class, 'login']); // admin login
-
-
-
-// protected routes
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::middleware('auth:sanctum')->group(function () {
-    
+
     Route::get('/me', [AuthController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::group(['prefix' => 'admin'], function () {
-        Route::get('/systems', [SystemController::class, 'index']);
-    });
     Route::resource('/course', CourseController::class);
 
     //subject
@@ -127,50 +116,32 @@ Route::middleware('auth:sanctum')->group(function () {
     //calendar
     Route::resource('/calendar', CalendarController::class);
 
+    // notifications
     Route::get('/notification/list', [NotificationController::class, 'index']);
     Route::post('/notification/create', [NotificationController::class, 'store']);
     Route::get('/notification/{id}', [NotificationController::class, 'show']);
     Route::put('/notification/update/{id}', [NotificationController::class, 'update']);
     Route::delete('/notification/delete/{id}', [NotificationController::class, 'destroy']);
 
-    Route::resource('/favorites',FavoriteController::class);
+    // favorites
+    Route::resource('/favorites', FavoriteController::class);
+
+    //Quize
+    Route::get('/quizze/list', [QuizzeController::class, 'index']);
+    Route::post('/quizze/create', [QuizzeController::class, 'store']);
+    Route::get('/quizze/show/{id}', [QuizzeController::class, 'show']);
+    Route::put('/quizze/update/{id}', [QuizzeController::class, 'update']);
+    Route::delete('/quizze/delete/{id}', [QuizzeController::class, 'destroy']);
+
+    //submit
+    Route::get('/submite/list', [SubmiteController::class, 'index']);
+    Route::post('/submite/create', [SubmiteController::class, 'store']);
+    Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
+    Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
+    Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
+    
+    //comments
+    Route::resource('/comment', CommentController::class);
+    //score
+    Route::resource('/score', ScoreController::class);
 });
-            
-//subject
-Route::resource('/subject', SubjectController::class);
-//comments
-Route::resource('/comment', CommentController::class);
-//score
-Route::resource('/score', ScoreController::class);
-
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-
-//classroom
-Route::resource('/classroom', ClassroomController::class);
-
-//documents
-// Route::post('/documents',[DocumentCon])
-//books
-Route::resource('books', BookController::class);
-
-
-//Notifications
-Route::get('/notification/list', [NotificationController::class, 'index']);
-Route::post('notification/create', [NotificationController::class, 'store']);
-Route::get('notification/{id}', [NotificationController::class, 'show']);
-Route::put('notification/update/{id}', [NotificationController::class, 'update']);
-Route::delete('notification/delete/{id}', [NotificationController::class, 'destroy']);
-
-//Quize
-Route::get('/quizze/list', [QuizzeController::class, 'index']);
-Route::post('/quizze/create', [QuizzeController::class, 'store']);
-Route::get('/quizze/show/{id}', [QuizzeController::class, 'show']);
-Route::put('/quizze/update/{id}', [QuizzeController::class, 'update']);
-Route::delete('/quizze/delete/{id}', [QuizzeController::class, 'destroy']);
-
-//submit
-Route::get('/submite/list', [SubmiteController::class, 'index']);
-Route::post('/submite/create', [SubmiteController::class, 'store']);
-Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
-Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
-Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
