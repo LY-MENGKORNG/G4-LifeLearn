@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->integer('subject_id');
-            $table->date('calendar_id');
+            $table->integer('calendar_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

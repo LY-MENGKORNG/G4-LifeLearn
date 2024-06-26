@@ -62,4 +62,29 @@ class AuthController extends Controller
             'roles' => $roles
         ]);
     }
+
+    public function logout(Request $request): JsonResponse
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password'  => 'required|string'
+        ]);
+        
+    
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json([
+                'status' => 'false',
+                'message' => 'User not authenticated',
+            ], 401);
+        } 
+        $user->tokens()->delete();
+        return response()->json([
+            'status' => 'true',
+            'message' => 'Successfully logged out',
+        ], 200);
+    }
 }
+   
+

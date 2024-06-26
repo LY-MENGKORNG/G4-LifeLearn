@@ -18,11 +18,10 @@ class CourseResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'category_id' => new CategoryResource($this->category),
+            'category' => new CategoryResource($this->category),
             'price' => $this->price,
-            'user_id' => new UserResource($this->user),
+            'user' => new UserResource($this->user),
             'duration'=>$this->duration,
-
         ];
     }
 }
