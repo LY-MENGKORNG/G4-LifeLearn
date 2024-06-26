@@ -12,7 +12,6 @@ use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +32,7 @@ class UserController extends Controller
      */
     public function index(): View
     {
-        $user= User::latest()->get();
+        $user= User::role('user')->get();
 
         return view('setting.user.index',['users'=>$user]);
     }

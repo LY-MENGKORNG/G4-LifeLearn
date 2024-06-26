@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api\Category;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Category\CategoryResource;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use GuzzleHttp\Psr7\Request;
 
 class CategoryController extends Controller
 {
@@ -24,6 +24,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $category = Category::store($request);
         return response()->json(['message'=> 'Category','category' => $category], 200);
     }

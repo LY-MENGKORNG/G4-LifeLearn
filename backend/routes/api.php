@@ -1,16 +1,17 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\SystemController;
-use App\Http\Controllers\Api\Category\CategoryController;
+// use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\SystemController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
 use App\Http\Controllers\Front\FrontuserController;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,8 +32,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/login', [FrontuserController::class, 'login']);
+
+Route::post('/admin/login', [AuthController::class, 'login']); // admin login
+
 
 
 // protected routes
@@ -62,4 +65,3 @@ Route::prefix('category')->group(function () {
 Route::resource('/classroom',ClassroomController::class);
 //books
 Route::resource('books',BookController::class);
-
