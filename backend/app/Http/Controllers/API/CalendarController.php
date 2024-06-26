@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Calendar;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Calendar;

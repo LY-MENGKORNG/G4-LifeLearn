@@ -4,24 +4,23 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ReferencesController;
 use App\Http\Controllers\Admin\SystemController;
-// use App\Http\Controllers\FrontuserController;
-use App\Http\Controllers\Api\Assigment\AssigmentController;
+
+use App\Http\Controllers\API\AssignmentController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\CalendarController;
 use App\Http\Controllers\API\CategoryController;
-use App\Http\Controllers\Api\Payment\DocumnetController;
-use App\Http\Controllers\Api\Payment\PaymentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\QuizzeController;
-use App\Http\Controllers\Api\Calendar\CalendarController;
 use App\Http\Controllers\API\CommentController;
+use App\Http\Controllers\API\DocumnetController;
 use App\Http\Controllers\Api\SubmiteController;
 use App\Http\Controllers\Front\FrontuserController;
 use App\Http\Controllers\API\FavoriteController;
+use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\ScoreController;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -76,11 +75,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // assignment
     Route::prefix('assigment')->group(function () {
-        Route::get('/list', [AssigmentController::class, 'index']);
-        Route::post('/create', [AssigmentController::class, 'store']);
-        Route::get('/show/{id}', [AssigmentController::class, 'show']);
-        Route::put('/update/{id}', [AssigmentController::class, 'update']);
-        Route::delete('/{id}', [AssigmentController::class, 'destroy']);
+        Route::get('/list', [AssignmentController::class, 'index']);
+        Route::post('/create', [AssignmentController::class, 'store']);
+        Route::get('/show/{id}', [AssignmentController::class, 'show']);
+        Route::put('/update/{id}', [AssignmentController::class, 'update']);
+        Route::delete('/{id}', [AssignmentController::class, 'destroy']);
     });
 
     // system routes
@@ -133,13 +132,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/notification/{id}', [NotificationController::class, 'show']);
     Route::put('/notification/update/{id}', [NotificationController::class, 'update']);
     Route::delete('/notification/delete/{id}', [NotificationController::class, 'destroy']);
+
+    Route::resource('/favorites',FavoriteController::class);
 });
             
-    Route::resource('/favorites',FavoriteController::class);
-
-//course
-Route::resource('/course', CourseController::class);
-
 //subject
 Route::resource('/subject', SubjectController::class);
 //comments
@@ -149,15 +145,6 @@ Route::resource('/score', ScoreController::class);
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-// assignment
-Route::prefix('assigment')->group(function () {
-    Route::get('/list', [AssigmentController::class, 'index']);
-    Route::post('/create', [AssigmentController::class, 'store']);
-    Route::get('/show/{id}', [AssigmentController::class, 'show']);
-    Route::put('/update/{id}', [AssigmentController::class, 'update']);
-    Route::delete('/{id}', [AssigmentController::class, 'destroy']);
-});
-
 //classroom
 Route::resource('/classroom', ClassroomController::class);
 
@@ -166,8 +153,6 @@ Route::resource('/classroom', ClassroomController::class);
 //books
 Route::resource('books', BookController::class);
 
-//calendar
-Route::resource('/calendar', CalendarController::class);
 
 //Notifications
 Route::get('/notification/list', [NotificationController::class, 'index']);

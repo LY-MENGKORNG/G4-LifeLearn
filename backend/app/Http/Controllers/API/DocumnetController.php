@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\Payment;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Payment\DocumentResource;
 use App\Models\Document;
 use Illuminate\Http\Request;
+
 
 class DocumnetController extends Controller
 {
