@@ -23,10 +23,11 @@ const { handleSubmit, isSubmitting } = useForm({
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    const { data } = await axiosInstance.post('/admin/login', values)
+    const { data } = await axiosInstance.post('/login', values)
     localStorage.setItem('access_token', data.access_token)
+    console.log(data);
     
-    router.push('/admin/dashboard')
+    router.push('/system/dashboard')
   } catch (error) {
     return;
     // console.warn('Error')
