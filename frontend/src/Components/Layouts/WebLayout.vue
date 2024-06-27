@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import WebHeaderMenu from '@/WebHeaderMenu.vue'
+import WebHeaderMenu from '@/WebHeaderMenu.vue';
 </script>
 
 <template>
