@@ -20,11 +20,11 @@
     </div>
     <div class=" bg-gray-100 rounded-2xl pl-12 ">
       <h3 class=" text-teal-400 pt-2">All Books</h3>
-      <div class="book flex flex-wrap g-5 gap-x-12 gap-y-6">
+      <div class="book flex flex-wrap g-5 gap-x-12 gap-y-10">
         <div
-          class="block rounded-lg bg-white border text-center shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface max-w-[18rem] max-h-[100rem] overflow-hidden"
+          class="block rounded-lg bg-white border text-center shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface max-w-[18rem] max-h-[90rem] overflow-hidden"
           v-for="book in booklist" :key="book.id">
-          <img :src="book.image_url || 'https://i.pinimg.com/564x/dc/45/c9/dc45c90edbbe78b13af9e3e2e40774d4.jpg'"
+          <img :src="book.image_url || 'https://i.pinimg.com/564x/f8/e7/48/f8e748bdcffbf3eeb3b2d07f08d96bda.jpg'"
             class="w-full" alt="Book Cover">
           <div class="p-6">
             <h5 class="mb-2 text-lg font-medium leading-tight text-start">
@@ -32,10 +32,10 @@
             </h5>
             <p class="mb-2 text-base text-start py-1 min-w-[18rem]">
               Author: {{ book.author }}</p>
+            <!-- <p class="mb-2 text-base text-start py-1 min-w-[18rem]"> -->
+              <!-- UserID: {{ book.user.first_name }}</p> -->
             <p class="mb-2 text-base text-start py-1 min-w-[18rem]">
-              UserID: {{ book.user.first_name }}</p>
-            <p class="mb-2 text-base text-start py-1 min-w-[18rem]">
-              Published_at: {{ book.published_at }}</p>
+              Published: {{ book.published_at }}</p>
             <p class="mb-2 text-base text-start py-1 min-w-[18rem]">
               Price: {{ book.price }} $</p>
             <span class="ml-50 text-end">
@@ -49,7 +49,6 @@
 
   </WebLayout>
 </template>
-
 <script setup lang="ts">
 import WebLayout from "@/Layouts/Web/WebLayout.vue";
 import axiosInstance from '@/plugins/axios';
