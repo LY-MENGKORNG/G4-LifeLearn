@@ -2,12 +2,23 @@
 <script setup lang="ts">
 import { Search } from '@element-plus/icons-vue'
 import router from '@/router'
+import axiosInstance from '@/plugins/axios'
+import { ref, computed } from 'vue'
+
 import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
 import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
+import BaseButton from '@/Components/Base/BaseButton.vue';
 
+let profile = ref('');
+
+computed(async () => {
+    const user = await axiosInstance.get('/me');
+    profile = user.data.data.profile
+    console.log(profile)
+    return profile ? profile : null
+})
 
 const currentRoute = router.router.currentRoute.value.fullPath;
-
 let activeIndex = '1'
 
 const navigations = [
@@ -25,20 +36,26 @@ const setCurrentRoute = () => {
         }
     });
 }
+
 setCurrentRoute()
 </script>
 
 
 <template>
+
     <el-container class="flex flex-col">
+        
         <el-header class="flex justify-between items-center border border-bottom-1">
             <div>
                 <app-logo />
             </div>
             <div class="flex relative items-center">
-                <el-input  size="medium" placeholder="Search..." :suffix-icon="Search" />
+                <el-input size="large" placeholder="Search..." :suffix-icon="Search" />
             </div>
             <div class="flex gap-4 items-center">
+                <router-link to="/login">
+                    <base-button class="bg-teal-400 text-white hover:bg-teal-400 active:bg-teal-500" text="Sign in" />
+                </router-link>
                 <el-badge :value="1" class="item" type="primary">
                     <el-button class="border-none h-[27px] w-[27px] rounded-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 1024 1024">
@@ -50,14 +67,15 @@ setCurrentRoute()
                         </svg>
                     </el-button>
                 </el-badge>
-                <user-profile />
+                <user-profile :Src="profile" />
             </div>
         </el-header>
         <el-menu :default-active="activeIndex" class="el-menu-demo flex justify-center h-[40px]" mode="horizontal"
             @select="handleSelect">
-            <el-menu-item class="flex items-center justify-center" v-for="navigation in navigations" :key="navigation.id" @click="handleclick"
-                :index="navigation.id.toString()">
-                <router-link class="no-underline flex items-center text-slate-700 w-[100%] h-[100%]" :to="navigation.path">
+            <el-menu-item class="flex items-center justify-center" v-for="navigation in navigations"
+                :key="navigation.id" @click="handleclick" :index="navigation.id.toString()">
+                <router-link class="no-underline flex flex-1 items-center text-slate-700 w-[100%] h-[100%]"
+                    :to="navigation.path">
                     {{ navigation.name }}
                 </router-link>
             </el-menu-item>

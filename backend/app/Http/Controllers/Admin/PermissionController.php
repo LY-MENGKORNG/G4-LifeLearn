@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 use Spatie\Permission\Models\Permission;
@@ -19,7 +20,7 @@ class PermissionController extends Controller
     function __construct()
     {
         $this->middleware('role_or_permission:Permission access|Permission create|Permission edit|Permission delete', ['only' => ['index','show']]);
-        $this->middleware('role_or_permission:Permission create', ['only' => ['create','store']]);
+        $this->middleware('role_or_permission:Permission add', ['only' => ['create','store']]);
         $this->middleware('role_or_permission:Permission edit', ['only' => ['edit','update']]);
         $this->middleware('role_or_permission:Permission delete', ['only' => ['destroy']]);
     }
@@ -29,7 +30,7 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $permission= Permission::latest()->get();
 
@@ -41,7 +42,7 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('setting.permission.new');
     }
@@ -79,7 +80,7 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit(Permission $permission): View
     {
        return view('setting.permission.edit',['permission' => $permission]);
     }

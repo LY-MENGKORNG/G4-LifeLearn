@@ -3,6 +3,6 @@
 </script>
 
 <template>
-    <el-input size="medium"  />
+    <el-input size="small"  />
 </template>
 

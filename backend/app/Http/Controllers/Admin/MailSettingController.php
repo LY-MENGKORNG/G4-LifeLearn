@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Mailsetting;
-
+use Illuminate\Contracts\View\View;
 
 class MailSettingController extends Controller
 {
@@ -26,7 +26,7 @@ class MailSettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $mail= Mailsetting::find(1);
 
