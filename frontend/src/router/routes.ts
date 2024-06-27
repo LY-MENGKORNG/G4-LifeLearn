@@ -26,7 +26,14 @@ const routes = [
     {
         path: '/system',
         name: 'system',
-        component: () => import('@/views/Web/SystemView.vue')
+        component: () => import('@/views/Web/SystemView.vue'),
+        props: true
+    },
+    {
+        path: '/system/create',
+        name: 'system-create',
+        component: () => import('@/views/Web/Systems/CreateView.vue'),
+        props: true
     },
     {
         path: '/course',
