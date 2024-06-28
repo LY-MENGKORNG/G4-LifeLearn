@@ -134,7 +134,7 @@
       </div>
     </div>
     <div class="book-list">
-      <h1 class="mt-5 text-center text-teal-400">All Books</h1>
+      <h1 class="mt-5 text-center">All Books</h1>
         <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 gap-x-1 gap-y-1">
             <div
                 class="rounded-lg bg-white border text-center shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface mt-5 max-w-[18rem] max-h-[21rem] overflow-hidden hover:transform hover:-translate-y-5 transition duration-300 ease-in-out"
