@@ -4,7 +4,7 @@
             <div class="container mx-auto px-6 py-2">
                 <div class="flex justify-between items-center font-semibold">
                   <h2 class="text-xl">User List</h2>
-                  @can('User create')
+                  @can('User add')
                     <a href="{{route('admin.users.create')}}">
                       <button type="button" data-ripple-light="true"
                       class="align-middle select-none  font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none">

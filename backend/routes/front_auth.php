@@ -10,37 +10,37 @@ use App\Http\Controllers\Front\Auth\RegisteredUserController;
 use App\Http\Controllers\Front\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
+Route::get('/register', [RegisteredUserController::class, 'create']) // get form register
                 ->middleware('guest:front')
                 ->name('register');
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
+Route::post('/register', [RegisteredUserController::class, 'store']) // create user registered
                 ->middleware('guest:front');
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+Route::get('/login', [AuthenticatedSessionController::class, 'create']) // get form login
                 ->middleware('guest:front')
                 ->name('login');
 
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+Route::post('/login', [AuthenticatedSessionController::class, 'store']) // login process
                 ->middleware('guest:front');
 
-Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create']) // get form forgot password
                 ->middleware('guest:front')
                 ->name('password.request');
 
-Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']) // forgot password reset
                 ->middleware('guest:front')
                 ->name('password.email');
 
-Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
+Route::get('/reset-password/{token}', [NewPasswordController::class, 'create']) // get form reset token
                 ->middleware('guest:front')
                 ->name('password.reset');
 
-Route::post('/reset-password', [NewPasswordController::class, 'store'])
+Route::post('/reset-password', [NewPasswordController::class, 'store']) // store new token
                 ->middleware('guest:front')
                 ->name('password.update');
 
-Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
+Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke']) 
                 ->middleware('front')
                 ->name('verification.notice');
 

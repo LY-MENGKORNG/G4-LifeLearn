@@ -31,7 +31,7 @@
                 </div>
                 <div class="p-3 rounded-md flex-1 bg-white mx-auto space-y-2" style="min-width: 200px">
                     <div class="">
-                        <span class="">Total Payments</span>
+                        <span class="">Total Income</span>
                     </div>
                     <div class="">
                         <h1 class="text-2xl font-bold">{{ $dashboard['payments']->count() }}</h1>

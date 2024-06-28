@@ -1,6 +1,6 @@
 <template>
     <WebLayout>
-
+        
     </WebLayout>
 </template>
 
