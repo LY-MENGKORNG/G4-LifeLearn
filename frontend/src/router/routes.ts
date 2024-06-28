@@ -23,10 +23,17 @@ const routes = [
         name: 'book',
         component: () => import('@/views/Web/BookView.vue')
     },
+
     {
         path: '/system',
         name: 'system',
         component: () => import('@/views/Web/SystemView.vue'),
+        props: true
+    },
+    {
+        path: '/system/register',
+        name: 'system-register',
+        component: () => import('@/views/System/Auth/RegisterView.vue'),
         props: true
     },
     {
