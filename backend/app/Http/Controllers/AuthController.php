@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Users\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -57,7 +58,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Your information',
-            'data' => $user,
+            'data' => new UserResource($user),
             'permissions' => $permissions,
             'roles' => $roles
         ]);

@@ -7,6 +7,7 @@ use App\Models\Calendar;
 use App\Models\Payment;
 use App\Models\System;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,7 +15,7 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $systems = System::list();
         $users = User::all();
