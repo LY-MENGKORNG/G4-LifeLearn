@@ -12,7 +12,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-    const publicPages = ['admin/login']
+    const publicPages = ['/admin/login']
     const authRequired = !publicPages.includes(to.path)
     const store = useAuthStore()
 

@@ -43,6 +43,18 @@ const routes = [
         name: 'my-learn',
         component: () => import('@/views/Web/MyLearnView.vue')
     },
+    {
+        path: '/system/classroom',
+        name: 'system-classroom',
+        component: () => import('@/views/System/ClassroomView.vue')
+    },
+    {
+        path: '/system/material',
+        name: 'system-material',
+        component: () => import('@/views/System/MaterialView.vue')
+    },
+
+
 ]
 
 export default routes;
