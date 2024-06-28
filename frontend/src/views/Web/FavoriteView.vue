@@ -1,7 +1,7 @@
 <template>
     <WebLayout>
 
-</WebLayout>
+    </WebLayout>
 </template>
 
 <script setup lang="ts">
