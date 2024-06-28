@@ -47,9 +47,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
-// user login
 Route::post('/login', [AuthController::class, 'login']);
-// Route::post('/login', [FrontuserController::class, 'login']);
 
 
 Route::middleware('auth:sanctum')->group(function () {

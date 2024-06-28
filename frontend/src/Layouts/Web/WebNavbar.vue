@@ -3,7 +3,7 @@
 import { Search } from '@element-plus/icons-vue'
 import router from '@/router'
 import axiosInstance from '@/plugins/axios'
-import { ref, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 
 import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
 import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
@@ -11,12 +11,18 @@ import BaseButton from '@/Components/Base/BaseButton.vue';
 
 let profile = ref('');
 
-computed(async () => {
-    const user = await axiosInstance.get('/me');
-    profile = user.data.data.profile
-    console.log(profile)
-    return profile ? profile : null
+const fetchUserProfile = async () => {
+    try {
+        const { data } = await axiosInstance.get('/me')
+        profile.value = data.data.profile;
+    } catch (error) {
+        /**empty */
+    }
+}
+onMounted(() => {
+    fetchUserProfile();
 })
+
 
 const currentRoute = router.router.currentRoute.value.fullPath;
 let activeIndex = '1'
@@ -36,15 +42,15 @@ const setCurrentRoute = () => {
         }
     });
 }
-
 setCurrentRoute()
+
 </script>
 
 
 <template>
 
     <el-container class="flex flex-col">
-        
+
         <el-header class="flex justify-between items-center border border-bottom-1">
             <div>
                 <app-logo />
@@ -67,7 +73,7 @@ setCurrentRoute()
                         </svg>
                     </el-button>
                 </el-badge>
-                <user-profile :Src="profile" />
+                <user-profile :Src="profile == '' ? './src/assets/avatar/avatar-profile.jpg' : profile" />
             </div>
         </el-header>
         <el-menu :default-active="activeIndex" class="el-menu-demo flex justify-center h-[40px]" mode="horizontal"

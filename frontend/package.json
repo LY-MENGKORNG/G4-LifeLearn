@@ -23,6 +23,7 @@
     "element-plus": "^2.7.4",
     "flowbite": "^2.3.0",
     "pinia": "^2.1.7",
+    "tailwindcss": "^3.4.4",
     "vee-validate": "^4.12.8",
     "vue": "^3.4.21",
     "vue-gates": "^2.1.2",
