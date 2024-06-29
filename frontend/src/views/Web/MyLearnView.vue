@@ -1,6 +1,5 @@
 <template>
   <WebLayout>
-<<<<<<< HEAD
     <head>
       <!-- Other head elements -->
       <link
@@ -134,7 +133,6 @@
         </div>
       </div>
     </div>
-=======
     <div class="book-list">
       <h1 class="mt-5 text-center text-teal-400">All Books</h1>
         <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 gap-x-1 gap-y-1">
@@ -285,7 +283,6 @@
         </div>
     </div>
     
->>>>>>> f84d48c1528983e73c27d76edeaf3cd2178c2689
   </WebLayout>
 </template>
 
