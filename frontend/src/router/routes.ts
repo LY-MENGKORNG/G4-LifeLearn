@@ -54,7 +54,7 @@ const routes = [
         path: '/my-learn',
         name: 'my-learn',
         component: () => import('@/views/Web/MyLearnView.vue')
-    },
+    }
 ]
 
 export default routes;

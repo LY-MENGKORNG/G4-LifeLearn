@@ -50,7 +50,7 @@
     "eslint-plugin-vue": "^9.23.0",
     "jsdom": "^24.0.0",
     "npm-run-all2": "^6.1.2",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.39",
     "prettier": "^3.2.5",
     "sass": "^1.77.6",
     "typescript": "~5.4.0",
