@@ -134,7 +134,7 @@
       </div>
     </div>
     <div class="book-list">
-      <h1 class="mt-5 text-center text-teal-400">All Books</h1>
+      <h1 class="mt-5 text-center">All Books</h1>
         <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 gap-x-1 gap-y-1">
             <div
                 class="rounded-lg bg-white border text-center shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface mt-5 max-w-[18rem] max-h-[21rem] overflow-hidden hover:transform hover:-translate-y-5 transition duration-300 ease-in-out"
@@ -149,14 +149,7 @@
                         <b>The Psychology of Money</b>
                     </h5>
                     <p class="mb-2 text-base text-start py-1 min-w-[18rem]">
-                        Magan Housal
-                        <span class="text-yellow-400 ml-10">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        </span>
+                       <b>Author:</b> Magan Housal
                     </p>
                 </div>
             </div>
@@ -173,14 +166,8 @@
                         <b>The Psychology of Money</b>
                     </h5>
                     <p class="mb-2 text-base text-start py-1 min-w-[18rem]">
-                        Magan Housal
-                        <span class="text-yellow-400 ml-10">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        </span>
+                       <b>Author:</b> Magan Housal
+                     
                     </p>
                 </div>
             </div>
@@ -197,14 +184,8 @@
                         <b>The Psychology of Money</b>
                     </h5>
                     <p class="mb-2 text-base text-start py-1 min-w-[18rem]">
-                        Magan Housal
-                        <span class="text-yellow-400 ml-10">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        </span>
+                       <b>Author:</b> Magan Housal
+                       
                     </p>
                 </div>
             </div>
@@ -221,14 +202,8 @@
                         <b>The Psychology of Money</b>
                     </h5>
                     <p class="mb-2 text-base text-start py-1 min-w-[18rem]">
-                        Magan Housal
-                        <span class="text-yellow-400 ml-10">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        </span>
+                       <b>Author:</b> Magan Housal
+                        
                     </p>
                 </div>
             </div>
@@ -245,14 +220,7 @@
                         <b>The Psychology of Money</b>
                     </h5>
                     <p class="mb-2 text-base text-start py-1 min-w-[18rem]">
-                        Magan Housal
-                        <span class="text-yellow-400 ml-10">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        </span>
+                       <b>Author:</b> Magan Housal
                     </p>
                 </div>
             </div>
@@ -269,14 +237,8 @@
                         <b>The Psychology of Money</b>
                     </h5>
                     <p class="mb-2 text-base text-start py-1 min-w-[18rem]">
-                        Magan Housal
-                        <span class="text-yellow-400 ml-10">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        </span>
+                       <b>Author:</b> Magan Housal
+                        
                     </p>
                 </div>
             </div>
