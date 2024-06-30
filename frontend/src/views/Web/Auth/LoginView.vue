@@ -40,6 +40,12 @@ const { value: email, errorMessage: emailError } = useField('email')
 <template>
     <div class="flex justify-center max-w-4xl shadow-md mx-auto items-center max-h-screen bg-gray-100 mt-5">
         <el-container class="flex flex-wrap m-auto">
+            <el-card class="flex-1 p-10">
+                <img
+          src="https://portal.tprsbooks.com/wp-content/uploads/2024/02/login-image.jpg"
+          class="w-full"
+          alt="Phone image"/>
+            </el-card>
             <el-form @submit="onSubmit" class="flex-1  p-10  text-start">
                 <h2 class="text-2xl font-bold mb-6">Login</h2>
                 <p>Don't have an account? <router-link to="/register">Create now</router-link></p>
@@ -53,12 +59,6 @@ const { value: email, errorMessage: emailError } = useField('email')
                 </el-form-item>
                 <el-button :disabled="isSubmitting"  native-type="submit" class="w-full mt-3 bg-teal-500 hover:bg-teal-500 active:bg-teal-600 text-white" >Sign Up</el-button>
             </el-form>
-            <el-card class="flex-1 p-10">
-                <img
-          src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-          class="w-full"
-          alt="Phone image" />
-            </el-card>
         </el-container>
     </div>
 </template>

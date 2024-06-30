@@ -55,6 +55,12 @@ const routes = [
         name: 'my-learn',
         component: () => import('@/views/Web/MyLearnView.vue')
     }
+    ,
+    {
+        path: '/teacher-logout',
+        name: 'teacher-logout',
+        component: () => import('@/Components/teacherLogout.vue')
+    }
 ]
 
 export default routes;
