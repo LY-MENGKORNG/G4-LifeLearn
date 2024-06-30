@@ -4,6 +4,7 @@
             <div class="hidden lg:block lg:w-2/4 bg-cover object-contain "
                 style="background-image:url('https://maveninsights.com/wp-content/uploads/2020/08/strategy-into-operations-3-1525x1536.jpg'); background-position: center">
             </div>
+
             <div class="w-full p-8 lg:w-2/4">
                 <div class="max-w-lg mx-auto">
                     <div class="text-center mb-6">
