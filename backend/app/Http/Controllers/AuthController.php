@@ -86,6 +86,43 @@ class AuthController extends Controller
             'message' => 'Successfully logged out',
         ], 200);
     }
+
+    public function principlelogout(Request $request)
+    {
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|string'
+    ]);
+    
+    // Attempt to authenticate the principal based on the provided credentials
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $principal = Auth::user();
+
+        // Check if the authenticated user is a principal (assuming role check)
+        if ($principal->role !== 'principal') {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized access',
+            ], 401);
+        }
+
+        // If authenticated and authorized, proceed with logout
+        $principal->tokens()->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Successfully logged out',
+        ], 200);
+    }
+
+    // If authentication fails, return error response
+    return response()->json([
+        'status' => false,
+        'message' => 'Invalid credentials',
+    ], 401);
+    }
+
 }
+
    
 
