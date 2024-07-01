@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/me', [AuthController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
-
+    Route::post('/principle/logout', [AuthController::class, 'principlelogout']);
     Route::resource('/course', CourseController::class);
 
     //subject
