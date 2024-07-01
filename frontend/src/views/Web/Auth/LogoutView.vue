@@ -8,10 +8,10 @@ import { useRouter } from 'vue-router'
 
 <template>
   <div
-    class="flex justify-center max-w-4xl shadow-md mx-auto items-center min-h-screen bg-gray-100"
+    class="flex justify-center max-w-2xl mx-auto items-center min-h-screen bg-white-100"
   >
     <el-card @submit="onSubmit" class="flex-1 p-10">
-      <h2 class="text-2xl font-bold mb-6 text-end">Logging out</h2>
+      <h2 class="text-2xl font-bold mb-6 text-end">Logging Out</h2>
       <p>Do you want to logout?</p>
       <el-button
         :disabled="isSubmitting"
