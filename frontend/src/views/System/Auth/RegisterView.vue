@@ -8,8 +8,7 @@
             <div class="w-full p-8 lg:w-2/4">
                 <div class="max-w-lg mx-auto">
                     <div class="text-center mb-6">
-                        <h2 class="text-3xl md:text-4xl font-extrabold">Register for Free</h2>
-                        <p>Enter your information to register</p>
+                        <h2 class="text-3xl md:text-4xl font-extrabold">Register</h2>
                     </div>
                     <form action="">
                         <div class="flex flex-wrap -mx-3 mb-2">
