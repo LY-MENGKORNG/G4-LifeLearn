@@ -122,7 +122,6 @@ class AuthController extends Controller
         'message' => 'Invalid credentials',
     ], 401);
     }
-
     // =========login admin===========
     public function loginadmin(Request $request) {
         $request->validate([
@@ -153,9 +152,6 @@ class AuthController extends Controller
         ]);
     }
 }
-
-
-
 
    
 
