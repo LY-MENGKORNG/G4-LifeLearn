@@ -28,6 +28,5 @@
 </template>
 
 <script setup lang="ts">
-import { Folder } from '@element-plus/icons-vue';
-import { DocumentChecked } from '@element-plus/icons-vue';
+import { Folder,DocumentChecked } from '@element-plus/icons-vue';
 </script>
