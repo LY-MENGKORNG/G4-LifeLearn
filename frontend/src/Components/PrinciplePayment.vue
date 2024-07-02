@@ -1,4 +1,4 @@
-    <template>
+    <!-- <template>
   <div class="bg-slate-100">
     <div class="container flex justify-center">
       <div class="w-full max-w-xl">
@@ -8,7 +8,7 @@
             <hr class="mt-2 border-t-2 border-gray-500" />
           </div>
           <div class="flex flex-wrap -mx-3 mb-2">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div class="w-full md:w-1/2 px-3">
               <label for="payment" class="block mb-2 text-sm text-gray-900 dark:text-white"
                 >Payment</label
               >
@@ -112,4 +112,4 @@ const handleSave = () => {
 const handleCancel = () => {
   emit('close')
 }
-</script>
+</script> -->

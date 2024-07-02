@@ -1,7 +1,7 @@
 <template>
   <div class="container flex justify-center">
     <div class="w-full max-w-xl">
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8 mt-8">
+      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8 mt-8" >
         <div class="mb-9">
           <h1 class="text-2xl text-start text-teal-400">PAYMENT INFORMATION</h1>
           <hr class="mt-2 border-t-2 border-gray-500" />
@@ -40,7 +40,7 @@
               for="security"
               >Security Code</label
             >
-            <el-input id="security" type="security" />
+            <el-input id="security" type="security"/>
           </div>
           <div class="w-full md:w-1/2 px-3">
             <label
@@ -68,29 +68,27 @@
               <el-option label="ACILIDA" value="beijing" />
             </el-select>
           </div>
-          <div class="w-full md:w-1/2 px-3">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs text-start mb-2"
-              for="reference"
-              >Referent</label
-            >
-            <el-input id="reference" type="file" />
-          </div>
         </div>
-        <div class="mb-6 flex items-center justify-between">
-          <div>
-            <el-checkbox label="Remember me" size="large" />
-          </div>
+        <div class="w-full">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs text-start mb-2"
+            for="reference"
+            >Your Referent</label
+          >
+          <upload-file />
         </div>
         <div class="flex items-center justify-between">
           <router-link to="">
             <el-button
-             class="bg-teal-500 text-white font-bold py-4 px-10 text-1.5xl hover:bg-teal-500 focus:bg-teal-500"
+              class="bg-teal-500 text-white font-bold py-4 px-10 text-1.5xl hover:bg-teal-500 focus:bg-teal-500"
               >Save</el-button
             >
           </router-link>
           <router-link to="/system">
-            <el-button  class="font-bold py-4 px-10 text-1.5xl hover:bg-gray-500 focus:bg-gray-500 hover:text-white focus:text-white">Cancel</el-button>
+            <el-button
+              class="font-bold py-4 px-10 text-1.5xl hover:bg-gray-500 focus:bg-gray-500 hover:text-white focus:text-white"
+              >Cancel</el-button
+            >
           </router-link>
         </div>
       </form>
@@ -99,5 +97,5 @@
 </template>
 
 <script setup lang="ts">
-import Payment from '@/Components/PrinciplePayment.vue'
+import UploadFile from '@/Components/Common/UploadFile.vue'
 </script>
