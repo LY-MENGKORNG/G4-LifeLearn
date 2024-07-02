@@ -85,12 +85,12 @@
         <div class="flex items-center justify-between">
           <router-link to="">
             <el-button
-              class="bg-teal-500 px-13 text-white fornt-bold hover:gray-500 py-4 px-10 text-1.5xl"
+             class="bg-teal-500 text-white font-bold py-4 px-10 text-1.5xl hover:bg-teal-500 focus:bg-teal-500"
               >Save</el-button
             >
           </router-link>
           <router-link to="/system">
-            <el-button class="fornt-bold hover:gray-500 py-4 px-10 text-1.5xl">Cancel</el-button>
+            <el-button  class="font-bold py-4 px-10 text-1.5xl hover:bg-gray-500 focus:bg-gray-500 hover:text-white focus:text-white">Cancel</el-button>
           </router-link>
         </div>
       </form>
@@ -99,5 +99,5 @@
 </template>
 
 <script setup lang="ts">
-import AdminPayment from '@/Components/AdminPayment.vue'
+import Payment from '@/Components/PrinciplePayment.vue'
 </script>
