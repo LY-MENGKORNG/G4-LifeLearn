@@ -1,9 +1,4 @@
 <template>
-<<<<<<< HEAD
-    <WebLayout>
-        
-    </WebLayout>
-=======
   <WebLayout>
     <div class="max-w-md mx-auto mb-3">
       <div class="flex relative items-center">
@@ -53,7 +48,6 @@
     </div>
 
   </WebLayout>
->>>>>>> 03999ed74efd860dbd2f543593e63f6cf2b88717
 </template>
 <script setup lang="ts">
 import WebLayout from "@/Layouts/Web/WebLayout.vue";
@@ -66,7 +60,7 @@ onMounted(async () => {
   try {
     const { data } = await axiosInstance.get('/books');
     booklist.value = data.data; 
-    // console.log(data.data); 
+    console.log(data.data); 
   } catch (error) {
     console.error('Error fetching books:', error);
   }
