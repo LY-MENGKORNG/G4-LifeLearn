@@ -17,7 +17,7 @@ class MylearnController extends Controller
     {
         $mylearn = Favorite::list();
         $mylearn = MylearnReSource::collection($mylearn);
-        return response()->json(['category' => $mylearn], 200);
+        return response()->json(['mylearn' => $mylearn], 200);
     }
 
     /**
@@ -40,9 +40,9 @@ class MylearnController extends Controller
     {
         $mylearn = Favorite::find($id);
         if ($mylearn) {
-            return response()->json(['category' => $mylearn], 200);
+            return response()->json(['mylearn' => $mylearn], 200);
         } else {
-            return response()->json(['error' => 'Category not found'], 404);
+            return response()->json(['error' => 'mylearn not found'], 404);
         }
     }
 
@@ -52,7 +52,7 @@ class MylearnController extends Controller
     public function update(MylearnRequest $request, string $id)
     {
         $mylearn = Favorite::store($request, $id);
-        return response()->json(['message'=> 'Category updated successfully','category' => $mylearn], 200);
+        return response()->json(['message'=> 'mylearn updated successfully','mylearn' => $mylearn], 200);
     }
 
     /**
@@ -63,9 +63,9 @@ class MylearnController extends Controller
         $mylearn = Favorite::find($id);
         if ($mylearn) {
             $mylearn->delete();
-            return response()->json(['message'=> 'Category deleted successfully'], 200);
+            return response()->json(['message'=> 'mylearn deleted successfully'], 200);
         } else {
-            return response()->json(['error' => 'Category not found'], 404);
+            return response()->json(['error' => 'mylearn not found'], 404);
         }
     }
 }
