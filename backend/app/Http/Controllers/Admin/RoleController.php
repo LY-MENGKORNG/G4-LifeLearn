@@ -32,6 +32,7 @@ class RoleController extends Controller
     {
         $roles = Role::latest()->get();
 
+
         return view('setting.role.index',['roles'=>$roles]);
     }
 
@@ -42,8 +43,8 @@ class RoleController extends Controller
      */
     public function create(): View
     {
-        $roles = Role::all();
-        return view('setting.role.new',['permissions'=>$roles]);
+        $permissions = Permission::all();
+        return view('setting.role.new',['permissions'=>$permissions]);
     }
 
     /**
@@ -56,7 +57,7 @@ class RoleController extends Controller
     {
         $request->validate(['name'=>'required']);
         
-        $role = Role::create(['name'=>$request->name]);
+        $role = Role::create(['name'=>$request->name, 'guard_name' => 'front']);
 
         $role->syncPermissions($request->permissions);
         

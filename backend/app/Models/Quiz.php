@@ -9,11 +9,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Quiz extends Model
 {
     use HasFactory;
-
     protected $fillable = ['subject_id'];
 
-    // public function subject(): BelongsTo
-    // {
-    //     return $this->belongsTo(Subject::class);
-    // }
+    public function subject(): BelongsTo
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
+    public static function list()
+    {
+        $list = self::query();
+    }
+
+    public static function store($request, $id = null)
+    {
+        $data = $request->only('subject_id');
+        $data = self::updateOrCreate(['id' => $id], $data);
+        return $data;
+    }
 }

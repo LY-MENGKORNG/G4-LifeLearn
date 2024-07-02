@@ -1,6 +1,5 @@
 <!-- component -->
 <x-app-layout>
-    {{-- {{ dd($systems)}} --}}
     <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
         <div class="flex flex-wrap">
             <section class="!mx-auto px-8 w-full">
@@ -17,6 +16,7 @@
                     <div class="p-6 flex flex-col gap-4  w-full">
                         @can('System access')
                             @foreach ($systems as $system)
+                            {{ dd($system->user)}}
                                 <div
                                     class="relative flex flex-col bg-clip-border  bg-white text-gray-700 rounded-lg border border-gray-300 p-4">
                                     <div class="mb-4 flex items-start justify-between">
@@ -40,14 +40,14 @@
                                                         {{ $system->name }}
                                                     </span>
                                                 </span>
-                                                <p >
-                                                  Location:
-                                                  <span
-                                                      class="antialiased font-sans text-base font-light leading-relaxed text-inherit !text-gray-600 text-xs font-bold">
-                                                      {{ $system->location }}
-                                                  </span>
+                                                <p>
+                                                    Location:
+                                                    <span
+                                                        class="antialiased font-sans text-base font-light leading-relaxed text-inherit !text-gray-600 text-xs font-bold">
+                                                        {{ $system->location }}
+                                                    </span>
                                                 </p>
-                                              </div>
+                                            </div>
                                         </div>
                                         <div class="flex items-center justify-between">
                                             <button
@@ -88,7 +88,7 @@
                                                 </p>
                                                 <p
                                                     class="block antialiased font-sans text-base  leading-relaxed text-blue-gray-900 font-bold">
-                                                    {{ $system->user->phone }}
+                                                    {{ $system->user->phone ?? null }}
                                                 </p>
                                             </div>
                                             <div class="flex gap-1">

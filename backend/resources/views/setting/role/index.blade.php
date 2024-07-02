@@ -30,8 +30,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @can('Role edit', 'Role delete')
-                                @foreach ($roles as $role)
+                            @can('Role edit', 'Role delete', 'Role add', 'Role edit')
+                            @foreach ($roles as $role)
                                     <tr class="hover:bg-grey-lighter">
                                         <td class="py-4 px-6 border-b border-grey-light">{{ $role->name }}</td>
                                         <td class="py-4 px-6 border-b border-grey-light">

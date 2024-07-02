@@ -19,7 +19,11 @@ class System extends RelationshipModel
 
     public static function createOrUpdate($request, $id = null)
     {
-        $system = $request->only('name', 'user_id', 'location');
+        $system = [
+            'name' => $request->name,
+            'user_id' => $request->user_id,
+            'location' => $request->location
+        ];
         $system = self::updateOrCreate(['id' => $id], $system);
         return $system;
     }

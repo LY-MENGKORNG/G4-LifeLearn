@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Charts\MonthlyChart;
 use App\Http\Controllers\Controller;
 use App\Models\Calendar;
 use App\Models\Payment;
@@ -20,13 +21,13 @@ class DashboardController extends Controller
         $systems = System::list();
         $users = User::all();
         $payments = Payment::all();
-
-        $dashboard = [
+        $chart = UserController::showChart();
+        
+        return view('dashboard',[
             'systems' => $systems,
             'users' => $users,
             'payments' => $payments,
-        ];
-        return view('dashboard', ['dashboard' => $dashboard]);
+        ]);
     }
 
     /**
