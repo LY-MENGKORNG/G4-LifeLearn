@@ -11,7 +11,7 @@ const router = useRouter()
 const formSchema = yup.object({
   password: yup.string().required().label('Password'),
   email: yup.string().required().email().label('Email address')
-})
+});
 
 const { handleSubmit, isSubmitting } = useForm({
   initialValues: {

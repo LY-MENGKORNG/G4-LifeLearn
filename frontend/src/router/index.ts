@@ -11,10 +11,17 @@ const router = createRouter({
     routes
 });
 
+<<<<<<< HEAD
 // router.beforeEach(async (to, from, next) => {
 //     const publicPages = ['/login']
 //     const authRequired = !publicPages.includes(to.path)
 //     const store = useAuthStore()
+=======
+router.beforeEach(async (to, from, next) => {
+    const publicPages = ['/admin/login']
+    const authRequired = !publicPages.includes(to.path)
+    const store = useAuthStore()
+>>>>>>> 03999ed74efd860dbd2f543593e63f6cf2b88717
 
 //     try {
 //         const { data } = await axiosInstance.get('/me')
