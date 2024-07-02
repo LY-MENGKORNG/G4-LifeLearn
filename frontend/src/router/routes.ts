@@ -84,6 +84,11 @@ const routes = [
         path: '/system/payment',
         name: 'system-payment',
         component: () => import('@/views/Web/Payments/PrinciplePayment.vue')
+    },
+    {
+        path: '/system/bookpayment',
+        name: 'system-bookpayment',
+        component: () => import('@/views/Web/Bookpayments/UserPaymentView.vue')
     }
 ]
 
