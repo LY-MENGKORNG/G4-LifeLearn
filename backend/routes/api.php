@@ -20,6 +20,7 @@ use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\Api\SubmiteController;
 use App\Http\Controllers\Front\FrontuserController;
 use App\Http\Controllers\API\FavoriteController;
+use App\Http\Controllers\API\MylearnController;
 use App\Http\Controllers\API\ScoreController;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -135,6 +136,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
             
     Route::resource('/favorites',FavoriteController::class);
+    Route::resource('/mylearn',MylearnController::class);
 
 //course
 Route::resource('/course', CourseController::class);
