@@ -79,6 +79,12 @@ const routes = [
         name: 'teacher-logout',
         component: () => import('@/Components/teacherLogout.vue')
     }
+    ,
+    {
+        path: '/system/payment',
+        name: 'system-payment',
+        component: () => import('@/views/Web/Payments/PrinciplePayment.vue')
+    }
 ]
 
 export default routes;
