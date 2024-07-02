@@ -4,34 +4,33 @@
             <div class="hidden lg:block lg:w-2/4 bg-cover object-contain "
                 style="background-image:url('https://maveninsights.com/wp-content/uploads/2020/08/strategy-into-operations-3-1525x1536.jpg'); background-position: center">
             </div>
-
             <div class="w-full p-8 lg:w-2/4">
                 <div class="max-w-lg mx-auto">
                     <div class="text-center mb-6">
                         <h2 class="text-3xl md:text-4xl font-extrabold">Register</h2>
                     </div>
-                    <form action="">
+                    <form >
                         <div class="flex flex-wrap -mx-3 mb-2">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label class="block mb-2 font-extrabold" for="firstname">FristName</label>
-                                <el-input id="firstname" type="firstname" placeholder="first name" />
+                                <el-input id="firstname" type="firstname" placeholder="first name" v-model="firstname" />
                             </div>
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label class="block mb-2 font-extrabold" for="lastname">LastName</label>
-                                <el-input id="lastname" type="lastname" placeholder="last name" />
+                                <el-input id="lastname" type="lastname" placeholder="last name" v-model="lastname" />
                             </div>
                         </div>
                         <div class="mb-6">
                             <label class="block mb-2 font-extrabold" for="email">Email</label>
-                            <el-input id="email" type="email" placeholder="email address" />
+                            <el-input id="email" type="email" placeholder="email address" v-model="email" />
                         </div>
                         <div class="mb-6">
                             <label class="block mb-2 font-extrabold" for="password">Password</label>
-                            <el-input id="password" type="password" placeholder="password" />
+                            <el-input id="password" type="password" placeholder="password" v-model="password" />
                         </div>
                         <div class="mb-6">
                             <label class="block mb-2 font-extrabold" for="phone">Phone</label>
-                            <el-input id="phone" type="number" placeholder="phone" />
+                            <el-input id="phone" type="number" placeholder="phone" v-model="phone" />
                         </div>
                         <div class="mb-6">
                             <router-link to="">
@@ -40,7 +39,6 @@
                             </router-link>
                             <p>Already have the account? <span class="text-blue-500">Login</span></p>
                         </div>
-
                         <div class="mb-6">
                             <router-link to="">
                                 <el-button
@@ -61,4 +59,11 @@
 </template>
 <script setup lang="ts">
 import WebLayout from '@/Layouts/Web/WebLayout.vue';
+
+import { ref } from 'vue';
+const firstname = ref('');
+const lastname = ref('');
+const email = ref('');
+const password = ref('');
+const phone = ref('');
 </script>
