@@ -1,7 +1,7 @@
 <template>
   <div class="container flex justify-center">
     <div class="w-full max-w-xl">
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8 mt-8" >
+      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8 mt-8" enctype="multipart/form-data">
         <div class="mb-9">
           <h1 class="text-2xl text-start text-teal-400">PAYMENT INFORMATION</h1>
           <hr class="mt-2 border-t-2 border-gray-500" />
