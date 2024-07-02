@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <WebLayout>
     <div class="max-w-md mx-auto mb-3">
       <div class="flex relative items-center">
@@ -49,6 +50,11 @@
     </div>
 
   </WebLayout>
+=======
+    <WebLayout>
+        
+    </WebLayout>
+>>>>>>> My_learn
 </template>
 <script setup lang="ts">
 import WebLayout from "@/Layouts/Web/WebLayout.vue";

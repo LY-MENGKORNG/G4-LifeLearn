@@ -51,6 +51,7 @@ Route::post('/register', [FrontuserController::class, 'register']);
 // user login
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/admin/login', [AuthController::class, 'loginadmin']);
+Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/login', [FrontuserController::class, 'login']);
 
 Route::post('/admin/login', [AuthController::class, 'login']); // admin login
