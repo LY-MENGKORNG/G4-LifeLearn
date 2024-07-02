@@ -20,6 +20,7 @@
     </div>
     <div class=" bg-gray-100 rounded-2xl pl-12 ">
       <h3 class=" text-teal-400 pt-2">All Books</h3>
+      
       <div class="book flex flex-wrap g-5 gap-x-12 gap-y-10">
         <div
           class="block rounded-lg bg-white border text-center shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface max-w-[18rem] max-h-[90rem] overflow-hidden"
@@ -60,7 +61,7 @@ onMounted(async () => {
   try {
     const { data } = await axiosInstance.get('/books');
     booklist.value = data.data; 
-    // console.log(data.data); 
+    console.log(data.data); 
   } catch (error) {
     console.error('Error fetching books:', error);
   }
