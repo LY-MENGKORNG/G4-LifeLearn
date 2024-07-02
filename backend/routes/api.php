@@ -12,6 +12,7 @@ use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
 use App\Http\Controllers\API\CalendarController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\NotificationsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\QuizzeController;
 use App\Http\Controllers\API\CommentController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\ScoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,14 +44,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-<<<<<<< HEAD
 Route::post('/admin/login',[AuthController::class, 'loginadmin']);
-=======
-Route::post('/admin/login', [AuthController::class, 'loginadmin']);
 Route::post('/login', [FrontuserController::class, 'login']);
 
 Route::post('/admin/login', [AuthController::class, 'login']); // admin login
->>>>>>> 03999ed74efd860dbd2f543593e63f6cf2b88717
 
 
 
@@ -145,4 +143,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/comment', CommentController::class);
     //score
     Route::resource('/score', ScoreController::class);
+    Route::resource('/principle', NotificationsController::class);
+    // Route::post('/principle/request',NotificationsController::class, 'create');
 });
+
+
