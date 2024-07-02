@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -86,6 +87,71 @@ class AuthController extends Controller
             'message' => 'Successfully logged out',
         ], 200);
     }
+
+    public function principlelogout(Request $request)
+    {
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|string'
+    ]);
+    
+    // Attempt to authenticate the principal based on the provided credentials
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $principal = Auth::user();
+
+        // Check if the authenticated user is a principal (assuming role check)
+        if ($principal->role !== 'principal') {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized access',
+            ], 401);
+        }
+
+        // If authenticated and authorized, proceed with logout
+        $principal->tokens()->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Successfully logged out',
+        ], 200);
+    }
+
+    // If authentication fails, return error response
+    return response()->json([
+        'status' => false,
+        'message' => 'Invalid credentials',
+    ], 401);
+    }
+    // =========login admin===========
+    public function loginadmin(Request $request) {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        $user = User::where('email', $request->email)->first();
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'message' => 'Invalid credentials',
+                'success' => false,
+            ], 401);
+        }
+
+        // Check if the user has the admin role
+        if (!$user->hasRole('admin')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+                'success' => false,
+            ], 403);
+        }
+        $access_token = $user->createToken('authToken')->plainTextToken;
+        return response()->json([
+            'message' => 'Login successful',
+            'success' => true,
+            'user' => $user,
+            'access_token' => $access_token,
+        ]);
+    }
 }
+
    
 

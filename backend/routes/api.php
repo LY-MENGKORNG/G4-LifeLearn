@@ -39,22 +39,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
-
-
-
-
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/admin/login',[AuthController::class, 'loginadmin']);
+
 
 
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/me', [AuthController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
-
+    Route::post('/principle/logout', [AuthController::class, 'principlelogout']);
     Route::resource('/course', CourseController::class);
 
     //subject

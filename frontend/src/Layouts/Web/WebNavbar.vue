@@ -73,6 +73,7 @@ setCurrentRoute()
                         </svg>
                     </el-button>
                 </el-badge>
+                <!-- =====profile==== -->
                 <user-profile :Src="profile == '' ? './src/assets/avatar/avatar-profile.jpg' : profile" />
             </div>
         </el-header>
