@@ -39,3 +39,4 @@ class FrontuserController extends Controller
         ]);
     }
 }
+

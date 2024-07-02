@@ -121,8 +121,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/update/{id}', [PaymentController::class, 'update']);
         Route::delete('/delete/{id}', [PaymentController::class, 'destroy']);
     });
-    //books
-    Route::resource('books', BookController::class);
 
     //calendar
     Route::resource('/calendar', CalendarController::class);
@@ -163,7 +161,7 @@ Route::resource('/classroom', ClassroomController::class);
 //documents
 // Route::post('/documents',[DocumentCon])
 //books
-Route::resource('books', BookController::class);
+Route::resource('/books', BookController::class);
 
 //calendar
 Route::resource('/calendar', CalendarController::class);
