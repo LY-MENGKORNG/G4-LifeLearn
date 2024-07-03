@@ -20,6 +20,7 @@ use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\Api\SubmiteController;
 use App\Http\Controllers\Front\FrontuserController;
 use App\Http\Controllers\API\FavoriteController;
+use App\Http\Controllers\API\MylearnController;
 use App\Http\Controllers\API\ScoreController;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -131,9 +132,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/notification/{id}', [NotificationController::class, 'show']);
     Route::put('/notification/update/{id}', [NotificationController::class, 'update']);
     Route::delete('/notification/delete/{id}', [NotificationController::class, 'destroy']);
-});
-            
+
     Route::resource('/favorites',FavoriteController::class);
+    Route::resource('/mylearn',MylearnController::class);
 
 //course
 Route::resource('/course', CourseController::class);
@@ -187,3 +188,7 @@ Route::post('/submite/create', [SubmiteController::class, 'store']);
 Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
 Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
 Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
+
+});
+            
+   
