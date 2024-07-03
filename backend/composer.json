@@ -10,7 +10,6 @@
     "require": {
         "php": "^8.1",
         "consoletvs/charts": "6.*",
-        "guzzlehttp/guzzle": "^7.2",
         "icehouse-ventures/laravel-chartjs": "^3.0",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",

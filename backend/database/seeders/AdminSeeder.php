@@ -17,10 +17,6 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        // Delete existing users with the same emails to prevent duplicate entries
-        User::where('email', 'admin@gmail.com')->delete();
-        Frontuser::where('email', 'mengkorng.ly@gmail.com')->delete();
-
         // Create users
         $admin = User::create([
             'first_name' => 'My',
@@ -31,20 +27,12 @@ class AdminSeeder extends Seeder
             'profile' => 'user.avif',
         ]);
 
-        $user = Frontuser::create([
-            'first_name' => 'Mengkorng',
-            'last_name' => 'Ly',
-            'email' => 'mengkorng.ly@gmail.com',
-            'password' => bcrypt('password'),
-            'phone' => '087861976',
-            'profile' => '1719084702_photo_2023-11-03_22-01-29.jpg',
-        ]); 
-
         // Create roles with appropriate guards
         $admin_role = Role::create(['name' => 'admin']);
         $user_role = Role::create(['name' => 'user', 'guard_name' => 'front']);
+        $user_role = Role::create(['name' => 'principle', 'guard_name' => 'front']);
 
-        $role_front_user = Permission::create(['name' => 'front_user access', 'guard_name' => 'front']);
+        $role_front_user = Permission::create(['name' => 'front access', 'guard_name' => 'front']);
 
         // 
         $role_access_permission = Permission::create(['name' => 'Role access']);
@@ -82,9 +70,7 @@ class AdminSeeder extends Seeder
 
         
         $admin->assignRole('admin');
-        $user->assignRole('user');
-        
-        $user_role->givePermissionTo(['front_user access']);
+
         $admin_role->givePermissionTo([
             'Role access',
             'Role add',

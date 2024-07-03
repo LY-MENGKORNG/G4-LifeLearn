@@ -82,10 +82,10 @@ class RelationshipModel extends Model
     }
 
     /// BelongsToMany relationships
-    public function roles(): BelongsToMany
-    {
-        return $this->belongsToMany(Role::class);
-    } 
+    // public function roles(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Role::class);
+    // } 
 
     public function permissions(){
         return $this->belongsToMany(Permission::class);

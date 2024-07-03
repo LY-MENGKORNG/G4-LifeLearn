@@ -26,9 +26,11 @@ class FrontuserController extends Controller
             ], 401);
         }
 
-        // Assuming the User model has relationships for roles and permissions
-        $permissions = $user->permissions; // Adjust if using a method
-        $roles = $user->roles; // Adjust if using a method
+        $permissions = $user->permissions; 
+        $roles = $user->roles; 
+
+        $user->last_seen = now(); 
+        $user->update(); // update the time that user accessed
 
         return response()->json([
             'message' => 'Your information',
@@ -41,12 +43,16 @@ class FrontuserController extends Controller
     public function register(FrontRegisterRequest $request)
     {
         $user = Frontuser::createOrUpdate($request);
+        $user->assignRole('user');
+        $user->givePermissionTo('front access');
         $token = $user ? $user->createToken('auth_token')->plainTextToken : null;
 
         return $token ? response()->json([
             'data'          => $user,
             'access_token'  => $token,
-            'token_type'    => 'Bearer'
+            'token_type'    => 'Bearer',
+            'role' => $user->roles,
+            'permissions' => $user->permissions
         ], 200) : response()->json([
             'success' => false,
             'message' => 'Something went wrong',
