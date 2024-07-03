@@ -2,27 +2,12 @@ const userMeta = {
     requireAuth: false,
     role: 'user'
 }
-const adminMeta = {
-    requireAuth: true,
-    role: 'admin'
-}
 const principleMeta = {
     requireAuth: true,
     role: 'principle'
 }
 
 const routes = [
-    {
-        path: '/admin/dashboard',
-        name: 'dashboard',
-        component: () => import('@/views/Admin/DashboardView.vue'),
-        meta: adminMeta
-    },
-    {
-        path: '/admin/login',
-        name: 'admin-login',
-        component: () => import('@/views/Admin/Auth/LoginView.vue')
-    },
     {
         path: '/system/login',
         name: 'system-login',
@@ -62,6 +47,11 @@ const routes = [
             requiresAuth: false,
             role: 'user'
         }
+    },
+    {
+        path:'/book/add',
+        name: 'book-add',
+        component: () => import('@/views/Web/Books/AddBook.vue')
     },
     {
         path: '/system',
