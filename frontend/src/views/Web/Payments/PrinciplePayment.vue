@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex justify-center">
+  <div class="container flex justify-center bg-cover bg-center" style="background-image: url('https://t4.ftcdn.net/jpg/07/31/72/35/240_F_731723521_DAir21aGe9COBSDeXn3EkPQioCxBgSY7.jpg');">
     <div class="w-full max-w-xl">
       <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8 mt-8" enctype="multipart/form-data">
         <div class="mb-9">

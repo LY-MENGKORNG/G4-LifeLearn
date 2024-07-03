@@ -45,12 +45,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [FrontuserController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/admin/login',[AuthController::class, 'loginadmin']);
-<<<<<<< HEAD
-Route::post('/login', [FrontuserController::class, 'login']);
-
-Route::post('/admin/login', [AuthController::class, 'login']); // admin login
-=======
->>>>>>> 6ee75e1e80164cd78ef1a76e59f21b53d5ca2474
 
 
 
