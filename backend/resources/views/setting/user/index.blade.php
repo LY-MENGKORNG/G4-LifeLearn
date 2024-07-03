@@ -13,7 +13,6 @@
                     @endcan
                 </div>
                 <div class="">
-                    <x-alert-form />
                     <ul role="list" class="divide-y divide-gray-100 bg-white rounded-md px-4">
                         @foreach ($users as $user)
                             <x-user-table :name="$user->first_name . ' ' . $user->last_name" :email="$user->email" :src="$user->profile" :roles="$user->roles"
@@ -51,7 +50,9 @@
                                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Edit</a>
                                             @endcan
                                             @can('User delete')
-                                                <button @click="alertShow = ! alertShow" class="block px-4 py-2 text-start text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Delete</button>
+                                                <x-alert-form id="{{$user->id}}" route="admin.users.destroy" title="Hello world" desc="Hello world from cambodia" />
+
+                                                <button class="btn" onclick="modal_{{$user->id}}.showModal()">Delete</button>
                                             @endcan
                                         </div>
                                     </div>
