@@ -51,7 +51,6 @@
                                             @endcan
                                             @can('User delete')
                                                 <x-alert-form id="{{$user->id}}" route="admin.users.destroy" title="Hello world" desc="Hello world from cambodia" />
-
                                                 <button class="btn" onclick="modal_{{$user->id}}.showModal()">Delete</button>
                                             @endcan
                                         </div>
