@@ -1,16 +1,30 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useAuthStore = defineStore('auth', () => {
-  const user = ref()
-  const isAuthenticated = ref()
-  const permissions = ref()
-  const roles = ref()
+export default interface UserResponse {
+    user: {
+        firstName: string;
+        lastName: string;
+        email: string;
+        password?: string;
+        phone?: string;
+        profile?: string
+    };
+    permissions: string[];
+    roles: string[];
+    message?: string; 
+}
 
-  return {
-    user,
-    roles,
-    permissions,
-    isAuthenticated
-  }
+export const useAuthStore = defineStore('auth', () => {
+    const user = ref<UserResponse>
+    const isAuthenticated = ref<boolean>(false)
+    const permissions = ref<string[]>([])
+    const roles = ref<string[]>([])
+
+    return {
+        user,
+        roles,
+        permissions,
+        isAuthenticated
+    }
 })

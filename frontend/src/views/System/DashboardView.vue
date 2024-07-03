@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import AdminLayout from '@Components/Layouts/AdminLayout.vue'
+import SystemLayout from '@/Layouts/System/SystemLayout.vue'
+
 </script>
+
+
 <template>
-  <AdminLayout>
+  <SystemLayout>
     <div class="flex flex-col bg-white justify-center rounded-lg h-[calc(100vh-150px)]">
       <div class="text-center">
         <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Dashboard</h1>
@@ -10,5 +13,5 @@ import AdminLayout from '@Components/Layouts/AdminLayout.vue'
         <p>Join Us Today and Get Started</p>
       </div>
     </div>
-  </AdminLayout>
+  </SystemLayout>
 </template>
