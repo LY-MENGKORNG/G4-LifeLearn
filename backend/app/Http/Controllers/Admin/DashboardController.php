@@ -21,7 +21,7 @@ class DashboardController extends Controller
     public function index(): View
     {
         $systems = System::list();
-        $users = (Frontuser::all());
+        $users = Frontuser::all();
         $payments = Payment::all();
         $chart = UserController::showChart();
         return view('dashboard',[

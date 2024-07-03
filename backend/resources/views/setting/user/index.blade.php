@@ -51,11 +51,7 @@
                                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Edit</a>
                                             @endcan
                                             @can('User delete')
-                                                {{-- <a href="{{ route('admin.users.destroy', $user->id) }}"
-                                                    onclick="event.preventDefault();
-                                            this.closest('form').submit();"
-                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Delete</a> --}}
-                                                <button @click="alertShow = ! alertShow" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Delete</button>
+                                                <button @click="alertShow = ! alertShow" class="block px-4 py-2 text-start text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Delete</button>
                                             @endcan
                                         </div>
                                     </div>

@@ -23,18 +23,18 @@ router.beforeEach(async (to: any, from: any, next: any) => {
         const { data } = await axiosInstance.get('/me')
         store.isAuthenticated = true
         store.user = data.data
-
+        
         store.permissions = data.permissions.map((item: any) => item.name)
         store.roles = data.roles.map((item: any) => item.name)
-
+        
         const rules = () =>
             defineAclRules((setRule) => {
                 store.permissions.forEach((permission: string) => {
                     setRule(permission, () => true)
                 })
             })
-
-        simpleAcl.rules = rules()
+            
+            simpleAcl.rules = rules()
     } catch (error) {
         /* empty */
         // console.warn(error)

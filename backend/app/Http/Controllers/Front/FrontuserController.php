@@ -36,9 +36,9 @@ class FrontuserController extends Controller
             'message' => 'Your information',
             'data' => new UserResource($user),
             'permissions' => $permissions,
-            'roles' => $roles
+            'roles' => $roles,
         ]);
-    }
+    }   
 
     public function register(FrontRegisterRequest $request)
     {

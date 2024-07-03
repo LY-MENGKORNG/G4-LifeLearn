@@ -11,7 +11,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 
 class NotificationController extends Controller
-{   
+{
     /**
      * Display a listing of the resource.
      *
@@ -19,9 +19,9 @@ class NotificationController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:Role access|Role create|Role edit|Role delete', ['only' => ['index','show']]);
-        $this->middleware('role_or_permission:Role add', ['only' => ['create','store']]);
-        $this->middleware('role_or_permission:Role edit', ['only' => ['edit','update']]);
+        $this->middleware('role_or_permission:Role access|Role create|Role edit|Role delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Role add', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Role edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:Role delete', ['only' => ['destroy']]);
     }
     /**
@@ -32,7 +32,7 @@ class NotificationController extends Controller
         $notifications = NotificationResource::collection(Notificaton::list());
         return view('notification.index', ['notifications' => $notifications]);
     }
-
+   
     /**
      * Store a newly created resource in storage.
      */
@@ -65,7 +65,7 @@ class NotificationController extends Controller
         $classrooms = Classroom::pluck('id')->toArray();
         $userIds = User::pluck('id')->toArray();
         $requestData = $request->only('classroom_id', 'user_id',);
-        return view('notification.index', ['notifications' => [ $classrooms, $userIds, $requestData]]);
+        return view('notification.index', ['notifications' => [$classrooms, $userIds, $requestData]]);
         // return response()->json(['message' => 'Notificaton updated successfully', '$notification' => $notification], 200);
     }
 
@@ -94,4 +94,5 @@ class NotificationController extends Controller
             ], 500);
         }
     }
+   
 }

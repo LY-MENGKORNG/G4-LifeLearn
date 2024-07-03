@@ -6,48 +6,11 @@ import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth-store'
-import type User from '@/stores/auth-store'
 import { createAcl, defineAclRules } from 'vue-simple-acl'
-import router from '@/router/index'
+import router from '@/router'
 const store = useAuthStore()
 
 const Router = useRouter()
-
-// Router.beforeEach(async (to, from, next) => {
-//     const publicPages = ['/login']
-//     const authRequired = !publicPages.includes(to.path)
-//     const store = useAuthStore()
-
-//     try {
-//         const { data } = await axiosInstance.get('/me')
-
-//         store.isAuthenticated = true
-//         store.user = data.data
-
-//         store.permissions = data.data.permissions.map((item: any) => item.name)
-//         store.roles = data.data.roles.map((item: any) => item.name)
-
-//         const rules = () =>
-//             defineAclRules((setRule) => {
-//                 store.permissions.forEach((permission: string) => {
-//                     setRule(permission, () => true)
-//                 })
-//             })
-
-//         router.simpleAcl.rules = rules()
-//     } catch (error) {
-//         /* empty */
-//     }
-
-//     if (authRequired && !store.isAuthenticated) {
-//         next('/login')
-//     } else {
-//         next()
-//     }
-// });
-
-
-
 const formSchema = yup.object({
     password: yup.string().required().label('Password'),
     email: yup.string().required().email().label('Email address')
@@ -66,8 +29,8 @@ const onSubmit = handleSubmit(async (values) => {
         const { data } = await axiosInstance.post('/login', values)
         localStorage.setItem('access_token', data.access_token)
 
-        const  user = await axiosInstance.get('/me')
-
+        const user = await axiosInstance.get('/me')
+        console.log(user)
         store.isAuthenticated = true
         store.user = user.data.data
 
@@ -82,10 +45,12 @@ const onSubmit = handleSubmit(async (values) => {
             })
 
         router.simpleAcl.rules = rules()
-        Router.push('/')
+        const page = store.roles.includes('principle') ? '/system/dashboard' : '/'
+
+        Router.push(page)
     } catch (error) {
         // return;
-        console.warn(error)
+        // console.warn(error)
     }
 })
 
@@ -94,9 +59,13 @@ const { value: email, errorMessage: emailError } = useField('email')
 </script>
 
 <template>
-    <div class="flex justify-center max-w-4xl shadow-md mx-auto items-center min-h-screen bg-gray-100">
+    <div class="flex justify-center max-w-4xl shadow-md mx-auto items-center max-h-screen bg-gray-100 mt-5">
         <el-container class="flex flex-wrap m-auto">
-            <el-form @submit="onSubmit" class="flex-1 h-screen p-10  text-start">
+            <el-card class="flex-1 p-10">
+                <img src="https://www.pngall.com/wp-content/uploads/15/Login-PNG-Clipart.png" class="w-full"
+                    alt="Phone image" />
+            </el-card>
+            <el-form @submit.prevent="onSubmit" class="flex-1  p-10  text-start">
                 <h2 class="text-2xl font-bold mb-6">Login</h2>
                 <p>Don't have an account? <router-link to="/register">Create now</router-link></p>
                 <el-form-item :error="emailError" class="mt-5">
@@ -111,16 +80,13 @@ const { value: email, errorMessage: emailError } = useField('email')
                     class="w-full mt-3 bg-teal-500 hover:bg-teal-500 active:bg-teal-600 text-white">Sign Up</el-button>
                 <router-link to="/register">Go to register</router-link>
             </el-form>
-            <el-card class="flex-1 h-screen p-10">
-
-            </el-card>
         </el-container>
     </div>
 </template>
 
 
 <style scoped>
-.min-h-screen {
-    min-height: 100vh;
+.max-h-screen {
+    max-height: 100vh;
 }
 </style>

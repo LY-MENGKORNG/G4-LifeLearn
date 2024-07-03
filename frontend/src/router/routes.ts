@@ -34,6 +34,17 @@ const routes = [
         component: () => import('@/views/Web/Auth/RegisterView.vue')
     },
     {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/Web/Auth/LoginView.vue')
+    },
+    {
+        path: '/logout',
+        name: 'logout',
+        component: () => import('@/views/Web/Auth/LogoutView.vue')
+    },
+   
+    {
         path: '/',
         name: 'home',
         component: () => import('@/views/Web/HomeView.vue'),
@@ -56,7 +67,14 @@ const routes = [
     {
         path: '/system',
         name: 'system',
-        component: () => import('@/views/Web/SystemView.vue')
+        component: () => import('@/views/Web/SystemView.vue'),
+        props: true
+    },
+    {
+        path: '/system/create',
+        name: 'system-create',
+        component: () => import('@/views/Web/Systems/CreateView.vue'),
+        props: true
     },
     {
         path: '/course',
@@ -72,44 +90,29 @@ const routes = [
         path: '/my-learn',
         name: 'my-learn',
         component: () => import('@/views/Web/MyLearnView.vue')
+    }
+    ,
+    {
+        path: '/teacher-logout',
+        name: 'teacher-logout',
+        component: () => import('@/Components/teacherLogout.vue')
+    }
+    ,
+    {
+        path: '/system/payment',
+        name: 'system-payment',
+        component: () => import('@/views/Web/Payments/PrinciplePayment.vue')
     },
     {
-        path: '/system/classroom',
-        name: 'system-classroom',
-        component: () => import('@/views/System/ClassroomView.vue')
+        path: '/system/bookpayment',
+        name: 'system-bookpayment',
+        component: () => import('@/views/Web/Bookpayments/UserPaymentView.vue')
     },
     {
-        path: '/system/material',
-        name: 'system-material',
-        component: () => import('@/views/System/MaterialView.vue')
-    },
-    {
-        path: '/system/peopl',
-        name: 'system-people',
-        component: () => import('@/views/System/PeopleView.vue')
-    },
-    {
-        path: '/system/missing',
-        name: 'system-missing',
-        component: () => import('@/views/System/MissingView.vue')
-    },
-    
-    {
-        path: '/system/done',
-        name: 'system-done',
-        component: () => import('@/views/System/DoneView.vue')
-    },
-    {
-        path: '/system/homework',
-        name: 'system-homework',
-        component: () => import('@/views/System/HomeworkView.vue')
-    },
-    {
-        path: '/system/lesson',
-        name: 'system-lesson',
-        component: () => import('@/views/System/LessonView.vue')
-    },
-
+        path: '/system/info',
+        name: 'system-info',
+        component: () => import('@/views/Web/Info/SystemInfo.vue')
+    }
 ]
 
 export default routes;

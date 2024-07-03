@@ -12,6 +12,7 @@ use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\BookController;
 use App\Http\Controllers\API\CalendarController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\NotificationsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\QuizzeController;
 use App\Http\Controllers\API\CommentController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\ScoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,8 +52,8 @@ Route::post('/system/login', [FrontuserController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/me', [FrontuserController::class, 'index']);
-    Route::post('/logout', [FrontuserController::class, 'logout']);
-
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/principle/logout', [AuthController::class, 'principlelogout']);
     Route::resource('/course', CourseController::class);
 
     //subject
@@ -139,4 +141,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/comment', CommentController::class);
     //score
     Route::resource('/score', ScoreController::class);
+    Route::resource('/principle', NotificationsController::class);
+    // Route::post('/principle/request',NotificationsController::class, 'create');
 });
+
+
