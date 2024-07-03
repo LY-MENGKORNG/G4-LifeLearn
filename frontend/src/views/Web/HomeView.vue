@@ -10,6 +10,7 @@ import WebLayout from '@/Layouts/Web/WebLayout.vue';
       <div class="text-center">
         <p class="text-lg md:text-2xl mb-8">Your journey to excellence starts here.</p>
         <p>Join Us Today and Get Started</p>
+        <p></p>
       </div>
     </div>
   </WebLayout>

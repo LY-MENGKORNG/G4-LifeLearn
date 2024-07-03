@@ -1,8 +1,8 @@
-<script setup lang="ts">
+// <script setup lang="ts">
 </script>
 
 <template>
-    <main class="">
-        <router-view></router-view>
-    </main>
+  <main class="">
+    <router-view></router-view>
+  </main>
 </template>

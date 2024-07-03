@@ -83,6 +83,43 @@ const routes = [
         name: 'my-learn',
         component: () => import('@/views/Web/MyLearnView.vue')
     },
+    {
+        path: '/system/classroom',
+        name: 'system-classroom',
+        component: () => import('@/views/System/ClassroomView.vue')
+    },
+    {
+        path: '/system/material',
+        name: 'system-material',
+        component: () => import('@/views/System/MaterialView.vue')
+    },
+    {
+        path: '/system/peopl',
+        name: 'system-people',
+        component: () => import('@/views/System/PeopleView.vue')
+    },
+    {
+        path: '/system/missing',
+        name: 'system-missing',
+        component: () => import('@/views/System/MissingView.vue')
+    },
+    
+    {
+        path: '/system/done',
+        name: 'system-done',
+        component: () => import('@/views/System/DoneView.vue')
+    },
+    {
+        path: '/system/homework',
+        name: 'system-homework',
+        component: () => import('@/views/System/HomeworkView.vue')
+    },
+    {
+        path: '/system/lesson',
+        name: 'system-lesson',
+        component: () => import('@/views/System/LessonView.vue')
+    },
+
 ]
 
 export default routes;
