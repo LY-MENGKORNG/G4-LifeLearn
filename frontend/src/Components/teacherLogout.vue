@@ -5,7 +5,7 @@
           <!-- Image Section -->
           <el-card class="flex-1 p-10">
   <img
-    src="https://cdni.iconscout.com/illustration/premium/thumb/login-10299071-8333958.png?f=webp"
+    src="https://tandur.co.id/assets_portal/assets/images/login.png"
     class="w-full justify-center mx-auto"
     alt="Teacher image"
   />
