@@ -1,18 +1,18 @@
 const routes = [
-    {
-        path: '/admin/dashboard',
-        name: 'dashboard',
-        component: () => import('@/views/Admin/DashboardView.vue'),
-        meta: {
-            requiresAuth: true,
-            role: 'admin'
-        }
-    },
-    {
-        path: '/admin/login',
-        name: 'admin-login',
-        component: () => import('@/views/Admin/Auth/LoginView.vue')
-    },
+    // {
+    //     path: '/admin/dashboard',
+    //     name: 'dashboard',
+    //     component: () => import('@/views/Admin/DashboardView.vue'),
+    //     meta: {
+    //         requiresAuth: true,
+    //         role: 'admin'
+    //     }
+    // },
+    // {
+    //     path: '/admin/login',
+    //     name: 'admin-login',
+    //     component: () => import('@/views/Admin/Auth/LoginView.vue')
+    // },
 
 
     {
@@ -89,6 +89,11 @@ const routes = [
         path: '/system/bookpayment',
         name: 'system-bookpayment',
         component: () => import('@/views/Web/Bookpayments/UserPaymentView.vue')
+    },
+    {
+        path: '/system/info',
+        name: 'system-info',
+        component: () => import('@/views/Web/Info/SystemInfo.vue')
     }
 ]
 
