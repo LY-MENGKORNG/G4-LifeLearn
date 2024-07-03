@@ -2,7 +2,7 @@
   <WebLayout>
     <Header>
       <div class="container">
-        <div class="flex gap-10 p-10">
+        <div class="flex gap-10 p-10 mt-5">
           <div class="flex-none relative">
             <img
               class="h-auto max-w-lg transition-all duration-300 rounded-lg cursor-pointer filter"
