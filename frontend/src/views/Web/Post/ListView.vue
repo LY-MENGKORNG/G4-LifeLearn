@@ -26,11 +26,8 @@
     </div>
   </WebLayout>
   <!-- {{ store.posts }} -->
-<<<<<<< HEAD
   <!-- {{ posts }} -->
-=======
   {{ posts }}
->>>>>>> My_learn
 </template>
 
 <script>
