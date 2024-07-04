@@ -4,7 +4,7 @@
             <div class="bg-white shadow-md rounded my-6 p-5">
                 <form method="POST" action="{{ route('admin.users.update', $user->id) }}">
                     @csrf
-                    @method('post')
+                    @method('put')
                     <div class="flex flex-col space-y-2">
                         <label for="first_name" class="text-gray-700 select-none font-medium">First Name</label>
                         <input id="first_name" type="text" name="first_name"
