@@ -29,23 +29,12 @@ const onSubmit = handleSubmit(async (values) => {
 
         store.fetchUser();
 
-        const rules = () =>
-            defineAclRules((setRule) => {
-                store.user.permissions.forEach((permission: string) => {
-                    setRule(permission, () => true)
-                })
-            })
-
-        router.simpleAcl.rules = rules()
-        console.log(store.user.roles)
-        const isPrinciple = store.user.roles.findIndex((role: any) => role.name ==  "principle");
+        const isPrinciple = store.user.roles.find((role: any) => role.name ==  "principle");
+        console.log(isPrinciple)
         const page =  isPrinciple ? '/system/dashboard' : '/'
-
-        console.log(page)
         router.router.push(page)
     } catch (error) {
-        // return;
-        // console.warn(error)
+        
     }
 })
 
