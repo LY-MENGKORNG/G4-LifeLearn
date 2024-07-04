@@ -20,27 +20,21 @@ router.beforeEach(async (to: any, from: any, next: any) => {
     const store = useAuthStore()
 
     try {
-        const { data } = await axiosInstance.get('/me')
-        store.isAuthenticated = true
-        store.user = data.data
-        
-        store.permissions = data.permissions.map((item: any) => item.name)
-        store.roles = data.roles.map((item: any) => item.name)
-        
+        store.fetchUser();
         const rules = () =>
             defineAclRules((setRule) => {
-                store.permissions.forEach((permission: string) => {
+                store.user.permissions.forEach((permission: string) => {
                     setRule(permission, () => true)
                 })
             })
-            
-            simpleAcl.rules = rules()
+
+        simpleAcl.rules = rules()
     } catch (error) {
         /* empty */
         // console.warn(error)
     }
 
-    if (authRequired && !store.isAuthenticated) {
+    if (authRequired && !store.user.isAuthenticated) {
         next(page.value)
     } else {
         next()

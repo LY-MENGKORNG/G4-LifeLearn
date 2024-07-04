@@ -4,13 +4,11 @@
 import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
-import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth-store'
 import { createAcl, defineAclRules } from 'vue-simple-acl'
 import router from '@/router'
 const store = useAuthStore()
 
-const Router = useRouter()
 const formSchema = yup.object({
     password: yup.string().required().label('Password'),
     email: yup.string().required().email().label('Email address')
@@ -29,25 +27,22 @@ const onSubmit = handleSubmit(async (values) => {
         const { data } = await axiosInstance.post('/login', values)
         localStorage.setItem('access_token', data.access_token)
 
-        const user = await axiosInstance.get('/me')
-        console.log(user)
-        store.isAuthenticated = true
-        store.user = user.data.data
-
-        store.permissions = user.data.permissions.map((item: any) => item.name)
-        store.roles = user.data.roles.map((item: any) => item.name)
+        store.fetchUser();
 
         const rules = () =>
             defineAclRules((setRule) => {
-                store.permissions.forEach((permission: string) => {
+                store.user.permissions.forEach((permission: string) => {
                     setRule(permission, () => true)
                 })
             })
 
         router.simpleAcl.rules = rules()
-        const page = store.roles.includes('principle') ? '/system/dashboard' : '/'
+        console.log(store.user.roles)
+        const isPrinciple = store.user.roles.findIndex((role: any) => role.name ==  "principle");
+        const page =  isPrinciple ? '/system/dashboard' : '/'
 
-        Router.push(page)
+        console.log(page)
+        router.router.push(page)
     } catch (error) {
         // return;
         // console.warn(error)
