@@ -21,6 +21,7 @@
         "tailwindcss": "^2.2.19"
     },
     "dependencies": {
-        "@material-tailwind/html": "^2.2.2"
+        "@material-tailwind/html": "^2.2.2",
+        "daisyui": "^4.12.10"
     }
 }
