@@ -61,17 +61,14 @@
 <script setup lang="ts">
 import WebLayout from "@/Layouts/Web/WebLayout.vue";
 import axiosInstance from '@/plugins/axios';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch, onUpdated } from 'vue';
+import { useBookStore } from '@/stores/book-store'
+const store = useBookStore();
 
-const booklist = ref<any[]>();
+const booklist = ref<any>([]);
 
-onMounted(async () => {
-  try {
-    const { data } = await axiosInstance.get('/books');
-    booklist.value = data.data;
-    console.log(data.data);
-  } catch (error) {
-    console.error('Error fetching books:', error);
-  }
-});
+onMounted(() => {
+  store.fetchBooks();
+})
+
 </script>

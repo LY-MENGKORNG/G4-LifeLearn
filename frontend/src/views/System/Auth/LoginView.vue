@@ -4,14 +4,11 @@
 import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
-import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth-store'
-import type User from '@/stores/auth-store'
 import { createAcl, defineAclRules } from 'vue-simple-acl'
-import router from '@/router/index'
+import router from '@/router'
 const store = useAuthStore()
 
-const Router = useRouter()
 
 
 const formSchema = yup.object({
@@ -32,23 +29,16 @@ const onSubmit = handleSubmit(async (values) => {
         const { data } = await axiosInstance.post('/system/login', values)
         localStorage.setItem('access_token', data.access_token)
 
-        const  user = await axiosInstance.get('/me')
-
-        store.isAuthenticated = true
-        store.user = user.data.data
-
-        store.permissions = user.data.permissions.map((item: any) => item.name)
-        store.roles = user.data.roles.map((item: any) => item.name)
-
+        store.fetchUser();
         const rules = () =>
             defineAclRules((setRule) => {
-                store.permissions.forEach((permission: string) => {
+                store.user.permissions.forEach((permission: string) => {
                     setRule(permission, () => true)
                 })
             })
 
         router.simpleAcl.rules = rules()
-        Router.push('/system/dashboard')
+        router.router.push('/system/dashboard')
     } catch (error) {
         // return;
         console.warn(error)
