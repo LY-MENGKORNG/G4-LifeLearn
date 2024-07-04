@@ -5,7 +5,6 @@ import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
 import { useAuthStore } from '@/stores/auth-store'
-import { createAcl, defineAclRules } from 'vue-simple-acl'
 import router from '@/router'
 const store = useAuthStore()
 
@@ -30,14 +29,7 @@ const onSubmit = handleSubmit(async (values) => {
         localStorage.setItem('access_token', data.access_token)
 
         store.fetchUser();
-        const rules = () =>
-            defineAclRules((setRule) => {
-                store.user.permissions.forEach((permission: string) => {
-                    setRule(permission, () => true)
-                })
-            })
-
-        router.simpleAcl.rules = rules()
+        
         router.router.push('/system/dashboard')
     } catch (error) {
         // return;

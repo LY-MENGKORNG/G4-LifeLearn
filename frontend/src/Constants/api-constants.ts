@@ -1,6 +1,6 @@
 export default interface User {
     profile: {
-        id: number;
+        id: any;
         firstName: string;
         lastName: string;
         email: string;
@@ -13,7 +13,7 @@ export default interface User {
     isAuthenticated: boolean
 }
 
-export default interface BookResponse {
+export default interface Book {
     id: number;
     title: string;
     author: string;

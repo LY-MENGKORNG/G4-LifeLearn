@@ -6,7 +6,6 @@ import routes from './routes'
 import { ref } from 'vue';
 
 const page = ref<string>('/login')
-const simpleAcl = createAcl({})
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes
@@ -20,15 +19,8 @@ router.beforeEach(async (to: any, from: any, next: any) => {
     const store = useAuthStore()
 
     try {
-        store.fetchUser();
-        const rules = () =>
-            defineAclRules((setRule) => {
-                store.user.permissions.forEach((permission: string) => {
-                    setRule(permission, () => true)
-                })
-            })
+        await store.fetchUser();
 
-        simpleAcl.rules = rules()
     } catch (error) {
         /* empty */
         // console.warn(error)
@@ -41,4 +33,4 @@ router.beforeEach(async (to: any, from: any, next: any) => {
     }
 });
 
-export default { router, simpleAcl }
+export default { router }
