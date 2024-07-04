@@ -22,20 +22,8 @@ const { handleSubmit, isSubmitting } = useForm({
     validationSchema: formSchema
 })
 
-const onSubmit = handleSubmit(async (values) => {
-    try {
-        const { data } = await axiosInstance.post('/login', values)
-        localStorage.setItem('access_token', data.access_token)
-
-        store.fetchUser();
-
-        const isPrinciple = store.user.roles.find((role: any) => role.name ==  "principle");
-        console.log(isPrinciple)
-        const page =  isPrinciple ? '/system/dashboard' : '/'
-        router.router.push(page)
-    } catch (error) {
-        
-    }
+const onSubmit = handleSubmit((values) => {
+    store.login(values, '/login');
 })
 
 const { value: password, errorMessage: nameError } = useField('password')

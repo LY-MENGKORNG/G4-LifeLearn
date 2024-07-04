@@ -3,6 +3,7 @@ import axiosInstance from '@/plugins/axios';
 import { createAcl, defineAclRules } from 'vue-simple-acl'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import router from '@/router'
 const simpleAcl = createAcl({})
 
 
@@ -48,8 +49,21 @@ export const useAuthStore = defineStore('auth', {
                 console.error('Something went wrong:', error);
             }
         },
-        async login() {
-            
+        async login(values: {email: string, password: string}, route: string) {
+            try {
+                const { data } = await axiosInstance.post(route, values)
+                localStorage.setItem('access_token', data.access_token)
+        
+                this.fetchUser();
+        
+                const isPrinciple: any = this.user.roles.findIndex((role: any) => role.name == 'principle');
+                
+                router.router.push(isPrinciple != -1 ? '/system/dashboard' : '/')
+            } catch (error) {
+                /**
+                 * 
+                 */
+            }
         }
     }
 })
