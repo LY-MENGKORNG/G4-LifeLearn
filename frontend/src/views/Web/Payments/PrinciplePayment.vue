@@ -9,8 +9,7 @@
         <div class="flex flex-wrap -mx-3 mb-2">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label for="payment" class="block mb-2 text-sm text-gray-900 dark:text-white"
-              >Payment</label
-            >
+              >Payment</label>
             <el-select id="payment" type="payment" placeholder="Payment" clearable>
               <el-option label="Zone one" value="shanghai" />
               <el-option label="Zone two" value="beijing" />
@@ -50,7 +49,6 @@
             >
             <el-date-picker type="date" id="date" placeholder="Pick a date" clearable />
           </div>
-
           <div class="w-full md:w-1/2 px-3">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs text-start mb-2"
@@ -97,5 +95,5 @@
 </template>
 
 <script setup lang="ts">
-import UploadFile from '@/Components/Common/UploadFile.vue'
+import UploadFile from '@/Components/Common/UploadFile.vue';
 </script>
