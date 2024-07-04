@@ -10,7 +10,7 @@ import WebFooter from './WebFooter.vue';
             <el-main  class="">
                 <slot></slot>
             </el-main>
-            <WebFooter class="bg-slate-200"></WebFooter>
+            <WebFooter></WebFooter>
         </el-container>
     </div>
 </template>

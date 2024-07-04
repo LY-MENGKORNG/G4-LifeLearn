@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Charts\MonthlyChart;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Users\FrontUserResource;
 use App\Models\Calendar;
+use App\Models\Frontuser;
 use App\Models\Payment;
 use App\Models\System;
 use App\Models\User;
@@ -18,15 +21,14 @@ class DashboardController extends Controller
     public function index(): View
     {
         $systems = System::list();
-        $users = User::all();
+        $users = Frontuser::all();
         $payments = Payment::all();
-
-        $dashboard = [
+        $chart = UserController::showChart();
+        return view('dashboard',[
             'systems' => $systems,
             'users' => $users,
             'payments' => $payments,
-        ];
-        return view('dashboard', ['dashboard' => $dashboard]);
+        ]);
     }
 
     /**

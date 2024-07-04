@@ -45,7 +45,7 @@ class RelationshipModel extends Model
 
     public function quiz(): BelongsTo
     {
-        return $this->belongsTo(Quizze::class);
+        return $this->belongsTo(Quiz::class);
     }
 
     public function notification(): BelongsTo
@@ -82,10 +82,10 @@ class RelationshipModel extends Model
     }
 
     /// BelongsToMany relationships
-    public function roles(): BelongsToMany
-    {
-        return $this->belongsToMany(Role::class);
-    } 
+    // public function roles(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Role::class);
+    // } 
 
     public function permissions(){
         return $this->belongsToMany(Permission::class);

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\{
     DashboardController,
     ProfileController,
     MailSettingController,
+    PaymentController,
 };
 use Illuminate\Support\Facades\Mail;
 
@@ -57,14 +58,15 @@ require __DIR__ . '/auth.php';
 
 
 Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')->group(function () {
-        Route::resource('roles', RoleController::class);
-        Route::resource('permissions', PermissionController::class);
-        Route::resource('users', UserController::class);
-        Route::resource('systems', SystemController::class);
-        Route::resource('notifications', NotificationController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('systems', SystemController::class);
+    Route::resource('notifications', NotificationController::class);
 
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-        Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
-        Route::get('/mail', [MailSettingController::class, 'index'])->name('mail.index');
-        Route::put('/mail-update/{mailsetting}', [MailSettingController::class, 'update'])->name('mail.update');
-    });
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/mail', [MailSettingController::class, 'index'])->name('mail.index');
+    Route::put('/mail-update/{mailsetting}', [MailSettingController::class, 'update'])->name('mail.update');
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
+});

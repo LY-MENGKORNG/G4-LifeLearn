@@ -2,7 +2,7 @@
     <aside>
         <el-menu default-active="2" class="el-menu-vertical-demo h-[100vh]" :collapse="isCollapse" @open="handleOpen"
             @close="handleClose">
-            <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
+            <el-radio-group class="flex justify-center items-center" v-model="isCollapse">
                 <el-radio-button @click="isCollapse = !isCollapse">
                     <el-icon>
                         <IconMenu />
@@ -61,10 +61,8 @@ import {
 const isCollapse = ref(false)
 
 const handleOpen = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
 }
 const handleClose = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
 }
 </script>
 

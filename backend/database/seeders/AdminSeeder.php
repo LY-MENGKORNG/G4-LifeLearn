@@ -17,10 +17,6 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        // Delete existing users with the same emails to prevent duplicate entries
-        User::where('email', 'admin@gmail.com')->delete();
-        Frontuser::where('email', 'mengkorng.ly@gmail.com')->delete();
-
         // Create users
         $admin = User::create([
             'first_name' => 'My',
@@ -31,18 +27,12 @@ class AdminSeeder extends Seeder
             'profile' => 'user.avif',
         ]);
 
-        $user = User::create([
-            'first_name' => 'Mengkorng',
-            'last_name' => 'Ly',
-            'email' => 'mengkorng.ly@gmail.com',
-            'password' => bcrypt('password'),
-            'phone' => '087861976',
-            'profile' => '1719084702_photo_2023-11-03_22-01-29.jpg',
-        ]); 
-
         // Create roles with appropriate guards
         $admin_role = Role::create(['name' => 'admin']);
-        $user_role = Role::create(['name' => 'user',]);
+        $user_role = Role::create(['name' => 'user', 'guard_name' => 'front']);
+        $user_role = Role::create(['name' => 'principle', 'guard_name' => 'front']);
+
+        $role_front_user = Permission::create(['name' => 'front access', 'guard_name' => 'front']);
 
         // 
         $role_access_permission = Permission::create(['name' => 'Role access']);
@@ -78,34 +68,37 @@ class AdminSeeder extends Seeder
         $mail_access_permission = Permission::create(['name' => 'Mail access']);
         $mail_edit_permission = Permission::create(['name' => 'Mail edit']);
 
+        
+        $admin->assignRole('admin');
 
-        $admin->givePermissionTo([
-            $role_edit_permission,
-            $role_add_permission,
-            $role_delete_permission,
-            $permission_access_permission,
-            $permission_edit_permission,
-            $permission_add_permission,
-            $permission_delete_permission,
-            $user_access_permission,
-            $user_edit_permission,
-            $user_add_permission,
-            $user_delete_permission,
-            $system_access_permission,
-            $system_edit_permission,
-            $system_add_permission,
-            $system_delete_permission,
-            $notification_access_permission,
-            $notification_edit_permission,
-            $notification_add_permission,
-            $notification_delete_permission,
-            $mail_access_permission,
-            $mail_edit_permission
+        $admin_role->givePermissionTo([
+            'Role access',
+            'Role add',
+            'Role edit',
+            'Role delete',
+
+            'Permission access',
+            'Permission add',
+            'Permission edit',
+            'Permission delete',
+
+            'User access',
+            'User add',
+            'User edit',
+            'User delete',
+
+            'System access',
+            'System add',
+            'System edit',
+            'System delete',
+
+            'Notification access',
+            'Notification add',
+            'Notification edit',
+            'Notification delete',
+
+            'Mail access',
+            'Mail edit',
         ]);
-
-        $user->givePermissionTo([$role_access_permission]);
-
-        $admin->assignRole($admin_role);
-        $user->assignRole($user_role);
     }
 }

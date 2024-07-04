@@ -63,7 +63,7 @@ import WebLayout from "@/Layouts/Web/WebLayout.vue";
 import axiosInstance from '@/plugins/axios';
 import { ref, onMounted } from 'vue';
 
-const booklist = ref([]);
+const booklist = ref<any[]>();
 
 onMounted(async () => {
   try {
