@@ -16,8 +16,13 @@ class BookController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Here is the book list',
-            'data' => $books
-        ], 200);
+            'data' => $books]);
+        // return response()->
+        // json([
+        //     'success' => true,
+        //     'message' => 'This is all books',
+        //     'data' =>$books
+        // ], 200);
     }
     public function store(Request $request)
     { {
