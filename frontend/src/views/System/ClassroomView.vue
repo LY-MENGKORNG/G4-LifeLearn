@@ -1,27 +1,27 @@
 <template>
   <SystemLayout>
     <div class="flex h-full w-full">
-      <div class="flex-1 h-full">
-        <div class="bg-gray-200 pr-10 py-2 border-b border-gray-300 flex justify-end items-center space-x-4">
+      <div class="flex-1 h-full space-y-8">
+        <div class="bg-gray-200 pr-10 py-2 border-b border-gray-300 flex justify-end items-center space-x-1">
           <button class="relative" @click="showForm">
-            <el-icon class="mr-14 font-black" :size="26"
-              @mouseover="showTooltip = true"
-              @mouseleave="showTooltip = false"><Plus />
-            </el-icon>
-            <div v-if="showTooltip" class="absolute bg-gray-800 text-white text-sm p-2 rounded w-32 mt-2">
+            <el-icon class="mr-5 font-black" :size="26"
+            @mouseover="showTooltip = true"
+            @mouseleave="showTooltip = false">
+            <Plus /></el-icon>
+            <div v-if="showTooltip" class="absolute bg-gray-800 text-white text-sm p-2 rounded w-max mt-2">
               Create or join a class
             </div>
           </button>
           <img class="w-10 h-10 object-cover rounded-full shadow-md"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT35Sk9mMEcBuooCRGNUylcYn-PR6IZhDHzvA&s"
-            alt="Course Image"/>
+            alt="Course Image" />
         </div>
         <div class="scrollable-content">
           <router-link to="/system/material" class="flex flex-wrap">
-            <CardView v-for="index in 8" :key="index" />
+            <CardView v-for="index in 8" :key="index"/>
           </router-link>
         </div>
-        <FormclassView v-if="formVisible" @create="handleCreate" @cancel="closeForm" />
+        <FormclassCreate class="w-full" v-if="formVisible" @create="handleCreate" @cancel="closeForm" />
       </div>
     </div>
   </SystemLayout>
@@ -31,8 +31,8 @@
 import { ref } from 'vue';
 import { Plus } from '@element-plus/icons-vue';
 import SystemLayout from '@/Layouts/System/SystemLayout.vue';
-import CardView from './CardView.vue';
-import FormclassView from './FormclassView.vue';
+import CardView from '@/Components/Classroom/CardView.vue';
+import FormclassCreate from '@/Components/Classroom/FormclassCreate.vue';
 import { RouterLink } from 'vue-router';
 
 const showTooltip = ref(false);

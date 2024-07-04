@@ -34,7 +34,7 @@
           <h1 class="text-blue-500 text-4xl space-y-3">Done</h1>
           <p>25 done</p>
         </div>
-        <HomeworkdoneView class="flex flex-cols" v-for="index in 8" :key="index" />
+        <HomeworkDone class="flex flex-cols" v-for="index in 8" :key="index" />
       </div>
     </div>
   </SystemLayout>
@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import SystemLayout from '@/Layouts/System/SystemLayout.vue'
-import HomeworkdoneView from './HomeworkdoneView.vue'
+import HomeworkDone from '@/Components/Classroom/HomeworkDone.vue'
 import { Message } from '@element-plus/icons-vue'
 </script>
 

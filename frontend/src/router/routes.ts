@@ -91,7 +91,11 @@ const routes = [
         name: 'system-lesson',
         component: () => import('@/views/System/LessonView.vue')
     },
-
+    {
+        path: '/system/submitform',
+        name: 'system-submitform',
+        component: () => import('@/views/System/SubmitformView.vue')
+    },
 ]
 
 export default routes;
