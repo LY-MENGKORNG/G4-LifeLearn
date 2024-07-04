@@ -6,7 +6,7 @@ import { ref } from 'vue'
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
-        user: ref<User>(null),
+        user: ref<User>(),
     }),
     actions: {
         async fetchUser() {
@@ -17,7 +17,7 @@ export const useAuthStore = defineStore('auth', {
                     }
                 });
                 this.user = response.data;
-                this.user.isAuthenticated = true;
+                this.user.isAuthenticated = true
             } catch (error) {
                 console.error('Something went wrong:', error);
             }
