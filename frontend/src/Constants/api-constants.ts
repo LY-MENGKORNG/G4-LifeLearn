@@ -1,5 +1,6 @@
-export default interface UserResponse {
-    user: {
+export default interface User {
+    profile: {
+        id: number;
         firstName: string;
         lastName: string;
         email: string;
@@ -7,8 +8,15 @@ export default interface UserResponse {
         phone?: string;
         profile?: string
     };
-    permissions: string[];
-    roles: string[];
-    message?: string; 
+    permissions: string[]
+    roles: string[]
+    isAuthenticated: boolean
 }
 
+export default interface BookResponse {
+    id: number;
+    title: string;
+    author: string;
+    published_at: string;
+    price?: number;
+}
