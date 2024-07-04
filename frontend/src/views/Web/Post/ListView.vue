@@ -25,6 +25,11 @@
       </div>
     </div>
   </WebLayout>
+<<<<<<< HEAD
+  <!-- {{ store.posts }} -->
+  <!-- {{ posts }} -->
+=======
+>>>>>>> 1cc2a85e41f678f39a38f3ba490171c96cbbcc55
 </template>
 
 <script>
