@@ -67,6 +67,11 @@ const routes = [
         name: 'logout',
         component: () => import('@/views/Web/Auth/LogoutView.vue')
     },
+    {
+        path: '/forgot-password',
+        name: 'forgot-password',
+        component: () => import('@/views/ForgotPasswordView.vue')
+    },
    
     {
         path: '/',

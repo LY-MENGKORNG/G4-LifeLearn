@@ -60,9 +60,16 @@ export const useAuthStore = defineStore('auth', {
                 
                 router.router.push(isPrinciple != -1 ? '/system/dashboard' : '/')
             } catch (error) {
-                /**
-                 * 
-                 */
+                /** */
+            }
+        },
+
+        async resetPassword(values: {email: string}) {
+            try{
+                const { data } = await axiosInstance.post('/forgot-password',values)
+                router.router.push('/forgot-password')
+            }catch(error) {
+                return error
             }
         }
     }
