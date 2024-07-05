@@ -22,6 +22,7 @@ use App\Http\Controllers\Front\FrontuserController;
 use App\Http\Controllers\API\FavoriteController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\ScoreController;
+use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,7 +48,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [FrontuserController::class, 'register']);
 Route::post('/login', [FrontuserController::class, 'login']);
 Route::post('/system/login', [FrontuserController::class, 'login']);
-
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']) // forgot password reset
+                ->middleware('guest:front')
+                ->name('password.email');
 
 Route::middleware('auth:sanctum')->group(function () {
 

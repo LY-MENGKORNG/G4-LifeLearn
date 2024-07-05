@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Front\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Frontuser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\ValidationException;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 
 class PasswordResetLinkController extends Controller
 {
@@ -39,9 +42,13 @@ class PasswordResetLinkController extends Controller
             $request->only('email')
         );
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+        return response()->json([
+            'status' => $status == Password::RESET_LINK_SENT ? __($status) : __($status)
+        ]);
+
+        // return $status == Password::RESET_LINK_SENT
+        //             ? back()->with('status', __($status))
+        //             : back()->withInput($request->only('email'))
+        //                     ->withErrors(['email' => __($status)]);
     }
 }
