@@ -13,18 +13,23 @@ const routes = [
         name: 'system-login',
         component: () => import('@/views/System/Auth/LoginView.vue')
     },
+  
     {
         path: '/login',
         name: 'login',
         component: () => import('@/views/Web/Auth/LoginView.vue'),
     },
 
-
     {
         path: '/system/dashboard',
         name: 'system-dashboard',
         component: () => import('@/views/System/DashboardView.vue'),
         meta: principleMeta
+    },
+    {
+        path: '/system/newTeacher',
+        name: 'system-new-teacher',
+        component: () => import('@/views/System/Teacher/NewTeacher.vue')
     },
     {
         path: '/system/teacher',
