@@ -137,6 +137,11 @@ const routes = [
         name: 'system-info',
         component: () => import('@/views/Web/Info/SystemInfo.vue')
     },
+    {
+        path: '/system/grade',
+        name: 'system-grade',
+        component: () => import('@/views/System/Classroom/NewGrade.vue')
+    },
 ]
 
 export default routes;
