@@ -1,3 +1,5 @@
+import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs';
+
 const userMeta = {
     requireAuth: false,
     role: 'user'
@@ -137,6 +139,11 @@ const routes = [
         name: 'system-info',
         component: () => import('@/views/Web/Info/SystemInfo.vue')
     },
+    {
+        path:'/system/class',
+        name:'system-class',
+        component:()=>import('@/views/System/ClassesView.vue')
+    }
 ]
 
 export default routes;

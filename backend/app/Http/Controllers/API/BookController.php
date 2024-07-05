@@ -20,7 +20,7 @@ class BookController extends Controller
         ], 200);
     }
     public function store(Request $request)
-    { {
+    { 
             $validatedData = $request->validate([
                 'title' => 'required',
                 'author' => 'required',
@@ -32,7 +32,7 @@ class BookController extends Controller
             $books = Book::create($validatedData);
 
             return response()->json($books, 201);
-        }
+        
     }
     public function show($id)
     {
