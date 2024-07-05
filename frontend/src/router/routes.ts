@@ -73,6 +73,11 @@ const routes = [
         name: 'logout',
         component: () => import('@/views/Web/Auth/LogoutView.vue')
     },
+    {
+        path: '/forgot-password',
+        name: 'forgot-password',
+        component: () => import('@/views/ForgotPasswordView.vue')
+    },
    
     {
         path: '/',
@@ -142,6 +147,11 @@ const routes = [
         path: '/system/info',
         name: 'system-info',
         component: () => import('@/views/Web/Info/SystemInfo.vue')
+    },
+    {
+        path: '/system/grade',
+        name: 'system-grade',
+        component: () => import('@/views/System/Classroom/NewGrade.vue')
     },
 ]
 
