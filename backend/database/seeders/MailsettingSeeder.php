@@ -19,9 +19,9 @@ class MailsettingSeeder extends Seeder
             'mail_host'                 =>'smtp.mailtrap.io',
             'mail_port'                 =>'2525',
             'mail_username'             =>'ed3caa94a48fd1',
-            'mail_password'             =>'baf29d92154c72',
+            'mail_password'             =>'54@meng#korng$!',
             'mail_encryption'           =>'tls',
-            'mail_from'                 => 'ajayyadavexpo@gmail.com',
+            'mail_from'                 => 'lymengkorng54@gmail.com',
         ]);
     }
 }
