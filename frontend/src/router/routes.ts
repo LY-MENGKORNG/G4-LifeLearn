@@ -53,7 +53,7 @@ const routes = [
         meta: principleMeta
     },
 
-    
+
     {
         path: '/register',
         name: 'register',
@@ -69,7 +69,7 @@ const routes = [
         name: 'logout',
         component: () => import('@/views/Web/Auth/LogoutView.vue')
     },
-   
+
     {
         path: '/',
         name: 'home',
@@ -86,7 +86,7 @@ const routes = [
         }
     },
     {
-        path:'/book/add',
+        path: '/book/add',
         name: 'book-add',
         component: () => import('@/views/Web/Books/AddBook.vue')
     },
@@ -140,10 +140,16 @@ const routes = [
         component: () => import('@/views/Web/Info/SystemInfo.vue')
     },
     {
-        path:'/system/class',
-        name:'system-class',
-        component:()=>import('@/views/System/ClassesView.vue')
+        path: '/system/class',
+        name: 'system-class',
+        component: () => import('@/views/System/ClassesView.vue')
+    },
     }
+    path: '/system/grade',
+    name: 'system-grade',
+    component: () => import('@/views/System/Classroom/NewGrade.vue')
+    }
+
 ]
 
 export default routes;
