@@ -4,15 +4,9 @@
 import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
-import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth-store'
-import type User from '@/stores/auth-store'
-import { createAcl, defineAclRules } from 'vue-simple-acl'
-import router from '@/router/index'
+import router from '@/router'
 const store = useAuthStore()
-
-const Router = useRouter()
-
 
 const formSchema = yup.object({
     password: yup.string().required().label('Password'),
@@ -27,32 +21,8 @@ const { handleSubmit, isSubmitting } = useForm({
     validationSchema: formSchema
 })
 
-const onSubmit = handleSubmit(async (values) => {
-    try {
-        const { data } = await axiosInstance.post('/system/login', values)
-        localStorage.setItem('access_token', data.access_token)
-
-        const  user = await axiosInstance.get('/me')
-
-        store.isAuthenticated = true
-        store.user = user.data.data
-
-        store.permissions = user.data.permissions.map((item: any) => item.name)
-        store.roles = user.data.roles.map((item: any) => item.name)
-
-        const rules = () =>
-            defineAclRules((setRule) => {
-                store.permissions.forEach((permission: string) => {
-                    setRule(permission, () => true)
-                })
-            })
-
-        router.simpleAcl.rules = rules()
-        Router.push('/system/dashboard')
-    } catch (error) {
-        // return;
-        console.warn(error)
-    }
+const onSubmit = handleSubmit((values) => {
+    store.login(values, '/system/login')
 })
 
 const { value: password, errorMessage: nameError } = useField('password')

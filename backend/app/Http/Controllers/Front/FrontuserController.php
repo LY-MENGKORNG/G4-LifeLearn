@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\FrontRegisterRequest;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Resources\Users\PermissionResource;
+use App\Http\Resources\Users\RoleResource;
 use App\Http\Resources\Users\UserResource;
 use App\Models\Frontuser;
 use Illuminate\Support\Facades\Auth;
@@ -35,8 +37,8 @@ class FrontuserController extends Controller
         return response()->json([
             'message' => 'Your information',
             'data' => new UserResource($user),
-            'permissions' => $permissions,
-            'roles' => $roles,
+            'permissions' => PermissionResource::collection($permissions),
+            'roles' => RoleResource::collection($roles),
         ]);
     }   
 

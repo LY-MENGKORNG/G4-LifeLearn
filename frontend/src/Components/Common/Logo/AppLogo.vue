@@ -1,8 +1,6 @@
 <template>
-    <div class="">
-        <router-link class="no-underline text-slate-800" to="/">
-            LifeLearn App
-        </router-link>
+    <div class="text-center py-4">
+        <span>LifeLearn App</span>
     </div>
 </template>
 
