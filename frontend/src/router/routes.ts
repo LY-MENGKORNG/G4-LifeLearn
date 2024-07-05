@@ -27,7 +27,7 @@ const routes = [
         meta: principleMeta
     },
 
-
+    
     {
         path: '/register',
         name: 'register',
