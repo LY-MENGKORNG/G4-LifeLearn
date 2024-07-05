@@ -1,12 +1,30 @@
-import type User  from '@/Constants/api-constants'
+import type User from '@/Constants/api-constants'
 import axiosInstance from '@/plugins/axios';
 import { createAcl, defineAclRules } from 'vue-simple-acl'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import router from '@/router'
+const simpleAcl = createAcl({})
+
+
+const USER: User = {
+    profile: {
+        id: null,
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        phone: '',
+        profile: ''
+    },
+    permissions: [],
+    roles: [],
+    isAuthenticated: false,
+}
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
-        user: ref<User>(null),
+        user: ref<User>(USER),
     }),
     actions: {
         async fetchUser() {
@@ -16,10 +34,35 @@ export const useAuthStore = defineStore('auth', {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`
                     }
                 });
+                const rules = () =>
+                    defineAclRules((setRule) => {
+                        this.user.permissions.forEach((permission: string) => {
+                            setRule(permission, () => true)
+                        })
+                    })
+
+                simpleAcl.rules = rules()
+
                 this.user = response.data;
-                this.user.isAuthenticated = true;
+                this.user.isAuthenticated = true
             } catch (error) {
                 console.error('Something went wrong:', error);
+            }
+        },
+        async login(values: {email: string, password: string}, route: string) {
+            try {
+                const { data } = await axiosInstance.post(route, values)
+                localStorage.setItem('access_token', data.access_token)
+        
+                this.fetchUser();
+        
+                const isPrinciple: any = this.user.roles.findIndex((role: any) => role.name == 'principle');
+                
+                router.router.push(isPrinciple != -1 ? '/system/dashboard' : '/')
+            } catch (error) {
+                /**
+                 * 
+                 */
             }
         }
     }

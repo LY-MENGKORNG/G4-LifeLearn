@@ -22,31 +22,8 @@ const { handleSubmit, isSubmitting } = useForm({
     validationSchema: formSchema
 })
 
-const onSubmit = handleSubmit(async (values) => {
-    try {
-        const { data } = await axiosInstance.post('/login', values)
-        localStorage.setItem('access_token', data.access_token)
-
-        store.fetchUser();
-
-        const rules = () =>
-            defineAclRules((setRule) => {
-                store.user.permissions.forEach((permission: string) => {
-                    setRule(permission, () => true)
-                })
-            })
-
-        router.simpleAcl.rules = rules()
-        console.log(store.user.roles)
-        const isPrinciple = store.user.roles.findIndex((role: any) => role.name ==  "principle");
-        const page =  isPrinciple ? '/system/dashboard' : '/'
-
-        console.log(page)
-        router.router.push(page)
-    } catch (error) {
-        // return;
-        // console.warn(error)
-    }
+const onSubmit = handleSubmit((values) => {
+    store.login(values, '/login');
 })
 
 const { value: password, errorMessage: nameError } = useField('password')
