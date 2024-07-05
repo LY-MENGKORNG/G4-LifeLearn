@@ -8,8 +8,6 @@ import { useAuthStore } from '@/stores/auth-store'
 import router from '@/router'
 const store = useAuthStore()
 
-
-
 const formSchema = yup.object({
     password: yup.string().required().label('Password'),
     email: yup.string().required().email().label('Email address')
@@ -23,18 +21,8 @@ const { handleSubmit, isSubmitting } = useForm({
     validationSchema: formSchema
 })
 
-const onSubmit = handleSubmit(async (values) => {
-    try {
-        const { data } = await axiosInstance.post('/system/login', values)
-        localStorage.setItem('access_token', data.access_token)
-
-        store.fetchUser();
-        
-        router.router.push('/system/dashboard')
-    } catch (error) {
-        // return;
-        console.warn(error)
-    }
+const onSubmit = handleSubmit((values) => {
+    store.login(values, '/system/login')
 })
 
 const { value: password, errorMessage: nameError } = useField('password')

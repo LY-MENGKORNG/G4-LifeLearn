@@ -6,23 +6,19 @@
 		@open="handleOpen"
 		@close="handleClose"
 	>
-		<el-menu-item index='1' @click="setRoute('/system/dashboard')" class="hover:bg-slate-600">
+
+		<el-menu-item index='0'  @click="setRoute('/system/dashboard')" class="hover:bg-slate-600">
 			<el-icon>
-				<DataBoard size="20px" />
-			</el-icon>
-			<template #title>LifeLearn</template>
-		</el-menu-item>
-		<el-menu-item index='2' @click="setRoute('/system/dashboard')" class="hover:bg-slate-600">
-			<el-icon>
-				<DataBoard size="20px" />
+				<IconMenu />
 			</el-icon>
 			<template #title>Dashboard</template>
 		</el-menu-item>
-		<el-menu-item index='3' @click="setRoute('/system/setting')" class="hover:bg-slate-600">
+
+		<el-menu-item v-for="nav in navigations" :key="nav.id" :index='(nav.id + 1).toString()'  @click="setRoute(nav.path)" class="hover:bg-slate-600">
 			<el-icon>
-				<setting />
+				<IconMenu />
 			</el-icon>
-			<template #title>Setting</template>
+			<template #title>{{ nav.name }}</template>
 		</el-menu-item>
 	</el-menu>
 </template>
