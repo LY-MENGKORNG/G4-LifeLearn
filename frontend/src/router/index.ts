@@ -6,7 +6,6 @@ import routes from './routes'
 import { ref } from 'vue';
 
 const page = ref<string>('/login')
-const simpleAcl = createAcl({})
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes
@@ -20,31 +19,18 @@ router.beforeEach(async (to: any, from: any, next: any) => {
     const store = useAuthStore()
 
     try {
-        const { data } = await axiosInstance.get('/me')
-        store.isAuthenticated = true
-        store.user = data.data
-        
-        store.permissions = data.permissions.map((item: any) => item.name)
-        store.roles = data.roles.map((item: any) => item.name)
-        
-        const rules = () =>
-            defineAclRules((setRule) => {
-                store.permissions.forEach((permission: string) => {
-                    setRule(permission, () => true)
-                })
-            })
-            
-            simpleAcl.rules = rules()
+        await store.fetchUser();
+
     } catch (error) {
         /* empty */
         // console.warn(error)
     }
 
-    if (authRequired && !store.isAuthenticated) {
+    if (authRequired && !store.user.isAuthenticated) {
         next(page.value)
     } else {
         next()
     }
 });
 
-export default { router, simpleAcl }
+export default { router }

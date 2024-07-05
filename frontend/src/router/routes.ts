@@ -26,6 +26,30 @@ const routes = [
         component: () => import('@/views/System/DashboardView.vue'),
         meta: principleMeta
     },
+    {
+        path: '/system/teacher',
+        name: 'system-teacher',
+        component: () => import('@/views/System/TeacherView.vue'),
+        meta: principleMeta
+    },
+    {
+        path: '/system/student',
+        name: 'system-student',
+        component: () => import('@/views/System/StudentView.vue'),
+        meta: principleMeta
+    },
+    {
+        path: '/system/grade',
+        name: 'system-grade',
+        component: () => import('@/views/System/GradeView.vue'),
+        meta: principleMeta
+    },
+    {
+        path: '/system/setting',
+        name: 'system-setting',
+        component: () => import('@/views/System/SettingView.vue'),
+        meta: principleMeta
+    },
 
     
     {
@@ -112,7 +136,7 @@ const routes = [
         path: '/system/info',
         name: 'system-info',
         component: () => import('@/views/Web/Info/SystemInfo.vue')
-    }
+    },
 ]
 
 export default routes;

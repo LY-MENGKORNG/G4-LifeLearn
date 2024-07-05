@@ -1,30 +1,69 @@
+import type User from '@/Constants/api-constants'
+import axiosInstance from '@/plugins/axios';
+import { createAcl, defineAclRules } from 'vue-simple-acl'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import router from '@/router'
+const simpleAcl = createAcl({})
 
-export default interface UserResponse {
-    user: {
-        firstName: string;
-        lastName: string;
-        email: string;
-        password?: string;
-        phone?: string;
-        profile?: string
-    };
-    permissions: string[];
-    roles: string[];
-    message?: string; 
+
+const USER: User = {
+    profile: {
+        id: null,
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        phone: '',
+        profile: ''
+    },
+    permissions: [],
+    roles: [],
+    isAuthenticated: false,
 }
 
-export const useAuthStore = defineStore('auth', () => {
-    const user = ref<UserResponse>
-    const isAuthenticated = ref<boolean>(false)
-    const permissions = ref<string[]>([])
-    const roles = ref<string[]>([])
+export const useAuthStore = defineStore('auth', {
+    state: () => ({
+        user: ref<User>(USER),
+    }),
+    actions: {
+        async fetchUser() {
+            try {
+                const response = await axiosInstance.get('/me', {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                const rules = () =>
+                    defineAclRules((setRule) => {
+                        this.user.permissions.forEach((permission: string) => {
+                            setRule(permission, () => true)
+                        })
+                    })
 
-    return {
-        user,
-        roles,
-        permissions,
-        isAuthenticated
+                simpleAcl.rules = rules()
+
+                this.user = response.data;
+                this.user.isAuthenticated = true
+            } catch (error) {
+                console.error('Something went wrong:', error);
+            }
+        },
+        async login(values: {email: string, password: string}, route: string) {
+            try {
+                const { data } = await axiosInstance.post(route, values)
+                localStorage.setItem('access_token', data.access_token)
+        
+                this.fetchUser();
+        
+                const isPrinciple: any = this.user.roles.findIndex((role: any) => role.name == 'principle');
+                
+                router.router.push(isPrinciple != -1 ? '/system/dashboard' : '/')
+            } catch (error) {
+                /**
+                 * 
+                 */
+            }
+        }
     }
 })
