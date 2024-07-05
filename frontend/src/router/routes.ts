@@ -27,6 +27,12 @@ const routes = [
         meta: principleMeta
     },
     {
+        path: '/system/schedule',
+        name: 'system-schedule',
+        component: () => import('@/views/System/ScheduleView.vue'),
+        meta: principleMeta
+    },
+    {
         path: '/system/teacher',
         name: 'system-teacher',
         component: () => import('@/views/System/TeacherView.vue'),
