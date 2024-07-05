@@ -35,7 +35,7 @@ Route::get('/test-mail', function () {
     $message = "Testing mail";
 
     Mail::raw('Hi, welcome!', function ($message) {
-        $message->to('')
+        $message->to('mengkorng.ly@student.passerellesnumeriques.org')
             ->subject('Testing mail');
     });
 });
