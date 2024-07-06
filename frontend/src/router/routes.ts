@@ -144,7 +144,7 @@ const routes = [
         name: 'system-class',
         component: () => import('@/views/System/ClassesView.vue')
     },
-    }
+    {
     path: '/system/grade',
     name: 'system-grade',
     component: () => import('@/views/System/Classroom/NewGrade.vue')

@@ -23,13 +23,15 @@
   
   <script lang="ts" setup>
   import { computed, ref } from 'vue'
+  import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs';
+  
   
   interface User {
     date: string
     grade: string
     address: string
   }
-  
+
   const search = ref('')
   const filterTableData = computed(() =>
     tableData.filter(
@@ -67,5 +69,6 @@
       address: 'No. 189, Grove St, Los Angeles',
     },
   ]
+  
   </script>
   
