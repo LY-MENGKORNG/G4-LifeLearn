@@ -13,14 +13,15 @@ class BookController extends Controller
     {
         $books = Book::all();
         $books =BookResource::collection($books);
-        return response()->json([
+        return response()->
+        json([
             'success' => true,
-            'message' => 'Here is the book list',
-            'data' => $books
+            'message' => 'This is all books',
+            'data' =>$books
         ], 200);
     }
     public function store(Request $request)
-    { {
+    { 
             $validatedData = $request->validate([
                 'title' => 'required',
                 'author' => 'required',
@@ -32,7 +33,7 @@ class BookController extends Controller
             $books = Book::create($validatedData);
 
             return response()->json($books, 201);
-        }
+        
     }
     public function show($id)
     {

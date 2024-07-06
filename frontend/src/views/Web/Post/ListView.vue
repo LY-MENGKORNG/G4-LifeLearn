@@ -25,6 +25,15 @@
       </div>
     </div>
   </WebLayout>
+<<<<<<< HEAD
+  <!-- {{ store.posts }} -->
+  <!-- {{ posts }} -->
+<<<<<<< HEAD
+=======
+>>>>>>> 1cc2a85e41f678f39a38f3ba490171c96cbbcc55
+=======
+  {{ posts }}
+>>>>>>> book
 </template>
 
 <script>
