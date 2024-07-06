@@ -14,7 +14,6 @@ class GradeController extends Controller
     public function index()
     {
         $grade = Grade::list();
-        // $grade = gradeResource::collection($grade);
         return response()->json([
             'success' => true,
             'data' =>$grade,
