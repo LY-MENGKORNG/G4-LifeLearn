@@ -12,13 +12,24 @@ class Grade extends Model
     use HasFactory;
 
     protected $fillable = [
-        'grade_number',
-        'system_id',
-        'status'
+        "grade_number",
+        "system_id",
+        "status"
+        
     ];
 
     public function system(): BelongsTo
     {
         return $this->belongsTo(System::class);
+    }
+
+    public static function list() {
+        return self::all(); 
+    }
+    public static function store($request, $id = null)
+    {
+        $data = $request->only('grade_number','system_id','status');
+        $document = self::updateOrCreate(['id' => $id], $data);
+        return $document;
     }
 }

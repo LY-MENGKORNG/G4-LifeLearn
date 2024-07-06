@@ -16,10 +16,12 @@ use App\Http\Controllers\API\NotificationsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\QuizzeController;
 use App\Http\Controllers\API\CommentController;
-use App\Http\Controllers\API\DocumnetController;
+// use App\Http\Controllers\API\DocumentController;
+use App\Http\Controllers\Api\DocumentController;
 use App\Http\Controllers\Api\SubmiteController;
 use App\Http\Controllers\Front\FrontuserController;
 use App\Http\Controllers\API\FavoriteController;
+use App\Http\Controllers\API\GradeController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\ScoreController;
 use Illuminate\Http\Request;
@@ -85,11 +87,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //documents
     Route::prefix('/document')->group(function () {
-        Route::get('/list', [DocumnetController::class, 'index']);
-        Route::post('/create', [DocumnetController::class, 'store']);
-        Route::get('/show/{id}', [DocumnetController::class, 'show']);
-        Route::put('/update/{id}', [DocumnetController::class, 'update']);
-        Route::delete('/delete/{id}', [DocumnetController::class, 'destroy']);
+        Route::get('/list', [DocumentController::class, 'index']);
+        Route::post('/create', [DocumentController::class, 'store']);
+        Route::get('/show/{id}', [DocumentController::class, 'show']);
+        Route::put('/update/{id}', [DocumentController::class, 'update']);
+        Route::delete('/delete/{id}', [DocumentController::class, 'destroy']);
     });
     //references   
     Route::prefix('/references')->group(function () {
@@ -109,6 +111,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     //books
     Route::resource('books', BookController::class);
+
+    //grade
+    Route::resource('/grade', GradeController::class);
 
     //calendar
     Route::resource('/calendar', CalendarController::class);
