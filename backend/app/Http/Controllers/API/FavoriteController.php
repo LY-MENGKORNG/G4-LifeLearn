@@ -23,7 +23,7 @@ class FavoriteController extends Controller
     }
     public function store(StoreFavoriteRequest $request)
     {
-        $favorites = Favorite::createOrUpdate($request);
+        $favorites = Favorite::store($request);
         return response()->json(['message' => 'Favorite added', 'favorites' => $favorites], 201);
     }
     public function update(StoreFavoriteRequest $request,string $id){
@@ -31,7 +31,7 @@ class FavoriteController extends Controller
         return $favorites ? response()->json([
             'success' => true,
             'message' => 'Successfully updated',
-            'data' => Favorite::createOrUpdate($request, $id)
+            'data' => Favorite::store($request, $id)
         ], 200) : response()->json([
             'success' => false,
             'message' => 'favorites not found with id ' . $id,

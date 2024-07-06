@@ -75,16 +75,13 @@ const routes = [
         name: 'logout',
         component: () => import('@/views/Web/Auth/LogoutView.vue')
     },
-<<<<<<< HEAD
 
-=======
     {
         path: '/forgot-password',
         name: 'forgot-password',
         component: () => import('@/views/ForgotPasswordView.vue')
     },
    
->>>>>>> 1c89c8af2af224b466b4321abd1757ff1ac0094b
     {
         path: '/',
         name: 'home',
