@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-10">
+    <div class="mt-4 scrollable-content ">
         <div class="calendar-header flex justify-between items-center mb-4">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="goToPreviousMonth">Previous Month</button>
             <div class="calendar-title text-xl font-bold">{{ formattedDate(currentDate) }}</div>
@@ -168,5 +168,11 @@ export default {
     border-radius: 0.25rem;
     padding: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.scrollable-content {
+    height: calc(100vh - 105px);
+    overflow-y: auto;
 }
 </style>
