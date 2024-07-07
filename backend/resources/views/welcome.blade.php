@@ -1,5 +1,5 @@
 <x-front-guest-layout>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <main class="bg-white font-montserrat">
         <header class="h-24 sm:h-32 flex items-center">

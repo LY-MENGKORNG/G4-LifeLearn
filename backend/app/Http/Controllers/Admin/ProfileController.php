@@ -7,7 +7,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Traits\UploadImage;
-
+use Illuminate\Contracts\View\View;
 
 class ProfileController extends Controller
 {
@@ -28,7 +28,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $user = auth()->user();
         return view('setting.profile',['user'=>$user]);
@@ -60,7 +60,7 @@ class ProfileController extends Controller
             }
         }
 
-        // $user->update($validated); 
+        $user->update($validated); 
 
         return redirect()->back()->withSuccess('User updated !!!');
     }

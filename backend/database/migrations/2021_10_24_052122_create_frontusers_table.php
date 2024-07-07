@@ -22,6 +22,7 @@ class CreateFrontusersTable extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('profile')->nullable();
+            $table->dateTime('last_seen')->default(now());
             $table->rememberToken();
             $table->timestamps();
         });

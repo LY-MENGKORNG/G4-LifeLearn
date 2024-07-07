@@ -4,25 +4,35 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Notificaton\NotificationRequest;
 use App\Http\Resources\Notifications\NotificationResource;
 use App\Models\Classroom;
 use App\Models\Notificaton;
 use App\Models\User;
-use Illuminate\Notifications\Notificaton as NotificationsNotification;
-use Illuminate\Support\Facades\Notificaton as FacadesNotification;
+use Illuminate\Contracts\View\View;
 
 class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function index()
+    function __construct()
     {
-        $notifications = Notificaton::list();
-        return NotificationResource::collection($notifications);
+        $this->middleware('role_or_permission:Role access|Role create|Role edit|Role delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Role add', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Role edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:Role delete', ['only' => ['destroy']]);
     }
-
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): View
+    {
+        $notifications = NotificationResource::collection(Notificaton::list());
+        return view('notification.index', ['notifications' => $notifications]);
+    }
+   
     /**
      * Store a newly created resource in storage.
      */
@@ -51,15 +61,13 @@ class NotificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $notification = Notificaton::find($id);
         $classrooms = Classroom::pluck('id')->toArray();
         $userIds = User::pluck('id')->toArray();
         $requestData = $request->only('classroom_id', 'user_id',);
-        return response()->json(['message' => 'Notificaton updated successfully', '$notification' => $notification], 200);
+        return view('notification.index', ['notifications' => [$classrooms, $userIds, $requestData]]);
+        // return response()->json(['message' => 'Notificaton updated successfully', '$notification' => $notification], 200);
     }
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -86,4 +94,5 @@ class NotificationController extends Controller
             ], 500);
         }
     }
+   
 }

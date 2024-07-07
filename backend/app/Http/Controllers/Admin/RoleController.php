@@ -17,8 +17,8 @@ class RoleController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:Role access|Role create|Role edit|Role delete', ['only' => ['index','show']]);
-        $this->middleware('role_or_permission:Role create', ['only' => ['create','store']]);
+        $this->middleware('role_or_permission:Role access|Role add|Role edit|Role delete', ['only' => ['index','show']]);
+        $this->middleware('role_or_permission:Role add', ['only' => ['create','store']]);
         $this->middleware('role_or_permission:Role edit', ['only' => ['edit','update']]);
         $this->middleware('role_or_permission:Role delete', ['only' => ['destroy']]);
     }
@@ -30,9 +30,10 @@ class RoleController extends Controller
      */
     public function index(): View
     {
-        $role= Role::latest()->get();
+        $roles = Role::latest()->get();
 
-        return view('setting.role.index',['roles'=>$role]);
+
+        return view('setting.role.index',['roles'=>$roles]);
     }
 
     /**
@@ -42,7 +43,7 @@ class RoleController extends Controller
      */
     public function create(): View
     {
-        $permissions = Permission::get();
+        $permissions = Permission::all();
         return view('setting.role.new',['permissions'=>$permissions]);
     }
 
@@ -56,23 +57,23 @@ class RoleController extends Controller
     {
         $request->validate(['name'=>'required']);
         
-        $role = Role::create(['name'=>$request->name]);
+        $role = Role::create(['name'=>$request->name, 'guard_name' => 'front']);
 
         $role->syncPermissions($request->permissions);
         
         return redirect()->back()->withSuccess('Role created !!!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    // /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.

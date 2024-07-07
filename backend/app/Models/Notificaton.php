@@ -27,4 +27,10 @@ class Notificaton extends Model
     {
         return self::all();
     }
+    public static function store($request, $id = null)
+    {
+        $notificationData = $request->only('classroom_id','user_id');
+        $notification = self::updateOrCreate(['id' => $id], $notificationData);
+        return $notification;
+    }
 }

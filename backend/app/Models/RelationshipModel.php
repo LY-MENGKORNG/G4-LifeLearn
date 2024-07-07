@@ -4,7 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notification;
+use Spatie\Permission\Contracts\Permission;
+use Spatie\Permission\Contracts\Role;
 
 class RelationshipModel extends Model
 {
@@ -42,7 +45,7 @@ class RelationshipModel extends Model
 
     public function quiz(): BelongsTo
     {
-        return $this->belongsTo(Quizze::class);
+        return $this->belongsTo(Quiz::class);
     }
 
     public function notification(): BelongsTo
@@ -76,5 +79,19 @@ class RelationshipModel extends Model
     public function calendar(): BelongsTo
     {
         return $this->belongsTo(Calendar::class);
+    }
+
+    /// BelongsToMany relationships
+    // public function roles(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Role::class);
+    // } 
+
+    public function permissions(){
+        return $this->belongsToMany(Permission::class);
+    }
+
+    public function users() {
+        return $this->hasMany(User::class);
     }
 }
