@@ -60,7 +60,7 @@ export const useAuthStore = defineStore('auth', {
                 
                 router.router.push(isPrinciple != -1 ? '/system/dashboard' : '/')
             } catch (error) {
-                /** */
+                console.warn("You didn't login yet!")
             }
         },
 

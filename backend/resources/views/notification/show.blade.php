@@ -1,10 +1,22 @@
 <x-app-layout>
     <main class="flex-1 overflow-x-hidden  bg-gray-200 p-4">
-        <section class="mx-auto flex flex-col justify-center items-center xl:w-8/12 md:w-full p-4 bg-white rounded-md">
+        @if ($notification)
+            <div class="flex">
+                <h1>
+                    <a class="text-lg underline" href="{{ route('admin.dashboard') }}">
+                        Home
+                    </a>
+                    >
+                    <a class="text-lg underline" href="{{ route('admin.notifications.index') }}">
+                        Notification
+                    </a>
+                    >
+                    {{ $notification->id }}
+                </h1>
+            </div>
+        @endif
+        <section class="mt-3 mx-auto flex flex-col justify-center items-center xl:w-8/12 md:w-full p-4 bg-white rounded-md">
             @if ($notification)
-                <div class="flex">
-                    <h1><a href="{{ route('admin.notifications.index') }}">Notification</a>>{{ $notification->id }}</h1>
-                </div>
                 <div class=" h-auto py-5">
                     <div class="flex gap-5">
                         @if ($notification->sender->profile)

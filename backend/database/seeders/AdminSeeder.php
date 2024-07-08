@@ -34,6 +34,9 @@ class AdminSeeder extends Seeder
         $student_role = Role::create(['name' => 'student', 'guard_name' => 'front']);
 
         $role_front_user = Permission::create(['name' => 'front access', 'guard_name' => 'front']);
+        
+        // 
+        $system_buy = Permission::create(['name' => 'System buy', 'guard_name' => 'front']);
 
         // 
         $role_access_permission = Permission::create(['name' => 'Role access']);

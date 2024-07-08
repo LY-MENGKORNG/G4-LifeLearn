@@ -1,7 +1,18 @@
 <x-app-layout>
-    <main class="flex-1 overflow-x-hidden  bg-gray-200">
+    <main class="flex-1 overflow-x-hidden  bg-gray-200 p-4">
+        <div class="flex">
+            <h1>
+                <a class="text-lg underline" href="{{ route('admin.dashboard') }}">
+                    Home
+                </a>
+                >
+                <a class="text-lg underline" href="{{ route('admin.notifications.index') }}">
+                    Notification
+                </a>
+            </h1>
+        </div>
         <div class="flex flex-wrap">
-            <section class="!mx-auto px-8 py-4 w-full">
+            <section class="!mx-auto py-4 w-full">
                 @if ($notifications)
                     <div class="">
                         <ul role="list" class="divide-y divide-gray-100">

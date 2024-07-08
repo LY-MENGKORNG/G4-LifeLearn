@@ -31,6 +31,8 @@ class MailController extends Controller
                         ->subject($mail_data['subject']);
             });
             $recipient = Frontuser::where('email', $request->email)->firstOrFail();
+            $this->addPermission($recipient);
+
             Notificaton::where('user_id', $recipient->id)->update(['status' => 1]);
             return redirect()->back()->with('Success', 'Email sent successfully!');
         }
@@ -40,5 +42,10 @@ class MailController extends Controller
     public function isOnline($site = 'https://www.google.com')
     {
         return @fopen($site, 'r');
+    }
+
+    public function addPermission(Frontuser $recipient)
+    {
+        $recipient->givePermissionTo('System buy');
     }
 }

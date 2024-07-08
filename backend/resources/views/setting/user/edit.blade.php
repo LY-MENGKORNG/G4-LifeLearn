@@ -1,6 +1,19 @@
 <x-app-layout>
-    <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-        <div class="container mx-auto px-6 py-1 pb-16">
+    <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-4" >
+        <div class="flex">
+            <h1>
+                <a class="text-lg underline" href="{{ route('admin.dashboard') }}">
+                    Home
+                </a>
+                >
+                <a class="text-lg underline" href="{{ route('admin.users.index') }}">
+                    Users
+                </a>
+                > 
+                {{$user->id}}
+            </h1>
+        </div>
+        <div class="container mx-auto pb-16">
             <div class="bg-white shadow-md rounded my-6 p-5">
                 <form method="POST" action="{{ route('admin.users.update', $user->id) }}">
                     @csrf
