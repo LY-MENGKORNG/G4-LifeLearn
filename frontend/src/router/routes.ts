@@ -1,3 +1,5 @@
+import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs';
+
 const userMeta = {
     requireAuth: false,
     role: 'user'
@@ -24,6 +26,12 @@ const routes = [
         path: '/system/dashboard',
         name: 'system-dashboard',
         component: () => import('@/views/System/DashboardView.vue'),
+        meta: principleMeta
+    },
+    {
+        path: '/system/schedule',
+        name: 'system-schedule',
+        component: () => import('@/views/System/ScheduleView.vue'),
         meta: principleMeta
     },
     {
@@ -67,6 +75,12 @@ const routes = [
         name: 'logout',
         component: () => import('@/views/Web/Auth/LogoutView.vue')
     },
+
+    {
+        path: '/forgot-password',
+        name: 'forgot-password',
+        component: () => import('@/views/ForgotPasswordView.vue')
+    },
    
     {
         path: '/',
@@ -84,7 +98,7 @@ const routes = [
         }
     },
     {
-        path:'/book/add',
+        path: '/book/add',
         name: 'book-add',
         component: () => import('@/views/Web/Books/AddBook.vue')
     },
@@ -138,10 +152,16 @@ const routes = [
         component: () => import('@/views/Web/Info/SystemInfo.vue')
     },
     {
-        path: '/system/grade',
-        name: 'system-grade',
-        component: () => import('@/views/System/Classroom/NewGrade.vue')
+        path: '/system/class',
+        name: 'system-class',
+        component: () => import('@/views/System/ClassesView.vue')
     },
+    {
+    path: '/system/grade',
+    name: 'system-grade',
+    component: () => import('@/views/System/Classroom/NewGrade.vue')
+    }
+
 ]
 
 export default routes;

@@ -23,7 +23,10 @@ use App\Http\Controllers\Front\FrontuserController;
 use App\Http\Controllers\API\FavoriteController;
 use App\Http\Controllers\API\GradeController;
 use App\Http\Controllers\API\PaymentController;
+use App\Http\Controllers\API\MylearnController;
 use App\Http\Controllers\API\ScoreController;
+use App\Http\Controllers\API\ClassesController;
+use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,9 +50,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
+// user login
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/admin/login', [AuthController::class, 'loginadmin']);
+Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/login', [FrontuserController::class, 'login']);
 Route::post('/system/login', [FrontuserController::class, 'login']);
-
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']) // forgot password reset
+                ->middleware('guest:front')
+                ->name('password.email');
 
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -109,8 +118,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/update/{id}', [PaymentController::class, 'update']);
         Route::delete('/delete/{id}', [PaymentController::class, 'destroy']);
     });
-    //books
-    Route::resource('books', BookController::class);
 
     //grade
     Route::resource('/grade', GradeController::class);
@@ -124,6 +131,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/notification/{id}', [NotificationController::class, 'show']);
     Route::put('/notification/update/{id}', [NotificationController::class, 'update']);
     Route::delete('/notification/delete/{id}', [NotificationController::class, 'destroy']);
+
+    Route::resource('/favorites',FavoriteController::class);
+    Route::resource('/mylearn',MylearnController::class);
 
     // favorites
     Route::resource('/favorites', FavoriteController::class);
@@ -148,6 +158,41 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/score', ScoreController::class);
     Route::resource('/principle', NotificationsController::class);
     // Route::post('/principle/request',NotificationsController::class, 'create');
-});
 
 
+    //class
+    Route::resource('/class', ClassesController::class);
+    
+//documents
+// Route::post('/documents',[DocumentCon])
+//books
+Route::resource('/books', BookController::class);
+
+
+//Notifications
+Route::get('/notification/list', [NotificationController::class, 'index']);
+Route::post('notification/create', [NotificationController::class, 'store']);
+Route::get('notification/{id}', [NotificationController::class, 'show']);
+Route::put('notification/update/{id}', [NotificationController::class, 'update']);
+Route::delete('notification/delete/{id}', [NotificationController::class, 'destroy']);
+
+//Quize
+Route::get('/quizze/list', [QuizzeController::class, 'index']);
+Route::post('/quizze/create', [QuizzeController::class, 'store']);
+Route::get('/quizze/show/{id}', [QuizzeController::class, 'show']);
+Route::put('/quizze/update/{id}', [QuizzeController::class, 'update']);
+Route::delete('/quizze/delete/{id}', [QuizzeController::class, 'destroy']);
+
+//submit
+Route::get('/submite/list', [SubmiteController::class, 'index']);
+Route::post('/submite/create', [SubmiteController::class, 'store']);
+Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
+Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
+Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
+}
+);
+
+
+
+            
+   

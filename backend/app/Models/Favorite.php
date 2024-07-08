@@ -16,8 +16,11 @@ class Favorite extends RelationshipModel
         'book_id',
         'status'
     ];
-
-    public static function createOrUpdate($request, $id = null)
+    public static function list() {
+        $favorite = self::all();
+        return $favorite;
+    }
+    public static function store($request, $id = null)
     {
         $favorite = [
             'user_id' => $request->user()->id,
