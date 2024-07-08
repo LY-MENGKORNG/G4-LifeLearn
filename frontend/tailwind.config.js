@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-<<<<<<< HEAD
   content: [],
   theme: {
     extend: {},
@@ -8,16 +7,14 @@ export default {
   plugins: [],
 }
 
-=======
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [
-    require('daisyui'),
-  ],
-}
->>>>>>> system_panel
+// content: [
+//   "./index.html",
+//   "./src/**/*.{js,ts,jsx,tsx}",
+// ],
+//   theme: {
+//   extend: { },
+// },
+// plugins: [
+//   require('daisyui'),
+// ],
+

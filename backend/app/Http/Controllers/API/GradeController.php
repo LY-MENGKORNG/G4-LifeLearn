@@ -13,10 +13,10 @@ class GradeController extends Controller
      */
     public function index()
     {
-        $grade = Grade::list();
+        $grades = Grade::list();
         return response()->json([
             'success' => true,
-            'data' =>$grade,
+            'data' =>$grades,
         ], 200);
     }
 

@@ -8,6 +8,11 @@
         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
       </template>
     </el-table-column>
+    <el-table-column label="Details">
+      <template #default="scope">
+        <el-button size="small" @click="ShowClass(scope.$index, scope.row)">Details</el-button>
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 
@@ -30,10 +35,15 @@ const props = defineProps<{ grades: Grade[] }>();
 // );
 
 const handleEdit = (index: number, row: Grade) => {
-  console.log(index, row);
+  // console.log(index, row);
 };
 
 const handleDelete = (index: number, row: Grade) => {
   console.log(index, row);
 };
+const ShowClass = (index: number, row: Grade) => {
+  alert("hello details")
+
+};
+
 </script>

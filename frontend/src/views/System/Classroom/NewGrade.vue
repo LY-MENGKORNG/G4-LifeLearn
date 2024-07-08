@@ -10,9 +10,10 @@
                 </div>
             </div>
             <div>
-                <GradeList class="h-120" :grades="grades" />
+                <GradeList class="h-120" :grades="grades"/>
                 <FormGrade class="absolute self-stretch top-5 right-80" v-if="formVisible"
                  @create="handleCreate" @cancel="closeForm" />
+                 
             </div>
         </div>
     </SystemLayout>
@@ -37,7 +38,7 @@ function closeForm() {
 }
 
 function handleCreate() {
-    console.log('Create button clicked')
+    // console.log('Create button clicked')
     formVisible.value = false
 }
 
@@ -45,7 +46,7 @@ onMounted(async () => {
     try {
         const { data } = await axiosInstance.get('/grade')
         grades.value = data.data
-        console.log(data.data)
+        // console.log(data.data)
     } catch (error) {
         console.error('Error fetching grades:', error)
     }
