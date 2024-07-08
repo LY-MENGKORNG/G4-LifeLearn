@@ -16,12 +16,16 @@ use App\Http\Controllers\API\NotificationsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\QuizzeController;
 use App\Http\Controllers\API\CommentController;
-use App\Http\Controllers\API\DocumnetController;
+// use App\Http\Controllers\API\DocumentController;
+use App\Http\Controllers\Api\DocumentController;
 use App\Http\Controllers\Api\SubmiteController;
 use App\Http\Controllers\Front\FrontuserController;
 use App\Http\Controllers\API\FavoriteController;
+use App\Http\Controllers\API\GradeController;
 use App\Http\Controllers\API\PaymentController;
+use App\Http\Controllers\API\MylearnController;
 use App\Http\Controllers\API\ScoreController;
+use App\Http\Controllers\API\ClassesController;
 use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
@@ -47,6 +51,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
+// user login
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/admin/login', [AuthController::class, 'loginadmin']);
+Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/login', [FrontuserController::class, 'login']);
 Route::post('/system/login', [FrontuserController::class, 'login']);
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']) // forgot password reset
@@ -89,11 +97,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //documents
     Route::prefix('/document')->group(function () {
-        Route::get('/list', [DocumnetController::class, 'index']);
-        Route::post('/create', [DocumnetController::class, 'store']);
-        Route::get('/show/{id}', [DocumnetController::class, 'show']);
-        Route::put('/update/{id}', [DocumnetController::class, 'update']);
-        Route::delete('/delete/{id}', [DocumnetController::class, 'destroy']);
+        Route::get('/list', [DocumentController::class, 'index']);
+        Route::post('/create', [DocumentController::class, 'store']);
+        Route::get('/show/{id}', [DocumentController::class, 'show']);
+        Route::put('/update/{id}', [DocumentController::class, 'update']);
+        Route::delete('/delete/{id}', [DocumentController::class, 'destroy']);
     });
     //references   
     Route::prefix('/references')->group(function () {
@@ -111,8 +119,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/update/{id}', [PaymentController::class, 'update']);
         Route::delete('/delete/{id}', [PaymentController::class, 'destroy']);
     });
-    //books
-    Route::resource('books', BookController::class);
+
+    //grade
+    Route::resource('/grade', GradeController::class);
 
     //calendar
     Route::resource('/calendar', CalendarController::class);
@@ -123,6 +132,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/notification/{id}', [NotificationController::class, 'show']);
     Route::put('/notification/update/{id}', [NotificationController::class, 'update']);
     Route::delete('/notification/delete/{id}', [NotificationController::class, 'destroy']);
+
+    Route::resource('/favorites',FavoriteController::class);
+    Route::resource('/mylearn',MylearnController::class);
 
     // favorites
     Route::resource('/favorites', FavoriteController::class);
@@ -148,8 +160,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/principle', NotificationsController::class);
     // Route::post('/principle/request',NotificationsController::class, 'create');
 
+    //class
+    Route::resource('/class', ClassesController::class);
+
+    // books
+    Route::resource('/books', BookController::class);
+
     // Mail
     Route::post('/send-mail', [MailController::class, 'sendMail']);
 });
-
-

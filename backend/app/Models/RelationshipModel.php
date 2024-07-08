@@ -99,5 +99,7 @@ class RelationshipModel extends Model
     public function users() {
         return $this->hasMany(User::class);
     }
- 
+    public function classes():BelongsTo {
+        return $this->belongsTo(Classes::class);
+    }
 }

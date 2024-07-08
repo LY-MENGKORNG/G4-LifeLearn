@@ -3,23 +3,20 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Payment\DocumentResource;
-use App\Models\Document;
 use Illuminate\Http\Request;
+use App\Models\Grade;
 
-
-class DocumnetController extends Controller
+class GradeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $documnet = Document::list();
-        $documnet = DocumentResource::collection($documnet);
+        $grade = Grade::list();
         return response()->json([
             'success' => true,
-            'data' =>$documnet,
+            'data' =>$grade,
         ], 200);
     }
 
@@ -28,11 +25,11 @@ class DocumnetController extends Controller
      */
     public function store(Request $request)
     {
-        $documnet = Document::store($request);
+        $grade = Grade::store($request);
         return response()->json([
             'success' => true,
             'message'=> 'created successfully',
-            'data' => $documnet
+            'data' => $grade
         ], 200);
     }
 
@@ -41,11 +38,11 @@ class DocumnetController extends Controller
      */
     public function show(string $id)
     {
-        $documnet = Document::find($id);
-        if ($documnet) {
-            return response()->json($documnet);
+        $grade = Grade::find($id);
+        if ($grade) {
+            return response()->json($grade);
         }
-        return response()->json(['message' => 'Document not found'], 404);
+        return response()->json(['message' => 'grade not found'], 404);
     }
 
     /**
@@ -53,12 +50,12 @@ class DocumnetController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $documnet = Document::store($request,$id);
-            return response()->json([
-                'success' => true,
-               'message'=> 'updated successfully',
-               'data' => $documnet
-            ]);
+        $grade = Grade::store($request,$id);
+        return response()->json([
+            'success' => true,
+           'message'=> 'updated successfully',
+           'data' => $grade
+        ]);
     }
 
     /**
@@ -66,8 +63,8 @@ class DocumnetController extends Controller
      */
     public function destroy(string $id)
     {
-        $documnet = Document::find($id);
-        $documnet->delete();
-        return ["success" => true, "Message" =>"Document deleted successfully"];
+        $grade = Grade::find($id);
+        $grade->delete();
+        return ["success" => true, "Message" =>"grade deleted successfully"];
     }
 }
