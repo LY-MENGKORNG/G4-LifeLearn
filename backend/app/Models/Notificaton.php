@@ -7,29 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Notificaton extends Model
+class Notificaton extends RelationshipModel
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['classroom_id', 'user_id'];
-
-    // public function classroom(): BelongsTo 
-    // {
-    //     return $this->belongsTo(Classroom::class);
-    // }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
+    protected $fillable = ['classroom_id', 'user_id', 'receiver', 'description'];
+ 
     public static function list()
     {
         return self::all();
     }
+
+    public static function front_user(): BelongsTo
+    {
+        return self::belongsTo(Frontuser::class, 'sender', 'id');
+    }
+
+    public static function receiver(): BelongsTo
+    {
+        return self::belongsTo(User::class, 'receiver', 'id');
+    }
+
     public static function store($request, $id = null)
     {
-        $notificationData = $request->only('classroom_id','user_id');
+        $notificationData = $request->only('classroom_id','user_id', 'receiver', 'description');
         $notification = self::updateOrCreate(['id' => $id], $notificationData);
         return $notification;
     }

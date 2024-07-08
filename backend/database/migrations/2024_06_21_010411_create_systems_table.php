@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('systems', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('user_id');
+            $table->integer('frontuser_id');
             $table->string('location');
             $table->timestamps();
         });

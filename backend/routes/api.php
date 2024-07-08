@@ -23,6 +23,7 @@ use App\Http\Controllers\API\FavoriteController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\ScoreController;
 use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
+use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -146,6 +147,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/score', ScoreController::class);
     Route::resource('/principle', NotificationsController::class);
     // Route::post('/principle/request',NotificationsController::class, 'create');
+
+    // Mail
+    Route::post('/send-mail', [MailController::class, 'sendMail']);
 });
 
 

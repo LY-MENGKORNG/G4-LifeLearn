@@ -5,42 +5,46 @@
                 <form method="POST" action="{{ route('admin.users.update', $user->id) }}">
                     @csrf
                     @method('put')
-                    <div class="flex flex-col space-y-2">
-                        <label for="first_name" class="text-gray-700 select-none font-medium">First Name</label>
-                        <input id="first_name" type="text" name="first_name"
-                            value="{{ old('first_name', $user->first_name) }}" placeholder="Enter name"
-                            class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
-                    </div>
-                    <div class="flex flex-col space-y-2">
-                        <label for="last_name" class="text-gray-700 select-none font-medium">Last Name</label>
-                        <input id="last_name" type="text" name="last_name"
-                            value="{{ old('last_name', $user->last_name) }}" placeholder="Enter name"
-                            class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+                    <div class="flex gap-3 w-full">
+                        <div class="flex flex-col flex-1 space-y-2">
+                            <label for="first_name" class="text-gray-700 select-none font-medium">First Name</label>
+                            <input id="first_name" type="text" name="first_name"
+                                value="{{ old('first_name', $user->first_name) }}" placeholder="Enter name"
+                                class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+                        </div>
+                        <div class="flex flex-col flex-1 space-y-2">
+                            <label for="last_name" class="text-gray-700 select-none font-medium">Last Name</label>
+                            <input id="last_name" type="text" name="last_name"
+                                value="{{ old('last_name', $user->last_name) }}" placeholder="Enter name"
+                                class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+                        </div> 
                     </div>
 
-                    <div class="flex flex-col space-y-2">
+                    <div class="flex flex-col space-y-2 mt-3">
                         <label for="email" class="text-gray-700 select-none font-medium">Email</label>
                         <input id="email" type="text" name="email" value="{{ old('email', $user->email) }}"
                             placeholder="Enter email"
                             class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
                     </div>
 
-                    <div class="flex flex-col space-y-2">
-                        <label for="password" class="text-gray-700 select-none font-medium">Password</label>
-                        <input id="password" type="text" name="password" value="{{ old('password') }}"
-                            placeholder="Enter password"
-                            class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+                    <div class="flex gap-3 w-full mt-3">
+                        <div class="flex flex-col flex-1 space-y-2">
+                            <label for="password" class="text-gray-700 select-none font-medium">Password</label>
+                            <input id="password" type="text" name="password" value="{{ old('password') }}"
+                                placeholder="Enter password"
+                                class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+                        </div>
+    
+                        <div class="flex flex-col flex-1 space-y-2">
+                            <label for="password_confirmation" class="text-gray-700 select-none font-medium">Confirm
+                                Password</label>
+                            <input id="password_confirmation" type="text" name="password_confirmation"
+                                placeholder="Re-enter password"
+                                class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+                        </div> 
                     </div>
 
-                    <div class="flex flex-col space-y-2">
-                        <label for="password_confirmation" class="text-gray-700 select-none font-medium">Confirm
-                            Password</label>
-                        <input id="password_confirmation" type="text" name="password_confirmation"
-                            placeholder="Re-enter password"
-                            class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
-                    </div>
-
-                    <h3 class="text-xl my-4 text-gray-600">Role</h3>
+                    <h3 class="text-xl mt-4 text-gray-600">Role</h3>
                     <div class="grid grid-cols-3 gap-4">
                         @foreach ($roles as $role)
                             <div class="flex flex-col justify-cente">

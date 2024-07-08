@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\Notifications\NotificationResource;
 use App\Models\Classroom;
+use App\Models\Document;
+use App\Models\Frontuser;
 use App\Models\Notificaton;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -19,20 +21,27 @@ class NotificationController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:Role access|Role create|Role edit|Role delete', ['only' => ['index', 'show']]);
-        $this->middleware('role_or_permission:Role add', ['only' => ['create', 'store']]);
-        $this->middleware('role_or_permission:Role edit', ['only' => ['edit', 'update']]);
-        $this->middleware('role_or_permission:Role delete', ['only' => ['destroy']]);
+        $this->middleware('role_or_permission:Notification access|Notification add|Notification edit|Notification delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Notification add', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Notification edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:Notification delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
      */
     public function index(): View
     {
-        $notifications = NotificationResource::collection(Notificaton::list());
-        return view('notification.index', ['notifications' => $notifications]);
+        $notifications = Notificaton::where('status', 0)->get();
+        if(count($notifications) > 0) {
+            foreach ($notifications as $notification) {
+                $notification['sender'] =  Frontuser::find($notification->user_id);
+            }
+            return view('notification.index', ['notifications' => $notifications]);
+        }
+        return view('notification.index', ['notifications' => false]);
+
     }
-   
+
     /**
      * Store a newly created resource in storage.
      */
@@ -51,9 +60,17 @@ class NotificationController extends Controller
     public function show(string $id)
     {
         $notification = Notificaton::find($id);
-        if ($notification) {
-            return response()->json(['notification' => $notification], 200);
+        if($notification->status != 1) {
+            $document = Document::where('user_id', $notification->user_id)->get();
+            $sender = Frontuser::find($notification->user_id);
+    
+            $notification["document"] = $document;
+            $notification["sender"] = $sender;
+        }else {
+            $notification = false;
         }
+
+        return view('notification.show', ['notification' => $notification]);
     }
 
     /**
@@ -94,5 +111,4 @@ class NotificationController extends Controller
             ], 500);
         }
     }
-   
 }
