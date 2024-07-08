@@ -160,7 +160,13 @@ const routes = [
     path: '/system/grade',
     name: 'system-grade',
     component: () => import('@/views/System/Classroom/NewGrade.vue')
-    }
+    },
+    {
+    path: "/system/principlelogin",
+    name: "system-principlelogin",
+    component: () => import("@/views/System/Auth/PrincipleLoginView.vue")
+      }
+      
 
 ]
 
