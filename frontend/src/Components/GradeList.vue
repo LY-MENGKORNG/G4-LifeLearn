@@ -1,74 +1,41 @@
 <template>
-    <el-table :data="filterTableData" style="width: 100%">
-      <el-table-column label="Grade" prop="grade" />
-      <el-table-column label="Date" prop="date" />
-      <el-table-column label="Action">
-        <!-- <template #header>
-        </template> -->
-        <template #default="scope">
-          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">
-            Edit
-          </el-button>
-          <el-button
-            size="small"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
-          >
-            Delete
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-  </template>
-  
-  <script lang="ts" setup>
-  import { computed, ref } from 'vue'
-  import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs';
-  
-  
-  interface User {
-    date: string
-    grade: string
-    address: string
-  }
+  <div class="overflow-hidden border border-gray-200 rounded-lg">
+    <table class="min-w-full bg-white">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">System</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Create date</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-600 divide-y divide-gray-200">
+        <tr v-for="(grade, index) in grades" :key="index">
+          <td class="px-6 py-4 whitespace-nowrap">grade {{ grade.grade_number}}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ grade.system_id }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ grade.created_at }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <button @click="handleEdit(index, grade)" class="text-blue-600 hover:text-blue-900">Edit</button>
+            <button @click="handleDelete(index, grade)" class="ml-2 text-red-600 hover:text-red-900">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
 
-  const search = ref('')
-  const filterTableData = computed(() =>
-    tableData.filter(
-      (data) =>
-        !search.value ||
-        data.grade.toLowerCase().includes(search.value.toLowerCase())
-    )
-  )
-  const handleEdit = (index: number, row: User) => {
-    console.log(index, row)
-  }
-  const handleDelete = (index: number, row: User) => {
-    console.log(index, row)
-  }
-  
-  const tableData: User[] = [
-    {
-      date: '2016-05-03',
-      grade: 'grade 1',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-02',
-      grade: 'grade 2',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-04',
-      grade: 'grade 3',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-01',
-      grade: 'grade 4',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-  ]
-  
-  </script>
-  
+<script setup>
+import { defineProps } from 'vue';
+
+const props = defineProps(['grades']);
+
+const handleEdit = (index, grade) => {
+  console.log('Edit clicked:', index, grade);
+  // Implement edit logic here
+};
+
+const handleDelete = (index, grade) => {
+  console.log('Delete clicked:', index, grade);
+  // Implement delete logic here
+};
+</script>

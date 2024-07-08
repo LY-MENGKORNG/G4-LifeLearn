@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('grade_number');
             $table->integer('system_id');
             $table->boolean('status')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
