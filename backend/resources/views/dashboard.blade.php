@@ -41,10 +41,10 @@
                         <h3 class="font-medium text-blueTotal-600">Visitors</h3>
                         <span class="text-gay-300">Total {{ $users->count() }}</span>
                     </li>
-                    @foreach ($users as $user)
-                        <x-user-table :name="$user['first_name'] . ' ' . $user['last_name']" :src="$user['profile']" :email="$user['email']" :roles="$user->roles"
-                            :last_seen="$user->last_seen" />
-                    @endforeach
+                    @for ($i = 0; $i < 6; $i++)
+                        <x-user-table :name="$users[$i]['first_name'] . ' ' . $users[$i]['last_name']" :src="$users[$i]['profile']" :email="$users[$i]['email']" :roles="$users[$i]->roles"
+                            :last_seen="$users[$i]->last_seen" />
+                    @endfor
                 </ul>
             </div>
         </div>

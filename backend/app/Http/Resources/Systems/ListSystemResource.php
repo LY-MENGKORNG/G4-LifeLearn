@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Systems;
 
-use App\Http\Resources\Users\UserResource;
+use App\Http\Resources\Users\FrontUserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,10 +16,10 @@ class ListSystemResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'location' => $this->location,
-            'principle' => new UserResource($this->user),
+            'id' => $this->id,  
+            'name' => $this->name,  
+            'principle' => new FrontUserResource($this->frontusersssss),
+            'location' => $this->location, 
         ];
     }
 }
