@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import axiosInstance from '@/plugins/axios'
 import { useAuthStore } from '@/stores/auth-store'
-import { createAcl, defineAclRules } from 'vue-simple-acl'
 import routes from './routes'
 import { ref } from 'vue';
 

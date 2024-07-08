@@ -44,9 +44,9 @@ export const useAuthStore = defineStore('auth', {
                 simpleAcl.rules = rules()
 
                 this.user = response.data;
-                this.user.isAuthenticated = true
+                this.user.isAuthenticated = true;
             } catch (error) {
-                console.error('Something went wrong:', error);
+                console.error("You didn't login yet!");
             }
         },
         async login(values: {email: string, password: string}, route: string) {
@@ -55,10 +55,14 @@ export const useAuthStore = defineStore('auth', {
                 localStorage.setItem('access_token', data.access_token)
         
                 this.fetchUser();
-        
-                const isPrinciple: any = this.user.roles.findIndex((role: any) => role.name == 'principle');
-                
-                router.router.push(isPrinciple != -1 ? '/system/dashboard' : '/')
+
+                let isUser = true;
+                this.user.roles.map((role: any) => {
+                    if (role.name != 'user') {
+                        isUser = false;
+                    }
+                });
+                return isUser
             } catch (error) {
                 console.warn("You didn't login yet!")
             }

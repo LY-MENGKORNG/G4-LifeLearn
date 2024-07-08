@@ -37,6 +37,7 @@ class AdminSeeder extends Seeder
         
         // 
         $system_buy = Permission::create(['name' => 'System buy', 'guard_name' => 'front']);
+        $system_buy = Permission::create(['name' => 'Access system', 'guard_name' => 'front']);
 
         // 
         $role_access_permission = Permission::create(['name' => 'Role access']);
