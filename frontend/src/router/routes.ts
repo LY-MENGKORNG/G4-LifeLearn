@@ -157,13 +157,6 @@ const routes = [
         component: () => import('@/views/System/ClassesView.vue')
     },
     {
-<<<<<<< HEAD
-    path: '/system/grade',
-    name: 'system-grade',
-    component: () => import('@/views/System/Classroom/NewGrade.vue')
-    }
-
-=======
         path: '/system/missing',
         name: 'system-missing',
         component: () => import('@/views/System/MissingView.vue')
@@ -189,7 +182,6 @@ const routes = [
         name: 'system-submitform',
         component: () => import('@/views/System/SubmitformView.vue')
     },
->>>>>>> classroom
 ]
 
 export default routes;
