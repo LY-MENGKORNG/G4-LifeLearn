@@ -34,7 +34,7 @@
           <h1 class="text-blue-500 text-4xl space-y-3">Missing</h1>
           <p>25 missing</p>
         </div>
-        <HomeworkmissingView class="flex flex-cols" v-for="index in 8" :key="index" />
+        <HomeworkMissing class="flex flex-cols" v-for="index in 8" :key="index" />
       </div>
     </div>
   </SystemLayout>
@@ -44,7 +44,7 @@
 
   import { RouterLink } from 'vue-router'
   import SystemLayout from '@/Layouts/System/SystemLayout.vue'
-import HomeworkmissingView from './HomeworkmissingView.vue'
+import HomeworkMissing from '@/Components/Classroom/HomeworkMissing.vue'
 import { Message } from '@element-plus/icons-vue'
 </script>
 

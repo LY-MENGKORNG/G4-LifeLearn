@@ -22,7 +22,7 @@
           </div>
           <div class="scrollable-content border-2 rounded-xl w-full space-y-3 px-3">
             <StudentView class=" bg-white py-3 px-6 rounded-xl"/>
-            <LessonlistView class="space-y-3" v-for="index in 8" :key="index"/>
+            <LessonList class="space-y-3" v-for="index in 8" :key="index"/>
           </div>
         </div>
       </div>
@@ -33,8 +33,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import SystemLayout from '@/Layouts/System/SystemLayout.vue'
-import LessonlistView from './LessonlistView.vue';
-import StudentView from './StudentView.vue';
+import LessonList from '@/Components/Classroom/LessonList.vue';
+import StudentView from '@/Components/Classroom/StudentList.vue';
 const isVisible = ref(false)
 
 function toggleVisibility () {

@@ -168,12 +168,15 @@ const routes = [
         props: true
     },
     {
-    path: "/system/principlelogin",
-    name: "system-principlelogin",
-    component: () => import("@/views/System/Auth/PrincipleLoginView.vue")
-      }
-      
-
+        path: '/system/lesson',
+        name: 'system-lesson',
+        component: () => import('@/views/System/LessonView.vue')
+    },
+    {
+        path: '/system/submitform',
+        name: 'system-submitform',
+        component: () => import('@/views/System/SubmitformView.vue')
+    },
 ]
 
 export default routes;
