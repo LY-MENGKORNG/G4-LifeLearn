@@ -46,7 +46,6 @@ const navigations = [
     {id: 3, name: 'Student', path: '/system/student'},
     {id: 4, name: 'Schedule', path: '/system/schedule'},
     {id: 5, name: 'Setting', path: '/system/setting'},
-	{id: 6, name: 'Classes', path: '/system/class'},
 ];
 
 </script>
