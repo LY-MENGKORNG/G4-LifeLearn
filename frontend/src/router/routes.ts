@@ -157,11 +157,39 @@ const routes = [
         component: () => import('@/views/System/ClassesView.vue')
     },
     {
+<<<<<<< HEAD
     path: '/system/grade',
     name: 'system-grade',
     component: () => import('@/views/System/Classroom/NewGrade.vue')
     }
 
+=======
+        path: '/system/missing',
+        name: 'system-missing',
+        component: () => import('@/views/System/MissingView.vue')
+    },
+    
+    {
+        path: '/system/done',
+        name: 'system-done',
+        component: () => import('@/views/System/DoneView.vue')
+    },
+    {
+        path: '/system/homework',
+        name: 'system-homework',
+        component: () => import('@/views/System/HomeworkView.vue')
+    },
+    {
+        path: '/system/lesson',
+        name: 'system-lesson',
+        component: () => import('@/views/System/LessonView.vue')
+    },
+    {
+        path: '/system/submitform',
+        name: 'system-submitform',
+        component: () => import('@/views/System/SubmitformView.vue')
+    },
+>>>>>>> classroom
 ]
 
 export default routes;

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white border-2 shadow relative w-72 mx-2  my-4 z-0 rounded-lg transition-all duration-30 hover:scale-102">
+    <div class="bg-white border-2 shadow relative w-72 mx-2  my-2 z-0 rounded-lg transition-all duration-30 hover:scale-102">
     <div class="bg-orange-800 flex items-center space-x-0 rounded-tr-xl rounded-tl-xl">
       <div class="flex p-3 space-x-4">
         <div class="space-y-3 text-white">
