@@ -125,6 +125,11 @@ const routes = [
         path: '/teacher-logout',
         name: 'teacher-logout',
         component: () => import('@/Components/teacherLogout.vue')
+    },
+    {
+        path: '/teacher-createclassroom',
+        name: 'teacher-classroom',
+        component: () => import('@/views/System/Teacher/CreateClassroom.vue')
     }
     ,
     {
