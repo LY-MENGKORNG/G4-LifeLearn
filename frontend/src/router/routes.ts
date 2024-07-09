@@ -115,6 +115,11 @@ const routes = [
         props: true
     },
     {
+        path: '/system/classroom',
+        name: 'system-classroom',
+        component: () => import('@/views/System/ClassroomView.vue')
+    },
+    {
         path: '/course',
         name: 'course',
         component: () => import('@/views/Web/CourseView.vue')

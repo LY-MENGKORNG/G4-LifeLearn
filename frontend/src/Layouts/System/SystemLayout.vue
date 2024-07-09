@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-=======
-<script setup lang="ts">
-import WebHeaderMenu from '@/Components/WebHeaderMenu.vue'
-</script>
-
->>>>>>> classroom
 <template>
   <div class="common-layout">
     <el-container>
