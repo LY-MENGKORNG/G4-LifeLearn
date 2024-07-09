@@ -115,6 +115,11 @@ const routes = [
         props: true
     },
     {
+        path: '/system/classroom',
+        name: 'system-classroom',
+        component: () => import('@/views/System/ClassroomView.vue')
+    },
+    {
         path: '/course',
         name: 'course',
         component: () => import('@/views/Web/CourseView.vue')
@@ -157,9 +162,15 @@ const routes = [
         component: () => import('@/views/System/ClassesView.vue')
     },
     {
-        path: '/system/grade',
-        name: 'system-grade-list',
-        component: () => import('@/views/System/Classroom/NewGrade.vue'),
+        path: '/system/missing',
+        name: 'system-missing',
+        component: () => import('@/views/System/MissingView.vue')
+    },
+    
+    {
+        path: '/system/done',
+        name: 'system-done',
+        component: () => import('@/views/System/DoneView.vue')
     },
     {
         path: '/system/grade/:id',

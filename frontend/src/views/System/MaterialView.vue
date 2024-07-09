@@ -39,7 +39,7 @@
                 <h2 class="text-xl font-bold">Resources</h2>
                 <router-link to="/system/lesson">
                   <div
-                    class="flex flex-row card bg-white p-4 border-1 border-solid border-black space-x-12"
+                    class="flex flex-row card bg-white p-4 border-1 border-solid border-black space-x-8"
                   >
                     <div>
                       <h4>Materail</h4>
@@ -54,7 +54,7 @@
                 </router-link>
                 <router-link to="/system/homework">
                   <div
-                    class="flex flex-row card bg-white p-4 border-1 border-solid border-black space-x-12"
+                    class="flex flex-row card bg-white p-4 border-1 border-solid border-black space-x-8"
                   >
                     <div>
                       <h4>HomeWork</h4>
