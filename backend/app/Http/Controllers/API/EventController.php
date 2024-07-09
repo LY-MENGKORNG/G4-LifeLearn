@@ -29,7 +29,7 @@ class EventController extends Controller
 
         return response()->json($event, 201);
     }
-    }
+    
 
     public function update(Request $request, $id)
     {

@@ -19,20 +19,34 @@ class PaymentController extends Controller
         $payment = PaymentResource::collection($payment);
         return response()->json([
             'success' => true,
-            'data' =>$payment,
+            'data' => $payment,
         ], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PaymentRequest $request)
+    public function store(Request $request)
     {
+        //Validate incoming request data
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'method' => 'required',
+            'amount' => 'required|numeric',
+            'course_id' => 'nullable|exists:courses,id',
+            'system_id' => 'required|exists:systems,id',
+        ]);
+
         $payment = Payment::store($request);
+
+        if (!$payment) {
+            return response()->json(['message' => 'Failed to store payment'], 500);
+        }
+
         return response()->json([
             'success' => true,
-            'message'=> 'created successfully',
-            'data' => $payment
+            'message' => 'Payment for user stored successfully',
+            'data' => $payment,
         ], 200);
     }
 
@@ -51,14 +65,23 @@ class PaymentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PaymentRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-        $payment = Payment::store($request,$id);
-            return response()->json([
-                'success' => true,
-               'message'=> 'updated successfully',
-               'data' => $payment
-            ]);
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'method' => 'required',
+            'amount' => 'required|numeric',
+            'course_id' => 'nullable|exists:courses,id',
+            'system_id' => 'required|exists:systems,id',
+        ]);
+
+        $payment = Payment::store($request, $id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Updated successfully',
+            'data' => $payment
+        ]);
     }
 
     /**
@@ -67,7 +90,13 @@ class PaymentController extends Controller
     public function destroy(string $id)
     {
         $payment = Payment::find($id);
-        $payment->delete();
-        return ["success" => true, "Message" =>"Payment deleted successfully"];
+        if ($payment) {
+            $payment->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Payment deleted successfully'
+            ]);
+        }
+        return response()->json(['message' => 'Payment not found'], 404);
     }
 }
