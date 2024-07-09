@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Grades\ShowGradeResource;
 use Illuminate\Http\Request;
 use App\Models\Grade;
 
@@ -13,11 +14,10 @@ class GradeController extends Controller
      */
     public function index()
     {
-        
-        $grade = Grade::list();
+        $grades = Grade::list();
         return response()->json([
             'success' => true,
-            'data' =>$grade,
+            'data' =>$grades,
         ], 200);
 
     }
@@ -42,7 +42,10 @@ class GradeController extends Controller
     {
         $grade = Grade::find($id);
         if ($grade) {
-            return response()->json($grade);
+            return response()->json([
+                'success' => true,
+                'data' => new ShowGradeResource($grade)
+            ], 200);
         }
         return response()->json(['message' => 'grade not found'], 404);
     }

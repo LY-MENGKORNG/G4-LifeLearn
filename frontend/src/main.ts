@@ -21,7 +21,6 @@ configure({
 app.use(createPinia())
 app.use(router.router)
 app.use(ElementPlus)
-app.use(router.simpleAcl)
 
 app.config.globalProperties.$axios = axios
 

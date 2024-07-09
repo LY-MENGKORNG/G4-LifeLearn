@@ -46,12 +46,7 @@ const routes = [
         component: () => import('@/views/System/StudentView.vue'),
         meta: principleMeta
     },
-    {
-        path: '/system/grade',
-        name: 'system-grade',
-        component: () => import('@/views/System/GradeView.vue'),
-        meta: principleMeta
-    },
+
     {
         path: '/system/setting',
         name: 'system-setting',
@@ -86,7 +81,7 @@ const routes = [
         name: 'reset-password',
         component: () => import('@/views/Auth/ResetPassword.vue')
     },
-   
+
     {
         path: '/',
         name: 'home',
@@ -162,9 +157,15 @@ const routes = [
         component: () => import('@/views/System/ClassesView.vue')
     },
     {
-    path: '/system/grade',
-    name: 'system-grade',
-    component: () => import('@/views/System/Classroom/NewGrade.vue')
+        path: '/system/grade',
+        name: 'system-grade-list',
+        component: () => import('@/views/System/Classroom/NewGrade.vue'),
+    },
+    {
+        path: '/system/grade/:id',
+        name: 'system-grade-detail',
+        component: () => import('@/views/System/Grade/ShowGrade.vue'),
+        props: true
     },
     {
     path: "/system/principlelogin",
