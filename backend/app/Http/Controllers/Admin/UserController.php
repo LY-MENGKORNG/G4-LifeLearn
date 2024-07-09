@@ -15,6 +15,7 @@ use Spatie\Permission\Models\Permission;
 
 
 
+
 class UserController extends Controller
 {
     /**
@@ -176,4 +177,6 @@ class UserController extends Controller
 
         return $chart;
     }
+
+    
 }

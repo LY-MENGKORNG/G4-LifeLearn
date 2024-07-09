@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ReferencesController;
 use App\Http\Controllers\Admin\SystemController;
-
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\API\AssignmentController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
@@ -29,7 +29,6 @@ use App\Http\Controllers\API\ClassesController;
 use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -192,7 +191,6 @@ Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
 }
 );
 
-
-
+Route::get('/registrations-per-day', [FrontuserController::class, 'getRegistrationsPerDay']);
             
    
