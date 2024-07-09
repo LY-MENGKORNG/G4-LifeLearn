@@ -21,4 +21,5 @@ class Grade extends Model
     {
         return $this->belongsTo(System::class);
     }
+    
 }

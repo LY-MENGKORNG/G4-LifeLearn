@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->integer('grade_number');
-            $table->integer('system_id');
+            $table->integer('system_id')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

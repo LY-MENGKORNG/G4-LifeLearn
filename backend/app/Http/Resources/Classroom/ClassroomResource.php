@@ -2,8 +2,10 @@
 
 namespace App\Http\Resources\Classroom;
 
+use App\Http\Resources\Grade\GradeResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+
 
 class ClassroomResource extends JsonResource
 {
@@ -16,7 +18,9 @@ class ClassroomResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'grade_id' => $this->grade_id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'grade' => new GradeResource($this->grade),
         ];
     }
 }

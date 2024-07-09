@@ -7,6 +7,7 @@ use App\Models\Classroom;
 use App\Http\Resources\Classroom\ClassroomResource;
 use Illuminate\Http\Request;
 
+
 class ClassroomController extends Controller
 {
     public function index()
@@ -20,9 +21,13 @@ class ClassroomController extends Controller
         {
             $validatedData = $request->validate([
                 'grade_id' => 'required',
+                'name'=>'required',
+                'description' => 'required',
+                
             ]);
     
             $classroom = Classroom::create($validatedData);
+        
     
             return response()->json($classroom, 201);
         }
