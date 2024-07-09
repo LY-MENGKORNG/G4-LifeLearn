@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex justify-center">
+  <div class="container flex justify-center bg-cover bg-center" style="background-image: url('https://www.ethelwalker.org/wp-content/uploads/2020/06/BeaverBrook-1500x843.jpg');">
     <div class="w-full max-w-xl">
       <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8 mt-8" enctype="multipart/form-data">
         <div class="mb-9">
@@ -17,9 +17,9 @@
           </div>
           <div class="w-full md:w-1/2 px-3">
             <label
-              class="block uppercase tracking-wide text-gray-700 text-xs text-start mb-2"
+              class="block uppercase tracking-wide text-sm text-gray-900  text-start mb-2"
               for="expiration"
-              >Expiration Date</label
+              >EXPIRATION DATE</label
             >
             <el-input id="expiration" type="expiration" />
           </div>
@@ -27,39 +27,39 @@
         <div class="flex flex-wrap -mx-3 mb-4">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
-              class="block uppercase tracking-wide text-gray-700 text-xs text-start mb-2"
+              class="block uppercase tracking-wide text-sm text-gray-900  text-start mb-2"
               for="card-number"
-              >Card Number</label
+              >CARD NUMBER</label
             >
             <el-input id="card-number" type="card-number" />
           </div>
           <div class="w-full md:w-1/2 px-3">
             <label
-              class="block uppercase tracking-wide text-gray-700 text-xs text-start mb-2"
+              class="block uppercase tracking-wide text-sm text-gray-900  text-start mb-2"
               for="security"
-              >Security Code</label
+              >SECURITY CODE</label
             >
             <el-input id="security" type="security"/>
           </div>
           <div class="w-full md:w-1/2 px-3">
             <label
-              class="block uppercase tracking-wide text-gray-700 text-xs text-start mb-2"
+              class="block uppercase tracking-wide text-sm text-gray-900  text-start mb-2"
               for="date"
-              >Date</label
+              >DATE</label
             >
             <el-date-picker type="date" id="date" placeholder="Pick a date" clearable />
           </div>
           <div class="w-full md:w-1/2 px-3">
             <label
-              class="block uppercase tracking-wide text-gray-700 text-xs text-start mb-2"
+              class="block uppercase tracking-wide text-sm text-gray-900  text-start mb-2"
               for="amount"
-              >Amount</label
+              >AMOUNT</label
             >
             <el-input id="amount" type="number" />
           </div>
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label for="method" class="block mb-2 text-sm text-gray-900 dark:text-white"
-              >Select an method</label
+            <label for="method" class="block mb-2 text-sm text-gray-700 dark:text-white"
+              >SELECT AN METHOD</label
             >
             <el-select id="method" type="select" placeholder="Activity zone" clearable>
               <el-option label="ABA" value="shanghai" />
@@ -69,9 +69,9 @@
         </div>
         <div class="w-full">
           <label
-            class="block uppercase tracking-wide text-gray-700 text-xs text-start mb-2"
+            class="block uppercase tracking-wide text-gray-700 text-sm text-start mb-2"
             for="reference"
-            >Your Referent</label
+            >YOUR REFERENT</label
           >
           <upload-file />
         </div>

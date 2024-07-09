@@ -42,7 +42,7 @@ const { value: email, errorMessage: emailError } = useField('email')
         <el-container class="flex flex-wrap m-auto">
             <el-card class="flex-1 p-10">
                 <img
-          src="https://portal.tprsbooks.com/wp-content/uploads/2024/02/login-image.jpg"
+          src="https://www.pngall.com/wp-content/uploads/15/Login-PNG-Clipart.png"
           class="w-full"
           alt="Phone image"/>
             </el-card>

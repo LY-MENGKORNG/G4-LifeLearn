@@ -26,11 +26,7 @@
     </div>
   </WebLayout>
   <!-- {{ store.posts }} -->
-<<<<<<< HEAD
-  {{ posts }}
-=======
   <!-- {{ posts }} -->
->>>>>>> 03999ed74efd860dbd2f543593e63f6cf2b88717
 </template>
 
 <script>
