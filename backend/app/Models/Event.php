@@ -21,6 +21,22 @@ class Event extends Model
         'organizer_id',
     ];
 
+    
+    public static function store($request, $id = null)
+    {
+        $eventData = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'type' => $request->type,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'location' => $request->location,
+            'organizer_id' => $request->user()->id, // Assuming the authenticated user is the organizer
+        ];
+
+        return self::updateOrCreate(['id' => $id], $eventData);
+    }
+
     public function orgranizer(): BelongsTo
     {
         return $this->belongsTo(User::class, 'organizer_id', 'id');

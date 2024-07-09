@@ -30,6 +30,7 @@ use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\EventController;
 
 
 /*
@@ -169,3 +170,11 @@ Route::middleware('auth:sanctum')->group(function () {
     // Mail
     Route::post('/send-mail', [MailController::class, 'sendMail']);
 });
+
+
+//Event
+
+Route::get('/events', [EventController::class, 'index']);
+Route::post('/events', [EventController::class, 'store']);
+Route::put('/events/{id}', [EventController::class, 'update']);
+Route::delete('/events/{id}', [EventController::class, 'destroy']);
