@@ -15,6 +15,7 @@
           <td class="px-6 py-4 whitespace-nowrap">{{ grade.system_id }}</td>
           <td class="px-6 py-4 whitespace-nowrap">{{ grade.created_at }}</td>
           <td class="px-6 py-4 whitespace-nowrap">
+            <button @click="ViewDetial(index, grade)" class="text-blue-600 hover:text-blue-900">Edit</button>
             <button @click="handleEdit(index, grade)" class="text-blue-600 hover:text-blue-900">Edit</button>
             <button @click="handleDelete(index, grade)" class="ml-2 text-red-600 hover:text-red-900">Delete</button>
           </td>
@@ -25,6 +26,7 @@
 </template>
 
 <script setup>
+import { View } from '@element-plus/icons-vue';
 import { defineProps } from 'vue';
 
 const props = defineProps(['grades']);
@@ -34,7 +36,7 @@ const handleEdit = (index, grade) => {
   // Implement edit logic here
 };
 
-const handleDelete = (index, grade) => {
+const ViewDetial = (index, grade) => {
   console.log('Delete clicked:', index, grade);
   // Implement delete logic here
 };
