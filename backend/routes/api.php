@@ -27,8 +27,10 @@ use App\Http\Controllers\API\MylearnController;
 use App\Http\Controllers\API\ScoreController;
 use App\Http\Controllers\API\ClassesController;
 use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
+use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\EventController;
 
 
 /*
@@ -159,40 +161,20 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/principle', NotificationsController::class);
     // Route::post('/principle/request',NotificationsController::class, 'create');
 
-
     //class
     Route::resource('/class', ClassesController::class);
-    
-//documents
-// Route::post('/documents',[DocumentCon])
-//books
-Route::resource('/books', BookController::class);
+
+    // books
+    Route::resource('/books', BookController::class);
+
+    // Mail
+    Route::post('/send-mail', [MailController::class, 'sendMail']);
+});
 
 
-//Notifications
-Route::get('/notification/list', [NotificationController::class, 'index']);
-Route::post('notification/create', [NotificationController::class, 'store']);
-Route::get('notification/{id}', [NotificationController::class, 'show']);
-Route::put('notification/update/{id}', [NotificationController::class, 'update']);
-Route::delete('notification/delete/{id}', [NotificationController::class, 'destroy']);
+//Event
 
-//Quize
-Route::get('/quizze/list', [QuizzeController::class, 'index']);
-Route::post('/quizze/create', [QuizzeController::class, 'store']);
-Route::get('/quizze/show/{id}', [QuizzeController::class, 'show']);
-Route::put('/quizze/update/{id}', [QuizzeController::class, 'update']);
-Route::delete('/quizze/delete/{id}', [QuizzeController::class, 'destroy']);
-
-//submit
-Route::get('/submite/list', [SubmiteController::class, 'index']);
-Route::post('/submite/create', [SubmiteController::class, 'store']);
-Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
-Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
-Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
-}
-);
-
-
-
-            
-   
+Route::get('/events', [EventController::class, 'index']);
+Route::post('/events', [EventController::class, 'store']);
+Route::put('/events/{id}', [EventController::class, 'update']);
+Route::delete('/events/{id}', [EventController::class, 'destroy']);

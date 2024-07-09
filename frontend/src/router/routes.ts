@@ -74,7 +74,12 @@ const routes = [
     {
         path: '/forgot-password',
         name: 'forgot-password',
-        component: () => import('@/views/ForgotPasswordView.vue')
+        component: () => import('@/views/Auth/ResetPassword.vue')
+    },
+    {
+        path: '/reset-password',
+        name: 'reset-password',
+        component: () => import('@/views/Auth/ResetPassword.vue')
     },
 
     {
@@ -161,7 +166,14 @@ const routes = [
         name: 'system-grade-detail',
         component: () => import('@/views/System/Grade/ShowGrade.vue'),
         props: true
-    }
+    },
+    {
+    path: "/system/principlelogin",
+    name: "system-principlelogin",
+    component: () => import("@/views/System/Auth/PrincipleLoginView.vue")
+      }
+      
+
 ]
 
 export default routes;

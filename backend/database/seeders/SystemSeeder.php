@@ -16,8 +16,14 @@ class SystemSeeder extends Seeder
     {
         System::create([
             'name' => 'Hun Sen Peamchi Kang High School',
-            'user_id' => Frontuser::find(1)->id ?? null,
+            'frontuser_id' => Frontuser::find(4)->id,
             'location' => 'KPC'
         ]);
+
+        System::create([
+            'name' => 'Battombong High School',
+            'frontuser_id' => Frontuser::find(5)->id,
+            'location' => 'Battombong'
+        ]);
     }
-}
+} 

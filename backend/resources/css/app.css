@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @import 'daisyui';
-
+    
 .active {
   @apply bg-gray-200 rounded-l-lg;
 }

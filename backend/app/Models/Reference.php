@@ -11,9 +11,10 @@ class Reference extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'principle_id',
-        'document_id',
-        'status'
+        'name',
+        'user_id',	
+        'school_name',	
+        'school_address',
     ];
 
     public function user(): BelongsTo

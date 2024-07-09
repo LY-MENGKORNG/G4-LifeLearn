@@ -19,6 +19,7 @@ class GradeController extends Controller
             'success' => true,
             'data' =>$grades,
         ], 200);
+
     }
 
     /**

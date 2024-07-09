@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(FrontuserSeeder::class);
         $this->call(MailsettingSeeder::class);
+        $this->call(ReferenceSeeder::class);
+        $this->call(DocumentSeeder::class);
+        $this->call(NotificationSeeder::class);
         $this->call(SystemSeeder::class);
         $this->call(BookSeeder::class);
     }
