@@ -67,7 +67,6 @@ Route::middleware('auth:sanctum')->group(function () {
     //subject
     Route::resource('/subject', SubjectController::class);
 
-    Route::post('/send-mail', [MailTeacherController::class, 'sendMail'])->name('send.mail');
     Route::post('/add-teacher', [MailTeacherController::class, 'addTeacher'])->name('add.teacher');
 
     // assignment
