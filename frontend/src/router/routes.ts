@@ -167,6 +167,7 @@ const routes = [
         component: () => import('@/views/System/Grade/ShowGrade.vue'),
         props: true
     },
+    
     {
     path: "/system/principlelogin",
     name: "system-principlelogin",
