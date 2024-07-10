@@ -36,7 +36,7 @@ class SystemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

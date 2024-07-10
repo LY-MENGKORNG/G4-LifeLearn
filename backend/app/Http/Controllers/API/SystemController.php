@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\System;
 use Illuminate\Http\Request;
-
+use App\Models\System; 
 class SystemController extends Controller
 {
     /**
@@ -19,15 +18,7 @@ class SystemController extends Controller
             'data' => System::list()
         ], 200);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        
-    }
-
+  
     /**
      * Display the specified resource.
      */

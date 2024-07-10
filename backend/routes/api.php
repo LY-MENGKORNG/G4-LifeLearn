@@ -25,6 +25,9 @@ use App\Http\Controllers\API\MylearnController;
 use App\Http\Controllers\API\ScoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailTeacherController;
+
+
 
 
 /*
@@ -64,6 +67,9 @@ Route::middleware('auth:sanctum')->group(function () {
     //subject
     Route::resource('/subject', SubjectController::class);
 
+    Route::post('/send-mail', [MailTeacherController::class, 'sendMail'])->name('send.mail');
+    Route::post('/add-teacher', [MailTeacherController::class, 'addTeacher'])->name('add.teacher');
+
     // assignment
     Route::prefix('assigment')->group(function () {
         Route::get('/list', [AssignmentController::class, 'index']);
@@ -77,6 +83,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('system')->group(function () {
         Route::resource('/', SystemController::class);
     });
+
 
     // category routes
     Route::get('/category/list', [CategoryController::class, 'index']);
@@ -116,6 +123,7 @@ Route::middleware('auth:sanctum')->group(function () {
     //calendar
     Route::resource('/calendar', CalendarController::class);
 
+
     // notifications
     Route::get('/notification/list', [NotificationController::class, 'index']);
     Route::post('/notification/create', [NotificationController::class, 'store']);
@@ -123,8 +131,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/notification/update/{id}', [NotificationController::class, 'update']);
     Route::delete('/notification/delete/{id}', [NotificationController::class, 'destroy']);
 
-    Route::resource('/favorites',FavoriteController::class);
-    Route::resource('/mylearn',MylearnController::class);
+    Route::resource('/favorites', FavoriteController::class);
+    Route::resource('/mylearn', MylearnController::class);
 
     // favorites
     Route::resource('/favorites', FavoriteController::class);
@@ -142,7 +150,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
     Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
     Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
-    
+
     //comments
     Route::resource('/comment', CommentController::class);
     //score
@@ -180,7 +188,3 @@ Route::post('/submite/create', [SubmiteController::class, 'store']);
 Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
 Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
 Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
-
-
-            
-   
