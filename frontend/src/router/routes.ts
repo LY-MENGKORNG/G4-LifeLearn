@@ -130,8 +130,7 @@ const routes = [
         path: '/teacher/createclassroom',
         name: 'teacher-classroom',
         component: () => import('@/views/System/Teacher/CreateClassroom.vue')
-    }
-    ,
+    },
     {
         path: '/system/payment',
         name: 'system-payment',
