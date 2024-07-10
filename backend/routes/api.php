@@ -31,6 +31,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\API\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -168,6 +169,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Mail
     Route::post('/send-mail', [MailController::class, 'sendMail']);
+
+    // student 
+    Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 });
 
 
