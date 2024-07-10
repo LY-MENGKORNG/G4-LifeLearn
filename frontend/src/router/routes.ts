@@ -1,6 +1,4 @@
-import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs';
-
-const userMeta = {
+    const userMeta = {
     requireAuth: false,
     role: 'user'
 }
@@ -115,6 +113,26 @@ const routes = [
         props: true
     },
     {
+        path: '/system/classroom',
+        name: 'system-classroom',
+        component: () => import('@/views/System/ClassroomView.vue')
+    },
+    {
+        path: '/system/material',
+        name: 'system-material',
+        component: () => import('@/views/System/MaterialView.vue')
+    },
+    {
+        path: '/system/people',
+        name: 'system-people',
+        component: () => import('@/views/System/PeopleView.vue')
+    },
+    {
+        path: '/system/missing',
+        name: 'system-missing',
+        component: () => import('@/views/System/MissingView.vue')
+    },
+    {
         path: '/course',
         name: 'course',
         component: () => import('@/views/Web/CourseView.vue')
@@ -157,9 +175,19 @@ const routes = [
         component: () => import('@/views/System/ClassesView.vue')
     },
     {
-        path: '/system/grade',
-        name: 'system-grade-list',
-        component: () => import('@/views/System/Classroom/NewGrade.vue'),
+        path: '/system/missing',
+        name: 'system-missing',
+        component: () => import('@/views/System/MissingView.vue')
+    },
+    {
+        path: '/system/liststudent',
+        name: 'system-liststudent',
+        component: () => import('@/views/System/ListStudent.vue')
+    },
+    {
+        path: '/system/done',
+        name: 'system-done',
+        component: () => import('@/views/System/DoneView.vue')
     },
     {
         path: '/system/grade/:id',
@@ -169,12 +197,15 @@ const routes = [
     },
     
     {
-    path: "/system/principlelogin",
-    name: "system-principlelogin",
-    component: () => import("@/views/System/Auth/PrincipleLoginView.vue")
-      }
-      
-
+        path: '/system/lesson',
+        name: 'system-lesson',
+        component: () => import('@/views/System/LessonView.vue')
+    },
+    {
+        path: '/system/submitform',
+        name: 'system-submitform',
+        component: () => import('@/views/System/SubmitformView.vue')
+    },
 ]
 
 export default routes;
