@@ -34,7 +34,7 @@
 import { ref } from 'vue'
 import SystemLayout from '@/Layouts/System/SystemLayout.vue'
 import LessonList from '@/Components/Classroom/LessonList.vue';
-import StudentView from '@/Components/Classroom/StudentList.vue';
+import ListStudent from '@Components/Classroom/ListStudent.vue';
 const isVisible = ref(false)
 
 function toggleVisibility () {

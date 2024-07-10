@@ -186,8 +186,8 @@ Route::post('/submite/create', [SubmiteController::class, 'store']);
 Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
 Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
 Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
-}
-);
+
+
 
 Route::get('/registrations-per-day', [FrontuserController::class, 'getRegistrationsPerDay']);
             

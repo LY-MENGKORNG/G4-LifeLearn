@@ -120,6 +120,21 @@ const routes = [
         component: () => import('@/views/System/ClassroomView.vue')
     },
     {
+        path: '/system/material',
+        name: 'system-material',
+        component: () => import('@/views/System/MaterialView.vue')
+    },
+    {
+        path: '/system/people',
+        name: 'system-people',
+        component: () => import('@/views/System/PeopleView.vue')
+    },
+    {
+        path: '/system/missing',
+        name: 'system-missing',
+        component: () => import('@/views/System/MissingView.vue')
+    },
+    {
         path: '/course',
         name: 'course',
         component: () => import('@/views/Web/CourseView.vue')
@@ -166,7 +181,11 @@ const routes = [
         name: 'system-missing',
         component: () => import('@/views/System/MissingView.vue')
     },
-    
+    {
+        path: '/system/liststudent',
+        name: 'system-liststudent',
+        component: () => import('@/views/System/ListStudent.vue')
+    },
     {
         path: '/system/done',
         name: 'system-done',
