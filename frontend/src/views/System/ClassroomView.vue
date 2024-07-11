@@ -16,7 +16,7 @@
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT35Sk9mMEcBuooCRGNUylcYn-PR6IZhDHzvA&s"
             alt="Course Image" />
         </div>
-        <div class="scrollable-content">
+        <div class="scrollable-content px-34">
           <router-link to="/system/material" class="flex flex-wrap">
             <CardView v-for="index in 8" :key="index"/>
           </router-link>

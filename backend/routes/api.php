@@ -27,8 +27,11 @@ use App\Http\Controllers\API\MylearnController;
 use App\Http\Controllers\API\ScoreController;
 use App\Http\Controllers\API\ClassesController;
 use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
+use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\API\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,22 +161,21 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/principle', NotificationsController::class);
     // Route::post('/principle/request',NotificationsController::class, 'create');
 
-
     //class
     Route::resource('/class', ClassesController::class);
-    
-//documents
-// Route::post('/documents',[DocumentCon])
-//books
-Route::resource('/books', BookController::class);
+
+    // books
+    Route::resource('/books', BookController::class);
+
+    // Mail
+    Route::post('/send-mail', [MailController::class, 'sendMail']);
+
+    // student 
+    Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
+});
 
 
-//Notifications
-Route::get('/notification/list', [NotificationController::class, 'index']);
-Route::post('notification/create', [NotificationController::class, 'store']);
-Route::get('notification/{id}', [NotificationController::class, 'show']);
-Route::put('notification/update/{id}', [NotificationController::class, 'update']);
-Route::delete('notification/delete/{id}', [NotificationController::class, 'destroy']);
+//Event
 
 //Quize
 Route::get('/quizze/list', [QuizzeController::class, 'index']);
@@ -188,8 +190,8 @@ Route::post('/submite/create', [SubmiteController::class, 'store']);
 Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
 Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
 Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
-}
-);
+
+
 
 Route::get('/registrations-per-day', [FrontuserController::class, 'getRegistrationsPerDay']);
 // Route::post('/classrooms/{id}/students', [ClassroomController::class, 'addStudent']);

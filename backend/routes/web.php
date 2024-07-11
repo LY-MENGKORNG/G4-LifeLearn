@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\{
     MailSettingController,
     PaymentController,
 };
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Mail;
 
 /*
@@ -34,7 +35,7 @@ Route::get('/test-mail', function () {
 
     $message = "Testing mail";
 
-    Mail::raw('Hi, welcome!', function ($message) {
+    \Mail::raw('Hi, welcome!', function ($message) {
         $message->to('mengkorng.ly@student.passerellesnumeriques.org')
             ->subject('Testing mail');
     });
@@ -69,4 +70,8 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')-
     Route::get('/mail', [MailSettingController::class, 'index'])->name('mail.index');
     Route::put('/mail-update/{mailsetting}', [MailSettingController::class, 'update'])->name('mail.update');
     Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
+
+    Route::post('/send-mail', [MailController::class, 'sendMail'])->name('send-mail');
 });
+
+

@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('notificatons', function (Blueprint $table) {
             $table->id();
-            $table->integer('classroom_id');
-            $table->integer('user_id');
+            $table->integer('classroom_id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('receiver');
+            $table->string('description');
+            $table->boolean('status')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

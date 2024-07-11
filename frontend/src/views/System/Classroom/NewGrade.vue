@@ -10,44 +10,42 @@
                 </div>
             </div>
             <div>
-                <GradeList class="h-120" :grades="grades" />
-                <FormGrade class="absolute self-stretch top-5 right-80" v-if="formVisible"
-                 @create="handleCreate" @cancel="closeForm" />
+                <GradeList class="h-120" :grades="grades"  />
+                <FormGrade class="absolute self-stretch top-5 right-80" v-if="formVisible" @create="handleCreate"
+                    @cancel="closeForm" />
             </div>
         </div>
     </SystemLayout>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import SystemLayout from '@/Layouts/System/SystemLayout.vue'
-import GradeList from '@/Components/GradeList.vue'
-import FormGrade from '@/Components/FormGrade.vue'
-import axiosInstance from '@/plugins/axios'
+import { ref, onMounted } from 'vue';
+import SystemLayout from '@/Layouts/System/SystemLayout.vue';
+import GradeList from '@/Components/GradeList.vue';
+import FormGrade from '@/Components/FormGrade.vue';
+import axiosInstance from '@/plugins/axios';
+import { useGradeStore } from '@/stores/grade-store';
+const store = useGradeStore();
 
-const formVisible = ref(false)
-const grades = ref([])
+const formVisible = ref(false);
+const grades = ref();
+
 
 function showForm() {
-    formVisible.value = true
+    formVisible.value = true;
 }
 
 function closeForm() {
-    formVisible.value = false
+    formVisible.value = false;
 }
 
 function handleCreate() {
-    console.log('Create button clicked')
-    formVisible.value = false
+    formVisible.value = false;
 }
 
 onMounted(async () => {
-    try {
-        const { data } = await axiosInstance.get('/grade')
-        grades.value = data.data
-        console.log(data.data)
-    } catch (error) {
-        console.error('Error fetching grades:', error)
-    }
-})
+    await store.fetchGrades();
+    grades.value = store.grades;
+});
+
 </script>

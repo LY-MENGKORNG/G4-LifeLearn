@@ -38,11 +38,11 @@ class Payment extends Model
     public static function store($request, $id = null)
     {
         $data = [
-            'user_id' => $request->user()->id,
-            'method' => $request->method,
-            'amount' => $request->amount,
-            'course_id' => $request->course_id,
-            'system_id' => $request->system_id
+            'user_id' => $request->input('user_id'),
+            'method' => $request->input('method'),
+            'amount' => $request->input('amount'),
+            'course_id' => $request->input('course_id'),
+            'system_id' => $request->input('system_id')
         ];
         $document = self::updateOrCreate(['id' => $id], $data);
         return $document;

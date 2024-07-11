@@ -1,6 +1,4 @@
-import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs';
-
-const userMeta = {
+    const userMeta = {
     requireAuth: false,
     role: 'user'
 }
@@ -46,12 +44,7 @@ const routes = [
         component: () => import('@/views/System/StudentView.vue'),
         meta: principleMeta
     },
-    {
-        path: '/system/grade',
-        name: 'system-grade',
-        component: () => import('@/views/System/GradeView.vue'),
-        meta: principleMeta
-    },
+
     {
         path: '/system/setting',
         name: 'system-setting',
@@ -79,9 +72,14 @@ const routes = [
     {
         path: '/forgot-password',
         name: 'forgot-password',
-        component: () => import('@/views/ForgotPasswordView.vue')
+        component: () => import('@/views/Auth/ResetPassword.vue')
     },
-   
+    {
+        path: '/reset-password',
+        name: 'reset-password',
+        component: () => import('@/views/Auth/ResetPassword.vue')
+    },
+
     {
         path: '/',
         name: 'home',
@@ -118,6 +116,21 @@ const routes = [
         path: '/system/classroom',
         name: 'system-classroom',
         component: () => import('@/views/System/ClassroomView.vue')
+    },
+    {
+        path: '/system/material',
+        name: 'system-material',
+        component: () => import('@/views/System/MaterialView.vue')
+    },
+    {
+        path: '/system/people',
+        name: 'system-people',
+        component: () => import('@/views/System/PeopleView.vue')
+    },
+    {
+        path: '/system/missing',
+        name: 'system-missing',
+        component: () => import('@/views/System/MissingView.vue')
     },
     {
         path: '/course',
@@ -166,17 +179,23 @@ const routes = [
         name: 'system-missing',
         component: () => import('@/views/System/MissingView.vue')
     },
-    
+    {
+        path: '/system/liststudent',
+        name: 'system-liststudent',
+        component: () => import('@/views/System/ListStudent.vue')
+    },
     {
         path: '/system/done',
         name: 'system-done',
         component: () => import('@/views/System/DoneView.vue')
     },
     {
-        path: '/system/homework',
-        name: 'system-homework',
-        component: () => import('@/views/System/HomeworkView.vue')
+        path: '/system/grade/:id',
+        name: 'system-grade-detail',
+        component: () => import('@/views/System/Grade/ShowGrade.vue'),
+        props: true
     },
+    
     {
         path: '/system/lesson',
         name: 'system-lesson',

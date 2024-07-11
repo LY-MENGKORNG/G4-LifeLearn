@@ -99,7 +99,8 @@ class RoleController extends Controller
     {
         $role->update(['name'=>$request->name]);
         $role->syncPermissions($request->permissions);
-        return redirect()->back()->withSuccess('Role updated !!!');
+        $roles = Role::latest()->get();
+        return $this->index();
     }
 
     /**

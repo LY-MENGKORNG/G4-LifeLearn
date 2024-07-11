@@ -4,7 +4,7 @@
       <router-link to="/system/material">
         <h6>Stream</h6>
       </router-link>
-      <router-link to="/system/peopl">
+      <router-link to="/system/people">
         <h6>People</h6>
       </router-link>
       <router-link to="/system/missing">
