@@ -14,7 +14,9 @@ class StudentController extends Controller
     public function index()
     {   
 
-        $students = Frontuser::all();
+        $students = Frontuser::role('student')->get();
+        // $students = Frontuser::all();
+        ;
     // $students = Frontuser::whereHas('roles', function ($query) {
     //     $query->where('name', 'student');
     // })->get();

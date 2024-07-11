@@ -102,4 +102,9 @@ class RelationshipModel extends Model
     public function class():BelongsTo {
         return $this->belongsTo(Classes::class);
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(Frontuser::class);
+    }
 }
