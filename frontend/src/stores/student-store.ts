@@ -19,6 +19,6 @@ export const useStudentStore = defineStore('student', {
         console.error('Error fetching posts:', error);
       }
     }, 
-    
   },
+  
 });
