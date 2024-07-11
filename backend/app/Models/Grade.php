@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use PHPUnit\Event\Telemetry\System;
 
-class Grade extends Model
+class Grade extends RelationshipModel
 {
     use HasFactory,SoftDeletes;
 
@@ -22,6 +23,11 @@ class Grade extends Model
     public function system(): BelongsTo
     {
         return $this->belongsTo(System::class);
+    }
+
+    public function classes(): HasMany
+    {
+        return $this->hasMany(Classes::class, 'grade_id', 'id');
     }
 
     public static function list() {

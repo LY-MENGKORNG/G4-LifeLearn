@@ -1,9 +1,10 @@
 <?php
+
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ReferencesController;
 use App\Http\Controllers\Admin\SystemController;
-
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\API\AssignmentController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
@@ -30,6 +31,8 @@ use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
+use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\API\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -174,10 +177,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 
-    
+
 
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
-
-   
 });
+// student 
+Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
+
+
+Route::get('/registrations-per-day', [FrontuserController::class, 'getRegistrationsPerDay']);
+Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
+Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
