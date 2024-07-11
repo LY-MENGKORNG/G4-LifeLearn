@@ -57,12 +57,28 @@ class ClassroomController extends Controller
 
     public function addStudents(Request $request, $classroomId)
     {
-        $classroom = Classroom::findOrFail($classroomId);
-        $frontuserIds = $request->input('frontuser_ids');
-        $classroom->frontusers()->attach($frontuserIds);
-
-        return response()->json(['message' => 'student added to classroom successfully']);
+        try {
+            $classroom = Classroom::findOrFail($classroomId);
+            $frontuserIds = $request->input('frontuser_ids', []);
+    
+            // Fetch students based on IDs and role ('student')
+            $students = Frontuser::whereIn('id', $frontuserIds)->role('student')->get();
+    
+            // Attach students to the classroom
+            $classroom->frontusers()->attach($students);
+    
+            // Check if any students were attached
+            if ($students->isEmpty()) {
+                return response()->json(['message' => 'No students were added to the classroom.'], 400);
+            } else {
+                return response()->json(['message' => 'Students added to classroom successfully']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to add students to classroom.'], 500);
+        }
     }
+    
+
 
     public function listStudents($classroomId)
     {
