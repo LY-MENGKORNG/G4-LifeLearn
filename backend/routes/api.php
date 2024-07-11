@@ -156,6 +156,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/score', ScoreController::class);
     Route::resource('/principle', NotificationsController::class);
     // Route::post('/principle/request',NotificationsController::class, 'create');
+
+    Route::post('/add-teacher', [MailTeacherController::class, 'addTeacher'])->name('add.teacher');
 });
 
 
