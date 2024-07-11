@@ -175,23 +175,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
-//Event
-
-//Quize
-Route::get('/quizze/list', [QuizzeController::class, 'index']);
-Route::post('/quizze/create', [QuizzeController::class, 'store']);
-Route::get('/quizze/show/{id}', [QuizzeController::class, 'show']);
-Route::put('/quizze/update/{id}', [QuizzeController::class, 'update']);
-Route::delete('/quizze/delete/{id}', [QuizzeController::class, 'destroy']);
-
-//submit
-Route::get('/submite/list', [SubmiteController::class, 'index']);
-Route::post('/submite/create', [SubmiteController::class, 'store']);
-Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
-Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
-Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
-
-
 
 Route::get('/registrations-per-day', [FrontuserController::class, 'getRegistrationsPerDay']);
 Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class,'addStudents']);
