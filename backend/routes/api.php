@@ -173,11 +173,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/books', BookController::class);
 
     // Mail
-    Route::post('/send-mail', [MailController::class, 'sendMail']);
-
-
-
-
+    Route::post('/principle-invite', [MailController::class, 'sendMail']);
 
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
