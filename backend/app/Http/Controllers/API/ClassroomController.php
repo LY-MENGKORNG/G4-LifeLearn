@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Http\Resources\Classroom\ClassroomResource;
+use App\Http\Resources\Classroom\ClassroomStudentResource;
 use App\Models\Frontuser;
 use Illuminate\Http\Request;
 
@@ -54,31 +55,22 @@ class ClassroomController extends Controller
         return response()->json(['message' => 'classroom not found'], 404);
     }
 
-    // public function addStudent(Request $request, $classroomId)
-    // {
-    //     $request->validate([
-    //         'student_id' => 'required|exists:students,id'
-    //     ]);
+    public function addStudents(Request $request, $classroomId)
+    {
+        $classroom = Classroom::findOrFail($classroomId);
+        $frontuserIds = $request->input('frontuser_ids');
+        $classroom->frontusers()->attach($frontuserIds);
 
-    //     $classroom = Classroom::find($classroomId);
-    //     $studentId = $request->input('student_id');
+        return response()->json(['message' => 'student added to classroom successfully']);
+    }
 
-    //     if ($classroom) {
-    //         $classroom->students()->attach($studentId);
-    //         return response()->json(['message' => 'Student added to classroom successfully.']);
-    //     }
-
-    //     return response()->json(['message' => 'Classroom not found.'], 404);
-    // }
-
-    public function addFrontuser(Request $request, $classroomId)
-{
-    $classroom = Classroom::findOrFail($classroomId);
-    $frontuserIds = $request->input('frontuser_ids'); // assuming frontuser_ids is an array of frontuser IDs
-
-    // Attach frontusers to classroom
-    $classroom->frontusers()->attach($frontuserIds);
-
-    return response()->json(['message' => 'Frontusers added to classroom successfully']);
-}
+    public function listStudents($classroomId)
+    {
+        $students = Classroom::find($classroomId)->frontusers;
+        return response()->json([
+            'success' => true,
+            'data' => ClassroomStudentResource::collection($students)
+        ]);
+    }
+    
 }
