@@ -195,6 +195,7 @@ const routes = [
         component: () => import('@/views/System/Grade/ShowGrade.vue'),
         props: true
     },
+    
     {
         path: '/system/lesson',
         name: 'system-lesson',

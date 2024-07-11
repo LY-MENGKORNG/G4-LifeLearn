@@ -42,4 +42,4 @@ class EventController extends Controller
         Event::findOrFail($id)->delete();
         return response()->json(null, 204);
     }
-
+}
