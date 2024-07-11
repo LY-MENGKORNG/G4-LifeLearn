@@ -192,5 +192,6 @@ Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
 );
 
 Route::get('/registrations-per-day', [FrontuserController::class, 'getRegistrationsPerDay']);
-            
-   
+// Route::post('/classrooms/{id}/students', [ClassroomController::class, 'addStudent']);
+Route::post('/classrooms/{classroomId}/add-frontuser', [ClassroomController::class,'addFrontuser']);
+Route::get('/classrooms/{classroom}/students/add', [ClassroomController::class, 'showAddStudentForm']);
