@@ -190,6 +190,11 @@ const routes = [
         component: () => import('@/views/System/DoneView.vue')
     },
     {
+        path: '/system/grade',
+        name: 'system-grade-list',
+        component: () => import('@/views/System/Classroom/NewGrade.vue'),
+    },
+    {
         path: '/system/grade/:id',
         name: 'system-grade-detail',
         component: () => import('@/views/System/Grade/ShowGrade.vue'),

@@ -55,11 +55,11 @@ class FrontuserSeeder extends Seeder
         $user6 = Frontuser::create([
             'first_name' => 'Ngor',
             'last_name' => 'mam',
-            'email' => 'ngor.mam@student.passerellesnumeriques.org',
+            'email' => 'ng.mam@student.passerellesnumeriques.org',
             'password' => bcrypt('password'),
             'phone' => '087861976',
             'profile' => 'ngor.jpg',
-        ]); 
+        ]);
         
         $user1->assignRole('user');
         $user2->assignRole('principle');

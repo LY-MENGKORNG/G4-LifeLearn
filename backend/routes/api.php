@@ -30,6 +30,7 @@ use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\StudentController;
 
@@ -53,15 +54,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
 // user login
-Route::post('/login', [AuthController::class, 'login']);
 Route::post('/admin/login', [AuthController::class, 'loginadmin']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/login', [FrontuserController::class, 'login']);
 Route::post('/system/login', [FrontuserController::class, 'login']);
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']) // forgot password reset
-                ->middleware('guest:front')
-                ->name('password.email');
+    ->middleware('guest:front')
+    ->name('password.email');
 
+Route::post('/reset-password', [ForgotPasswordManager::class, 'ResetPasswordPost'])->name('password.update');
+
+
+
+// protected routes
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/me', [FrontuserController::class, 'index']);
@@ -134,8 +139,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/notification/update/{id}', [NotificationController::class, 'update']);
     Route::delete('/notification/delete/{id}', [NotificationController::class, 'destroy']);
 
-    Route::resource('/favorites',FavoriteController::class);
-    Route::resource('/mylearn',MylearnController::class);
+    Route::resource('/favorites', FavoriteController::class);
+    Route::resource('/mylearn', MylearnController::class);
 
     // favorites
     Route::resource('/favorites', FavoriteController::class);
@@ -153,7 +158,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
     Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
     Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
-    
+
     //comments
     Route::resource('/comment', CommentController::class);
     //score
@@ -170,12 +175,21 @@ Route::middleware('auth:sanctum')->group(function () {
     // Mail
     Route::post('/send-mail', [MailController::class, 'sendMail']);
 
-    // student 
-    Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
-});
 
+
+
+
+    // Route to handle the forgot password form submission
+    Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
+});
+<<<<<<< HEAD
+
+=======
+// student 
+Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
+>>>>>>> origin/system_panel
 
 
 Route::get('/registrations-per-day', [FrontuserController::class, 'getRegistrationsPerDay']);
-Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class,'addStudents']);
+Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
 Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
