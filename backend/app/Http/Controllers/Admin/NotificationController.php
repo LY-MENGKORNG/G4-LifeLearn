@@ -41,19 +41,7 @@ class NotificationController extends Controller
         return view('notification.index', ['notifications' => false]);
 
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $notification = Notificaton::pluck('id')->toArray();
-        $userIds = User::pluck('id')->toArray();
-        $requestData = $request->only('classroom_id', 'user_id');
-        $notification = Notificaton::create($request->all());
-        return response()->json(['message' => 'Notification created successfully', 'notification' => $notification], 200);
-    }
-
+ 
     /**
      * Display the specified resource.
      */
@@ -61,7 +49,7 @@ class NotificationController extends Controller
     {
         $notification = Notificaton::find($id);
         if($notification->status != 1) {
-            $document = Document::where('user_id', $notification->user_id)->get();
+            $document = Document::where('reference_id', $notification->id)->get();
             $sender = Frontuser::find($notification->user_id);
     
             $notification["document"] = $document;

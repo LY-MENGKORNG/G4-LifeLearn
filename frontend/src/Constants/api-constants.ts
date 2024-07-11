@@ -13,10 +13,10 @@ export default interface User {
     isAuthenticated: boolean
 }
 
-export default interface Book {
-    id: number;
-    title: string;
-    author: string;
-    published_at: string;
-    price?: number;
+
+export default interface RequestPayment {
+    school_name: string;
+    school_address: string;
+    description: string;
+    reference: any[];
 }

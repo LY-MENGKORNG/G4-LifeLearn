@@ -22,6 +22,7 @@
     "bootstrap": "^5.3.3",
     "element-plus": "^2.7.6",
     "flowbite": "^2.3.0",
+    "pdfjs-dist": "^4.4.168",
     "pinia": "^2.1.7",
     "vee-validate": "^4.12.8",
     "vue": "^3.4.21",

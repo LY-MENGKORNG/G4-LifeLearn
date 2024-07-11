@@ -1,14 +1,14 @@
 <x-app-layout>
     <main class="flex-1 overflow-x-hidden  bg-gray-200 p-4">
         <h1>
-            <a class="text-lg underline" href="{{ route('admin.dashboard') }}">
+            <a class="text-lg hover:underline" href="{{ route('admin.dashboard') }}">
                 Home
             </a>
-            >
-            <a class="text-lg underline" href="{{ route('admin.systems.index') }}">
+            /
+            <a class="text-lg hover:underline" href="{{ route('admin.systems.index') }}">
                 Systems
             </a>
-            > 
+                /
             {{$system->id}}
         </h1>
         <div class="mx-auto mt-3">

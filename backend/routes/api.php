@@ -26,6 +26,7 @@ use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\MylearnController;
 use App\Http\Controllers\API\ScoreController;
 use App\Http\Controllers\API\ClassesController;
+use App\Http\Controllers\API\ReferenceController;
 use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
@@ -168,4 +169,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Mail
     Route::post('/send-mail', [MailController::class, 'sendMail']);
+
+    Route::post('/system-request', [ReferenceController::class, 'store'])->name('system.request');
 });

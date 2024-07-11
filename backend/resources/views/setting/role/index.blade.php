@@ -4,11 +4,11 @@
             <div class="flex justify-between">
                 <div class="flex">
                     <h1>
-                        <a class="text-lg underline" href="{{ route('admin.dashboard') }}">
+                        <a class="text-lg hover:underline" href="{{ route('admin.dashboard') }}">
                             Home
                         </a>
-                        >
-                        <a class="text-lg underline" href="{{ route('admin.roles.index') }}">
+                        /
+                        <a class="text-lg hover:underline" href="{{ route('admin.roles.index') }}">
                             Role
                         </a>
                     </h1>

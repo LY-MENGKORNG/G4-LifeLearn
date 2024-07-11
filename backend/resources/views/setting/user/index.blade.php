@@ -2,11 +2,11 @@
     <main class="flex-1 overflow-x-hidden bg-gray-100 p-4">
         <div class="flex justify-between mb-3">
             <h1>
-                <a class="text-lg underline" href="{{ route('admin.dashboard') }}">
+                <a class="text-lg hover:underline" href="{{ route('admin.dashboard') }}">
                     Home
                 </a>
-                >
-                <a class="text-lg underline" href="{{ route('admin.users.index') }}">
+                /
+                <a class="text-lg hover:underline" href="{{ route('admin.users.index') }}">
                     Users
                 </a>
             </h1>

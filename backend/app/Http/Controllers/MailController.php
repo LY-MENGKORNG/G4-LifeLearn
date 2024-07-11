@@ -11,11 +11,14 @@ class MailController extends Controller
 {
     public function sendMail(Request $request)
     {
+
         $request->validate([
             'email' => 'required|string|email|exists:frontusers,email',
             'subject' => 'required|string',
             'message' => 'required|string',
         ]);
+
+        $page_send = $request->status == "true" ? 'front.auth.mail-approve' : 'front.auth.mail-reject';
 
         if ($this->isOnline()) {
             $mail_data = [
@@ -25,15 +28,23 @@ class MailController extends Controller
                 'message' => $request->message,
             ];
 
-            Mail::send('front.auth.mail-send', $mail_data, function($message) use ($mail_data){
+            Mail::send("front.auth.mail-approve", $mail_data, function ($message) use ($mail_data) {
                 $message->from($mail_data['from'])
-                        ->to($mail_data['recipient'])
-                        ->subject($mail_data['subject']);
+                    ->to($mail_data['recipient'])
+                    ->subject($mail_data['subject']);
             });
-            $recipient = Frontuser::where('email', $request->email)->firstOrFail();
-            $this->addPermission($recipient);
 
+            if ($page_send == "front.auth-mail-approve") {
+
+                $recipient = Frontuser::where('email', $request->email)->firstOrFail();
+
+                $this->addPermission($recipient);
+
+                Notificaton::where('user_id', $recipient->id)->update(['status' => 1]);
+            }
+            $recipient = Frontuser::where('email', $request->email)->firstOrFail();
             Notificaton::where('user_id', $recipient->id)->update(['status' => 1]);
+
             return redirect()->back()->with('Success', 'Email sent successfully!');
         }
         return redirect()->back()->withInput()->with('error', 'Please check your internet connection!');

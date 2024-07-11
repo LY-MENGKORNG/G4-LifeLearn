@@ -14,7 +14,7 @@
 			<template #title>Dashboard</template>
 		</el-menu-item>
 
-		<el-menu-item v-for="nav in navigations" :key="nav.id" :index='(nav.id + 1).toString()'  @click="setRoute(nav.path)" class="hover:bg-slate-600">
+		<el-menu-item v-for="nav in navigations" v-show="nav.isTeacher" :key="nav.id" :index='(nav.id + 1).toString()'  @click="setRoute(nav.path)" class="hover:bg-slate-600">
 			<el-icon>
 				<IconMenu />
 			</el-icon>
@@ -41,12 +41,12 @@ const setRoute = (path: string) => {
 }
 
 const navigations = [
-    {id: 1, name: 'Grade', path: '/system/grade'},
-    {id: 2, name: 'Teacher', path: '/system/teacher'},
-    {id: 3, name: 'Student', path: '/system/student'},
-    {id: 4, name: 'Schedule', path: '/system/schedule'},
-    {id: 5, name: 'Setting', path: '/system/setting'},
-	{id: 6, name: 'Classes', path: '/system/class'},
+    {id: 1, name: 'Grade', path: '/system/grade', isTeacher: true},
+    {id: 2, name: 'Teacher', path: '/system/teacher', isTeacher: false},
+    {id: 3, name: 'Student', path: '/system/student', isTeacher: true},
+    {id: 4, name: 'Schedule', path: '/system/schedule', isTeacher: true},
+    {id: 5, name: 'Setting', path: '/system/setting', isTeacher: true},
+	{id: 6, name: 'Classes', path: '/system/class', isTeacher: true},
 ];
 
 </script>

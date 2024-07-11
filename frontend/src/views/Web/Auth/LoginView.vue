@@ -1,11 +1,9 @@
 <!-- src/components/Login.vue -->
 
 <script setup lang="ts">
-import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
 import { useAuthStore } from '@/stores/auth-store'
-import { createAcl, defineAclRules } from 'vue-simple-acl'
 import router from '@/router'
 const store = useAuthStore()
 
@@ -22,8 +20,8 @@ const { handleSubmit, isSubmitting } = useForm({
 	validationSchema: formSchema
 })
 
-const onSubmit = handleSubmit((values) => {
-	const isUser = store.login(values, '/login')
+const onSubmit = handleSubmit(async (values) => {
+	const isUser = await store.login(values, '/login')
 	router.router.push(isUser ? '/' : '/system/dashboard')
 })
 
