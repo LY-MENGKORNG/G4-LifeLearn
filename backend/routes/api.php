@@ -174,11 +174,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/books', BookController::class);
 
     // Mail
+<<<<<<< HEAD
     Route::post('/send-mail', [MailController::class, 'sendMail']);
+=======
+    Route::post('/principle-invite', [MailController::class, 'sendMail']);
+>>>>>>> 62bc3d8fcb3ba1ff1b746a47b37df429eaacb4fe
 
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 62bc3d8fcb3ba1ff1b746a47b37df429eaacb4fe
 // student 
 Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 

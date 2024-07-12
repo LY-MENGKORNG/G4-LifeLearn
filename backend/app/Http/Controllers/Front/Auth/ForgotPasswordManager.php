@@ -42,7 +42,7 @@ class ForgotPasswordManager extends Controller
                 'message' => 'User not found'
             ], 404);
         }
-        
+
         // Check if the user is logged in
         if (!auth()->check()) {
             return response()->json([
@@ -50,10 +50,10 @@ class ForgotPasswordManager extends Controller
                 'message' => 'Cannot reset password while logged in'
             ], 400);
         }
-        
+
         // Generate a token for the password reset request
         $token = Str::random(60);
-        
+
         // Save the token and email to the password_resets table
         DB::table('password_resets')->insert([
             'email' => $request->email,
@@ -61,7 +61,6 @@ class ForgotPasswordManager extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        // dd(auth()->check());
         // Send notification to request password reset
         Mail::send('front.auth.reset-password', ['token' => $token, 'email' => $request->email], function ($message) use ($request) {
             $message->to($request->email);
@@ -84,8 +83,6 @@ class ForgotPasswordManager extends Controller
 
     public function ResetPasswordPost(Request $request)
     {
-        // dd()
-        // dd($request->all());  // Add this line for debugging
         $request->validate([
             'email' => 'required|email|exists:frontusers',
             'password' => 'required|string|min:6|confirmed',
