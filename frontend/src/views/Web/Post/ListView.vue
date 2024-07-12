@@ -25,9 +25,21 @@
       </div>
     </div>
   </WebLayout>
+<<<<<<< HEAD
   <!-- {{ store.posts }} -->
   <!-- {{ posts }} -->
   <!-- {{ posts }} -->
+=======
+<<<<<<< HEAD
+  <!-- {{ store.posts }} -->
+  <!-- {{ posts }} -->
+<<<<<<< HEAD
+=======
+>>>>>>> 1cc2a85e41f678f39a38f3ba490171c96cbbcc55
+=======
+  {{ posts }}
+>>>>>>> book
+>>>>>>> 05418e97f31410212ebc641a3f7fafa6f0f9b149
 </template>
 
 <script>

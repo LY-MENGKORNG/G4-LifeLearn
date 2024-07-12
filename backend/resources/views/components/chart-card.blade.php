@@ -12,11 +12,10 @@
         <div>
             <h6
                 class="block font-sans text-base font-semibold leading-relaxed tracking-normal text-blue-gray-900 antialiased">
-                Line Chart
+                User regiser Chart
             </h6>
             <p class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 antialiased">
-                Visualize your data in a simple way using the
-                @material-tailwind/html chart plugin.
+                Visualize user regiser data using ApexCharts.
             </p>
         </div>
     </div>
@@ -26,92 +25,89 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    const chartConfig = {
-        series: [{
-            name: "Sales",
-            data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-        }, ],
-        chart: {
-            type: "bar",
-            height: 240,
-            toolbar: {
-                show: false,
-            },
-        },
-        title: {
-            show: "",
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        colors: ["#020617"],
-        plotOptions: {
-            bar: {
-                columnWidth: "40%",
-                borderRadius: 2,
-            },
-        },
-        xaxis: {
-            axisTicks: {
-                show: false,
-            },
-            axisBorder: {
-                show: false,
-            },
-            labels: {
-                style: {
-                    colors: "#616161",
-                    fontSize: "12px",
-                    fontFamily: "inherit",
-                    fontWeight: 400,
+    axios.get('/api/registrations-per-day')
+        .then(response => {
+            const data = response.data;
+            const chartConfig = {
+                series: [{
+                    name: "Registrations",
+                    data: data.data,
+                }],
+                chart: {
+                    type: "bar",
+                    height: 240,
+                    toolbar: {
+                        show: false,
+                    },
                 },
-            },
-            categories: [
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ],
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    colors: "#616161",
-                    fontSize: "12px",
-                    fontFamily: "inherit",
-                    fontWeight: 400,
+                title: {
+                    show: false,
                 },
-            },
-        },
-        grid: {
-            show: true,
-            borderColor: "#dddddd",
-            strokeDashArray: 5,
-            xaxis: {
-                lines: {
+                dataLabels: {
+                    enabled: false,
+                },
+                colors: ["#020617"],
+                plotOptions: {
+                    bar: {
+                        columnWidth: "40%",
+                        borderRadius: 2,
+                    },
+                },
+                xaxis: {
+                    axisTicks: {
+                        show: false,
+                    },
+                    axisBorder: {
+                        show: false,
+                    },
+                    labels: {
+                        style: {
+                            colors: "#616161",
+                            fontSize: "12px",
+                            fontFamily: "inherit",
+                            fontWeight: 400,
+                        },
+                    },
+                    categories: data.labels,
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            colors: "#616161",
+                            fontSize: "12px",
+                            fontFamily: "inherit",
+                            fontWeight: 400,
+                        },
+                    },
+                },
+                grid: {
                     show: true,
+                    borderColor: "#dddddd",
+                    strokeDashArray: 5,
+                    xaxis: {
+                        lines: {
+                            show: true,
+                        },
+                    },
+                    padding: {
+                        top: 5,
+                        right: 20,
+                    },
                 },
-            },
-            padding: {
-                top: 5,
-                right: 20,
-            },
-        },
-        fill: {
-            opacity: 0.8,
-        },
-        tooltip: {
-            theme: "dark",
-        },
-    };
+                fill: {
+                    opacity: 0.8,
+                },
+                tooltip: {
+                    theme: "dark",
+                },
+            };
 
-    const chart = new ApexCharts(document.querySelector("#bar-chart"), chartConfig);
-
-    chart.render();
+            const chart = new ApexCharts(document.querySelector("#bar-chart"), chartConfig);
+            chart.render();
+        })
+        .catch(error => {
+            console.error("There was an error fetching the registration data:", error);
+        });
 </script>

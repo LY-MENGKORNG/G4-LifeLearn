@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ReferencesController;
 use App\Http\Controllers\Admin\SystemController;
-
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\API\AssignmentController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
@@ -16,16 +16,23 @@ use App\Http\Controllers\API\NotificationsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\QuizzeController;
 use App\Http\Controllers\API\CommentController;
-use App\Http\Controllers\API\DocumnetController;
+// use App\Http\Controllers\API\DocumentController;
+use App\Http\Controllers\Api\DocumentController;
 use App\Http\Controllers\Api\SubmiteController;
 use App\Http\Controllers\Front\FrontuserController;
 use App\Http\Controllers\API\FavoriteController;
+use App\Http\Controllers\API\GradeController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\MylearnController;
 use App\Http\Controllers\API\ScoreController;
+use App\Http\Controllers\API\ClassesController;
+use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
+use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
+use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\API\StudentController;
 
 
 
@@ -49,13 +56,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
 // user login
-Route::post('/login', [AuthController::class, 'login']);
 Route::post('/admin/login', [AuthController::class, 'loginadmin']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/login', [FrontuserController::class, 'login']);
 Route::post('/system/login', [FrontuserController::class, 'login']);
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']) // forgot password reset
+    ->middleware('guest:front')
+    ->name('password.email');
+
+Route::post('/reset-password', [ForgotPasswordManager::class, 'ResetPasswordPost'])->name('password.update');
 
 
+
+// protected routes
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/me', [FrontuserController::class, 'index']);
@@ -94,11 +107,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //documents
     Route::prefix('/document')->group(function () {
-        Route::get('/list', [DocumnetController::class, 'index']);
-        Route::post('/create', [DocumnetController::class, 'store']);
-        Route::get('/show/{id}', [DocumnetController::class, 'show']);
-        Route::put('/update/{id}', [DocumnetController::class, 'update']);
-        Route::delete('/delete/{id}', [DocumnetController::class, 'destroy']);
+        Route::get('/list', [DocumentController::class, 'index']);
+        Route::post('/create', [DocumentController::class, 'store']);
+        Route::get('/show/{id}', [DocumentController::class, 'show']);
+        Route::put('/update/{id}', [DocumentController::class, 'update']);
+        Route::delete('/delete/{id}', [DocumentController::class, 'destroy']);
     });
     //references   
     Route::prefix('/references')->group(function () {
@@ -116,6 +129,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/update/{id}', [PaymentController::class, 'update']);
         Route::delete('/delete/{id}', [PaymentController::class, 'destroy']);
     });
+
+    //grade
+    Route::resource('/grade', GradeController::class);
 
     //calendar
     Route::resource('/calendar', CalendarController::class);
@@ -155,34 +171,22 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/principle', NotificationsController::class);
     // Route::post('/principle/request',NotificationsController::class, 'create');
 
+    //class
+    Route::resource('/class', ClassesController::class);
+
+    // books
+    Route::resource('/books', BookController::class);
+
+    // Mail
+    Route::post('/principle-invite', [MailController::class, 'sendMail']);
+
+    // Route to handle the forgot password form submission
+    Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
 });
+// student 
+Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
 
-//documents
-// Route::post('/documents',[DocumentCon])
-//books
-Route::resource('/books', BookController::class);
-
-//calendar
-Route::resource('/calendar', CalendarController::class);
-
-//Notifications
-Route::get('/notification/list', [NotificationController::class, 'index']);
-Route::post('notification/create', [NotificationController::class, 'store']);
-Route::get('notification/{id}', [NotificationController::class, 'show']);
-Route::put('notification/update/{id}', [NotificationController::class, 'update']);
-Route::delete('notification/delete/{id}', [NotificationController::class, 'destroy']);
-
-//Quize
-Route::get('/quizze/list', [QuizzeController::class, 'index']);
-Route::post('/quizze/create', [QuizzeController::class, 'store']);
-Route::get('/quizze/show/{id}', [QuizzeController::class, 'show']);
-Route::put('/quizze/update/{id}', [QuizzeController::class, 'update']);
-Route::delete('/quizze/delete/{id}', [QuizzeController::class, 'destroy']);
-
-//submit
-Route::get('/submite/list', [SubmiteController::class, 'index']);
-Route::post('/submite/create', [SubmiteController::class, 'store']);
-Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
-Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
-Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
+Route::get('/registrations-per-day', [FrontuserController::class, 'getRegistrationsPerDay']);
+Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
+Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);

@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.1",
         "consoletvs/charts": "6.*",
+        "fedeisas/laravel-mail-css-inliner": "^5.3",
         "icehouse-ventures/laravel-chartjs": "^3.0",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",

@@ -17,7 +17,7 @@ class RelationshipModel extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+ 
     public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class);
@@ -81,6 +81,11 @@ class RelationshipModel extends Model
         return $this->belongsTo(Calendar::class);
     }
 
+    public function system(): BelongsTo
+    {
+        return $this->belongsTo(System::class);
+    }
+
     /// BelongsToMany relationships
     // public function roles(): BelongsToMany
     // {
@@ -94,8 +99,18 @@ class RelationshipModel extends Model
     public function users() {
         return $this->hasMany(User::class);
     }
+<<<<<<< HEAD
     public function system(): BelongsTo
     {
         return $this->belongsTo(System::class);
+=======
+    public function class():BelongsTo {
+        return $this->belongsTo(Classes::class);
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(Frontuser::class);
+>>>>>>> 05418e97f31410212ebc641a3f7fafa6f0f9b149
     }
 }

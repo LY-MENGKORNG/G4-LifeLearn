@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Front\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Frontuser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\ValidationException;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 
 class PasswordResetLinkController extends Controller
 {
@@ -13,10 +16,10 @@ class PasswordResetLinkController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
-    {
-        return view('auth.forgot-password');
-    }
+    // public function create()
+    // {
+    //     return view('auth.forgot-password');
+    // }
 
     /**
      * Handle an incoming password reset link request.
@@ -26,22 +29,36 @@ class PasswordResetLinkController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'email' => ['required', 'email'],
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'email' => ['required', 'email'],
+    //     ]);
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
+    //     $status = Password::sendResetLink(
+    //         $request->only('email')
+    //     );
+      
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+    //     return response()->json([
+    //         'status' => $status == Password::RESET_LINK_SENT ? __($status) : __($status)
+    //     ]);
+
+    //     return $status == Password::RESET_LINK_SENT
+    //                 ? back()->with('status', __($status))
+    //                 : back()->withInput($request->only('email'))
+    //                         ->withErrors(['email' => __($status)]);
+    // }
+
+    public function create(){
+        return view(view:"forgot-password");
     }
+
+    public function store(Request $request){
+        
+    }
+
 }

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\Frontuser;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -21,16 +20,18 @@ class AdminSeeder extends Seeder
         $admin = User::create([
             'first_name' => 'My',
             'last_name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('password'),
+            'email' => 'lymengkorng54@gmail.com',
+            'password' => bcrypt('54@meng#korng$!'),
             'phone' => '087861976',
-            'profile' => 'user.avif',
+            'profile' => '1719935977_photo_2024-05-03_20-11-08.jpg',
         ]);
 
         // Create roles with appropriate guards
         $admin_role = Role::create(['name' => 'admin']);
         $user_role = Role::create(['name' => 'user', 'guard_name' => 'front']);
-        $user_role = Role::create(['name' => 'principle', 'guard_name' => 'front']);
+        $principle_role = Role::create(['name' => 'principle', 'guard_name' => 'front']);
+        $teacher_role = Role::create(['name' => 'teacher', 'guard_name' => 'front']);
+        $student_role = Role::create(['name' => 'student', 'guard_name' => 'front']);
 
         $role_front_user = Permission::create(['name' => 'front access', 'guard_name' => 'front']);
 

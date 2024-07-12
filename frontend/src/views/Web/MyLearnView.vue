@@ -84,7 +84,7 @@
           </div>
         </div>
         <div
-          class="rounded-lg bg-white border text-center shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface mt-5 min-w-[20rem] min-h-[20rem] overflow-hidden hover:shadow-md hover:transform hover:-translate-y-5 transition duration-300 ease-in-out">
+          class="rounded-lg bg-white border text-center shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface mt-5 max-w-[18rem] max-h-[25rem] overflow-hidden hover:shadow-md hover:transform hover:-translate-y-5 transition duration-300 ease-in-out">
           <div class="border-b-2 text-xl bg-slate-200 border-neutral-100 px-6 py-3 dark:border-white/10 text-start">
             <b>Free Course</b>
           </div>

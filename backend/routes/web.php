@@ -12,6 +12,9 @@ use App\Http\Controllers\Admin\{
     MailSettingController,
     PaymentController,
 };
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Front\Auth\NewPasswordController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Mail;
 
 /*
@@ -34,7 +37,7 @@ Route::get('/test-mail', function () {
     $message = "Testing mail";
 
     Mail::raw('Hi, welcome!', function ($message) {
-        $message->to('')
+        $message->to('mengkorng.ly@student.passerellesnumeriques.org')
             ->subject('Testing mail');
     });
 });
@@ -68,4 +71,19 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')-
     Route::get('/mail', [MailSettingController::class, 'index'])->name('mail.index');
     Route::put('/mail-update/{mailsetting}', [MailSettingController::class, 'update'])->name('mail.update');
     Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
+
+    Route::post('/send-mail', [MailController::class, 'sendMail'])->name('send-mail');
 });
+
+
+Route::get("/forgot-password",[PasswordResetLinkController::class, "create"])->name("forgot.password");
+Route::post("/forgot-password",[PasswordResetLinkController::class, "store"])->name("forgot.password.post");
+
+
+// New Password Routes (after resetting)
+Route::get('/reset-password', [NewPasswordController::class, 'create'])
+    ->middleware('front')
+    ->name('password.new');
+Route::post('/reset-password', [NewPasswordController::class, 'store'])
+    ->middleware('front')
+    ->name('password.store');

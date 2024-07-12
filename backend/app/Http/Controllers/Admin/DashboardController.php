@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $systems = System::list();
         $users = Frontuser::all();
         $payments = Payment::all();
-        $chart = UserController::showChart();
+        // $chart = UserController::showChart();
         return view('dashboard',[
             'systems' => $systems,
             'users' => $users,

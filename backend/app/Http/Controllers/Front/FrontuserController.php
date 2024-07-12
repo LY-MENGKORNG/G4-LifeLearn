@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class FrontuserController extends Controller
 {
@@ -81,5 +82,46 @@ class FrontuserController extends Controller
             'token_type'    => 'Bearer'
         ]);
     }
+
+    public function getRegistrationsPerDay()
+    {
+        $registrations = DB::table('frontusers')
+            ->select(DB::raw('DAYOFWEEK(created_at) as day_of_week'), DB::raw('count(*) as count'))
+            ->groupBy('day_of_week')
+            ->get();
+
+        // Initialize an array with zero counts for each day of the week (1 = Sunday, 7 = Saturday)
+        $daysOfWeek = array_fill(1, 7, 0);
+
+        // Populate the array with actual data
+        foreach ($registrations as $registration) {
+            $daysOfWeek[$registration->day_of_week] = $registration->count;
+        }
+
+        // Prepare data for the chart
+        $dayNames = [
+            1 => 'Sun',
+            2 => 'Mon',
+            3 => 'Tues',
+            4 => 'Wed',
+            5 => 'Thurs',
+            6 => 'Fri',
+            7 => 'Sat',
+        ];
+
+        $labels = [];
+        $data = [];
+
+        foreach ($daysOfWeek as $dayNumber => $count) {
+            $labels[] = $dayNames[$dayNumber];
+            $data[] = $count;
+        }
+
+        return response()->json([
+            'labels' => $labels,
+            'data' => $data,
+        ]);
+    }
+
 }
 

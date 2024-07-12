@@ -62,3 +62,13 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('front')
                 ->name('logout');
+
+
+
+// New Password Routes (after resetting)
+Route::get('/reset-password', [NewPasswordController::class, 'create'])
+    ->middleware('front')
+    ->name('password.new');
+Route::post('/reset-password', [NewPasswordController::class, 'store'])
+    ->middleware('front')
+    ->name('password.store');

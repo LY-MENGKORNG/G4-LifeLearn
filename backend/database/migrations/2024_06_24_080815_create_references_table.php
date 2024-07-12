@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('references', function (Blueprint $table) {
             $table->id();
-            $table->integer('principle_id');
-            $table->integer('document_id');
-            $table->boolean('status');
+            $table->string('name');
+            $table->integer('user_id');
+            $table->string('school_name');
+            $table->string('school_address');
             $table->softDeletes();
             $table->timestamps();
         });

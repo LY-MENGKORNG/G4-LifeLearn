@@ -25,7 +25,9 @@ class Classroom extends Model
     {
         return $this->belongsTo(Comment::class);
     }
-
-
+    public function frontusers()
+    {
+        return $this->belongsToMany(Frontuser::class);
+    }
     
 }
