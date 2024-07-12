@@ -185,7 +185,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
 });
-
 // student 
 Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 

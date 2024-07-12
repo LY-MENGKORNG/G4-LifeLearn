@@ -55,7 +55,7 @@
     <p>You have been invited to join our classroom system!</p>
     <p>Click the button below to access the system:</p>
     <div class="footer">
-        <a href="https://www.youtube.com/watch?v=zlkP-v2vxC0">
+        <a href="http://localhost:5173/system/login">
             <button>Go to Classroom</button>
         </a>
     </div>
