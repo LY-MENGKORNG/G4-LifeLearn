@@ -11,10 +11,9 @@
         <el-table-column prop="email" label="Email"></el-table-column>
         <el-table-column>
           <template v-slot="scope">
-            <el-button type="primary" @click="addStudent(scope.row)">Add</el-button>
+            <el-button type="primary" @click="sendEmail(scope.row)">Add</el-button>
           </template>
         </el-table-column>
-        
       </el-table>
     </div>
   </SystemLayout>
@@ -23,28 +22,42 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import SystemLayout from '@/Layouts/System/SystemLayout.vue';
-import { useStudentStore } from '@/stores/student-store';
-import { useClassroomStore } from '@/stores/classroom-store';
+import axiosInstance from '@/plugins/axios';
 
-const studentStore = useStudentStore();
-const studentList = ref<any>([]);
-const classroomStore = useClassroomStore();
-const selectedStudents = ref<any>([]);
+const studentList = ref([]);
 
 onMounted(async () => {
-  await studentStore.fetchStudents();
-  studentList.value = studentStore.students.map(student => ({
-    ...student,
-    grades: [] // Initialize grades array for each student
-  }));
+  await fetchStudents();
 });
 
-function addStudent(student) {
-  selectedStudents.value.push(student.id);
+async function fetchStudents() {
+  try {
+    const response = await axiosInstance.get('/student/list', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`
+      }
+    });
+    studentList.value = response.data.data;
+  } catch (error) {
+    console.error('Error fetching students:', error);
+  }
 }
 
-async function addStudentsToClassroom() {
-  await classroomStore.addStudentsToClassroom(selectedStudents.value);
-  selectedStudents.value = [];
+async function sendEmail(student) {
+  const mail = {
+    email: student.email,
+    subject: 'Invitation to join a classroom',
+    message: 'Dear'+ student.first_name
+  }
+
+  try {
+    const response = await axiosInstance.post('/send-mail', mail);
+    alert('Email sent successfully to ' + student.email);
+  } catch (error) {
+    console.error('Error sending email:', error);
+    alert('Failed to send email to ' + student.email);
+  }
+
 }
+
 </script>

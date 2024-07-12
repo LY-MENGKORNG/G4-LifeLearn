@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\StudentController;
+use App\Http\Controllers\Front\Auth\InvitationMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -175,19 +176,11 @@ Route::middleware('auth:sanctum')->group(function () {
     // Mail
     Route::post('/send-mail', [MailController::class, 'sendMail']);
 
-
-
-
-
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
 });
-<<<<<<< HEAD
-
-=======
 // student 
 Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
->>>>>>> origin/system_panel
 
 
 Route::get('/registrations-per-day', [FrontuserController::class, 'getRegistrationsPerDay']);
