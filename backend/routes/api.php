@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\StudentController;
+use App\Http\Controllers\Auth\ResetForgotPswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -177,6 +178,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
+
+    //User forgot password
+    Route::post('/forgot-password', [ResetForgotPswordController::class, 'ForgotPasswordPost'])->name('password.email');
+    Route::post('/reset-password', [ResetForgotPswordController::class, 'ResetPassword'])->name('password.update');;
 });
 
 // student 
