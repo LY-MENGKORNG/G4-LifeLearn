@@ -55,9 +55,7 @@ class SystemController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
         
-=======
         $validation = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|exists:frontusers,email',
@@ -69,7 +67,6 @@ class SystemController extends Controller
             $owner->assignRole('principle');
         }
         return $this->index();
->>>>>>> 05418e97f31410212ebc641a3f7fafa6f0f9b149
     }
 
     /**

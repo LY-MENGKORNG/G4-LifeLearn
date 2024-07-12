@@ -35,6 +35,16 @@ class MailController extends Controller
                     'message' => 'Mail sent successfully!'
                 ],200);
             }
+            if ($mail_data['subject'] == "Application inviting student for join in classroom") {
+                Mail::send('front.auth.teacher-mail', $mail_data, function ($message) use ($mail_data) {
+                    $message->from($mail_data['from'])
+                        ->to($mail_data['recipient'])
+                        ->subject($mail_data['subject']);
+                });
+                return response()->json([
+                    'message' => 'Mail sent to successfully!'
+                ],200);
+            }
             Mail::send('front.auth.mail-send', $mail_data, function ($message) use ($mail_data) {
                 $message->from($mail_data['from'])
                     ->to($mail_data['recipient'])

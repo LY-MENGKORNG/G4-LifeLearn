@@ -24,9 +24,7 @@ class Grade extends RelationshipModel
     {
         return $this->belongsTo(System::class);
     }
-<<<<<<< HEAD
     
-=======
 
     public function classes(): HasMany
     {
@@ -42,5 +40,4 @@ class Grade extends RelationshipModel
         $grade = self::updateOrCreate(['id' => $id], $data);
         return $grade;
     }
->>>>>>> 05418e97f31410212ebc641a3f7fafa6f0f9b149
 }
