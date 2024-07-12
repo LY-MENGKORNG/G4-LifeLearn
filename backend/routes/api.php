@@ -25,7 +25,6 @@ use App\Http\Controllers\API\MylearnController;
 use App\Http\Controllers\API\ScoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MailTeacherController;
 
 
 
@@ -67,7 +66,6 @@ Route::middleware('auth:sanctum')->group(function () {
     //subject
     Route::resource('/subject', SubjectController::class);
 
-    Route::post('/add-teacher', [MailTeacherController::class, 'addTeacher'])->name('add.teacher');
 
     // assignment
     Route::prefix('assigment')->group(function () {
@@ -157,7 +155,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/principle', NotificationsController::class);
     // Route::post('/principle/request',NotificationsController::class, 'create');
 
-    Route::post('/add-teacher', [MailTeacherController::class, 'addTeacher'])->name('add.teacher');
 });
 
 

@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MailTeacherController;
 use App\Http\Controllers\Admin\{
     DashboardController,
     ProfileController,
