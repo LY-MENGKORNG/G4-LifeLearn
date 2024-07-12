@@ -31,6 +31,7 @@ const navigations = [
     { id: 1, name: "Home", path: "/" },
     { id: 2, name: "My Learning", path: "/my-learn" },
     { id: 3, name: "Books", path: "/book" },
+    
 ];
 const handleSelect = (key: string, keyPath: string[]) => { }
 const handleclick = (key: string, keyPath: string[]) => { }
@@ -74,7 +75,10 @@ setCurrentRoute()
                     </el-button>
                 </el-badge>
                 <!-- =====profile==== -->
-                <user-profile :Src="profile == '' ? './src/assets/avatar/avatar-profile.jpg' : profile" />
+                 <router-link to="/user/profile">
+                    <user-profile :Src="profile == '' ? './src/assets/avatar/avatar-profile.jpg' : profile" />
+                 </router-link>
+                
             </div>
         </el-header>
         <el-menu :default-active="activeIndex" class="el-menu-demo flex justify-center h-[40px]" mode="horizontal"
