@@ -14,7 +14,10 @@ class UpdateProfileRequest extends DefaultRequest
     public function rules(): array
     {
         return [
-            //
+            "first_name" => "required|string",
+            "last_name" => "required|string",
+            "email" => "required|email",
+            "phone" => "required|string",
         ];
     }
 }
