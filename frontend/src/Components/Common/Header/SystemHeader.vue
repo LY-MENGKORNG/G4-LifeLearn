@@ -47,8 +47,9 @@
                 </div>
             </div>
         </div>
-        <SystemProfile src="" />
-      
+        <router-link to="/system/view/profile">
+        <SystemProfile src="https://images.squarespace-cdn.com/content/v1/57b1d656c534a5e00651e61a/1579087146658-QEYCK1RAJN8774XXFNED/rsz_ava002.jpg" />
+    </router-link>
     </el-header>
 
 </template>
@@ -58,6 +59,8 @@ import SystemProfile from '../Profile/SystemProfile.vue'
 import { Fold } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import { defineProps, ref } from 'vue'
+import { RouterLink } from 'vue-router';
+
 const props = defineProps({
     action: Function,
 })
