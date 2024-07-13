@@ -18,7 +18,7 @@
         </div>
         <div class="scrollable-content px-20">
           <router-link to="/system/material" class="flex flex-wrap">
-            <CardView v-for="index in 8" :key="index"/>
+            <CardView v-for="classroom in classroomList" :key="classroom.id"/>
           </router-link>
         </div>
         <FormclassCreate class="w-full" v-if="formVisible" @create="handleCreate" @cancel="closeForm" />
@@ -28,15 +28,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Plus } from '@element-plus/icons-vue';
 import SystemLayout from '@/Layouts/System/SystemLayout.vue';
 import CardView from '@/Components/Classroom/CardView.vue';
 import FormclassCreate from '@/Components/Classroom/FormclassCreate.vue';
-import { RouterLink } from 'vue-router';
+import { useClassroomStore } from '@/stores/classroom-store';
 
+const classroomStore = useClassroomStore();
+const classroomList = ref<any>([]);
 const showTooltip = ref(false);
 const formVisible = ref(false);
+
+onMounted(async () => {
+  await classroomStore.fetchClassrooms();
+  console.log('Classroom data:', classroomStore.classrooms); // Debugging log
+  classroomList.value = classroomStore.classrooms.map(classroom => ({
+    ...classroom,
+    grades: [] // Initialize grades array for each student
+  }));
+  console.log('Processed classroom list:', classroomList.value); // Debugging log
+});
 
 function showForm() {
   formVisible.value = true;

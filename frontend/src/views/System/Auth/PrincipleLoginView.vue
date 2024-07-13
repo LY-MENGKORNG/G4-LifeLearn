@@ -5,7 +5,7 @@
         <el-card class="flex-1 p-10">
           <img src="https://i.pinimg.com/564x/0d/e8/df/0de8df47267be83d61a44c1942bba889.jpg" class="w-full justify-center mx-auto" alt="Teacher image" />
         </el-card>
-          <!-- <//form -->
+       
         <el-form class="flex-1 p-10 text-start">
           <h2 class="text-2xl font-bold mb-6">LognIn</h2>
           <p>Don't have an account? <router-link to="/register">Create now</router-link></p>

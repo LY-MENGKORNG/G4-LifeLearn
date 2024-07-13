@@ -23,12 +23,12 @@
         <div v-if="showCodeBlock" class="fixed inset-0 flex items-center  mt-10 ml-230">
             <div class="flex flex-col h-full">
                 <div class="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div class="w-2 bg-teal-600"></div>
+                    <div class="w-2 bg-teal-900"></div>
                     <div class="flex items-center px-2 py-3">
                         <img class="w-12 h-12 object-cover rounded-full"
                             src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60">
                         <div class="mx-3">
-                            <h2 class="text-xl font-semibold text-black-800">Hello John</h2>
+                            <h3 class="text-xl font-semibold text-black-800">Hello John</h3>
                             <p class="text-gray-600">Please join class with me</p>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         </svg>
                     </button>
                     <button @click="toggleCodeBlock"
-                        class=" h-10 mt-4 mr-2 p-2 bg-teal-200 rounded-md hover:bg-teal-300">
+                        class=" h-10 mt-4 mr-2 p-1 bg-blue-200 rounded-md hover:bg-teal-400">
                         Cancel
                     </button>
                 </div>

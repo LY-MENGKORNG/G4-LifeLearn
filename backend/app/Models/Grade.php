@@ -35,8 +35,8 @@ class Grade extends RelationshipModel
     }
     public static function store($request, $id = null)
     {
-        $data = $request->only('grade_number','system_id','status');
-        $document = self::updateOrCreate(['id' => $id], $data);
-        return $document;
+        $data = $request->only('grade_number','system_id');
+        $grade = self::updateOrCreate(['id' => $id], $data);
+        return $grade;
     }
 }

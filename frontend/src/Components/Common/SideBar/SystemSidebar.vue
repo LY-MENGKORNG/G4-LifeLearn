@@ -39,7 +39,7 @@ const setRoute = (path: string) => {
 }
 
 const navigations = [
-	{ id: 1, name: 'Grade', path: '/system/grade', icon: Document },
+	{ id: 1, name: 'Grade', path: '/system/grade', icon:Document },
 	{ id: 2, name: 'Teacher', path: '/system/teacher', icon: Avatar },
 	{ id: 3, name: 'Student', path: '/system/student', icon: UserFilled },
 	{ id: 4, name: 'Schedule', path: '/system/schedule', icon: Calendar },
