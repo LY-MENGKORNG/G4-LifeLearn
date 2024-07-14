@@ -3,7 +3,7 @@ namespace App\Traits;
 
 trait UploadFile{
 
-    public static function saveFile($file, $path = 'documents')
+    function saveFile($file, $path = 'documents')
     {
         $fileName = time().'_'.$file->getClientOriginalName();
 

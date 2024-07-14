@@ -58,6 +58,7 @@ class NotificationController extends Controller
             $notification = false;
         }
 
+
         return view('notification.show', ['notification' => $notification]);
     }
 

@@ -1,169 +1,97 @@
+<template>
+	<div class="h-screen flex flex-col justify-center items-center bg-white">
+		<div class="py-6">
+			<h2 class="font-medium text-xl">Sending your document reference to admin</h2>
+		</div>
+
+		<form @submit.prevent="submitForm" class="w-96">
+			<div class="flex flex-col">
+				<label for="school_name">School Name:</label>
+				<el-input
+					name="school_name"
+					type="text"
+					v-model="form.school_name"
+					id="school_name"
+					required
+				/>
+			</div>
+			<div class="flex flex-col mt-3">
+				<label for="school_address">School Address:</label>
+				<el-input
+					name="school_address"
+					type="text"
+					v-model="form.school_address"
+					id="school_address"
+					required
+				/>
+			</div>
+			<div class="flex flex-col mt-3">
+				<label for="description">Description:</label>
+				<el-input
+					name="description"
+					type="textarea"
+					v-model="form.description"
+					id="description"
+					required
+				/>
+			</div>
+			<div class="flex flex-col mt-3">
+				<label for="reference">Reference:</label>
+				<input
+					type="file"
+					name="reference[]"
+					id="reference"
+					multiple
+					@change="handleFileUpload"
+					class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4 dark:file:bg-neutral-700 dark:file:text-neutral-400"
+				/>
+			</div>
+			<button type="submit" class="mt-3 w-full bg-green-500 text-white rounded-md py-2">
+				Submit
+			</button>
+		</form>
+	</div>
+</template>
+  
 <script setup lang="ts">
-import { useField, useForm } from 'vee-validate'
-import * as yup from 'yup'
-import { ref } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
-import type { UploadProps, UploadUserFile } from 'element-plus'
-import { UploadFilled } from '@element-plus/icons-vue'
+import { ref, onMounted } from 'vue'
 import router from '@/router'
-import { useSystemStore } from '@/stores/system-store'
-
 import { ElNotification } from 'element-plus'
-
+import { useSystemStore } from '@/stores/system-store'
 const systemStore = useSystemStore()
 
-const responseMessage = ref<string>('')
+const form = ref({
+	school_name: '',
+	school_address: '',
+	description: '',
+	reference: []
+})
+ 
+const handleFileUpload = (event: any) => {
+	form.value.reference.push(Array.from(event.target.files))
+}
 
-const openSuccessRequest = () => {
-	ElNotification.success({
-		title: 'Success',
-		message: responseMessage.value,
-		offset: 5
+const submitForm = async () => {
+	const data = new FormData()
+	data.append('name', form.value.name)
+	form.value.reference.forEach((file, index) => {
+		data.append(`reference`, file)
+	})
+
+	try {
+		const response = await systemStore.sendRequest(form.value)
+		successMessage(response)
+		setTimeout(() => {
+			router.router.push('/')
+		}, 3000)
+	} catch (e) {}
+}
+
+const successMessage = (response: any) => {
+	ElNotification({
+		title: response,
+		message: 'This is a success message',
+		type: 'success'
 	})
 }
-
-const fileList = ref<UploadUserFile[]>([])
-
-const uploadedFiles = ref<UploadUserFile[]>([])
-
-const handleRemove: UploadProps['onRemove'] = (file, uploadFiles) => { }
-
-const handlePreview: UploadProps['onPreview'] = (uploadFile) => { }
-
-const handleExceed: UploadProps['onExceed'] = (files, uploadFiles) => {
-	ElMessage.warning(
-		`The limit is 3, you selected ${files.length} files this time, add up to ${
-			files.length + uploadFiles.length
-		} totally`
-	)
-}
-
-const beforeRemove: UploadProps['beforeRemove'] = (uploadFile, uploadFiles) => {
-	return ElMessageBox.confirm(`Cancel the transfer of ${uploadFile.name} ?`).then(
-		() => true,
-		() => false
-	)
-}
-
-const handleUpload = ({ file, onSuccess }) => {
-	uploadedFiles.value.push(file)
-	console.log('Uploaded Files:', uploadedFiles.value[0])
-	onSuccess(null, file)
-}
-
-const formSchema = yup.object({
-	school_name: yup.string().required().label('school_name'),
-	school_address: yup.string().required().label('school_address'),
-	description: yup.string().label('description')
-})
-
-const { handleSubmit, isSubmitting } = useForm({
-	initialValues: {
-		school_name: '',
-		school_address: '',
-		description: ''
-	},
-	validationSchema: formSchema
-})
-
-const onSubmit = handleSubmit(async (values) => {
-	console.log(fileList.value)
-	const request = values
-	request.reference = uploadedFiles.value;
-	console.log(request.reference[0]);
-	await systemStore.sendRequest(request);
-	responseMessage.value = systemStore.message;
-	
-	openSuccessRequest();
-
-	// setTimeout(() => {
-	// 	router.router.push('/');
-	// }, 3000)
-})
-
-const { value: school_name, errorMessage: schoolNameError } = useField('school_name')
-const { value: school_address, errorMessage: schoolAddressError } = useField('school_address')
-const { value: description, errorMessage: descriptionError } = useField('description')
-
 </script>
-
-
-<template>
-	<input type="file"  @change="test">
-	<el-container class="flex flex-col items-center bg-white h-screen">
-		<p class="text-green-500 font-medium text-xl">{{ responseMessage }}</p>
-		<div class="my-auto">
-			<h2 class="mb-5 font-bold text-2xl text-teal-400 text-start">Request for Payment</h2>
-			<el-form @submit.prevent="() => { console.log('Form submitted'); onSubmit(); }">
-				<div class="flex gap-3 w-full my-2">
-					<el-form-item>
-						<label for="school_name">School Name</label>
-						<el-input
-							:error="schoolNameError"
-							id="school_name"
-							type="text"
-							class="w-full"
-							placeholder="Please enter school name"
-							v-model="school_name"
-						/>
-					</el-form-item>
-					<el-form-item>
-						<label for="school_address">School Address</label>
-						<el-input
-							:error="schoolAddressError"
-							id="school_address"
-							type="text"
-							class="w-full"
-							placeholder="Please enter school address"
-							v-model="school_address"
-						/>
-					</el-form-item>
-				</div>
-				<div class="flex">
-					<label for="description">Description</label>
-					<el-input
-						id="description"
-						:error="descriptionError"
-						v-model="description"
-						placeholder="Your description"
-						type="textarea"
-					/>
-				</div>
-				<div>
-					<span>Your references</span>
-					<el-upload
-						id="references"
-						v-model:file-list="fileList"
-						class="upload-demo my-2 border border-dashed p-3 rounded-md"
-						multiple
-						:on-preview="handlePreview"
-						:on-remove="handleRemove"
-						:before-remove="beforeRemove"
-						:limit="3"
-						:on-exceed="handleExceed"
-						:http-request="handleUpload"
-						accept=".pdf"
-						list-type="picture"
-					>
-						<el-icon class="el-icon--upload"><upload-filled /></el-icon>
-						<div class="el-upload__text">
-							Drop file your references here or <em class="text-blue-600">click to upload</em>
-						</div>
-						<template #tip>
-							<div class="el-upload__tip">pdf files</div>
-						</template>
-					</el-upload>
-				</div>
-
-				<el-button
-					:disabled="isSubmitting"
-					native-type="submit"
-					class="w-full mt-3 bg-teal-500 hover:bg-teal-500 active:bg-teal-600 text-white"
-					>Send</el-button
-				>
-				<router-link to="/" class="text-center">Back to home</router-link>
-			</el-form>
-		</div>
-	</el-container>
-</template>
-

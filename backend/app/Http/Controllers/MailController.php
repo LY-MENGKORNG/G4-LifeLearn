@@ -9,54 +9,38 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
-    public function sendMail(Request $request)
+    public function validateMail(Request $request)
     {
-
-        $request->validate([
+        return $request->validate([
             'email' => 'required|string|email|exists:frontusers,email',
             'subject' => 'required|string',
             'message' => 'required|string',
         ]);
-
-        $page_send = $request->status == "true" ? 'front.auth.mail-approve' : 'front.auth.mail-reject';
-
-        if ($this->isOnline()) {
-            $mail_data = [
-                'from' => $request->user()->email,
-                'recipient' => $request->email,
-                'subject' => $request->subject,
-                'message' => $request->message,
-            ];
-
-            Mail::send("front.auth.mail-approve", $mail_data, function ($message) use ($mail_data) {
-                $message->from($mail_data['from'])
-                    ->to($mail_data['recipient'])
-                    ->subject($mail_data['subject']);
-            });
-
-            if ($page_send == "front.auth-mail-approve") {
-
-                $recipient = Frontuser::where('email', $request->email)->firstOrFail();
-
-                $this->addPermission($recipient);
-
-                Notificaton::where('user_id', $recipient->id)->update(['status' => 1]);
-            }
-            $recipient = Frontuser::where('email', $request->email)->firstOrFail();
-            Notificaton::where('user_id', $recipient->id)->update(['status' => 1]);
-
-            return redirect()->back()->with('Success', 'Email sent successfully!');
-        }
-        return redirect()->back()->withInput()->with('error', 'Please check your internet connection!');
     }
-
+    
     public function isOnline($site = 'https://www.google.com')
     {
         return @fopen($site, 'r');
     }
 
-    public function addPermission(Frontuser $recipient)
+    public function send(Request $request, $content) 
     {
-        $recipient->givePermissionTo('System buy');
+        $mail_data = [
+            'from' => $request->user()->email,
+            'recipient' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ];
+
+        Mail::send($content, $mail_data, function ($message) use ($mail_data) {
+            $message->from($mail_data['from'])
+                ->to($mail_data['recipient'])
+                ->subject($mail_data['subject']);
+        });
+    }
+
+    public function removeNotifications(string $user_id)
+    {
+        Notificaton::where('user_id', $user_id)->first()->delete();
     }
 }

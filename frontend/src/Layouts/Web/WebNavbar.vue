@@ -7,18 +7,10 @@ import { useAuthStore } from '@/stores/auth-store'
 import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
 import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
 import BaseButton from '@/Components/Base/BaseButton.vue'
-
-const store = useAuthStore()
-let profile = ref('')
-
-const fetchUserProfile = async () => {
-	profile.value = store.user.data.profile
-}
-onMounted(() => {
-	fetchUserProfile() 
-})
-
-
+  
+defineProps<{
+	src: string,
+}>()
 </script>
 
 
@@ -62,8 +54,8 @@ onMounted(() => {
 					</el-button>
 				</el-badge>
 				<!-- =====profile==== -->
-				<user-profile :Src="profile == '' ? './src/assets/avatar/avatar-profile.jpg' : profile" />
+				<user-profile :Src="src"  />
 			</div>
-		</el-header> 
+		</el-header>
 	</el-container>
 </template>

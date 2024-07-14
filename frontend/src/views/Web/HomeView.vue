@@ -3,8 +3,15 @@ import Carousel from '@/Components/Carousel.vue'
 import bookHeader from '@/assets/header-book.jpg'
 import teachingHeader from '@/assets/header-teaching.jpg'
 import educationHeader from '@/assets/header-education.jpg'
-import BaseCard from '@/Components/Base/BaseCard.vue'
+import ContentCard from '@/Components/Common/Card/ContentCard.vue'
+import CourseCard from '@/Components/Common/Card/CourseCard.vue'
+
 import { Finished, TrendCharts, Clock } from '@element-plus/icons-vue'
+import { onMounted, ref } from 'vue'
+
+import { useCourseStore } from '@/stores/course-store'
+const courseStore = useCourseStore()
+const courseList = ref<any>([])
 
 const carousels = [
 	{ id: 1, name: 'Learning', image: educationHeader },
@@ -31,11 +38,13 @@ const contentList = [
 		icon: TrendCharts,
 		top: {
 			title: 'Earn a valuable credential',
-			description: 'Apply your new skills to real-world projects using the latest industry tools and techniques'
+			description:
+				'Apply your new skills to real-world projects using the latest industry tools and techniques'
 		},
 		bottom: {
 			title: '4.7 / 5',
-			description: 'average rating given by 200,000+ global learners enrolled in an entry-level Professional Certificate²'
+			description:
+				'average rating given by 200,000+ global learners enrolled in an entry-level Professional Certificate²'
 		}
 	},
 	{
@@ -51,16 +60,24 @@ const contentList = [
 		}
 	}
 ]
+
+onMounted(async () => {
+	await courseStore.fetchCourses()
+	courseList.value = courseStore.courses
+})
 </script>
 
 <template>
 	<WebLayout>
 		<Carousel :carousels="carousels" />
 		<div class="flex flex-col w-full py-5">
-			<h1 class="text-2xl text-center font-medium ">Take the first step toward your new career</h1>
-			<span class="text-lg text-center text-slate-400">Get professional-level training and earn a credential recognized by leading companies.</span>
-			<div class="flex p-5 gap-3 mx-auto">
-				<base-card
+			<h1 class="text-2xl text-center font-medium">Take the first step toward your new career</h1>
+			<span class="text-lg text-center text-slate-400"
+				>Get professional-level training and earn a credential recognized by leading
+				companies.</span
+			>
+			<div class="xl:grid lg:grid lg:grid-cols-3 sm:grid-cols-2 gap-3  mx-auto my-3">
+				<content-card
 					v-for="content in contentList"
 					:icon="content.icon"
 					:top="content.top"
@@ -69,6 +86,21 @@ const contentList = [
 				/>
 			</div>
 		</div>
+
+		<div class="flex flex-col w-full">
+			<h1 class="text-2xl text-center font-medium">Find a courses that works for you</h1>
+			<span class="text-lg text-center text-slate-400"
+				>Whatever your background or interests are, Professional Certificates have you covered</span
+			>
+			<div class="flex p-5 gap-3 mx-auto">
+				<course-card
+					v-for="course in courseList"
+					:course="course"
+					:key="course.id"
+				/>
+			</div>
+		</div>
+
 		<div class="container">
 			<div class="flex gap-10 p-10 mt-5">
 				<div class="flex-none relative">

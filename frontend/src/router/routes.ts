@@ -139,6 +139,7 @@ const routes = [
         path: '/request-payment',
         name: 'request-payment',
         component: () => import('@/views/Web/RequestPayment.vue'),
+        meta: principleMeta
     },
     {
         path: '/systems/payment',

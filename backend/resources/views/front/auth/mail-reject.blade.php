@@ -49,12 +49,8 @@
 <body>
   <div class="container">
     <h1>LifeLearn App</h1>
+    <p>Hi, {{$email}}</p>
     <p>Your application have been rejected!😔</p>
-    <div class="footer">
-        <a href="http://localhost:5173/">
-            <button>Go to site</button>
-        </a>
-    </div>
   </div>
 </body>
 </html>

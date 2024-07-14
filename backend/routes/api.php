@@ -61,6 +61,9 @@ Route::post('/system/login', [FrontuserController::class, 'login']);
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']) // forgot password reset
                 ->middleware('guest:front')
                 ->name('password.email');
+Route::get('/course/list', [CourseController::class, 'index'])->name('course.list');
+
+
 
 Route::middleware('auth:sanctum')->group(function () {
 

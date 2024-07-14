@@ -11,18 +11,18 @@ const router = createRouter({
 
 
 router.beforeEach(async (to: any, from: any, next: any) => {
-    page.value = to.path.includes('/system') ? '/system/login' : to.path
+    page.value = to.path.includes('/system') || to.path.includes('/request-payment') ? '/system/login' : to.path
     const publicPages = [page.value]
     const authRequired = !publicPages.includes(to.path)
     const store = useAuthStore()
 
     try {
         await store.fetchUser();
-
+        store.user.isAuthenticated = true;
     } catch (error) {
         console.warn('You are not login or register yet')
     }
-    if (to.meta.requireAuth && store.user.isAuthenticated) {
+    if (to.meta.requireAuth && !store.user.isAuthenticated) {
         next(page.value)
     } else {
         next()

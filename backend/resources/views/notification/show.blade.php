@@ -67,20 +67,19 @@
                     </div>
                     <div class="w-full overflow-hidden mt-5 w-full">
                         <h3 class="font-medium text-lg mb-3">Here is my references</h3>
-                        <div class="grid grid-cols-3">
+                        <div class="grid grid-cols-3 gap-3">    
                             @foreach ($notification->document as $document)
                                 <a href="http://localhost:8000/documents/{{ $document->name }}"
                                     class="flex w-[120px] flex-col rounded-md transition-all hover:bg-gray-50 h-[100px] text-center p-3 bg-gray-100"
                                     target="_blank">
-                                    <img class="object-fit" src="{{ asset('images/pdf.png') }}"
-                                        type="application/pdf"></img>
+                                    <img class="object-fit" src="{{ asset('images/pdf.png') }}" ></img>
                                     <span class="text-gray-500 truncate ">{{ $document->name }}</span>
                                 </a>
                             @endforeach
                         </div>
                     </div>
                     <div class="flex gap-5 mt-5 justify-between">
-                        <form action="{{ route('admin.send-mail') }}" class="flex-1 flex"  method="POST">
+                        <form action="{{ route('admin.mail-reject') }}" class="flex-1 flex"  method="POST">
                             @csrf
                             <input type="hidden" name="email" value="{{ $notification->sender->email }}">
                             <input type="hidden" name="subject" value="Documetation reject request">
@@ -90,12 +89,11 @@
                                 Reject
                             </x-button>
                         </form>
-                        <form action="{{ route('admin.send-mail') }}" class="flex-1 flex" method="POST">
+                        <form action="{{ route('admin.mail-approve') }}" class="flex-1 flex" method="POST">
                             @csrf
                             <input type="hidden" name="email" value="{{ $notification->sender->email }}">
                             <input type="hidden" name="subject" value="Documetation approving request">
                             <input type="hidden" name="message" value="Your documents reference have been approving!">
-                            <input type="hidden" name="status" value="true">
                             <x-button class="flex-1 bg-blue-400">
                                 Approve
                             </x-button>
