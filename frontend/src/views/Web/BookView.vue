@@ -27,12 +27,6 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-    <div class=" bg-gray-100 rounded-2xl pl-12 ">
-      <h3 class=" text-teal-400 pt-2">All Books</h3>
-      <div class="book flex flex-wrap g-5 gap-x-12 gap-y-10">
-        <BookCard v-for="book in booklist" :title="book.title" author="sdffa" />
-=======
 
     <div class="bg-gray-100 rounded-2xl pl-12">
       <h3 class="text-teal-400 pt-2">All Books</h3>
@@ -51,28 +45,12 @@
           >
           <BookCard :title="book.title" :author="book.author" :price="book.price" />
         </div>
->>>>>>> 05418e97f31410212ebc641a3f7fafa6f0f9b149
       </div>
     </div>
   </WebLayout>
 </template>
 
 <script setup lang="ts">
-<<<<<<< HEAD
-import WebLayout from "@/Layouts/Web/WebLayout.vue";
-import BookCard from "@/Components/Common/Card/BookCard.vue"
-import axiosInstance from '@/plugins/axios';
-import { ref, onMounted, watch, onUpdated } from 'vue';
-import { useBookStore } from '@/stores/book-store'
-const store = useBookStore();
-
-const booklist = ref<any>([]);
-
-onMounted(() => {
-  store.fetchBooks();
-})
-
-=======
 import BookCard from "@/Components/Common/Card/BookCard.vue";
 import WebLayout from '@/Layouts/Web/WebLayout.vue';
 import axiosInstance from '@/plugins/axios';
@@ -95,6 +73,5 @@ onMounted(async () => {
     console.error('Error fetching books:', error);
   }
 });
->>>>>>> 05418e97f31410212ebc641a3f7fafa6f0f9b149
 </script>
 

@@ -27,16 +27,10 @@ const routes = [
         meta: principleMeta
     },
     {
-<<<<<<< HEAD
-        path: '/system/newTeacher',
-        name: 'system-new-teacher',
-        component: () => import('@/views/System/Teacher/NewTeacher.vue')
-=======
         path: '/system/schedule',
         name: 'system-schedule',
         component: () => import('@/views/System/ScheduleView.vue'),
         meta: principleMeta
->>>>>>> 05418e97f31410212ebc641a3f7fafa6f0f9b149
     },
     {
         path: '/system/teacher',
