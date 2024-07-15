@@ -35,7 +35,7 @@ class MailController extends Controller
                     'message' => 'Mail sent successfully!'
                 ],200);
             }
-            if ($mail_data['subject'] == "Application inviting student for join in classroom") {
+            if ($mail_data['subject'] == "Application inviting to join in classroom") {
                 Mail::send('front.auth.teacher-mail', $mail_data, function ($message) use ($mail_data) {
                     $message->from($mail_data['from'])
                         ->to($mail_data['recipient'])

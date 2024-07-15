@@ -159,6 +159,11 @@ const routes = [
         component: () => import('@/views/System/Teacher/CreateClassroom.vue')
     },
     {
+        path: '/teacher/createlession',
+        name: 'teacher-lession',
+        component: () => import('@/views/System/Teacher/CreateLession.vue')
+    },
+    {
         path: '/system/payment',
         name: 'system-payment',
         component: () => import('@/views/Web/Payments/PrinciplePayment.vue')
