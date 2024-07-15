@@ -211,6 +211,16 @@ const routes = [
         name: 'system-submitform',
         component: () => import('@/views/System/SubmitformView.vue')
     },
+    {
+        path: '/system/view/profile',
+        name: 'system-view-profile',
+        component: () => import('@/views/System/Profile/ViewProfile.vue')
+    },
+    {
+        path: '/system/edit/profile',
+        name: 'system-edit-profile',
+        component: () => import('@/views/System/Profile/EditProfile.vue')
+    },
 ]
 
 export default routes;

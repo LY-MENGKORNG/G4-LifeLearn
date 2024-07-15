@@ -34,7 +34,11 @@ use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\API\StudentController;
+<<<<<<< Updated upstream
 use App\Http\Controllers\Front\Auth\InvitationMail;
+=======
+use App\Http\Controllers\API\UserController as APIUserController;
+>>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +79,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/principle/logout', [AuthController::class, 'principlelogout']);
     Route::resource('/course', CourseController::class);
+
+    Route::post('/edit-profile', [APIUserController::class, 'editProfile']);
 
     //subject
     Route::resource('/subject', SubjectController::class);
