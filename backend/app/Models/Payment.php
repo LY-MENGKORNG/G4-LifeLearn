@@ -41,8 +41,8 @@ class Payment extends Model
             'user_id' => $request->user()->id,
             'method' => $request->method,
             'amount' => $request->amount,
-            'course_id' => $request->course_id,
-            'system_id' => $request->system_id
+            'course_id' => $request->course_id ?? null,
+            'system_id' => $request->system_id ?? null
         ];
         $document = self::updateOrCreate(['id' => $id], $data);
         return $document;

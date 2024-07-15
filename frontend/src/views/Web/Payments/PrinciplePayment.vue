@@ -3,7 +3,7 @@
 		<div class="flex gap-3 max-w-4xl mx-auto bg-white overflow-hidden rounded-lg shadow-md">
 			<div class="flex items-center justify-center gap-3 flex-col bg-green-400">
 				<img class="w-64 h-72" src="../../../assets/payment-form.png" alt="" />
-				<h2 class="text-white font-medium text-xl">250% Per Month</h2>
+				<h2 class="text-white font-medium text-xl">250$ Per Month</h2>
 			</div>
 			<div class="flex flex-col p-6">
 				<h2 class="text-xl font-semibold mb-4">Payment Information</h2>
@@ -46,8 +46,12 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
+import { loadStripe } from '@stripe/stripe-js';
 
+const stripePromise = loadStripe('pk_live_51PcXI9AXVMlmze5ZMvtz97e8Pu4sZFM0HNGiaR1mEk9uclQJO0PpxHdLBGSjgkQ6UsEC2dF31VgOnW9H6E52C4va00wpvSA4fs');
+
+	
 // do not use same name with ref
 const form = reactive({
 	cardName: '',

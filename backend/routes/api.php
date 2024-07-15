@@ -174,4 +174,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/send-mail', [MailController::class, 'sendMail']);
 
     Route::post('/system-request', [ReferenceController::class, 'store'])->name('system.request');
+
+    Route::post('/checkout', [PaymentController::class, 'createPaymentIntent']);
 });
