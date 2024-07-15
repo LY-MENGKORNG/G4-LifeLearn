@@ -39,6 +39,12 @@ const routes = [
         meta: principleMeta
     },
     {
+        path: '/system/newteacher',
+        name: 'system-teacher',
+        component: () => import('@/views/System/Teacher/NewTeacher.vue'),
+        meta: principleMeta
+    },
+    {
         path: '/system/student',
         name: 'system-student',
         component: () => import('@/views/System/StudentView.vue'),
