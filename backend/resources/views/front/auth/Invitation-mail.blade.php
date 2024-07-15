@@ -1,75 +1,55 @@
-{{-- <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request for joining the system</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      color: #666;
+      font-size: 16px;
+    }
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #999;
+    }
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-        </div> --}}
-
-        <!-- Session Status -->
-        {{-- <x-auth-session-status class="mb-4" :status="session('status')" /> --}}
-
-        <!-- Validation Errors -->
-        {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf --}}
-
-            <!-- Email Address -->
-            {{-- <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout> --}}
-
-
-
-
-
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-        </div>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
-
-        <head>
-            <title>Student Added to Classroom</title>
-        </head>
-        <body>
-            <h1>Hello {{ $teacher->first_name }} {{ $teacher->last_name }},</h1>
-            <p>A new student has been added to your classroom:</p>
-            <p><strong>Student Email:</strong> {{ $student->email }}</p>
-            <p>Thank you!</p>
-        </body>
-    </x-auth-card>
-</x-guest-layout>
-
-
-
-
-
+    button {
+        padding: 12px 25px;
+        border-radius: 20px;
+        border: none;
+        color: white;
+        background: rgb(6, 167, 167);
+    }
+    a {
+        text-decoration: none;
+        color: #333;
+        cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+    <h1>Hello {{$recipient}}</h1>
+    <p>A new student has been added to your classroom:</p>
+    <p><strong>Student Email:</strong> {{$recipient}}</p>
+    <p>Thank you!</p>
+</body>
+</html>

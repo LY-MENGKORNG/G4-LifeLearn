@@ -32,6 +32,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
 use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\Front\Auth\InvitationMail;
 
@@ -77,6 +78,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //subject
     Route::resource('/subject', SubjectController::class);
+
+    // Lesson
+    Route::resource('/lesson', LessonController::class);
 
     // assignment
     Route::prefix('assigment')->group(function () {
@@ -162,6 +166,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //comments
     Route::resource('/comment', CommentController::class);
+    
     //score
     Route::resource('/score', ScoreController::class);
     Route::resource('/principle', NotificationsController::class);
@@ -174,19 +179,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/books', BookController::class);
 
     // Mail
-<<<<<<< HEAD
     Route::post('/send-mail', [MailController::class, 'sendMail']);
-=======
-    Route::post('/principle-invite', [MailController::class, 'sendMail']);
->>>>>>> 62bc3d8fcb3ba1ff1b746a47b37df429eaacb4fe
+
+    // Invite Mail
+    // Route::post('/send-mail-to-student', [MailController::class, 'sendMail']);
+
 
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> 62bc3d8fcb3ba1ff1b746a47b37df429eaacb4fe
 // student 
 Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
