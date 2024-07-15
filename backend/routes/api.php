@@ -32,7 +32,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
 use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\API\StudentController;
+use App\Http\Controllers\Front\Auth\InvitationMail;
+use App\Http\Controllers\API\UserController as APIUserController;
 
 
 
@@ -76,9 +79,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/principle/logout', [AuthController::class, 'principlelogout']);
     Route::resource('/course', CourseController::class);
 
+    Route::post('/edit-profile', [APIUserController::class, 'editProfile']);
+
     //subject
     Route::resource('/subject', SubjectController::class);
 
+    // Lesson
+    Route::resource('/lesson', LessonController::class);
 
     // assignment
     Route::prefix('assigment')->group(function () {
@@ -166,6 +173,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //comments
     Route::resource('/comment', CommentController::class);
+    
     //score
     Route::resource('/score', ScoreController::class);
     Route::resource('/principle', NotificationsController::class);
@@ -180,6 +188,10 @@ Route::middleware('auth:sanctum')->group(function () {
     // Mail
     Route::post('/principle-invite', [MailController::class, 'sendMail']);
     Route::post('/teacher-invite', [MailController::class, 'sendMail']);
+    Route::post('/send-mail', [MailController::class, 'sendMail']);
+
+    // Invite Mail
+    // Route::post('/send-mail-to-student', [MailController::class, 'sendMail']);
 
 
     // Route to handle the forgot password form submission

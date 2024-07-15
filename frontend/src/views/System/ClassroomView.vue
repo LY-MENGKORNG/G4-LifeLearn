@@ -1,7 +1,7 @@
 <template>
   <SystemLayout>
-    <div class="flex h-full w-full">
-      <div class="flex-1 h-full space-y-8">
+    <div class="flex items-center justify-center h-full w-full ">
+      <div class="h-full space-y-8">
         <div class="bg-gray-200 pr-10 py-2 border-b border-gray-300 flex justify-end items-center space-x-1">
           <button class="relative" @click="showForm">
             <el-icon class="mr-5 font-black" :size="26"
@@ -16,7 +16,7 @@
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT35Sk9mMEcBuooCRGNUylcYn-PR6IZhDHzvA&s"
             alt="Course Image" />
         </div>
-        <div class="scrollable-content px-34">
+        <div class="scrollable-content px-20">
           <router-link to="/system/material" class="flex flex-wrap">
             <CardView v-for="classroom in classroomList" :key="classroom.id"/>
           </router-link>
