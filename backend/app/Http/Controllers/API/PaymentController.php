@@ -16,68 +16,34 @@ class PaymentController extends Controller
 {
     public function getSession()
     {
-        $stripe = new \Stripe\StripeClient('sk_test_51PcXI9AXVMlmze5Z72hcOJfdH99oldMtVthsW74wVni7vR3W2qdzOkIqGX58KwPq266BXKiq4UMSmgsAceJMuXeq00oZqFHiM0');
-
-        $checkout = $stripe->checkout->sessions->create([
-            'success_url' => 'http://localhost:5173/system/login',
-            'cancel_url' => 'http://localhost:5173/systems/info',
-            'line_items' => [
-                [
-                    'price_data' => [
-                        'currency' => 'usd',
-                        'unit_amount' => 50,
-                        'product_data' => [
-                            'name' => 'LifeLean System',
-                        ]
-                    ],
-                    'quantity' => 1,
-                ],
-            ],
-            'mode' => 'payment',
-        ]);
+        $stripe = new \Stripe\StripeClient('sk_test_51Pd4bxGdke5T1wEHlabBSPoiwmf4ptQGsA6SDDBXneGkDVhVZ4OPokSXoo6gqkKW5cTVWeR56NqrXbwLckhhI27A00QidKfyIF');
         
         $sub = $stripe->checkout->sessions->create([
-            'success_url' => 'http://localhost:5173/system/login',
+            'success_url' => 'http://localhost:8000/api/create-payment-intent',
             'cancel_url' => 'http://localhost:5173/systems/info',
             'line_items' => [
                 [
-                    'price' => 'price_1PcjpKAXVMlmze5ZlreJdO3G',
+                    'price' => 'price_1Pd4gJGdke5T1wEHXljs0PjX',
                     'quantity' => 1,
                 ],
             ],
             'mode' => 'subscription',
         ]); 
 
-        return ['oneTime' => $checkout, 'sub' => $sub];
+        return ['sub' => $sub];
+    }
+    
+    public function createPaymentIntent($request)
+    {
+        dd($request);
     }
 
     public function getWebhook()
     {
-        \Log::info('webhook');
+        // \Log::info('webhook');
         
         return response()->json([
             'message' => 'Successfully!' 
         ], 200);
-    }
-
-
-    public function createPaymentIntent(Request $request)
-    {
-        $stripeSecret = config('services.stripe.mode') === 'live'
-            ? config('services.stripe.live_secret')
-            : config('services.stripe.test_secret');
-
-        Stripe::setApiKey($stripeSecret);
-
-        $amount = $request->amount;
-
-        $paymentIntent = PaymentIntent::create([
-            'amount' => $amount * 100, // Amount in cents
-            'currency' => 'usd',
-        ]);
-
-        return response()->json([
-            'clientSecret' => $paymentIntent->client_secret,
-        ]);
     }
 }
