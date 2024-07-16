@@ -154,7 +154,7 @@ const routes = [
     {
         path: '/systems/info',
         name: 'systems-info',
-        component: () => import('@/views/Web/Info/SystemInfo.vue')
+        component: () => import('@/views/Web//SystemInfoView.vue')
     },
     {
         path: '/system/class',

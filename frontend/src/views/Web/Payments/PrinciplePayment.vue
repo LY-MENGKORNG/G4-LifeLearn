@@ -7,8 +7,8 @@
 			</div>
 			<div class="flex flex-col p-6">
 				<h2 class="text-xl font-semibold mb-4">Payment Information</h2>
-				<form>
-					<div class="mb-4">
+				<form @submit.prevent="submit">
+					<!-- <div class="mb-4">
 						<label for="card-name" class="block text-sm font-medium text-muted-foreground"
 							>Card Name</label
 						>
@@ -34,28 +34,64 @@
 						</div>
 						<div class="flex-1">
 							<label for="cvv" class="block text-sm font-medium text-muted-foreground">CVV</label>
-							<el-input type="text" />
+							<el-input v-model="form.cvv" type="text" />
 						</div>
-					</div>
-					<button class="w-full py-2 rounded-md bg-green-400 text-white hover:bg-green-500">
+					</div> -->
+					<!-- <el-input type="number" v-model="amount"></el-input> -->
+
+					<button
+						type="submit"
+						class="w-full py-2 rounded-md bg-green-400 text-white hover:bg-green-500"
+					>
 						Submit Payment
 					</button>
 				</form>
+				<form @submit.prevent="submitSub">
+					<button
+						type="submit"
+						class="w-full py-2 rounded-md bg-green-400 text-white hover:bg-green-500"
+					>
+						Submit SubPayment
+					</button>
+				</form>
+				<StripeCheckout ref="checkoutRef"  :pk="publishableKey" :sessionId="oneTimeId" />
+				<StripeCheckout ref="checkoutSubRef" :pk="publishableKey" :sessionId="sessionSubId" />
 			</div>
 		</div>
 	</div>
 </template>
-<script lang="ts" setup>
-import { reactive, ref } from 'vue'
-import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_live_51PcXI9AXVMlmze5ZMvtz97e8Pu4sZFM0HNGiaR1mEk9uclQJO0PpxHdLBGSjgkQ6UsEC2dF31VgOnW9H6E52C4va00wpvSA4fs');
+<script setup lang="ts">
+import { StripeCheckout } from '@vue-stripe/vue-stripe'
+import axiosInstance from '@/plugins/axios'
+import { onMounted, ref } from 'vue'
 
-	
-// do not use same name with ref
-const form = reactive({
-	cardName: '',
-	cardNumber: '',
-	expireDate: '', 
+const publishableKey =
+	'pk_test_51PcXI9AXVMlmze5ZTKVmhwsSmqAOu46V29H1Toy9zQPhbt5vrjypaOtwJ323GxgyWc5v02KlYRA0ksDEZvfTAf5a00c4K0H0Rq'
+const oneTimeId = ref<string>('')
+const sessionSubId = ref<string>('')
+const checkoutRef = ref()
+const checkoutSubRef = ref()
+
+onMounted(() => {
+	getSession()
 })
+const getSession = async () => {
+	try {
+		const response = await axiosInstance.get('/session')
+		oneTimeId.value = response.data.oneTime.id
+		sessionSubId.value = response.data.sub.id
+	} catch (error) {
+		/**empty */
+	}
+}
+const submit = () => {
+	// You will be redirected to Stripe's secure checkout page
+	// $ref.checkoutRef.redirectToCheckout()
+	checkoutRef.value.redirectToCheckout()
+}
+const submitSub = () => {
+	// You will be redirected to Stripe's secure checkout page
+	checkoutSubRef.value.redirectToCheckout()
+}
 </script>

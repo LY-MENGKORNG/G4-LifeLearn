@@ -20,3 +20,11 @@ export default interface RequestPayment {
     description: string;
     reference: any[];
 }
+
+
+export default interface Payment {
+    method: string;
+    amount: number;
+    course_id?: number;
+    system_id?: number;
+}

@@ -9,7 +9,7 @@ import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
 import BaseButton from '@/Components/Base/BaseButton.vue'
   
 defineProps<{
-	src: string,
+	src?: string,
 }>()
 </script>
 

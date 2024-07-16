@@ -31,19 +31,19 @@ const setCurrentRoute = () => {
 <template>
 	<el-menu
 		:default-active="activeIndex"
-		class="el-menu-demo flex justify-center h-[40px] sticky top-0 left-0 z-50 shadow-md shadow-slate-50/30 backdrop-blur-sm bg-white/30"
+		class="el-menu-demo flex justify-center h-[40px] sticky top-0 left-0 z-50 shadow-md shadow-slate-50/30 backdrop-blur-sm bg-white/80"
 		mode="horizontal"
 		@select="handleSelect"
 	>
 		<el-menu-item
-			class="flex items-center justify-center font-bold"
+			class="flex items-center justify-center  font-bold"
 			v-for="navigation in navigations"
 			:key="navigation.id"
 			@click="handleclick"
 			:index="navigation.id.toString()"
 		>
 			<router-link
-				class="no-underline flex flex-1 items-center text-slate-700 w-[100%] h-[100%]"
+				class="no-underline flex flex-1 items-center text-green-400 w-[100%] h-[100%]"
 				:to="navigation.path"
 			>
 				{{ navigation.name }}
@@ -54,11 +54,12 @@ const setCurrentRoute = () => {
 
 <style scoped>
 .el-menu--horizontal>.el-menu-item.is-active {
+	color: white;
 	background: rgba(136, 232, 232, 0.364);
 	border-bottom: 2px solid rgb(136, 232, 232);
 }
 .el-menu--horizontal > .el-menu-item:hover {
 	background: var(--vt-c-green-mute);
 	color: rgb(50, 50, 50);
-} 
+}  
 </style>

@@ -59,8 +59,8 @@ Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/login', [FrontuserController::class, 'login']);
 Route::post('/system/login', [FrontuserController::class, 'login']);
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']) // forgot password reset
-                ->middleware('guest:front')
-                ->name('password.email');
+    ->middleware('guest:front')
+    ->name('password.email');
 Route::get('/course/list', [CourseController::class, 'index'])->name('course.list');
 
 
@@ -116,13 +116,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/delete/{id}', [ReferencesController::class, 'destroy']);
     });
     //payments  
-    Route::prefix('/payment')->group(function () {
-        Route::get('/list', [PaymentController::class, 'index']);
-        Route::post('/create', [PaymentController::class, 'store']);
-        Route::get('/show/{id}', [PaymentController::class, 'show']);
-        Route::put('/update/{id}', [PaymentController::class, 'update']);
-        Route::delete('/delete/{id}', [PaymentController::class, 'destroy']);
-    });
+    // Route::prefix('/payment')->group(function () {
+    //     Route::get('/list', [PaymentController::class, 'index']);
+    //     Route::post('/create', [PaymentController::class, 'store']);
+    //     Route::get('/show/{id}', [PaymentController::class, 'show']);
+    //     Route::put('/update/{id}', [PaymentController::class, 'update']);
+    //     Route::delete('/delete/{id}', [PaymentController::class, 'destroy']);
+    // });
 
     //grade
     Route::resource('/grade', GradeController::class);
@@ -137,8 +137,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/notification/update/{id}', [NotificationController::class, 'update']);
     Route::delete('/notification/delete/{id}', [NotificationController::class, 'destroy']);
 
-    Route::resource('/favorites',FavoriteController::class);
-    Route::resource('/mylearn',MylearnController::class);
+    Route::resource('/favorites', FavoriteController::class);
+    Route::resource('/mylearn', MylearnController::class);
 
     // favorites
     Route::resource('/favorites', FavoriteController::class);
@@ -156,7 +156,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/submite/show/{id}', [SubmiteController::class, 'show']);
     Route::put('/submite/update/{id}', [SubmiteController::class, 'update']);
     Route::delete('/submite/delete/{id}', [SubmiteController::class, 'destroy']);
-    
+
     //comments
     Route::resource('/comment', CommentController::class);
     //score
@@ -175,5 +175,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/system-request', [ReferenceController::class, 'store'])->name('system.request');
 
-    Route::post('/checkout', [PaymentController::class, 'createPaymentIntent']);
+    Route::post('/create-payment-intent', [PaymentController::class, 'createPaymentIntent']);
+    Route::get('/session', [PaymentController::class, 'getSession']);
+
+    Route::post('/webhook', [PaymentController::class, 'getWebhook']);
 });

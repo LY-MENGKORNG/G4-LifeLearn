@@ -19,6 +19,7 @@
     "@heroicons/vue": "^1.0.6",
     "@material-tailwind/html": "^2.2.2",
     "@stripe/stripe-js": "^4.1.0",
+    "@vue-stripe/vue-stripe": "^4.5.0",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "element-plus": "^2.7.6",

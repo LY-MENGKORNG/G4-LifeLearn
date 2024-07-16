@@ -13,69 +13,71 @@ use Stripe\PaymentIntent;
 use Stripe\Stripe;
 
 class PaymentController extends Controller
-{  
-    public function checkout() 
+{
+    public function getSession()
     {
-        return ;
-    }
+        $stripe = new \Stripe\StripeClient('sk_test_51PcXI9AXVMlmze5Z72hcOJfdH99oldMtVthsW74wVni7vR3W2qdzOkIqGX58KwPq266BXKiq4UMSmgsAceJMuXeq00oZqFHiM0');
 
- 
-    public function test() 
-    {
-        \Stripe\Stripe::setApiKey(config('stripe.test.sk'));
-
-        $session = \Stripe\Checkout\Session::create([
-            'line_items'  => [
+        $checkout = $stripe->checkout->sessions->create([
+            'success_url' => 'http://localhost:5173/system/login',
+            'cancel_url' => 'http://localhost:5173/systems/info',
+            'line_items' => [
                 [
                     'price_data' => [
-                        'currency'     => 'gbp',
+                        'currency' => 'usd',
+                        'unit_amount' => 50,
                         'product_data' => [
-                            'name' => 'T-shirt',
-                        ],
-                        'unit_amount'  => 500,
+                            'name' => 'LifeLean System',
+                        ]
                     ],
-                    'quantity'   => 1,
+                    'quantity' => 1,
                 ],
             ],
-            'mode'        => 'payment',
-            'success_url' => route('success'),
-            'cancel_url'  => route('checkout'),
+            'mode' => 'payment',
         ]);
-
-        return response()->json ([
-            'message' => 'Success'
-        ], 200) ;
-    }
-
- 
-    public function live(): RedirectResponse
-    {
-        Stripe::setApiKey(config('stripe.live.sk'));
-
-        $session = Session::create([
-            'line_items'  => [
+        
+        $sub = $stripe->checkout->sessions->create([
+            'success_url' => 'http://localhost:5173/system/login',
+            'cancel_url' => 'http://localhost:5173/systems/info',
+            'line_items' => [
                 [
-                    'price_data' => [
-                        'currency'     => 'gbp',
-                        'product_data' => [
-                            'name' => 'T-shirt',
-                        ],
-                        'unit_amount'  => 500,
-                    ],
-                    'quantity'   => 1,
+                    'price' => 'price_1PcjpKAXVMlmze5ZlreJdO3G',
+                    'quantity' => 1,
                 ],
             ],
-            'mode'        => 'payment',
-            'success_url' => route('success'),
-            'cancel_url'  => route('checkout'),
-        ]);
+            'mode' => 'subscription',
+        ]); 
 
-        return redirect()->away($session->url);
+        return ['oneTime' => $checkout, 'sub' => $sub];
     }
 
- 
-    public function success() 
+    public function getWebhook()
     {
-         
+        \Log::info('webhook');
+        
+        return response()->json([
+            'message' => 'Successfully!' 
+        ], 200);
+    }
+
+
+    public function createPaymentIntent(Request $request)
+    {
+        $stripeSecret = config('services.stripe.mode') === 'live'
+            ? config('services.stripe.live_secret')
+            : config('services.stripe.test_secret');
+
+        Stripe::setApiKey($stripeSecret);
+
+        $amount = $request->amount;
+
+        $paymentIntent = PaymentIntent::create([
+            'amount' => $amount * 100, // Amount in cents
+            'currency' => 'usd',
+        ]);
+
+        return response()->json([
+            'clientSecret' => $paymentIntent->client_secret,
+        ]);
     }
 }
