@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import WebLayout from '@/Layouts/Web/WebLayout.vue'
 </script>
 
 <template>
-  <WebLayout>
+  <div>
     <div class="bg-video w-full h-96">
       <video playsinline loop muted autoplay class="w-full h-full object-cover">
         <source
@@ -229,5 +228,5 @@ import WebLayout from '@/Layouts/Web/WebLayout.vue'
         </div>
       </div>
     </div>
-  </WebLayout>
+  </div>
 </template>
