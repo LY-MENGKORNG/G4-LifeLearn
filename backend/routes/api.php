@@ -32,12 +32,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
 use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\API\StudentController;
-<<<<<<< Updated upstream
-use App\Http\Controllers\Front\Auth\InvitationMail;
-=======
 use App\Http\Controllers\API\UserController as APIUserController;
->>>>>>> Stashed changes
+
 
 /*
 |--------------------------------------------------------------------------
@@ -153,12 +151,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/favorites', FavoriteController::class);
 
     //Quize
-    Route::get('/quizze/list', [QuizzeController::class, 'index']);
-    Route::post('/quizze/create', [QuizzeController::class, 'store']);
-    Route::get('/quizze/show/{id}', [QuizzeController::class, 'show']);
-    Route::put('/quizze/update/{id}', [QuizzeController::class, 'update']);
-    Route::delete('/quizze/delete/{id}', [QuizzeController::class, 'destroy']);
-
+    // Route::resource('/quizze', QuizController::class);
+    Route::post('/quizze', [QuizController::class, 'store']);
     //submit
     Route::get('/submite/list', [SubmiteController::class, 'index']);
     Route::post('/submite/create', [SubmiteController::class, 'store']);
@@ -180,19 +174,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/books', BookController::class);
 
     // Mail
-<<<<<<< HEAD
     Route::post('/send-mail', [MailController::class, 'sendMail']);
-=======
     Route::post('/principle-invite', [MailController::class, 'sendMail']);
->>>>>>> 62bc3d8fcb3ba1ff1b746a47b37df429eaacb4fe
 
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> 62bc3d8fcb3ba1ff1b746a47b37df429eaacb4fe
 // student 
 Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
