@@ -12,7 +12,7 @@ class MailsettingSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run()   
     {
         Mailsetting::create([
             'mail_transport'            =>'smtp',

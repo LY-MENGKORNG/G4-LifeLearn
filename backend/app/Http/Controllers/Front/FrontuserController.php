@@ -86,27 +86,32 @@ class FrontuserController extends Controller
     public function getRegistrationsPerDay()
     {
         $registrations = DB::table('frontusers')
-            ->select(DB::raw('DAYOFWEEK(created_at) as day_of_week'), DB::raw('count(*) as count'))
-            ->groupBy('day_of_week')
+            ->select(DB::raw('MONTHOFYEAR(created_at) as moth_of_year'), DB::raw('count(*) as count'))
+            ->groupBy('moth_of_year')
             ->get();
 
         // Initialize an array with zero counts for each day of the week (1 = Sunday, 7 = Saturday)
-        $daysOfWeek = array_fill(1, 7, 0);
+        $daysOfWeek = array_fill(1, 12, 0);
 
         // Populate the array with actual data
         foreach ($registrations as $registration) {
-            $daysOfWeek[$registration->day_of_week] = $registration->count;
+            $daysOfWeek[$registration->moth_of_year] = $registration->count;
         }
 
         // Prepare data for the chart
         $dayNames = [
-            1 => 'Sun',
-            2 => 'Mon',
-            3 => 'Tues',
-            4 => 'Wed',
-            5 => 'Thurs',
-            6 => 'Fri',
-            7 => 'Sat',
+            1 => 'Jan',
+            2 => 'Feb',
+            3 => 'Mar',
+            4 => 'Apr',
+            5 => 'May',
+            6 => 'Jun',
+            7 => 'July',
+            8 => 'Aug',
+            9 => 'Seb',
+            10 => 'Oct',
+            11 => 'Nov',
+            12 => 'Dec',
         ];
 
         $labels = [];

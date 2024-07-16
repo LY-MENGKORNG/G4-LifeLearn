@@ -1,91 +1,143 @@
             
 <script setup lang="ts">
 import { Search } from '@element-plus/icons-vue'
-import router from '@/router'
-import axiosInstance from '@/plugins/axios'
 import { ref, onMounted } from 'vue'
-
+import { useAuthStore } from '@/stores/auth-store'
+import router from '@/router'
 import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
 import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
-import BaseButton from '@/Components/Base/BaseButton.vue';
+import BaseButton from '@/Components/Base/BaseButton.vue'
+import type { DropdownInstance } from 'element-plus'
 
-let profile = ref('');
-
-const fetchUserProfile = async () => {
-    try {
-        const { data } = await axiosInstance.get('/me')
-        profile.value = data.data.profile;
-    } catch (error) {
-        /**empty */
-    }
+const dropdown1 = ref<DropdownInstance>()
+function handleVisible2(visible: any) {
+	if (!dropdown1.value) return
+	if (visible) {
+		dropdown1.value.handleClose()
+	} else {
+		dropdown1.value.handleOpen()
+	}
 }
-onMounted(() => {
-    fetchUserProfile();
+function showClick() {
+	if (!dropdown1.value) return
+	dropdown1.value.handleOpen()
+}
+
+const authStore = useAuthStore()
+
+const profile = ref('')
+const currentRoute = router.router.currentRoute.value.fullPath
+let activeIndex = '1'
+const toggleMenu = ref(false)
+
+onMounted(async () => {
+	await authStore.fetchUser()
+	profile.value = authStore.user.data.profile
 })
 
-
-const currentRoute = router.router.currentRoute.value.fullPath;
-let activeIndex = '1'
-
 const navigations = [
-    { id: 1, name: "Home", path: "/" },
-    { id: 2, name: "My Learning", path: "/my-learn" },
-    { id: 3, name: "Books", path: "/book" },
-];
-const handleSelect = (key: string, keyPath: string[]) => { }
-const handleclick = (key: string, keyPath: string[]) => { }
+	{ id: 1, name: 'Home', path: '/' },
+	{ id: 2, name: 'My Learning', path: '/my-learn' },
+	{ id: 3, name: 'Books', path: '/book' }
+]
+const showMenu = () => {
+	toggleMenu.value = !toggleMenu.value
+}
+
+const handleSelect = (key: string, keyPath: string[]) => {}
+const handleclick = (key: string, keyPath: string[]) => {}
 
 const setCurrentRoute = () => {
-    navigations.filter(navigation => {
-        if (navigation.path == currentRoute) {
-            activeIndex = navigation.id.toString()
-        }
-    });
+	navigations.filter((navigation) => {
+		if (navigation.path == currentRoute) {
+			activeIndex = navigation.id.toString()
+		}
+	})
 }
 setCurrentRoute()
-
 </script>
 
 
 <template>
+	<el-container class="flex flex-col">
+		<el-header class="flex justify-between items-center border border-bottom-1">
+			<div>
+				<app-logo />
+			</div>
+			<div class="flex relative items-center">
+				<el-input size="large" placeholder="Search..." :suffix-icon="Search" />
+			</div>
+			<div class="flex gap-4 items-center">
+				<router-link to="/login">
+					<base-button
+						class="bg-teal-400 text-white hover:bg-teal-400 active:bg-teal-500"
+						text="Sign in"
+					/>
+				</router-link>
+				<el-badge :value="1" class="item" type="primary">
+					<el-button class="border-none h-[27px] w-[27px] rounded-circle">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="1.5em"
+							height="1.5em"
+							viewBox="0 0 1024 1024"
+						>
+							<path
+								fill="currentColor"
+								d="M512 64a64 64 0 0 1 64 64v64H448v-64a64 64 0 0 1 64-64"
+							/>
+							<path
+								fill="currentColor"
+								d="M256 768h512V448a256 256 0 1 0-512 0zm256-640a320 320 0 0 1 320 320v384H192V448a320 320 0 0 1 320-320"
+							/>
+							<path
+								fill="currentColor"
+								d="M96 768h832q32 0 32 32t-32 32H96q-32 0-32-32t32-32m352 128h128a64 64 0 0 1-128 0"
+							/>
+						</svg>
+					</el-button>
+				</el-badge>
+				<!-- =====profile==== -->
+				<!-- <router-link to="/user/profile"> -->
+				<button @click="showMenu">
+					<user-profile :Src="profile == '' ? './src/assets/avatar/avatar-profile.jpg' : profile" />
+					<el-dropdown ref="dropdown1" trigger="contextmenu" style="margin-right: 30px">
+						<span class="el-dropdown-link"> Dropdown List1 </span>
+						<template #dropdown>
+							<el-dropdown-menu>
+								<el-dropdown-item>Action 1</el-dropdown-item>
+								<el-dropdown-item>Action 2</el-dropdown-item>
+								<el-dropdown-item>Action 3</el-dropdown-item>
+								<el-dropdown-item disabled>Action 4</el-dropdown-item>
+								<el-dropdown-item divided>Action 5</el-dropdown-item>
+							</el-dropdown-menu>
+						</template>
+					</el-dropdown>
+				</button>
 
-    <el-container class="flex flex-col">
-
-        <el-header class="flex justify-between items-center border border-bottom-1">
-            <div>
-                <app-logo />
-            </div>
-            <div class="flex relative items-center">
-                <el-input size="large" placeholder="Search..." :suffix-icon="Search" />
-            </div>
-            <div class="flex gap-4 items-center">
-                <router-link to="/login">
-                    <base-button class="bg-teal-400 text-white hover:bg-teal-400 active:bg-teal-500" text="Sign in" />
-                </router-link>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="border-none h-[27px] w-[27px] rounded-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 1024 1024">
-                            <path fill="currentColor" d="M512 64a64 64 0 0 1 64 64v64H448v-64a64 64 0 0 1 64-64" />
-                            <path fill="currentColor"
-                                d="M256 768h512V448a256 256 0 1 0-512 0zm256-640a320 320 0 0 1 320 320v384H192V448a320 320 0 0 1 320-320" />
-                            <path fill="currentColor"
-                                d="M96 768h832q32 0 32 32t-32 32H96q-32 0-32-32t32-32m352 128h128a64 64 0 0 1-128 0" />
-                        </svg>
-                    </el-button>
-                </el-badge>
-                <!-- =====profile==== -->
-                <user-profile :Src="profile == '' ? './src/assets/avatar/avatar-profile.jpg' : profile" />
-            </div>
-        </el-header>
-        <el-menu :default-active="activeIndex" class="el-menu-demo flex justify-center h-[40px]" mode="horizontal"
-            @select="handleSelect">
-            <el-menu-item class="flex items-center justify-center" v-for="navigation in navigations"
-                :key="navigation.id" @click="handleclick" :index="navigation.id.toString()">
-                <router-link class="no-underline flex flex-1 items-center text-slate-700 w-[100%] h-[100%]"
-                    :to="navigation.path">
-                    {{ navigation.name }}
-                </router-link>
-            </el-menu-item>
-        </el-menu>
-    </el-container>
+				<!-- </router-link> -->
+			</div>
+		</el-header>
+		<el-menu
+			:default-active="activeIndex"
+			class="el-menu-demo flex justify-center h-[40px]"
+			mode="horizontal"
+			@select="handleSelect"
+		>
+			<el-menu-item
+				class="flex items-center justify-center"
+				v-for="navigation in navigations"
+				:key="navigation.id"
+				@click="handleclick"
+				:index="navigation.id.toString()"
+			>
+				<router-link
+					class="no-underline flex flex-1 items-center text-slate-700 w-[100%] h-[100%]"
+					:to="navigation.path"
+				>
+					{{ navigation.name }}
+				</router-link>
+			</el-menu-item>
+		</el-menu>
+	</el-container>
 </template>

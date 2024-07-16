@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'stripe' => [
+        'test_secret' => env('STRIPE_TEST_SECRET'),
+        'live_secret' => env('STRIPE_LIVE_SECRET'),
+        'mode' => env('STRIPE_MODE', 'test'),
+    ],
+
 ];

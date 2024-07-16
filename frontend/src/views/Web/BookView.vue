@@ -35,7 +35,7 @@
         <div 
           v-for="book in booklist" 
           :key="book.id"
-          class="book-card rounded-lg bg-white border text-center shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface mt-5 max-w-[18rem] max-h-[25rem] overflow-hidden hover:transform hover:-translate-y-5 transition duration-300 ease-in-out"
+          class="book-card rounded-lg bg-white border text-center shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface mt-5 max-w-[18rem] max-h-[25rem] overflow-hidden hover:transform hover:-translate-y-2 transition duration-300 ease-in-out"
         > 
           <img 
             @click="addToMyLearn(book)"
