@@ -95,7 +95,7 @@ const routes = [
     {
         path: '/',
         name: 'welcomepage',
-        component: () => import('@/views/Web/WelcomePageView.vue'),
+        component: () => import('@/views/Web/WelcomeView.vue'),
        
     },
     {
