@@ -364,7 +364,6 @@
 						</el-button>
 
 					</router-link>
-					<StripeCheckout v-if="oneTimeId" ref="checkoutRef" :pk="publishableKey" :sessionId="oneTimeId" />
 					<StripeCheckout v-if="sessionSubId" ref="checkoutSubRef" :pk="publishableKey" :sessionId="sessionSubId" />
 				</div>
 
@@ -387,22 +386,19 @@ store.user.permissions.find((per: any) => {
 })
 
 const publishableKey =
-	'pk_test_51PcXI9AXVMlmze5ZTKVmhwsSmqAOu46V29H1Toy9zQPhbt5vrjypaOtwJ323GxgyWc5v02KlYRA0ksDEZvfTAf5a00c4K0H0Rq'
-const oneTimeId = ref<string>('')
+	'pk_test_51Pd4bxGdke5T1wEHVhR0EOEZVGmsyxpVEX0o3AwvFG1Jc4MViaxUV4ep66QmNI55YPlBRGoTxv9FNn14BWPPhutd00J6DjE2On'
 const sessionSubId = ref<string>('')
-const checkoutRef = ref()
 const checkoutSubRef = ref()
 
 onMounted(async () => {
 	try {
 		const response = await axiosInstance.get('/session')
-		oneTimeId.value = response.data.oneTime.id
 		sessionSubId.value = response.data.sub.id;
 	} catch (error) {}
 })
 
 const handleSubmit = () => {
-	checkoutRef.value.redirectToCheckout()
+	checkoutSubRef.value.redirectToCheckout()
 }
 </script>
     
