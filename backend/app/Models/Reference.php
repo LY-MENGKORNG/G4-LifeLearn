@@ -2,28 +2,30 @@
 
 namespace App\Models;
 
+use App\Models\Notificaton;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Reference extends Model
+class Reference extends RelationshipModel
 {
     use HasFactory, SoftDeletes;
+
     protected $fillable = [
-        'name',
-        'user_id',	
-        'school_name',	
+        'user_id',
+        'school_name',
         'school_address',
     ];
 
-    public function user(): BelongsTo
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function __construct()
     {
-        return $this->belongsTo(User::class);
-    }
-    public function document(): BelongsTo
-    {
-        return $this->belongsTo(Document::class);
     }
 
     public static function list()
@@ -31,14 +33,45 @@ class Reference extends Model
         return self::all();
     }
 
-    public static function store($request, $id = null)
+    public function documents(): HasMany
     {
-        $data = [
-            'principle_id' => $request->principle_id,
-            'document_id' => $request->document_id,
-            'status' => $request->status,
+        return $this->hasMany(Document::class, 'reference_id', 'id');
+    }
+
+    public static function  saveFile($file, $path = 'documents')
+    {
+        $fileName = time() . '_' . $file->getClientOriginalName();
+
+        $file->move(public_path($path), $fileName);
+
+        // $image->storeAs($path,$imageName,'public');
+        return $fileName;   
+    }
+
+    public static function  store($request, $id = null)
+    {
+        $reference = [
+            'user_id' => $request->user()->id,
+            'school_name' => $request->school_name,
+            'school_address' => $request->school_address,
         ];
-        $document = self::updateOrCreate(['id' => $id], $data);
-        return $document;
+        $reference = self::updateOrCreate(['id' => $id], $reference);
+
+        foreach ($request->reference[0] as $file) {
+            if ($name = self::saveFile($file)) {
+                $document = [
+                    'name' => $name,
+                    'reference_id' => $reference->id
+                ];
+                Document::create($document);    
+            }
+        }
+
+        Notificaton::create([
+            'user_id' => $request->user()->id,
+            'description' => $request->description
+        ]);
+
+        return $reference;
     }
 }

@@ -49,6 +49,8 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone ?? null
         ]);
 
+        $user->assignRole('user');
+
         event(new Registered($user));
 
         Auth::guard('front')->login($user);

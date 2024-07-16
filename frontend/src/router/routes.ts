@@ -113,12 +113,6 @@ const routes = [
         component: () => import('@/views/Web/Books/AddBook.vue')
     },
     {
-        path: '/system',
-        name: 'system',
-        component: () => import('@/views/Web/SystemView.vue'),
-        props: true
-    },
-    {
         path: '/system/create',
         name: 'system-create',
         component: () => import('@/views/Web/Systems/CreateView.vue'),
@@ -158,8 +152,7 @@ const routes = [
         path: '/my-learn',
         name: 'my-learn',
         component: () => import('@/views/Web/MyLearnView.vue')
-    }
-    ,
+    },
     {
         path: '/teacher-logout',
         name: 'teacher-logout',
@@ -176,9 +169,15 @@ const routes = [
         component: () => import('@/views/System/Teacher/CreateLession.vue')
     },
     {
-        path: '/system/payment',
-        name: 'system-payment',
-        component: () => import('@/views/Web/Payments/PrinciplePayment.vue')
+        path: '/request-payment',
+        name: 'request-payment',
+        component: () => import('@/views/Web/RequestPayment.vue'),
+        meta: principleMeta
+    },
+    {
+        path: '/systems/payment',
+        name: 'systems-payment',
+        component: () => import('@/views/Web/Payments/PrinciplePayment.vue'),
     },
     {
         path: '/system/bookpayment',
@@ -186,9 +185,9 @@ const routes = [
         component: () => import('@/views/Web/Bookpayments/UserPaymentView.vue')
     },
     {
-        path: '/system/info',
-        name: 'system-info',
-        component: () => import('@/views/Web/Info/SystemInfo.vue')
+        path: '/systems/info',
+        name: 'systems-info',
+        component: () => import('@/views/Web//SystemInfoView.vue')
     },
     {
         path: '/system/class',
@@ -241,6 +240,11 @@ const routes = [
         path: '/system/edit/profile',
         name: 'system-edit-profile',
         component: () => import('@/views/System/Profile/EditProfile.vue')
+    },
+    {
+        path: '/system/create/quiz',
+        name: 'system-create-quiz',
+        component: () => import('@/views/System/Teacher/QuizCreate.vue')
     },
 ]
 

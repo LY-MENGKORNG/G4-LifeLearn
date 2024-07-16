@@ -29,6 +29,10 @@ class Classroom extends Model
     {
         return $this->belongsToMany(Frontuser::class);
     }
+    public function quiz()
+    {
+        return $this->belongsToMany(Quiz::class);
+    }
 
     public function lessons(): HasMany
     {

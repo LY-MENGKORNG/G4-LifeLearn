@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Email Subject</title>
+  <title>Accepted the request</title>
   <style>
     /* Add your CSS styles here */
     body {
@@ -52,7 +52,7 @@
     <p>Your application have been agreed!</p>
     <p>Welcome to our system🎉</p>
     <div class="footer">
-        <a href="http://localhost:8000/">
+        <a href="http://localhost:5173/system/login">
             <button>Go to site</button>
         </a>
     </div>

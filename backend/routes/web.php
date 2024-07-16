@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\{
     ProfileController,
     MailSettingController,
     PaymentController,
+    SendMailController,
 };
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Front\Auth\NewPasswordController;
@@ -72,7 +73,8 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')-
     Route::put('/mail-update/{mailsetting}', [MailSettingController::class, 'update'])->name('mail.update');
     Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
 
-    Route::post('/send-mail', [MailController::class, 'sendMail'])->name('send-mail');
+    Route::post('/approve-mail', [SendMailController::class, 'approvePrinciple'])->name('mail-approve');
+    Route::post('/reject-mail', [SendMailController::class, 'rejectPrinciple'])->name('mail-reject');
 });
 
 

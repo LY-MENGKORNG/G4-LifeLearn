@@ -6,97 +6,78 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Payment\PaymentRequest;
 use App\Http\Resources\Payment\PaymentResource;
 use App\Models\Payment;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Stripe\PaymentIntent;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function getSession()
     {
-        $payment = Payment::list();
-        $payment = PaymentResource::collection($payment);
+        $stripe = new \Stripe\StripeClient('sk_test_51PcXI9AXVMlmze5Z72hcOJfdH99oldMtVthsW74wVni7vR3W2qdzOkIqGX58KwPq266BXKiq4UMSmgsAceJMuXeq00oZqFHiM0');
+
+        $checkout = $stripe->checkout->sessions->create([
+            'success_url' => 'http://localhost:5173/system/login',
+            'cancel_url' => 'http://localhost:5173/systems/info',
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'unit_amount' => 50,
+                        'product_data' => [
+                            'name' => 'LifeLean System',
+                        ]
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'payment',
+        ]);
+        
+        $sub = $stripe->checkout->sessions->create([
+            'success_url' => 'http://localhost:5173/system/login',
+            'cancel_url' => 'http://localhost:5173/systems/info',
+            'line_items' => [
+                [
+                    'price' => 'price_1PcjpKAXVMlmze5ZlreJdO3G',
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'subscription',
+        ]); 
+
+        return ['oneTime' => $checkout, 'sub' => $sub];
+    }
+
+    public function getWebhook()
+    {
+        \Log::info('webhook');
+        
         return response()->json([
-            'success' => true,
-            'data' => $payment,
+            'message' => 'Successfully!' 
         ], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+    public function createPaymentIntent(Request $request)
     {
-        //Validate incoming request data
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'method' => 'required',
-            'amount' => 'required|numeric',
-            'course_id' => 'nullable|exists:courses,id',
-            'system_id' => 'required|exists:systems,id',
+        $stripeSecret = config('services.stripe.mode') === 'live'
+            ? config('services.stripe.live_secret')
+            : config('services.stripe.test_secret');
+
+        Stripe::setApiKey($stripeSecret);
+
+        $amount = $request->amount;
+
+        $paymentIntent = PaymentIntent::create([
+            'amount' => $amount * 100, // Amount in cents
+            'currency' => 'usd',
         ]);
-
-        $payment = Payment::store($request);
-
-        if (!$payment) {
-            return response()->json(['message' => 'Failed to store payment'], 500);
-        }
 
         return response()->json([
-            'success' => true,
-            'message' => 'Payment for user stored successfully',
-            'data' => $payment,
-        ], 200);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $payment = Payment::find($id);
-        if ($payment) {
-            return response()->json($payment);
-        }
-        return response()->json(['message' => 'Payment not found'], 404);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'method' => 'required',
-            'amount' => 'required|numeric',
-            'course_id' => 'nullable|exists:courses,id',
-            'system_id' => 'required|exists:systems,id',
+            'clientSecret' => $paymentIntent->client_secret,
         ]);
-
-        $payment = Payment::store($request, $id);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Updated successfully',
-            'data' => $payment
-        ]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $payment = Payment::find($id);
-        if ($payment) {
-            $payment->delete();
-            return response()->json([
-                'success' => true,
-                'message' => 'Payment deleted successfully'
-            ]);
-        }
-        return response()->json(['message' => 'Payment not found'], 404);
     }
 }

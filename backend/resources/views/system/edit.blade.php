@@ -1,6 +1,17 @@
 <x-app-layout>
-    <main class="flex-1 overflow-x-hidden  bg-gray-200">
-        <div class="  mx-auto p-6">
+    <main class="flex-1 overflow-x-hidden  bg-gray-200 p-4">
+        <h1>
+            <a class="text-lg hover:underline" href="{{ route('admin.dashboard') }}">
+                Home
+            </a>
+            /
+            <a class="text-lg hover:underline" href="{{ route('admin.systems.index') }}">
+                Systems
+            </a>
+                /
+            {{$system->id}}
+        </h1>
+        <div class="mx-auto mt-3">
             <form method="POST" action="{{ route('admin.systems.update', $system->id) }}" class="w-full flex flex-col">
                 @csrf
                 @method('put')
