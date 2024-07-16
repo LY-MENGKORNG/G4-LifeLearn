@@ -66,8 +66,7 @@ import { StripeCheckout } from '@vue-stripe/vue-stripe'
 import axiosInstance from '@/plugins/axios'
 import { onMounted, ref } from 'vue'
 
-const publishableKey =
-	'pk_test_51PcXI9AXVMlmze5ZTKVmhwsSmqAOu46V29H1Toy9zQPhbt5vrjypaOtwJ323GxgyWc5v02KlYRA0ksDEZvfTAf5a00c4K0H0Rq'
+const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
 const oneTimeId = ref<string>('')
 const sessionSubId = ref<string>('')
 const checkoutRef = ref()
@@ -81,6 +80,7 @@ const getSession = async () => {
 		const response = await axiosInstance.get('/session')
 		oneTimeId.value = response.data.oneTime.id
 		sessionSubId.value = response.data.sub.id
+		console.log(sessionSubId.value)
 	} catch (error) {
 		/**empty */
 	}
