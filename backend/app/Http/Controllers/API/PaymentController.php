@@ -16,7 +16,7 @@ class PaymentController extends Controller
 {
     public function getSession()
     {
-        $stripe = new \Stripe\StripeClient('sk_test_51PcXI9AXVMlmze5Z72hcOJfdH99oldMtVthsW74wVni7vR3W2qdzOkIqGX58KwPq266BXKiq4UMSmgsAceJMuXeq00oZqFHiM0');
+        $stripe = new \Stripe\StripeClient(env('STRIPE_TEST_SECRET'));
 
         $checkout = $stripe->checkout->sessions->create([
             'success_url' => 'http://localhost:5173/system/login',
@@ -25,7 +25,7 @@ class PaymentController extends Controller
                 [
                     'price_data' => [
                         'currency' => 'usd',
-                        'unit_amount' => 50,
+                        'unit_amount' => 300,
                         'product_data' => [
                             'name' => 'LifeLean System',
                         ]
@@ -41,8 +41,12 @@ class PaymentController extends Controller
             'cancel_url' => 'http://localhost:5173/systems/info',
             'line_items' => [
                 [
-                    'price' => 'price_1PcjpKAXVMlmze5ZlreJdO3G',
+                    'price' => 'prod_QU55lRPZwZffkw',
                     'quantity' => 1,
+                    'product_data' => [
+                        'name' => 'LifeLean System',
+                        'description' => 'Complete payment to enjoy managing your school.'
+                    ],
                 ],
             ],
             'mode' => 'subscription',

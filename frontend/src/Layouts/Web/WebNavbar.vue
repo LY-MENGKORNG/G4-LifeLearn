@@ -1,12 +1,13 @@
             
 <script setup lang="ts">
+import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
+import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
+import BaseButton from '@/Components/Base/BaseButton.vue'
+import WebHeaderMenu from './WebHeaderMenu.vue'
 import { Search } from '@element-plus/icons-vue'
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth-store'
 import router from '@/router'
-import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
-import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
-import BaseButton from '@/Components/Base/BaseButton.vue'
 import type { DropdownInstance } from 'element-plus'
 
 const dropdown1 = ref<DropdownInstance>()
@@ -118,7 +119,7 @@ setCurrentRoute()
 				<!-- </router-link> -->
 			</div>
 		</el-header>
-		<el-menu
+		<!-- <el-menu
 			:default-active="activeIndex"
 			class="el-menu-demo flex justify-center h-[40px]"
 			mode="horizontal"
@@ -138,6 +139,6 @@ setCurrentRoute()
 					{{ navigation.name }}
 				</router-link>
 			</el-menu-item>
-		</el-menu>
+		</el-menu> -->
 	</el-container>
 </template>
