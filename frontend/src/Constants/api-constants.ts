@@ -14,9 +14,21 @@ export default interface User {
 }
 
 export default interface Book {
-    id: number;
+    // id: number;
     title: string;
     author: string;
     published_at: string;
     price?: number;
+}
+
+export default interface Quiz {
+    // id: any;
+    classroom_id: any;
+    title: string;
+    instructions: string;
+    points: any;
+    deadline: string;
+    topics?: string;
+    links?: string;
+    fields?: string;
 }

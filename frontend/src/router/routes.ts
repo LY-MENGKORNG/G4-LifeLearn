@@ -221,6 +221,11 @@ const routes = [
         name: 'system-edit-profile',
         component: () => import('@/views/System/Profile/EditProfile.vue')
     },
+    {
+        path: '/system/create/quiz',
+        name: 'system-create-quiz',
+        component: () => import('@/views/System/Teacher/QuizCreate.vue')
+    },
 ]
 
 export default routes;

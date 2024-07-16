@@ -3,7 +3,7 @@
         <div class="flex w-full space-x-7 px-30">
             <div class="w-full ">
                 <div class="space-y-7">
-                    <div class="bg-teal-500 w-full h-52 pl-10 pt-34">
+                    <div class="bg-teal-500 w-full h-52 pl-10 pt-34 rounded">
                         <SystemProfile class="absolute w-30 h-30 p-1" :src="userProfile.profile" />
                     </div>
                     <div class="flex justify-end">
