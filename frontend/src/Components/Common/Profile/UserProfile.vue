@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<el-avatar :src="Src" />
-	</div>
+	<el-avatar :src="Src" />
 </template>
 
 <script setup lang="ts">

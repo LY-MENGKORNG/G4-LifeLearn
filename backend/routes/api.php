@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ReferencesController;
 use App\Http\Controllers\Admin\SystemController;
-
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\API\AssignmentController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
@@ -31,7 +31,8 @@ use App\Http\Controllers\Front\Auth\PasswordResetLinkController;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\API\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,14 +116,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/update/{id}', [ReferencesController::class, 'update']);
         Route::delete('/delete/{id}', [ReferencesController::class, 'destroy']);
     });
-    //payments  
-    // Route::prefix('/payment')->group(function () {
-    //     Route::get('/list', [PaymentController::class, 'index']);
-    //     Route::post('/create', [PaymentController::class, 'store']);
-    //     Route::get('/show/{id}', [PaymentController::class, 'show']);
-    //     Route::put('/update/{id}', [PaymentController::class, 'update']);
-    //     Route::delete('/delete/{id}', [PaymentController::class, 'destroy']);
-    // });
 
     //grade
     Route::resource('/grade', GradeController::class);
@@ -173,10 +166,15 @@ Route::middleware('auth:sanctum')->group(function () {
     // Mail
     Route::post('/send-mail', [MailController::class, 'sendMail']);
 
+    // Request to buy system
     Route::post('/system-request', [ReferenceController::class, 'store'])->name('system.request');
 
-    Route::post('/create-payment-intent', [PaymentController::class, 'createPaymentIntent']);
+    // get session
     Route::get('/session', [PaymentController::class, 'getSession']);
 
+    // create payment list
+    Route::post('/create-payment-intent', [PaymentController::class, 'createPaymentIntent']);
+
+    // webhook
     Route::post('/webhook', [PaymentController::class, 'getWebhook']);
 });

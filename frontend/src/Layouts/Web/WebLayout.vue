@@ -11,7 +11,6 @@ const userProfile = ref()
 const profile = ref();
 
 onMounted(async () => {
-	await authStore.fetchUser()
 	userProfile.value = authStore.user
 	profile.value = userProfile.value.data.profile;
 })
@@ -21,7 +20,6 @@ onMounted(async () => {
 	<div class="common-layout bg-white min-h-screen">
 		<el-container class="flex flex-col justify-between relative">
 			<WebNavbar :src="profile"></WebNavbar>
-			<web-header-menu />
 			<el-main class="p-0">
 				<slot></slot>
 			</el-main>

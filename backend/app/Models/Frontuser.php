@@ -50,6 +50,11 @@ class Frontuser extends RelationshipModel
         'email_verified_at' => 'datetime',
     ];
 
+    public function classrooms()
+    {
+        return $this->belongsToMany(Classroom::class, 'classroom_student');
+    }
+    
     public static function createOrUpdate($request, $id = null)
     {
         $profile = null;

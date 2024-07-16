@@ -3,14 +3,58 @@
 import { Search } from '@element-plus/icons-vue'
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth-store'
-
+import router from '@/router'
 import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
 import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
 import BaseButton from '@/Components/Base/BaseButton.vue'
-  
-defineProps<{
-	src?: string,
-}>()
+import type { DropdownInstance } from 'element-plus'
+
+const dropdown1 = ref<DropdownInstance>()
+function handleVisible2(visible: any) {
+	if (!dropdown1.value) return
+	if (visible) {
+		dropdown1.value.handleClose()
+	} else {
+		dropdown1.value.handleOpen()
+	}
+}
+function showClick() {
+	if (!dropdown1.value) return
+	dropdown1.value.handleOpen()
+}
+
+const authStore = useAuthStore()
+
+const profile = ref('')
+const currentRoute = router.router.currentRoute.value.fullPath
+let activeIndex = '1'
+const toggleMenu = ref(false)
+
+onMounted(async () => {
+	await authStore.fetchUser()
+	profile.value = authStore.user.data.profile
+})
+
+const navigations = [
+	{ id: 1, name: 'Home', path: '/' },
+	{ id: 2, name: 'My Learning', path: '/my-learn' },
+	{ id: 3, name: 'Books', path: '/book' }
+]
+const showMenu = () => {
+	toggleMenu.value = !toggleMenu.value
+}
+
+const handleSelect = (key: string, keyPath: string[]) => {}
+const handleclick = (key: string, keyPath: string[]) => {}
+
+const setCurrentRoute = () => {
+	navigations.filter((navigation) => {
+		if (navigation.path == currentRoute) {
+			activeIndex = navigation.id.toString()
+		}
+	})
+}
+setCurrentRoute()
 </script>
 
 
@@ -54,8 +98,46 @@ defineProps<{
 					</el-button>
 				</el-badge>
 				<!-- =====profile==== -->
-				<user-profile :Src="src"  />
+				<!-- <router-link to="/user/profile"> -->
+				<button @click="showMenu">
+					<user-profile :Src="profile == '' ? './src/assets/avatar/avatar-profile.jpg' : profile" />
+					<el-dropdown ref="dropdown1" trigger="contextmenu" style="margin-right: 30px">
+						<span class="el-dropdown-link"> Dropdown List1 </span>
+						<template #dropdown>
+							<el-dropdown-menu>
+								<el-dropdown-item>Action 1</el-dropdown-item>
+								<el-dropdown-item>Action 2</el-dropdown-item>
+								<el-dropdown-item>Action 3</el-dropdown-item>
+								<el-dropdown-item disabled>Action 4</el-dropdown-item>
+								<el-dropdown-item divided>Action 5</el-dropdown-item>
+							</el-dropdown-menu>
+						</template>
+					</el-dropdown>
+				</button>
+
+				<!-- </router-link> -->
 			</div>
 		</el-header>
+		<el-menu
+			:default-active="activeIndex"
+			class="el-menu-demo flex justify-center h-[40px]"
+			mode="horizontal"
+			@select="handleSelect"
+		>
+			<el-menu-item
+				class="flex items-center justify-center"
+				v-for="navigation in navigations"
+				:key="navigation.id"
+				@click="handleclick"
+				:index="navigation.id.toString()"
+			>
+				<router-link
+					class="no-underline flex flex-1 items-center text-slate-700 w-[100%] h-[100%]"
+					:to="navigation.path"
+				>
+					{{ navigation.name }}
+				</router-link>
+			</el-menu-item>
+		</el-menu>
 	</el-container>
 </template>
