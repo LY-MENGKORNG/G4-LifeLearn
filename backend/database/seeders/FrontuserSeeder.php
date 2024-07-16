@@ -62,9 +62,9 @@ class FrontuserSeeder extends Seeder
         ]);
         
         $user1->assignRole('user');
-        $user2->assignRole('principle');
-        $user3->assignRole('teacher');
-        $user4->assignRole('student');
+        $user2->assignRole('user');
+        $user3->assignRole('user');
+        $user4->assignRole('user');
         $user5->assignRole('user');
         $user6->assignRole('user');
 

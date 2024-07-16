@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('notificatons', function (Blueprint $table) {
             $table->id();
-            $table->integer('classroom_id')->nullable();
-            $table->integer('user_id')->nullable();
-            $table->integer('receiver');
+            $table->integer('user_id');
             $table->string('description');
             $table->boolean('status')->default(false);
             $table->softDeletes();

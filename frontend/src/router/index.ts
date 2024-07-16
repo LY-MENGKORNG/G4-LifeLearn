@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import axiosInstance from '@/plugins/axios'
 import { useAuthStore } from '@/stores/auth-store'
-import { createAcl, defineAclRules } from 'vue-simple-acl'
 import routes from './routes'
 import { ref } from 'vue';
 
@@ -13,19 +11,18 @@ const router = createRouter({
 
 
 router.beforeEach(async (to: any, from: any, next: any) => {
-    page.value = to.path.includes('/system') ? '/system/login' : to.path
+    page.value = to.path.includes('/system') || to.path.includes('/request-payment') ? '/system/login' : to.path
     const publicPages = [page.value]
     const authRequired = !publicPages.includes(to.path)
     const store = useAuthStore()
 
     try {
         await store.fetchUser();
-
+        store.user.isAuthenticated = true;
     } catch (error) {
         console.warn('You are not login or register yet')
     }
-
-    if (authRequired && !store.user.isAuthenticated) {
+    if (to.meta.requireAuth && !store.user.isAuthenticated) {
         next(page.value)
     } else {
         next()

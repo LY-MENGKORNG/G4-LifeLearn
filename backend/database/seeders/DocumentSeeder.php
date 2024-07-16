@@ -15,7 +15,6 @@ class DocumentSeeder extends Seeder
     {
         Document::create([
             'name' => 'MengkorngLy_CL.pdf',
-            'user_id' => 1,
             'reference_id' => 1 
         ]);
     }
