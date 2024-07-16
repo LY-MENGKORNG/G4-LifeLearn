@@ -36,8 +36,13 @@ use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\API\StudentController;
+<<<<<<< HEAD
+use App\Http\Controllers\Front\Auth\InvitationMail;
+use App\Http\Controllers\API\UserController as APIUserController;
+=======
 use App\Http\Controllers\API\UserController as APIUserController;
 
+>>>>>>> fb4e36377cf9f731c418961a872c7b07cbc9a28e
 
 /*
 |--------------------------------------------------------------------------
