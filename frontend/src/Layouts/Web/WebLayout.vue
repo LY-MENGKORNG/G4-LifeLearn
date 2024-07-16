@@ -7,9 +7,9 @@ import WebFooter from './WebFooter.vue';
     <div class="common-layout bg-white min-h-screen">
         <el-container class="flex flex-col justify-between">
             <WebNavbar class=""></WebNavbar>
-            <el-main  class="">
+            <!-- <el-main  class=""> -->
                 <slot></slot>
-            </el-main>
+            <!-- </el-main> -->
             <WebFooter></WebFooter>
         </el-container>
     </div>

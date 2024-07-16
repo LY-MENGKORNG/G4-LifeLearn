@@ -87,10 +87,16 @@ const routes = [
     },
 
     {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: () => import('@/views/Web/HomeView.vue'),
         meta: userMeta
+    },
+    {
+        path: '/',
+        name: 'welcomepage',
+        component: () => import('@/views/Web/WelcomePageView.vue'),
+       
     },
     {
         path: '/book',
