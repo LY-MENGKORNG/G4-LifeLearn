@@ -34,11 +34,8 @@ use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\API\StudentController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\Front\Auth\InvitationMail;
-=======
 use App\Http\Controllers\API\UserController as APIUserController;
->>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------
