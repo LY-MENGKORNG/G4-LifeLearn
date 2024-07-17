@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="bg-white">
     <div class="bg-video w-full h-96">
       <video playsinline loop muted autoplay class="w-full h-full object-cover">
         <source
