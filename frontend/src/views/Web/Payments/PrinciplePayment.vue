@@ -1,101 +1,97 @@
-<template>
-  <div class="container flex justify-center bg-cover bg-center" style="background-image: url('https://www.ethelwalker.org/wp-content/uploads/2020/06/BeaverBrook-1500x843.jpg');">
-    <div class="w-full max-w-xl">
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8 mt-8" enctype="multipart/form-data">
-        <div class="mb-9">
-          <h1 class="text-2xl text-start text-teal-400">PAYMENT INFORMATION</h1>
-          <hr class="mt-2 border-t-2 border-gray-500" />
-        </div>
-        <div class="flex flex-wrap -mx-3 mb-2">
-          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label for="payment" class="block mb-2 text-sm text-gray-900 dark:text-white"
-              >PAYMENT</label
-            >
-            <el-select id="payment" type="payment" placeholder="Payment" clearable>
-              <el-option label="Zone one" value="shanghai" />
-              <el-option label="Zone two" value="beijing" />
-            </el-select>
-          </div>
-          <div class="w-full md:w-1/2 px-3">
-            <label
-              class="block uppercase tracking-wide text-sm text-gray-900  text-start mb-2"
-              for="expiration"
-              >EXPIRATION DATE</label
-            >
-            <el-input id="expiration" type="expiration" />
-          </div>
-        </div>
-        <div class="flex flex-wrap -mx-3 mb-4">
-          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              class="block uppercase tracking-wide text-sm text-gray-900  text-start mb-2"
-              for="card-number"
-              >CARD NUMBER</label
-            >
-            <el-input id="card-number" type="card-number" />
-          </div>
-          <div class="w-full md:w-1/2 px-3">
-            <label
-              class="block uppercase tracking-wide text-sm text-gray-900  text-start mb-2"
-              for="security"
-              >SECURITY CODE</label
-            >
-            <el-input id="security" type="security"/>
-          </div>
-          <div class="w-full md:w-1/2 px-3">
-            <label
-              class="block uppercase tracking-wide text-sm text-gray-900  text-start mb-2"
-              for="date"
-              >DATE</label
-            >
-            <el-date-picker type="date" id="date" placeholder="Pick a date" clearable />
-          </div>
+ <template>
+	<div class="flex h-screen justify-center items-center bg-white">
+		<div class="flex gap-3 max-w-4xl mx-auto bg-white overflow-hidden rounded-lg shadow-md">
+			<div class="flex items-center justify-center gap-3 flex-col bg-green-400">
+				<img class="w-64 h-72" src="../../../assets/payment-form.png" alt="" />
+				<h2 class="text-white font-medium text-xl">250$ Per Month</h2>
+			</div>
+			<div class="flex flex-col p-6">
+				<h2 class="text-xl font-semibold mb-4">Payment Information</h2>
+				<form @submit.prevent="submit">
+					<!-- <div class="mb-4">
+						<label for="card-name" class="block text-sm font-medium text-muted-foreground"
+							>Card Name</label
+						>
+						<el-input v-model="form.cardName" type="text" />
+					</div>
+					<div class="mb-4">
+						<label for="card-number" class="block text-sm font-medium text-muted-foreground"
+							>Card Number</label
+						>
+						<el-input v-model="form.cardNumber" type="text" placeholder="xxxx xxxx xxxx xxxx" />
+					</div>
+					<div class="flex space-x-4 mb-4">
+						<div class="flex-1">
+							<label for="expire-date" class="block text-sm font-medium text-muted-foreground"
+								>Expire Date</label
+							>
+							<el-date-picker
+								v-model="form.expireDate"
+								type="date"
+								placeholder="Pick a date"
+								style="width: 100%"
+							/>
+						</div>
+						<div class="flex-1">
+							<label for="cvv" class="block text-sm font-medium text-muted-foreground">CVV</label>
+							<el-input v-model="form.cvv" type="text" />
+						</div>
+					</div> -->
+					<!-- <el-input type="number" v-model="amount"></el-input> -->
 
-          <div class="w-full md:w-1/2 px-3">
-            <label
-              class="block uppercase tracking-wide text-sm text-gray-900  text-start mb-2"
-              for="amount"
-              >AMOUNT</label
-            >
-            <el-input id="amount" type="number" />
-          </div>
-          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label for="method" class="block mb-2 text-sm text-gray-700 dark:text-white"
-              >SELECT AN METHOD</label
-            >
-            <el-select id="method" type="select" placeholder="Activity zone" clearable>
-              <el-option label="ABA" value="shanghai" />
-              <el-option label="ACILIDA" value="beijing" />
-            </el-select>
-          </div>
-        </div>
-        <div class="w-full">
-          <label
-            class="block uppercase tracking-wide text-gray-700 text-sm text-start mb-2"
-            for="reference"
-            >YOUR REFERENT</label
-          >
-          <upload-file />
-        </div>
-        <div class="flex items-center justify-between">
-          <router-link to="">
-            <el-button
-              class="bg-teal-500 text-white font-bold py-4 px-10 text-1.5xl hover:bg-teal-500 focus:bg-teal-500"
-              >Save</el-button
-            >
-          </router-link>
-          <router-link to="/system">
-            <el-button
-              class="font-bold py-4 px-10 text-1.5xl hover:bg-gray-500 focus:bg-gray-500 hover:text-white focus:text-white"
-              >Cancel</el-button
-            >
-          </router-link>
-        </div>
-      </form>
-    </div>
-  </div>
+					<button
+						type="submit"
+						class="w-full py-2 rounded-md bg-green-400 text-white hover:bg-green-500"
+					>
+						Submit Payment
+					</button>
+				</form>
+				<form @submit.prevent="submitSub">
+					<button
+						type="submit"
+						class="w-full py-2 rounded-md bg-green-400 text-white hover:bg-green-500"
+					>
+						Submit SubPayment
+					</button>
+				</form>
+				<StripeCheckout ref="checkoutRef"  :pk="publishableKey" :sessionId="oneTimeId" />
+				<StripeCheckout ref="checkoutSubRef" :pk="publishableKey" :sessionId="sessionSubId" />
+			</div>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
-import UploadFile from '@/Components/Common/UploadFile.vue'
+import { StripeCheckout } from '@vue-stripe/vue-stripe'
+import axiosInstance from '@/plugins/axios'
+import { onMounted, ref } from 'vue'
+
+const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
+const oneTimeId = ref<string>('')
+const sessionSubId = ref<string>('')
+const checkoutRef = ref()
+const checkoutSubRef = ref()
+
+onMounted(() => {
+	getSession()
+})
+const getSession = async () => {
+	try {
+		const response = await axiosInstance.get('/session')
+		oneTimeId.value = response.data.oneTime.id
+		sessionSubId.value = response.data.sub.id
+		console.log(sessionSubId.value)
+	} catch (error) {
+		/**empty */
+	}
+}
+const submit = () => {
+	// You will be redirected to Stripe's secure checkout page
+	// $ref.checkoutRef.redirectToCheckout()
+	checkoutRef.value.redirectToCheckout()
+}
+const submitSub = () => {
+	// You will be redirected to Stripe's secure checkout page
+	checkoutSubRef.value.redirectToCheckout()
+}
 </script>

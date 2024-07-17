@@ -29,20 +29,7 @@ class NotificationsController extends Controller
      */
     public function store(Request $request)
     {
-        $userIds = User::pluck('id')->toArray();
-        $classroomIds = Classroom::pluck('id')->toArray();
-
-        $requestData = $request->only('user_id', 'classroom_id');
-        if (isset($requestData['user_id'], $requestData['classroom_id'])) {
-            if (!in_array($requestData['user_id'], $userIds)) {
-                return response()->json(['message' => 'Invalid user_id'], 400);
-            }
-            if (!in_array($requestData['classroom_id'], $classroomIds)) {
-                return response()->json(['message' => 'Invalid classroom_id'], 400);
-            }
-        }
-        $notification = Notificaton::store($request);
-        return response()->json(['message' => 'Notification created successfully', 'Notification' => $notification], 200);
+        
     }
 
     /**

@@ -15,7 +15,6 @@ class NotificationSeeder extends Seeder
     {
         Notificaton::create([
             'user_id' => 5,
-            'receiver' => 1,
             'description' => "'It's great!, I want to buy it!" 
         ]);
     }

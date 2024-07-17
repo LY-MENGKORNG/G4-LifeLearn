@@ -27,7 +27,7 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    axios.get('/api/registrations-per-day')
+    axios.get('/api/registrations-per-month')
         .then(response => {
             const data = response.data;
             const chartConfig = {

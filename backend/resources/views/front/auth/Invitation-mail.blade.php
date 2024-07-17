@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Email Subject</title>
+  <title>Request for joining the system</title>
   <style>
     /* Add your CSS styles here */
     body {
@@ -47,15 +47,9 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>LifeLearn App</h1>
-    <p>Your application have been agreed!</p>
-    <p>Welcome to our system🎉</p>
-    <div class="footer">
-        <a href="http://localhost:8000/">
-            <button>Go to site</button>
-        </a>
-    </div>
-  </div>
+    <h1>Hello {{$recipient}}</h1>
+    <p>A new student has been added to your classroom:</p>
+    <p><strong>Student Email:</strong> {{$recipient}}</p>
+    <p>Thank you!</p>
 </body>
 </html>

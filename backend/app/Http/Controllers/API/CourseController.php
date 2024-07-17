@@ -21,7 +21,7 @@ class CourseController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'This is all your course',
-            'data' => CourseResource::collection($course),
+            'data' => ($course),
         ], 200);
     }
 
@@ -30,19 +30,19 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $categoryIds = Category::pluck('id')->toArray();
-        $userIds = User::pluck('id')->toArray();
-        $requestData = $request->only('category_id', 'price', 'user_id', 'duration');
+        // $categoryIds = Category::pluck('id')->toArray();
+        // $userIds = User::pluck('id')->toArray();
+        // $requestData = $request->only('category_id', 'price', 'user_id', 'duration');
 
-        if (!in_array($requestData['category_id'], $categoryIds)) {
-            return response()->json(['message' => 'Invalid category_id'], 400);
-        }
-        if (!in_array($requestData['user_id'], $userIds)) {
-            return response()->json(['message' => 'Invalid user_id'], 400);
-        }
+        // if (!in_array($requestData['category_id'], $categoryIds)) {
+        //     return response()->json(['message' => 'Invalid category_id'], 400);
+        // }
+        // if (!in_array($requestData['user_id'], $userIds)) {
+        //     return response()->json(['message' => 'Invalid user_id'], 400);
+        // }
 
-        $course = Course::store($request);
-        return response()->json(['message' => 'Course created successfully', 'course' => $course], 200);
+        // $course = Course::store($request);
+        // return response()->json(['message' => 'Course created successfully', 'course' => $course], 200);
     }
 
     /**

@@ -1,71 +1,78 @@
 <x-app-layout>
-    <div>
-        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-            <div class="container mx-auto px-6 py-1 pb-16">
-                <div class="bg-white shadow-md rounded my-6 p-5">
-                    <form method="POST" action="{{ route('admin.users.store') }}">
-                        @csrf
-                        @method('post')
-                        <div class="flex gap-3 w-full">
-                            <div class="flex flex-col flex-1 space-y-2">
-                                <label for="first_name" class="text-gray-700 select-none font-medium">First Name</label>
-                                <input id="first_name" type="text" name="first_name" value="{{ old('first_name') }}"
-                                    placeholder="Enter first name"
-                                    class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
-                            </div>
-                            <div class="flex flex-col flex-1 space-y-2">
-                                <label for="last_name" class="text-gray-700 select-none font-medium">Last Name</label>
-                                <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}"
-                                    placeholder="Enter last name"
-                                    class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col mt-3 flex-1 space-y-2">
-                            <label for="email" class="text-gray-700 select-none font-medium">Email</label>
-                            <input id="email" type="text" name="email" value="{{ old('email') }}"
-                                placeholder="Enter email"
+    <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-4">
+        <div class="flex">
+            <h1>
+                <a class="text-lg hover:underline" href="{{ route('admin.dashboard') }}">
+                    Home
+                </a>
+                /
+                <a class="text-lg hover:underline" href="{{ route('admin.users.index') }}">
+                    Users
+                </a>
+            </h1>
+        </div>
+        <div class="container mx-auto pb-16">
+            <div class="bg-white shadow-md rounded my-6 p-5">
+                <form method="POST" action="{{ route('admin.users.store') }}">
+                    @csrf
+                    @method('post')
+                    <div class="flex gap-3 w-full">
+                        <div class="flex flex-col flex-1 space-y-2">
+                            <label for="first_name" class="text-gray-700 select-none font-medium">First Name</label>
+                            <input id="first_name" type="text" name="first_name" value="{{ old('first_name') }}"
+                                placeholder="Enter first name"
                                 class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
                         </div>
-                        <div class="flex gap-3 w-full mt-3">
-
-                            <div class="flex flex-col flex-1 space-y-2">
-                                <label for="password" class="text-gray-700 select-none font-medium">Password</label>
-                                <input id="password" type="password" name="password" value="{{ old('password') }}"
-                                    placeholder="Enter password"
-                                    class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
-                            </div>
-                            <div class="flex flex-col flex-1 space-y-2">
-                                <label for="phone" class="text-gray-700 select-none font-medium">Phone Number</label>
-                                <input id="phone" type="tel" name="phone"
-                                    placeholder="Enter Phone Number"
-                                    class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
-                            </div>
+                        <div class="flex flex-col flex-1 space-y-2">
+                            <label for="last_name" class="text-gray-700 select-none font-medium">Last Name</label>
+                            <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}"
+                                placeholder="Enter last name"
+                                class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
                         </div>
+                    </div>
 
-                        <h3 class="text-xl my-4 text-gray-600">Role</h3>
-                        <div class="grid grid-cols-3 gap-4">
-                            @foreach ($roles as $role)
-                                <div class="flex flex-col justify-cente">
-                                    <div class="flex flex-col">
-                                        <label class="inline-flex items-center mt-3">
-                                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600"
-                                                name="roles[]" value="{{ $role->id }}"><span
-                                                class="ml-2 text-gray-700">{{ $role->name }}</span>
-                                        </label>
-                                    </div>
+                    <div class="flex flex-col mt-3 flex-1 space-y-2">
+                        <label for="email" class="text-gray-700 select-none font-medium">Email</label>
+                        <input id="email" type="text" name="email" value="{{ old('email') }}"
+                            placeholder="Enter email"
+                            class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+                    </div>
+                    <div class="flex gap-3 w-full mt-3">
+
+                        <div class="flex flex-col flex-1 space-y-2">
+                            <label for="password" class="text-gray-700 select-none font-medium">Password</label>
+                            <input id="password" type="password" name="password" value="{{ old('password') }}"
+                                placeholder="Enter password"
+                                class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+                        </div>
+                        <div class="flex flex-col flex-1 space-y-2">
+                            <label for="phone" class="text-gray-700 select-none font-medium">Phone Number</label>
+                            <input id="phone" type="tel" name="phone" placeholder="Enter Phone Number"
+                                class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200" />
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl my-4 text-gray-600">Role</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        @foreach ($roles as $role)
+                            <div class="flex flex-col justify-cente">
+                                <div class="flex flex-col">
+                                    <label class="inline-flex items-center mt-3">
+                                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600"
+                                            name="roles[]" value="{{ $role->id }}"><span
+                                            class="ml-2 text-gray-700">{{ $role->name }}</span>
+                                    </label>
                                 </div>
-                            @endforeach
-                        </div>
-                        <div class="text-center mt-16 mb-16">
-                            <button type="submit"
-                                class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">Submit</button>
-                        </div>
-                </div>
-
-
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="text-center mt-16 mb-16">
+                        <button type="submit"
+                            class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">Submit</button>
+                    </div>
             </div>
-        </main>
-    </div>
-    </div>
+
+
+        </div>
+    </main>
 </x-app-layout>
