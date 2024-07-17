@@ -81,7 +81,7 @@ const routes = [
     },
 
     {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: () => import('@/views/Web/HomeView.vue'),
         meta: userMeta
@@ -225,6 +225,12 @@ const routes = [
         path: '/system/create/quiz',
         name: 'system-create-quiz',
         component: () => import('@/views/System/Teacher/QuizCreate.vue')
+    },
+    {
+        path: '/',
+        name: 'welcomepage',
+        component: () => import('@/views/Web/WelcomeView.vue'),
+       
     },
 ]
 
