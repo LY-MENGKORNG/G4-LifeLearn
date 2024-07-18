@@ -19,6 +19,7 @@
 
         <div class="scrollable-content px-20">
           <router-link to="/system/material" class="flex flex-wrap">
+            {{classroomList}}
             <CardView v-for="classroom in classroomList" :key="classroom.id"/>
           </router-link>
         </div>
@@ -39,6 +40,7 @@ import { useClassroomStore } from '@/stores/classroom-store';
 
 const classroomStore = useClassroomStore();
 const classroomList = ref<any>([]);
+
 const showTooltip = ref(false);
 const formVisible = ref(false);
 
