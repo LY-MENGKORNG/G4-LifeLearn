@@ -212,7 +212,7 @@ const routes = [
         component: () => import('@/views/System/SubmitformView.vue')
     },
     {
-        path:'/user/profile',
+        path:'/user/profile' ,
         name: 'user-profile',
         component: () => import('@/views/Web/UserProfileView.vue')
     }
