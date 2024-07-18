@@ -6,7 +6,7 @@ import axiosInstance from '@/plugins/axios';
 export const useSystemStore = defineStore('system', {
     state: () => ({
         system: ref<any>(),
-        message: ref<string>("")
+        message: ref<any>()
     }),
     actions: {
         async sendRequest(value: any) {
@@ -15,6 +15,14 @@ export const useSystemStore = defineStore('system', {
                 this.message = response.message;
             } catch (e) {
                 console.warn(e);
+            }
+        },
+        async fetchSystem() {
+            try {
+                const response = await axiosInstance.get('/system');
+                this.system = response.data.data;   
+            } catch (error) {
+                /**empty */
             }
         }
     }

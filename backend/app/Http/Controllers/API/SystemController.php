@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Systems\SystemResource;
 use App\Models\Reference;
 use App\Models\System;
 use Illuminate\Http\Request;
@@ -48,15 +49,19 @@ class SystemController extends Controller
         return response()->json([
             'data' => $system
         ], 200);
-        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        $frontuser_id = $request->user()->id;
+        $system = System::where('frontuser_id', $frontuser_id)->firstOrFail();
+        $system = new SystemResource($system);
+        return response()->json([
+            'data' => $system
+        ], 200);
     }
 
     /**

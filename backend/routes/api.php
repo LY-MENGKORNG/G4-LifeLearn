@@ -168,6 +168,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // Create system
     Route::post('/system-create', [APISystemController::class, 'store']);
 
+    Route::get('system', [APISystemController::class, 'show']);
+
     // get session
     Route::get('/session', [PaymentController::class, 'getSession']);
 

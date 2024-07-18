@@ -1,13 +1,15 @@
+
+export default interface Profile {
+    id: any;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password?: string;
+    phone?: string;
+    profile?: string
+}
 export default interface User {
-    data: {
-        id: any;
-        firstName: string;
-        lastName: string;
-        email: string;
-        password?: string;
-        phone?: string;
-        profile?: string
-    };
+    data: Profile;
     permissions: string[]
     roles: string[]
     isAuthenticated: boolean
