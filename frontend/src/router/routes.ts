@@ -111,6 +111,12 @@ const routes = [
         name: 'system-classroom',
         component: () => import('@/views/System/ClassroomView.vue')
     },
+    
+    // {
+    //     path: '/system/create/score',
+    //     name: 'system-create-score',
+    //     component: () => import('@/views/System/Teacher/Score.vue')
+    // },
     {
         path: '/system/material',
         name: 'system-material',
@@ -195,6 +201,11 @@ const routes = [
         component: () => import('@/views/System/Classroom/NewGrade.vue'),
     },
     {
+        path: '/system/score',
+        name: 'system-score-list',
+        component: () => import('@/views/System/Classroom/Score.vue'),
+    },
+    {
         path: '/system/grade/:id',
         name: 'system-grade-detail',
         component: () => import('@/views/System/Grade/ShowGrade.vue'),
@@ -226,11 +237,7 @@ const routes = [
         name: 'system-create-quiz',
         component: () => import('@/views/System/Teacher/QuizCreate.vue')
     },
-    {
-        path: '/system/create/score',
-        name: 'system-create-score',
-        component: () => import('@/views/System/Teacher/Score.vue')
-    },
+    
     {
         path: '/',
         name: 'welcomepage',

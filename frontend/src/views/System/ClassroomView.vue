@@ -19,7 +19,6 @@
 
         <div class="scrollable-content px-20">
           <router-link to="/system/material" class="flex flex-wrap">
-            {{classroomList}}
             <CardView v-for="classroom in classroomList" :key="classroom.id"/>
           </router-link>
         </div>
