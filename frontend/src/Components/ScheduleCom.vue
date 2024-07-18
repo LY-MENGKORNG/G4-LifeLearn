@@ -111,35 +111,23 @@
             <form @submit.prevent="savePermission" name="student_application" id="student_application">
               <div class="py-4 px-8">
                 <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Student ID:</label>
-                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="text" name="student_id"
-                    id="student_id" placeholder="Enter Your ID" />
-                </div>
-                <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Student Name:</label>
-                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="text" name="student_name"
-                    id="student_name" placeholder="Enter Your Name" />
-                </div>
-                <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Course Name:</label>
-                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="text" name="course_name"
-                    id="course_name" placeholder="Enter Your Course Name" />
-                  <p id="error_creater_id"></p>
-                </div>
-                <div class="mb-4">
                   <label class="block text-grey-darker text-sm font-bold mb-2">Purpose:</label>
                   <input class="border rounded w-full py-2 px-3 text-grey-darker" type="text" name="course_name"
                     id="course_name" placeholder="Enter Your Course Name" />
                   <p id="error_creater_id"></p>
                 </div>
                 <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Admission Date:</label>
-                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="datetime-local"
+                  <label class="block text-grey-darker text-sm font-bold mb-2">Start Date:</label>
+                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="date"
                     name="admission_date" id="admission_date" />
-                  <p id="error_intake_year"></p>
+                </div>
+                <div class="mb-4">
+                  <label class="block text-grey-darker text-sm font-bold mb-2">End Date:</label>
+                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="date"
+                    name="admission_date" id="admission_date" />
                 </div>
                 <div class="flex justify-between">
-                  <button type="button"
+                  <button type="button"  @click="closePremission"
                     class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
                     Cancel
                   </button>
@@ -236,6 +224,9 @@ export default {
     },
     goToPermissions() {
       this.formVisible = true;
+    },
+    closePremission(){
+      this.formVisible = false;
     },
     formattedDate(date) {
       const options = { year: 'numeric', month: 'long' };
