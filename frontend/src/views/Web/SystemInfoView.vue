@@ -384,7 +384,7 @@ store.user.permissions.find((per: any) => {
 	path.value = per.name == 'System buy' ? 'payment' : path.value
 })
 
-const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
+const publishableKey = 'pk_test_51Pd4bxGdke5T1wEHVhR0EOEZVGmsyxpVEX0o3AwvFG1Jc4MViaxUV4ep66QmNI55YPlBRGoTxv9FNn14BWPPhutd00J6DjE2On';
 const sessionSubId = ref<string>('')
 const checkoutSubRef = ref()
 
@@ -393,12 +393,13 @@ onMounted(async () => {
 		const response = await axiosInstance.get('/session')
 		console.log(response);
 		sessionSubId.value = response.data.sub.id;
-	} catch (error) {}
+	} catch (error) {
+		console.log(error)
+	}
 })
 
 const handleSubmit = () => {
 	checkoutSubRef.value.redirectToCheckout()
-	console.log(checkoutSubRef.value)
 }
 </script>
     

@@ -5,10 +5,12 @@ import WebHeaderMenu from './WebHeaderMenu.vue'
 
 import { onMounted, ref } from 'vue'
 import { useAuthStore } from '@/stores/auth-store'
+import router from '@/router'
 const authStore = useAuthStore()
 
 const userProfile = ref()
 const profile = ref()
+const isWelcomePage = router.router.currentRoute.value.fullPath == '/' ;
 
 onMounted(async () => {
 	userProfile.value = authStore.user
@@ -20,7 +22,7 @@ onMounted(async () => {
 	<div class="common-layout bg-white min-h-screen">
 		<el-container class="flex flex-col justify-between relative">
 			<WebNavbar :src="profile"></WebNavbar>
-			<WebHeaderMenu />
+			<WebHeaderMenu  v-if="!isWelcomePage" />
 			<el-main class="p-0">
 				<slot></slot>
 			</el-main>

@@ -345,7 +345,7 @@
     </div>
     <div class="info">
       <div class="title">
-        <h3 class="mt-5 text-start text-black-400 font-bold text-2xl text-center">Information</h3>
+        <h3 class="mt-5 text-black-400 font-bold text-2xl text-center">Information</h3>
         <p class="text-center text-gray-400 p-3">
           If you're interested in our system, please click the "Buy Now" button to make a purchase.
         </p>
@@ -380,7 +380,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import WebLayout from '@/Layouts/Web/WebLayout.vue'
-import router from '@/router'
 import { useAuthStore } from '@/stores/auth-store'
 const store = useAuthStore()
 
