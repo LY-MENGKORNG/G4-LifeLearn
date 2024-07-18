@@ -37,7 +37,10 @@ use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\API\UserController as APIUserController;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f958845 (pull code)
 
 /*
 |--------------------------------------------------------------------------
