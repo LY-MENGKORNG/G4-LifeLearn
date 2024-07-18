@@ -133,6 +133,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //grade
     Route::resource('/grade', GradeController::class);
+    //Event
+    Route::resource('/event', EventController::class);
 
     //calendar
     Route::resource('/calendar', CalendarController::class);
