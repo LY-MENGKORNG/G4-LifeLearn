@@ -21,8 +21,9 @@
           <router-link to="/system/material" class="flex flex-wrap">
             <CardView v-for="classroom in classroomList" :key="classroom.id"/>
           </router-link>
+          <!-- {{ classroomList }} -->
         </div>
-        
+
         <FormclassCreate class="w-full" v-if="formVisible" @create="handleCreate" @cancel="closeForm" />
       </div>
     </div>
