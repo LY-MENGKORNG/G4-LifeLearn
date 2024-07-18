@@ -237,6 +237,11 @@ const routes = [
         component: () => import('@/views/Web/WelcomeView.vue'),
        
     },
+{
+        path:'/user/profile' ,
+        name: 'user-profile',
+        component: () => import('@/views/Web/UserProfileView.vue')
+    }
 ]
 
 export default routes;
