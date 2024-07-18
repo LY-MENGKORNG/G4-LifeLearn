@@ -67,7 +67,7 @@ class ForgotPasswordManager extends Controller
             $message->subject('Reset Password');
         });
 
-        // Return a JSON response indicating that the reset link has been sent
+        //response reset link has been sent
         return response()->json([
             'success' => true,
             'message' => 'A reset link has been sent to your email address.'
