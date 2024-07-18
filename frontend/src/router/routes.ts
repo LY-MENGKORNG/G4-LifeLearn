@@ -227,6 +227,11 @@ const routes = [
         component: () => import('@/views/System/Teacher/QuizCreate.vue')
     },
     {
+        path: '/system/create/score',
+        name: 'system-create-score',
+        component: () => import('@/views/System/Teacher/Score.vue')
+    },
+    {
         path: '/',
         name: 'welcomepage',
         component: () => import('@/views/Web/WelcomeView.vue'),
