@@ -113,7 +113,7 @@
                 <div class="mb-4">
                   <label class="block text-grey-darker text-sm font-bold mb-2">Purpose:</label>
                   <input class="border rounded w-full py-2 px-3 text-grey-darker" type="text" name="course_name"
-                    id="course_name" placeholder="Enter Your Course Name" />
+                    id="course_name" placeholder="Enter Your purpose" />
                   <p id="error_creater_id"></p>
                 </div>
                 <div class="mb-4">
