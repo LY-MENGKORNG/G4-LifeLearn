@@ -75,6 +75,14 @@ export const useAuthStore = defineStore('auth', {
             }catch(error) {
                 return error
             }
+        },
+
+        async editPrfile(profile: any) {
+            try {
+                await axiosInstance.post('/edit-profile', profile);
+            }catch (error) {
+                console.warn(error)
+            }
         }
     }
 })

@@ -69,9 +69,7 @@ onMounted(async () => {
 
 <template>
 	<WebLayout>
-		<div
-			class="flex flex-col md:flex-row items-start bg-card dark:bg-card"
-		>
+		<div class="flex flex-col md:flex-row items-start bg-card dark:bg-card">
 			<div class="w-full md:w-1/2 relative md:order-2">
 				<div class="hidden md:block">
 					<img
@@ -82,7 +80,9 @@ onMounted(async () => {
 				</div>
 				<div
 					class="absolute inset-0 bg-cover bg-center md:hidden"
-					style="background-image: url('https://img.freepik.com/free-photo/multiracial-group-young-creative-people-smart-casual-wear-discussing-business-brainstorming-meeting-ideas-mobile-application-software-design-project-modern-office-coworker-teamwork-concept_7861-2693.jpg?t=st=1721097774~exp=1721101374~hmac=9d26b88f2fcbb6293130b1694b419b8e42284769797ad35f2efd8a2918c4bb2e&w=996')"
+					style="
+						background-image: url('https://img.freepik.com/free-photo/multiracial-group-young-creative-people-smart-casual-wear-discussing-business-brainstorming-meeting-ideas-mobile-application-software-design-project-modern-office-coworker-teamwork-concept_7861-2693.jpg?t=st=1721097774~exp=1721101374~hmac=9d26b88f2fcbb6293130b1694b419b8e42284769797ad35f2efd8a2918c4bb2e&w=996');
+					"
 				></div>
 			</div>
 			<div class="w-full flex flex-col justify-center md:w-1/2 md:order-1 mt-5 md:mt-0 p-8">

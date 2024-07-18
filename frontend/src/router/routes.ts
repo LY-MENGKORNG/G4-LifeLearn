@@ -81,7 +81,7 @@ const routes = [
     },
 
     {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: () => import('@/views/Web/HomeView.vue'),
         meta: userMeta
@@ -217,10 +217,26 @@ const routes = [
         component: () => import('@/views/System/SubmitformView.vue')
     },
     {
-        path:'/user/profile',
-        name: 'user-profile',
-        component: () => import('@/views/Web/UserProfileView.vue')
-    }
+        path: '/system/view/profile',
+        name: 'system-view-profile',
+        component: () => import('@/views/System/Profile/ViewProfile.vue')
+    },
+    {
+        path: '/system/edit/profile',
+        name: 'system-edit-profile',
+        component: () => import('@/views/System/Profile/EditProfile.vue')
+    },
+    {
+        path: '/system/create/quiz',
+        name: 'system-create-quiz',
+        component: () => import('@/views/System/Teacher/QuizCreate.vue')
+    },
+    {
+        path: '/',
+        name: 'welcomepage',
+        component: () => import('@/views/Web/WelcomeView.vue'),
+       
+    },
 ]
 
 export default routes;

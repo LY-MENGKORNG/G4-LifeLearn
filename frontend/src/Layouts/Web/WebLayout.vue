@@ -8,11 +8,11 @@ import { useAuthStore } from '@/stores/auth-store'
 const authStore = useAuthStore()
 
 const userProfile = ref()
-const profile = ref();
+const profile = ref()
 
 onMounted(async () => {
 	userProfile.value = authStore.user
-	profile.value = userProfile.value.data.profile;
+	profile.value = userProfile.value.data.profile
 })
 </script>
 

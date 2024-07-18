@@ -1,12 +1,13 @@
             
 <script setup lang="ts">
+import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
+import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
+import BaseButton from '@/Components/Base/BaseButton.vue'
+import WebHeaderMenu from './WebHeaderMenu.vue'
 import { Search } from '@element-plus/icons-vue'
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth-store'
 import router from '@/router'
-import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
-import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
-import BaseButton from '@/Components/Base/BaseButton.vue'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 
 const authStore = useAuthStore()
@@ -144,5 +145,29 @@ setCurrentRoute()
 				</Menu>
 			</div>
 		</el-header>
+<<<<<<< HEAD
+=======
+		<!-- <el-menu
+			:default-active="activeIndex"
+			class="el-menu-demo flex justify-center h-[40px]"
+			mode="horizontal"
+			@select="handleSelect"
+		>
+			<el-menu-item
+				class="flex items-center justify-center"
+				v-for="navigation in navigations"
+				:key="navigation.id"
+				@click="handleclick"
+				:index="navigation.id.toString()"
+			>
+				<router-link
+					class="no-underline flex flex-1 items-center text-slate-700 w-[100%] h-[100%]"
+					:to="navigation.path"
+				>
+					{{ navigation.name }}
+				</router-link>
+			</el-menu-item>
+		</el-menu> -->
+>>>>>>> system_panel
 	</el-container>
 </template>

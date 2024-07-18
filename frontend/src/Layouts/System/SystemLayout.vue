@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import SystemSidebar from '@/Components/Common/SideBar/SystemSidebar.vue'
 import SystemHeader from '@/Components/Common/Header/SystemHeader.vue'
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted,  ref } from 'vue'
 import avatar from '@/assets/avatar/avatar-profile.jpg'
 import { useSystemStore } from '@/stores/system-store'
 

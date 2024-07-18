@@ -13,6 +13,9 @@ use App\Http\Controllers\Admin\{
     PaymentController,
     SendMailController,
 };
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Front\Auth\NewPasswordController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Mail;
 
 /*
@@ -76,3 +79,14 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')-
 });
 
 
+Route::get("/forgot-password",[PasswordResetLinkController::class, "create"])->name("forgot.password");
+Route::post("/forgot-password",[PasswordResetLinkController::class, "store"])->name("forgot.password.post");
+
+
+// New Password Routes (after resetting)
+Route::get('/reset-password', [NewPasswordController::class, 'create'])
+    ->middleware('front')
+    ->name('password.new');
+Route::post('/reset-password', [NewPasswordController::class, 'store'])
+    ->middleware('front')
+    ->name('password.store');

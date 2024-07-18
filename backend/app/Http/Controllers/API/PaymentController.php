@@ -24,6 +24,10 @@ class PaymentController extends Controller
                 [
                     'price' => 'price_1Pd4gJGdke5T1wEHXljs0PjX',
                     'quantity' => 1,
+                    'product_data' => [
+                        'name' => 'LifeLean System',
+                        'description' => 'Complete payment to enjoy managing your school.'
+                    ],
                 ],
             ],
             'mode' => 'subscription',

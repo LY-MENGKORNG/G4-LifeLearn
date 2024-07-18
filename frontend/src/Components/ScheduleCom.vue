@@ -50,7 +50,7 @@
       </table>
     </div>
 
-    <!-- Modal for input form -->
+
     <div
       v-if="showForm"
       class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center"
@@ -146,7 +146,8 @@
 </template>
 
 <script>
-// import axios from '@plugins/axios'
+
+import axios from 'axios';
 export default {
   name: 'CalendarCom',
   data() {
@@ -164,7 +165,7 @@ export default {
         location: '',
         organizer_id: ''
       },
-      datesInfo: {} // Object to store information for each date
+      datesInfo: {} 
     }
   },
   computed: {
@@ -264,9 +265,10 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .custom-modal {
-  width: 600px; /* Adjust the width as per your preference */
+  width: 600px;
 }
 .date-cell {
   position: relative;
@@ -295,4 +297,9 @@ export default {
   height: calc(100vh - 105px);
   overflow-y: auto;
 }
-</style>
+</style> 
+
+
+
+
+
