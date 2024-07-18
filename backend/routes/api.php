@@ -203,3 +203,10 @@ Route::middleware('auth:sanctum')->group(function () {
     // webhook
     Route::post('/webhook', [PaymentController::class, 'getWebhook']);
 });
+
+// event 
+Route::get('/events', [EventController::class,  'index']);
+Route::post('events', [EventController::class, 'store']);
+Route::put('events/{id}', [EventController::class, 'update']);
+Route::delete('events/{id}', [EventController::class, 'destroy']);
+
