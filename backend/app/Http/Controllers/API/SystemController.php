@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Reference;
 use App\Models\System;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,28 @@ class SystemController extends Controller
      */
     public function store(Request $request)
     {
+        /**
+         * 'name',
+         * 'frontuser_id',
+         * 'location'
+         */
+        $system = $request->user()->givePermissionTo('Access system');
+        $request->user()->assignRole('principle');
+
+        $reference = Reference::where('user_id', $request->user()->id)->firstOrFail();
+
+        $school_location = $reference->school_address;
+        $school_name = $reference->school_name;
+
+
+        $system = System::create([
+            'name' => $school_name,
+            'frontuser_id' => $request->user()->id,
+            'location' => $school_location,
+        ]);
+        return response()->json([
+            'data' => $system
+        ], 200);
         
     }
 

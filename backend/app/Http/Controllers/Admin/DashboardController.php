@@ -23,11 +23,18 @@ class DashboardController extends Controller
         $systems = System::list();
         $users = Frontuser::all();
         $payments = Payment::all();
+        $test = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        $incomes = 0;
+        foreach ($test->charges->all() as $income) {
+            $incomes += $income->amount;
+        }
+        $incomes /= 100;
         // $chart = UserController::showChart();
         return view('dashboard',[
             'systems' => $systems,
             'users' => $users,
             'payments' => $payments,
+            'incomes' => $incomes,
         ]);
     }
 

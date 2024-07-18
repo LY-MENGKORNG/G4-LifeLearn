@@ -1,5 +1,5 @@
 export default interface User {
-    profile: {
+    data: {
         id: any;
         firstName: string;
         lastName: string;

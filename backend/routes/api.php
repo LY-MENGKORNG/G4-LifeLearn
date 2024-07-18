@@ -33,6 +33,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\StudentController;
+use App\Http\Controllers\API\SystemController as APISystemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,11 +84,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/show/{id}', [AssignmentController::class, 'show']);
         Route::put('/update/{id}', [AssignmentController::class, 'update']);
         Route::delete('/{id}', [AssignmentController::class, 'destroy']);
-    });
-
-    // system routes
-    Route::prefix('system')->group(function () {
-        Route::resource('/', SystemController::class);
     });
 
     // category routes
@@ -168,6 +164,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Request to buy system
     Route::post('/system-request', [ReferenceController::class, 'store'])->name('system.request');
+
+    // Create system
+    Route::post('/system-create', [APISystemController::class, 'store']);
 
     // get session
     Route::get('/session', [PaymentController::class, 'getSession']);

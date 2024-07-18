@@ -13,7 +13,6 @@ export const useSystemStore = defineStore('system', {
             try {
                 const response: any  = await axiosInstance.post('/system-request', value); 
                 this.message = response.message;
-                console.log(response);
             } catch (e) {
                 console.warn(e);
             }

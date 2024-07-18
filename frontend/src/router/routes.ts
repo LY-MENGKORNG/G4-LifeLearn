@@ -160,9 +160,14 @@ const routes = [
         component: () => import('@/views/Web/Payments/PrinciplePayment.vue'),
     },
     {
-        path: '/system/bookpayment',
-        name: 'system-bookpayment',
-        component: () => import('@/views/Web/Bookpayments/UserPaymentView.vue')
+        path: '/systems/payment',
+        name: 'systems-payment',
+        component: () => import('@/views/Web/Payments/PrinciplePayment.vue'),
+    },
+    {
+        path: '/payment/success',
+        name: 'system-success',
+        component: () => import('@/views/Web/Payments/SuccessPaid.vue')
     },
     {
         path: '/systems/info',

@@ -365,8 +365,7 @@
 
 					</router-link>
 					<StripeCheckout v-if="sessionSubId" ref="checkoutSubRef" :pk="publishableKey" :sessionId="sessionSubId" />
-				</div>
-
+				</div> 
 			</div>
 		</div>
 	</WebLayout>
@@ -393,12 +392,14 @@ const checkoutSubRef = ref()
 onMounted(async () => {
 	try {
 		const response = await axiosInstance.get('/session')
+		console.log(response);
 		sessionSubId.value = response.data.sub.id;
 	} catch (error) {}
 })
 
 const handleSubmit = () => {
 	checkoutSubRef.value.redirectToCheckout()
+	console.log(checkoutSubRef.value)
 }
 </script>
     
