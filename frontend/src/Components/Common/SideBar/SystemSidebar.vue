@@ -1,5 +1,5 @@
 <template>
-	<el-menu default-active="2" class="el-menu-vertical-demo h-screen bg-slate-800 text-white *:text-white z-10"
+	<el-menu default-active="2" class="el-menu-vertical-demo h-screen bg-slate-800 text-white *:text-white z-10 sticky top-0 left-0"
 		:collapse="isCollapse" @open="handleOpen" @close="handleClose">
 
 		<el-menu-item index='0' @click="setRoute('/system/dashboard')" class="hover:bg-slate-600">

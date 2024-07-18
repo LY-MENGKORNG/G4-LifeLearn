@@ -217,8 +217,8 @@ const routes = [
         component: () => import('@/views/System/SubmitformView.vue')
     },
     {
-        path: '/system/view/profile',
-        name: 'system-view-profile',
+        path: '/system/profile',
+        name: 'system-profile',
         component: () => import('@/views/System/Profile/ViewProfile.vue')
     },
     {

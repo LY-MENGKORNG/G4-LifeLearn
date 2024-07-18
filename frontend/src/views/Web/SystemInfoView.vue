@@ -384,8 +384,7 @@ store.user.permissions.find((per: any) => {
 	path.value = per.name == 'System buy' ? 'payment' : path.value
 })
 
-const publishableKey =
-	'pk_test_51Pd4bxGdke5T1wEHVhR0EOEZVGmsyxpVEX0o3AwvFG1Jc4MViaxUV4ep66QmNI55YPlBRGoTxv9FNn14BWPPhutd00J6DjE2On'
+const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
 const sessionSubId = ref<string>('')
 const checkoutSubRef = ref()
 

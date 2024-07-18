@@ -1,5 +1,5 @@
 <template>
-	<el-header class="flex items-center justify-between bg-white">
+	<el-header class="flex items-center justify-between bg-white sticky top-0 right-0">
 		<el-button @click="action" class="border-none">
 			<Fold size="15px" />
 		</el-button>
@@ -123,7 +123,7 @@ const props = defineProps({
 })
 
 const dropdownMenu = [
-	{ id: 1, name: 'Account settings', path: '/account-settings' },
+	{ id: 1, name: 'Account settings', path: '/system/profile' },
 	{ id: 2, name: 'Sign out', path: '/logout' }
 ]
 
