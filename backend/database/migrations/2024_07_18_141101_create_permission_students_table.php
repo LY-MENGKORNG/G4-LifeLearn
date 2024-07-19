@@ -9,24 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+     public function up(): void
     {
-        Schema::create('notificatons', function (Blueprint $table) {
+        Schema::create('permission_students', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('description');
-            $table->integer('receiver_id')->nullable();
-            $table->boolean('status')->default(false);
+            $table->integer('student_id');
+            $table->string('purpose');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->softDeletes();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('notificatons');
+        Schema::dropIfExists('permission_students');
     }
 };

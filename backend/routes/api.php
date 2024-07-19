@@ -35,7 +35,9 @@ use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\Api\LessonController;
+use App\Http\Controllers\Api\PermissionStudentController;
 use App\Http\Controllers\API\StudentController;
+use App\Http\Controllers\API\SystemController as APISystemController;
 use App\Http\Controllers\API\UserController as APIUserController;
 
 /*
@@ -98,11 +100,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{id}', [AssignmentController::class, 'destroy']);
     });
 
-    // system routes
-    Route::prefix('system')->group(function () {
-        Route::resource('/', SystemController::class);
-    });
-
     // category routes
     Route::get('/category/list', [CategoryController::class, 'index']);
     Route::post('/category/create', [CategoryController::class, 'store']);
@@ -162,7 +159,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //score
     Route::resource('/score', ScoreController::class);
-    Route::resource('/principle', NotificationsController::class);
+  
     // Route::post('/principle/request',NotificationsController::class, 'create');
 
     //class
@@ -190,6 +187,11 @@ Route::middleware('auth:sanctum')->group(function () {
     // Request to buy system
     Route::post('/system-request', [ReferenceController::class, 'store'])->name('system.request');
 
+    // Create system
+    Route::post('/system-create', [APISystemController::class, 'store']);
+
+    Route::get('system', [APISystemController::class, 'show']);
+
     // get session
     Route::get('/session', [PaymentController::class, 'getSession']);
 
@@ -198,15 +200,26 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // webhook
     Route::post('/webhook', [PaymentController::class, 'getWebhook']);
+
+    //permission student
+    Route::resource('/permission', PermissionStudentController::class);
+    
+    //notification
+    Route::resource('/user/notifications', NotificationsController::class);
+
+    // event 
+    Route::get('/events', [EventController::class,  'index']);
+    Route::post('events', [EventController::class, 'store']);
+    Route::put('events/{id}', [EventController::class, 'update']);
+    Route::delete('events/{id}', [EventController::class, 'destroy']);
+
+    // Route to handle the forgot password form submission
+    Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
 });
+// student 
+Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
-// event 
-Route::get('/events', [EventController::class,  'index']);
-Route::post('events', [EventController::class, 'store']);
-Route::put('events/{id}', [EventController::class, 'update']);
-Route::delete('events/{id}', [EventController::class, 'destroy']);
-
-
-
-
+Route::get('/registrations-per-month', [FrontuserController::class, 'getRegistrationsPerDay']);
+Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
+Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
 
