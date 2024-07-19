@@ -350,7 +350,7 @@
           If you're interested in our system, please click the "Buy Now" button to make a purchase.
         </p>
         <div class="flex justify-center">
-          <router-link to="/system/payment">
+          <router-link :to="path">
             <el-button
               class="bg-gray-900 text-white font-bold py-4 px-10 hover:bg-gray-900 focus:bg-gray-900"
             >
@@ -377,8 +377,17 @@
 }
 </style>
   
-  <script setup lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue'
 import WebLayout from '@/Layouts/Web/WebLayout.vue'
+import router from '@/router'
+import { useAuthStore } from '@/stores/auth-store'
+const store = useAuthStore()
+
+const path = ref<string>('/request-payment')
+
+store.user.permissions.find((per: any) => {
+	path.value = per.name == "System buy" ? 'payment' : path.value
+})
 </script>
   

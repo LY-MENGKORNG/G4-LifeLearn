@@ -42,7 +42,7 @@
                         @php $role_style = 'pink' @endphp
                     @endif
                     <span
-                        class="bg-{{ $role_style }}-400 inline-flex items-center justify-center px-2 mr-2 text-xs font-bold leading-none text-white rounded-full">
+                        class="bg-{{ $role_style }}-400 inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white rounded-full">
                         {{ $role->name }}
                     </span>
                 @endforeach

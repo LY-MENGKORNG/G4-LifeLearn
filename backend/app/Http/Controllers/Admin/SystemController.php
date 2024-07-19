@@ -36,6 +36,8 @@ class SystemController extends Controller
             $system['last_name'] = Frontuser::find($system->frontuser_id)->last_name;
             $system['email'] = Frontuser::find($system->frontuser_id)->email;
             $system['phone'] = Frontuser::find($system->frontuser_id)->phone;
+            $system['profile'] = Frontuser::find($system->frontuser_id)->profile;
+            $system['roles'] = Frontuser::find($system->frontuser_id)->roles;
         }
 
         return view('system.index', ['systems' => $systems]);

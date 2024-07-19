@@ -16,10 +16,11 @@ class ReferenceResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'principle_id' =>$this->principle_id,
-            'document_id' => $this->document_id,
-            'status' => $this->status,
-
+            'name' =>$this->name,
+            'user' =>$this->user,
+            'school_name' =>$this->school_name,
+            'school_address' =>$this->school_address,
+            'documents' =>$this->documents,
         ];
     }
 }

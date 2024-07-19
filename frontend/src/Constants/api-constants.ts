@@ -32,3 +32,25 @@ export default interface Quiz {
     links?: string;
     fields?: string;
 }
+
+export default interface RequestPayment {
+    school_name: string;
+    school_address: string;
+    description: string;
+    reference: any[];
+}
+
+
+export default interface Payment {
+    method: string;
+    amount: number;
+    course_id?: number;
+    system_id?: number;
+}
+
+export default interface Submit {
+    user_id: string;
+    classroom_id;
+    assignment_id?: number;
+    work?: string;
+}

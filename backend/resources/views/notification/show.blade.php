@@ -1,10 +1,23 @@
 <x-app-layout>
     <main class="flex-1 overflow-x-hidden  bg-gray-200 p-4">
-        <section class="mx-auto flex flex-col justify-center items-center xl:w-8/12 md:w-full p-4 bg-white rounded-md">
+        @if ($notification)
+            <div class="flex">
+                <h1>
+                    <a class="text-lg hover:underline" href="{{ route('admin.dashboard') }}">
+                        Home
+                    </a>
+                    /
+                    <a class="text-lg hover:underline" href="{{ route('admin.notifications.index') }}">
+                        Notification
+                    </a>
+                    /
+                    {{ $notification->id }}
+                </h1>
+            </div>
+        @endif
+        <section
+            class="mt-3 mx-auto flex flex-col justify-center items-center xl:w-8/12 md:w-full p-4 bg-white rounded-md">
             @if ($notification)
-                <div class="flex">
-                    <h1><a href="{{ route('admin.notifications.index') }}">Notification</a>>{{ $notification->id }}</h1>
-                </div>
                 <div class=" h-auto py-5">
                     <div class="flex gap-5">
                         @if ($notification->sender->profile)
@@ -54,25 +67,29 @@
                     </div>
                     <div class="w-full overflow-hidden mt-5 w-full">
                         <h3 class="font-medium text-lg mb-3">Here is my references</h3>
-                        <div class="flex gap-3 flex-wrap">
+                        <div class="grid grid-cols-3 gap-3">    
                             @foreach ($notification->document as $document)
-                                <a href="http://localhost:8000/documents/{{ $document->name }}" class="flex flex-col"
+                                <a href="http://localhost:8000/documents/{{ $document->name }}"
+                                    class="flex w-[120px] flex-col rounded-md transition-all hover:bg-gray-50 h-[100px] text-center p-3 bg-gray-100"
                                     target="_blank">
-                                    <img class="h-16 rounded-md flex-1 bg-gray-100" src="{{ asset('images/pdf.png') }}"
-                                        type="application/pdf"></img>
-                                    <span>{{ $document->name }}</span>
+                                    <img class="object-fit" src="{{ asset('images/pdf.png') }}" ></img>
+                                    <span class="text-gray-500 truncate ">{{ $document->name }}</span>
                                 </a>
                             @endforeach
                         </div>
                     </div>
-                    <div class="flex gap-5 justify-between">
-                        <form action="" class="flex-1 flex">
+                    <div class="flex gap-5 mt-5 justify-between">
+                        <form action="{{ route('admin.mail-reject') }}" class="flex-1 flex"  method="POST">
                             @csrf
+                            <input type="hidden" name="email" value="{{ $notification->sender->email }}">
+                            <input type="hidden" name="subject" value="Documetation reject request">
+                            <input type="hidden" name="message" value="Your documents reference have been rejected!">
+                            <input type="hidden" name="status" value="false">
                             <x-button type class="flex-1 bg-red-400">
                                 Reject
                             </x-button>
                         </form>
-                        <form action="{{ route('admin.send-mail') }}" class="flex-1 flex" method="POST">
+                        <form action="{{ route('admin.mail-approve') }}" class="flex-1 flex" method="POST">
                             @csrf
                             <input type="hidden" name="email" value="{{ $notification->sender->email }}">
                             <input type="hidden" name="subject" value="Documetation approving request">
