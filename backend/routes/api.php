@@ -205,11 +205,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // webhook
     Route::post('/webhook', [PaymentController::class, 'getWebhook']);
-<<<<<<< HEAD
 
     //permission student
     Route::resource('/permission', PermissionStudentController::class);
-=======
     
     //notification
     Route::resource('/user/notifications', NotificationsController::class);
@@ -222,7 +220,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
->>>>>>> d7096781cdd8abc56e3ed93a728f2a73daa69d46
 });
 // student 
 Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');

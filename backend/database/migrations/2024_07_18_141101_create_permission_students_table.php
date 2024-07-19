@@ -13,15 +13,12 @@ return new class extends Migration
     {
         Schema::create('permission_students', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id');
+            $table->integer('student_id');
             $table->string('purpose');
             $table->date('start_date');
             $table->date('end_date');
             $table->softDeletes();
             $table->timestamps();
-
-            // Assuming there's a 'frontusers' table
-            $table->foreign('student_id')->references('id')->on('frontusers')->onDelete('cascade');
         });
     }
     /**

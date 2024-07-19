@@ -16,13 +16,13 @@ class SystemSeeder extends Seeder
     {
         System::create([
             'name' => 'Hun Sen Peamchi Kang High School',
-            'frontuser_id' => Frontuser::find(4)->id,
+            'frontuser_id' => 4,
             'location' => 'KPC'
         ]);
 
         System::create([
             'name' => 'Battombong High School',
-            'frontuser_id' => Frontuser::find(5)->id,
+            'frontuser_id' => 5,
             'location' => 'Battombong'
         ]);
     }

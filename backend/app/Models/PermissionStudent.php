@@ -24,7 +24,7 @@ class PermissionStudent extends Model
 
     public function frontuser()
     {
-        return $this->belongsTo(Frontuser::class, 'student_id');
+        return $this->belongsTo(Frontuser::class, 'student_id', 'id');
     }
 
 }
