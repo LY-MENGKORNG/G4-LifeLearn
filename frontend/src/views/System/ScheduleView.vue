@@ -16,3 +16,19 @@ import ScheduleCom from '@/Components/ScheduleCom.vue'
     overflow: hidden;
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

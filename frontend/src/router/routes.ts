@@ -81,7 +81,7 @@ const routes = [
     },
 
     {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: () => import('@/views/Web/HomeView.vue'),
         meta: userMeta
@@ -111,6 +111,12 @@ const routes = [
         name: 'system-classroom',
         component: () => import('@/views/System/ClassroomView.vue')
     },
+    
+    // {
+    //     path: '/system/create/score',
+    //     name: 'system-create-score',
+    //     component: () => import('@/views/System/Teacher/Score.vue')
+    // },
     {
         path: '/system/material',
         name: 'system-material',
@@ -195,6 +201,11 @@ const routes = [
         component: () => import('@/views/System/Classroom/NewGrade.vue'),
     },
     {
+        path: '/system/score',
+        name: 'system-score-list',
+        component: () => import('@/views/System/Classroom/Score.vue'),
+    },
+    {
         path: '/system/grade/:id',
         name: 'system-grade-detail',
         component: () => import('@/views/System/Grade/ShowGrade.vue'),
@@ -232,6 +243,16 @@ const routes = [
         name: 'system-create-quiz',
         component: () => import('@/views/System/Teacher/QuizCreate.vue')
     },
+<<<<<<< HEAD
+=======
+    
+    {
+        path: '/',
+        name: 'welcomepage',
+        component: () => import('@/views/Web/WelcomeView.vue'),
+       
+    },
+>>>>>>> 4053aa4cd9ea66bdfa0fe0936b58d402e6ad3d28
 ]
 
 export default routes;

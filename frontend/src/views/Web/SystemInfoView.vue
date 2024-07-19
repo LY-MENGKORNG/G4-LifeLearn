@@ -386,8 +386,7 @@ store.user.permissions.find((per: any) => {
 	path.value = per.name == 'System buy' ? 'payment' : path.value
 })
 
-const publishableKey =
-	'pk_test_51PcXI9AXVMlmze5ZTKVmhwsSmqAOu46V29H1Toy9zQPhbt5vrjypaOtwJ323GxgyWc5v02KlYRA0ksDEZvfTAf5a00c4K0H0Rq'
+const publishableKey = process.env.VITE_STRIPE_PUBLISHABLE_KEY
 const oneTimeId = ref<string>('')
 const sessionSubId = ref<string>('')
 const checkoutRef = ref()

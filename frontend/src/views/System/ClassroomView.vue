@@ -16,11 +16,14 @@
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT35Sk9mMEcBuooCRGNUylcYn-PR6IZhDHzvA&s"
             alt="Course Image" />
         </div>
+
         <div class="scrollable-content px-20">
           <router-link to="/system/material" class="flex flex-wrap">
             <CardView v-for="classroom in classroomList" :key="classroom.id"/>
           </router-link>
+          <!-- {{ classroomList }} -->
         </div>
+
         <FormclassCreate class="w-full" v-if="formVisible" @create="handleCreate" @cancel="closeForm" />
       </div>
     </div>
@@ -37,6 +40,7 @@ import { useClassroomStore } from '@/stores/classroom-store';
 
 const classroomStore = useClassroomStore();
 const classroomList = ref<any>([]);
+
 const showTooltip = ref(false);
 const formVisible = ref(false);
 
