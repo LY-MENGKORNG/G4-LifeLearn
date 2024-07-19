@@ -2,7 +2,7 @@
     <SystemLayout>
         <div class="space-y-10">
             <div class="flex items-center space-x-5 bg-white p-2 rounded">
-                <router-link to="">
+                <router-link to="/system/homework">
                     <el-icon :size="26">
                     <CloseBold />
                 </el-icon>

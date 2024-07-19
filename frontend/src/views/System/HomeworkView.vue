@@ -28,7 +28,7 @@
               <h6 v-if="isVisible" class="mt-4">Done</h6>
             </router-link>
           </div>
-          <div class="scrollable-content border-2 rounded-xl w-full px-3 space-y-3 h-10">
+          <div class="scrollable-content  w-full px-3 space-y-3 h-10">
             <router-link to="/system/create/quiz" class="flex justify-end items-end">
                     <el-button class="btn btn-primary ">➕ Add Quiz</el-button>
             </router-link>

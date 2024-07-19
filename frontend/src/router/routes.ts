@@ -243,8 +243,6 @@ const routes = [
         name: 'system-create-quiz',
         component: () => import('@/views/System/Teacher/QuizCreate.vue')
     },
-<<<<<<< HEAD
-=======
     
     {
         path: '/',
@@ -252,7 +250,6 @@ const routes = [
         component: () => import('@/views/Web/WelcomeView.vue'),
        
     },
->>>>>>> 4053aa4cd9ea66bdfa0fe0936b58d402e6ad3d28
 ]
 
 export default routes;

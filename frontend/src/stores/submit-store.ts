@@ -5,8 +5,8 @@ import { ref } from 'vue'
 
 const SUBMIT: Submit = { 
         // user_id: 1,
-        classroom_id:1,
-        assignment_id: 1,
+        classroom_id:null,
+        assignment_id: 0,
         work: '',
 }
 
