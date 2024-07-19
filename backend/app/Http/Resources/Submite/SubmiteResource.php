@@ -3,7 +3,6 @@
 namespace App\Http\Resources\Submite;
 
 use App\Http\Controllers\Api\Assigment\AssigmentController;
-use App\Http\Resources\Assignment\AssignmentResource;
 use App\Http\Resources\Users\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

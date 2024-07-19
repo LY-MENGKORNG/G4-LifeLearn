@@ -43,7 +43,7 @@ class SubmiteController extends Controller
         $submite = Submite::find($id);
         $assignment = Assignment::pluck('id')->toArray();
         $userIds = User::pluck('id')->toArray();
-        $requestData = $request->only('assignment_id', 'user_id',);
+        $requestData = $request->only('assignment_id', 'user_id');
         return response()->json(['message' => 'Submite updated successfully'], 200);
     }
 

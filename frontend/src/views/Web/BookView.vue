@@ -69,6 +69,7 @@ onMounted(async () => {
   try {
     const { data } = await axiosInstance.get('/books');
     booklist.value = data.data;
+    
   } catch (error) {
     console.error('Error fetching books:', error);
   }

@@ -154,6 +154,7 @@ Route::middleware('auth:sanctum')->group(function () {
     //Quize
     // Route::resource('/quizze', QuizController::class);
     Route::post('/quizze', [QuizController::class, 'store']);
+    
     //submit
     Route::get('/submite/list', [SubmiteController::class, 'index']);
     Route::post('/submite/create', [SubmiteController::class, 'store']);
@@ -165,7 +166,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/comment', CommentController::class);
 
     //score
-    Route::resource('/score', ScoreController::class);
     Route::resource('/principle', NotificationsController::class);
     // Route::post('/principle/request',NotificationsController::class, 'create');
 
@@ -211,3 +211,4 @@ Route::post('events', [EventController::class, 'store']);
 Route::put('events/{id}', [EventController::class, 'update']);
 Route::delete('events/{id}', [EventController::class, 'destroy']);
 
+Route::resource('/score', ScoreController::class);
