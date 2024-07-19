@@ -166,7 +166,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //score
     Route::resource('/score', ScoreController::class);
-    Route::resource('/principle', NotificationsController::class);
+  
     // Route::post('/principle/request',NotificationsController::class, 'create');
 
     //class
@@ -203,6 +203,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // webhook
     Route::post('/webhook', [PaymentController::class, 'getWebhook']);
+    
+    //notification
+    Route::resource('/user/notifications', NotificationsController::class);
+
+
 });
 
 // event 
@@ -210,4 +215,3 @@ Route::get('/events', [EventController::class,  'index']);
 Route::post('events', [EventController::class, 'store']);
 Route::put('events/{id}', [EventController::class, 'update']);
 Route::delete('events/{id}', [EventController::class, 'destroy']);
-
