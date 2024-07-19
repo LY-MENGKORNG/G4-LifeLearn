@@ -8,7 +8,7 @@ const simpleAcl = createAcl({})
 
 
 const USER: User = {
-    profile: {
+    data: {
         id: null,
         firstName: '',
         lastName: '',

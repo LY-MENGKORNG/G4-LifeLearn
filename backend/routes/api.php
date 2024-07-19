@@ -37,6 +37,7 @@ use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\Api\PermissionStudentController;
 use App\Http\Controllers\API\StudentController;
+use App\Http\Controllers\API\SystemController as APISystemController;
 use App\Http\Controllers\API\UserController as APIUserController;
 
 /*
@@ -97,11 +98,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/show/{id}', [AssignmentController::class, 'show']);
         Route::put('/update/{id}', [AssignmentController::class, 'update']);
         Route::delete('/{id}', [AssignmentController::class, 'destroy']);
-    });
-
-    // system routes
-    Route::prefix('system')->group(function () {
-        Route::resource('/', SystemController::class);
     });
 
     // category routes
@@ -196,6 +192,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
     // Request to buy system
     Route::post('/system-request', [ReferenceController::class, 'store'])->name('system.request');
+
+    // Create system
+    Route::post('/system-create', [APISystemController::class, 'store']);
+
+    Route::get('system', [APISystemController::class, 'show']);
 
     // get session
     Route::get('/session', [PaymentController::class, 'getSession']);
