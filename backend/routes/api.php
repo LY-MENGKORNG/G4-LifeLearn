@@ -156,11 +156,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //submit
     Route::resource('/submit', SubmiteController::class);
-    // Route::get('/submit/list', [SubmiteController::class, 'index']);
-    // Route::post('/submit/create', [SubmiteController::class, 'store']);
-    // Route::get('/submit/show/{id}', [SubmiteController::class, 'show']);
-    // Route::put('/submit/update/{id}', [SubmiteController::class, 'update']);
-    // Route::delete('/submit/delete/{id}', [SubmiteController::class, 'destroy']);
 
     //comments
     Route::resource('/comment', CommentController::class);
@@ -182,8 +177,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Invite Mail
     // Route::post('/send-mail-to-student', [MailController::class, 'sendMail']);
-<<<<<<< HEAD
-=======
 
 
     // Route to handle the forgot password form submission
@@ -191,8 +184,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // student 
     Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
-
-    Route::get('/registrations-per-day', [FrontuserController::class, 'getRegistrationsPerDay']);
+    Route::get('/registrations-per-month', [FrontuserController::class, 'getRegistrationsPerDay']);
     Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
     Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
     // Request to buy system
@@ -207,7 +199,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // webhook
     Route::post('/webhook', [PaymentController::class, 'getWebhook']);
 });
->>>>>>> 4053aa4cd9ea66bdfa0fe0936b58d402e6ad3d28
 
 // event 
 Route::get('/events', [EventController::class,  'index']);
@@ -215,16 +206,7 @@ Route::post('events', [EventController::class, 'store']);
 Route::put('events/{id}', [EventController::class, 'update']);
 Route::delete('events/{id}', [EventController::class, 'destroy']);
 
-<<<<<<< HEAD
-    // Route to handle the forgot password form submission
-    Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
-});
-// student 
-Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
 
-Route::get('/registrations-per-month', [FrontuserController::class, 'getRegistrationsPerDay']);
-Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
-Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
-=======
->>>>>>> 4053aa4cd9ea66bdfa0fe0936b58d402e6ad3d28
+
+

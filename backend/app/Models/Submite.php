@@ -37,10 +37,10 @@ class Submite extends RelationshipModel
         ];
         
         $file_name = null;
-        if($request->hasfile('fields')){
+        if($request->hasfile('work')){
             $file_name = UploadFile::saveFile($request->work);
         }
-        $data['fields'] = $file_name;
+        $data['work'] = $file_name;
 
         $data = self::updateOrCreate(['id' => $id], $data);
         return $data;

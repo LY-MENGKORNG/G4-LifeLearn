@@ -1,0 +1,73 @@
+$one_week_ago = Carbon::now()->subDays(6)->format('Y-m-d');
+$dates = Post::where('created_at', '>=', $one_week_ago)
+        ->groupBy('date')
+        ->orderBy('date', 'ASC')
+        ->get(array(
+             DB::raw('Date(created_at) as date'),
+             DB::raw('COUNT(*) as "count"')
+          ));
+
+return view ('analytics', array('dates' => $dates));
+
+@foreach ($dates as $date => $count) 
+      <p> {{ $date . '->' . $count }}</p>
+@endforeach
+
+
+0 -> {"date":"2017-04-07","count":7}
+
+1 -> {"date":"2017-04-08","count":2}
+
+2 -> {"date":"2017-04-12","count":4}
+
+3 -> {"date":"2017-04-13","count":1}
+
+// Build an array of the dates we want to show, oldest first
+$dates = collect();
+foreach( range( -6, 0 ) AS $i ) {
+    $date = Carbon::now()->addDays( $i )->format( 'Y-m-d' );
+    $dates->put( $date, 0);
+}
+
+// Get the post counts
+$posts = Post::where( 'created_at', '>=', $dates->keys()->first() )
+             ->groupBy( 'date' )
+             ->orderBy( 'date' )
+             ->get( [
+                 DB::raw( 'DATE( created_at ) as date' ),
+                 DB::raw( 'COUNT( * ) as "count"' )
+             ] )
+             ->pluck( 'count', 'date' );
+
+// Merge the two collections; any results in `$posts` will overwrite the zero-value in `$dates`
+$dates = $dates->merge( $posts );
+
+return view( 'analytics', compact( 'dates' ) );
+
+@foreach ( $dates as $date => $count ) 
+    <p> {{ $date }} = {{ $count }}</p>
+@endforeach
+
+
+for ($i=0; $i<=6; $i++) {
+   $dates[] = Carbon::now()->subDays($i)->format('Y-m-d');
+}
+
+$data = Post::whereIn('created_at', $dates)
+        ->groupBy('date')
+        ->orderBy('date', 'ASC')
+        ->get(array(
+             DB::raw('Date(created_at) as date'),
+             DB::raw('COUNT(*) as "count"')
+          ))
+->keyBy('date');
+
+return view ('analytics', array('dates' => $dates, 'data' => $data));
+
+@foreach ($dates as $date) 
+      <p> {{ $date . '->' . isset($data[$date]) ? $data[$date] : 0; }}</p>
+@endforeach
+
+@foreach ($data as $row) 
+  <p> {{ $row['date'] . '->' . $row['count'] }}</p>
+@endforeach
