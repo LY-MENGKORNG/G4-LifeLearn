@@ -101,50 +101,50 @@
         </div>
       </div>
 
-      <!-- Permissions modal -->
-      <div v-if="formVisible" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
-        <div class="container mx-auto py-8">
-          <div class="w-150 mx-auto bg-white rounded shadow">
-            <div class="mx-16 py-4 px-8 text-black text-xl font-bold border-b border-grey-500 flex justify-center">
-              Permission Students
-            </div>
-            <form @submit.prevent="savePermission" name="student_application" id="student_application">
-              <div class="py-4 px-8">
-                <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Purpose:</label>
-                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="text" name="course_name"
-                    id="course_name" placeholder="Enter Your Course Name" />
-                  <p id="error_creater_id"></p>
-                </div>
-                <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Start Date:</label>
-                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="date"
-                    name="admission_date" id="admission_date" />
-                </div>
-                <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">End Date:</label>
-                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="date"
-                    name="admission_date" id="admission_date" />
-                </div>
-                <div class="flex justify-between">
-                  <button type="button"  @click="closePremission"
-                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
-                    Cancel
-                  </button>
-                  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Save
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+  
+   <!-- Permissions modal -->
+  <div v-if="formVisible" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+    <div class="container mx-auto py-8">
+      <div class="w-150 mx-auto bg-white rounded shadow">
+        <div class="mx-16 py-4 px-8 text-black text-xl font-bold border-b border-grey-500 flex justify-center">
+          Permission Students
         </div>
+        <form @submit.prevent="savePermission">
+          <div class="py-4 px-8">
+            <div class="mb-4">
+              <label class="block text-grey-darker text-sm font-bold mb-2">Purpose:</label>
+              <input v-model="form.purpose" class="border rounded w-full py-2 px-3 text-grey-darker" type="text" name="purpose" placeholder="Enter Your Purpose" />
+              <p id="error_purpose"></p>
+            </div>
+            <div class="mb-4">
+              <label class="block text-grey-darker text-sm font-bold mb-2">Start Date:</label>
+              <input v-model="form.start_date" class="border rounded w-full py-2 px-3 text-grey-darker" type="date" name="start_date" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-grey-darker text-sm font-bold mb-2">End Date:</label>
+              <input v-model="form.end_date" class="border rounded w-full py-2 px-3 text-grey-darker" type="date" name="end_date" />
+            </div>
+            <div class="flex justify-between">
+              <button type="button" @click="closePermission" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
+                Cancel
+              </button>
+              <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Save
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
+    </div>
+  </div>
     </div>
   </div>
 </template>
 
 <script>
+import axiosInstance from '@/plugins/axios';// Import the axiosInstance
+
+
 export default {
   name: 'CalendarCom',
   data() {
@@ -163,7 +163,12 @@ export default {
         location: '',
         organizer_id: ''
       },
-      datesInfo: {}
+      datesInfo: {},
+      form: {
+        purpose: '',
+        start_date: '',
+        end_date: '',
+      },
     };
   },
   computed: {
@@ -269,11 +274,41 @@ export default {
           });
       }
     },
-    savePermission() {
-      // Logic for saving permissions goes here
-      // Add appropriate logic and validation for saving permissions
-    }
-  }
+  
+    async savePermission() {
+      try {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+          throw new Error('No token found');
+        }
+        const response = await axiosInstance.post('/permission', this.form, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log('Permission saved:', response.data);
+        this.closePermission(); // Hide the form upon successful save
+      } catch (error) {
+        console.error('Error saving permission:', error);
+      }
+
+    },
+
+    closePermission() {
+      this.formVisible = false;
+    },
+
+    showPermissionForm() {
+      this.formVisible = true;
+    },
+
+    mounted() {
+    this.savePermission(); // Calls savePermission when component is mounted
+  },
+  },
+  
+    
+  
 };
 </script>
 

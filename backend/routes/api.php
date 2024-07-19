@@ -35,6 +35,7 @@ use App\Http\Controllers\Front\Auth\ForgotPasswordManager;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\Api\LessonController;
+use App\Http\Controllers\Api\PermissionStudentController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\API\UserController as APIUserController;
 
@@ -203,6 +204,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // webhook
     Route::post('/webhook', [PaymentController::class, 'getWebhook']);
+
+    //permission student
+    Route::resource('/permission', PermissionStudentController::class);
 });
 
 // event 
