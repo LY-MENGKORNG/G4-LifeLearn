@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('submites', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('assignment_id')->nullable();
+            $table->integer('classroom_id');
+            $table->integer('assignment_id');
+            $table->string('work');
             $table->softDeletes();
             $table->timestamps();
         });

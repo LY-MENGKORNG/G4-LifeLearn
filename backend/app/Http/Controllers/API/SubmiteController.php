@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Quiz\SubmitRequest;
 use App\Http\Resources\Submite\SubmiteResource;
 use App\Models\Assignment;
 use App\Models\Submite;
@@ -20,14 +21,14 @@ class SubmiteController extends Controller
     }
 
     //create a new submite 
-    public function store(Request $request)
+    public function store(SubmitRequest $request)
     {
-        $request->validate([
-            'user_id' => 'required|integer',
-            'assignment_id' => 'nullable|integer',
-        ]);
-        $submite = Submite::create($request->all());
-        return response()->json(['success' => true, 'message' => 'Created successfully', 'submite' => new SubmiteResource($submite)], 201);
+        $submite = Submite::store($request);
+        return response()->json([
+        'success' => true,
+        'message' => 'Created successfully',
+        'submite' => new SubmiteResource($submite)],
+        201);
     }
 
     //show submite

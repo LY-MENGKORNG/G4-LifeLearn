@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('description');
+            $table->integer('receiver_id')->nullable();
             $table->boolean('status')->default(false);
             $table->softDeletes();
             $table->timestamps();

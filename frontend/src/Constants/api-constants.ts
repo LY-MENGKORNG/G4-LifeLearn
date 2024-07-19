@@ -15,6 +15,25 @@ export default interface User {
     isAuthenticated: boolean
 }
 
+export default interface Book {
+    // id: number;
+    title: string;
+    author: string;
+    published_at: string;
+    price?: number;
+}
+
+export default interface Quiz {
+    // id: any;
+    classroom_id: any;
+    title: string;
+    instructions: string;
+    points: any;
+    deadline: string;
+    topics?: string;
+    links?: string;
+    fields?: string;
+}
 
 export default interface RequestPayment {
     school_name: string;
@@ -31,9 +50,9 @@ export default interface Payment {
     system_id?: number;
 }
 
-export default interface Book {
-    title: string;
-    description: string;
-    cover: string;
-    
+export default interface Submit {
+    user_id: string;
+    classroom_id;
+    assignment_id?: number;
+    work?: string;
 }

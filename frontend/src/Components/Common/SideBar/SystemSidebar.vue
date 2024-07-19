@@ -19,39 +19,38 @@
 		</el-menu-item>
 
 	</el-menu>
-</template>
-
-<script setup lang="ts">
-import { DataBoard, Document, Menu as IconMenu, Location, Setting, Calendar, Avatar, UserFilled } from '@element-plus/icons-vue'
-import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
-import { defineProps, toRefs } from 'vue'
-import router from '@/router'
-
-const props = defineProps({
+  </template>
+  
+  <script setup lang="ts">
+  import { DataBoard, Document, Menu as IconMenu, Location, Setting, Calendar, Avatar, UserFilled } from '@element-plus/icons-vue';
+  import { defineProps, toRefs } from 'vue';
+  import { useRouter } from 'vue-router';
+  
+  const props = defineProps({
 	isCollapse: Boolean,
 	handleOpen: Function,
 	handleClose: Function
-})
-const { isCollapse, handleOpen, handleClose } = toRefs(props)
-
-const setRoute = (path: string) => {
-	router.router.push(path)
-}
-
-const navigations = [
-    {id: 1, name: 'Grade', path: '/system/grade', isTeacher: true},
-    {id: 2, name: 'Teacher', path: '/system/teacher', isTeacher: false},
-    {id: 3, name: 'Student', path: '/system/student', isTeacher: true},
-    {id: 4, name: 'Schedule', path: '/system/schedule', isTeacher: true},
-    {id: 5, name: 'Setting', path: '/system/setting', isTeacher: true},
-	{id: 6, name: 'Classes', path: '/system/class', isTeacher: true},
-];
-
-</script>
-
-
-<style>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
+  });
+  const { isCollapse, handleOpen, handleClose } = toRefs(props);
+  
+  const router = useRouter();
+  
+  const setRoute = (path: string) => {
+	router.push(path);
+  };
+  
+  const navigations = [
+	{ id: 1, name: 'Grade', path: '/system/grade', icon: Document, isTeacher: true },
+	{ id: 2, name: 'Teacher', path: '/system/teacher', icon: Avatar, isTeacher: false },
+	{ id: 3, name: 'Student', path: '/system/student', icon: UserFilled, isTeacher: true },
+	{ id: 4, name: 'Schedule', path: '/system/schedule', icon: Calendar, isTeacher: true },
+	{ id: 5, name: 'Setting', path: '/system/setting', icon: Setting, isTeacher: true },
+  ];
+  </script>
+  
+  <style>
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
 	width: 200px;
-}
-</style>
+  }
+  </style>
+  

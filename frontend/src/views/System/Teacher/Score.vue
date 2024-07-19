@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="flex justify-center">
         <div class="flex justify-center max-w-90 shadow-md mx-auto items-center bg-slate-100 mt-4">
             <el-container class="flex m-auto">
@@ -17,17 +17,4 @@
             </el-container>
         </div>
     </div>
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue'
-
-const score = ref<number | null>(null)
-const textarea = ref('')
-
-const handleSubmit = () => {
-    console.log('Score:', score.value)
-    console.log('Comment:', textarea.value)
-}
-</script>
-
+</template> -->

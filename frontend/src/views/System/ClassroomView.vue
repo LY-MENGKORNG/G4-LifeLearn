@@ -1,7 +1,7 @@
 <template>
   <SystemLayout>
     <div class="flex items-center justify-center h-full w-full ">
-      <div class="h-full space-y-8">
+      <div class="h-full w-full space-y-8">
         <div class="bg-gray-200 pr-10 py-2 border-b border-gray-300 flex justify-end items-center space-x-1">
           <button class="relative" @click="showForm">
             <el-icon class="mr-5 font-black" :size="26"
@@ -19,10 +19,12 @@
 
         <div class="scrollable-content px-20">
           <router-link to="/system/material" class="flex flex-wrap">
-            <CardView v-for="classroom in classroomList" :key="classroom.id"/>
+            <CardView />
+            <!-- <CardView v-for="classroom in classroomList" :key="classroom.id"/> -->
           </router-link>
+          <!-- {{ classroomList }} -->
         </div>
-        
+
         <FormclassCreate class="w-full" v-if="formVisible" @create="handleCreate" @cancel="closeForm" />
       </div>
     </div>
@@ -39,6 +41,7 @@ import { useClassroomStore } from '@/stores/classroom-store';
 
 const classroomStore = useClassroomStore();
 const classroomList = ref<any>([]);
+
 const showTooltip = ref(false);
 const formVisible = ref(false);
 

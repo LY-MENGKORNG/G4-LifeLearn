@@ -50,6 +50,11 @@ class Frontuser extends RelationshipModel
         'email_verified_at' => 'datetime',
     ];
 
+    public function permissions()
+    {
+        return $this->belongsToMany(PermissionStudent::class);
+    }
+
     public function classrooms()
     {
         return $this->belongsToMany(Classroom::class, 'classroom_student');

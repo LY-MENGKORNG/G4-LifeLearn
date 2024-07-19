@@ -1,10 +1,10 @@
-            
 <script setup lang="ts">
 import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
 import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
 import { Search } from '@element-plus/icons-vue'
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth-store'
+import axiosInstance from '@/plugins/axios';
 import router from '@/router'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -57,9 +57,24 @@ const setCurrentRoute = () => {
 		}
 	})
 }
-setCurrentRoute()
-</script>
+setCurrentRoute();
 
+const notificationDialogVisible = ref(false)
+
+const showNotification = () => {
+	notificationDialogVisible.value = true
+}
+const notificationlist = ref([]);
+onMounted(async () => {
+  try {
+    const { data } = await axiosInstance.get('/user/notifications');
+    notificationlist.value = data.data;
+	console.log(notificationlist.value)
+  } catch (error) {
+    console.error('Error fetching books:', error);
+  }
+});
+</script>
 
 <template>
 	<el-container class="flex flex-col">
@@ -94,6 +109,21 @@ setCurrentRoute()
 						</svg>
 					</el-button>
 				</el-badge>
+				<el-dialog v-model="notificationDialogVisible" title="Notifications">
+					<div class="p-2">
+						<h3 class="text-sm font-medium text-muted-foreground dark:text-muted mb-3">Today</h3>
+						<div class="space-y-4" v-for="notification in notificationlist" :key="notification.id">
+							<div class="flex items-start space-x-3 mb-3">
+								<img class="w-8 h-8 rounded-full" src="https://i.pinimg.com/564x/3d/de/f0/3ddef0fc2c011f22b616afe111addcdf.jpg" alt="user-avatar" />
+								<div class="flex-1">
+									<p class="text-sm"><span class="font-semibold"></span> {{ notification.description }}</p>
+								</div>
+								<span class="text-xs text-muted-foreground dark:text-muted">{{ notification.created_at }}</span>
+							</div>
+						</div>
+					</div>
+				</el-dialog>
+
 				<!-- =====profile==== -->
 				<Menu as="div" class="relative inline-block text-left z-50">
 					<div>

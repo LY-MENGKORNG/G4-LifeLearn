@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Submite;
 
-use App\Http\Controllers\Api\Assigment\AssigmentController;
 use App\Http\Resources\Assignment\AssignmentResource;
 use App\Http\Resources\Users\UserResource;
 use Illuminate\Http\Request;
@@ -20,7 +19,7 @@ class SubmiteResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => new UserResource($this->user),
-            'assignment_id' => new AssigmentController($this->assignment),
+            'assignment_id' => new AssignmentResource($this->assignment),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
