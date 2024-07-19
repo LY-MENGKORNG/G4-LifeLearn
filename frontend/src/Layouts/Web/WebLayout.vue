@@ -20,7 +20,7 @@ onMounted(async () => {
 	<div class="common-layout bg-white min-h-screen">
 		<el-container class="flex flex-col justify-between relative">
 			<WebNavbar :src="profile"></WebNavbar>
-			<web-header-menu />
+			<WebHeaderMenu />
 			<el-main class="p-0">
 				<slot></slot>
 			</el-main>

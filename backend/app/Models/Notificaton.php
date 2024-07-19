@@ -10,21 +10,21 @@ class Notificaton extends RelationshipModel
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id',  'description'];
+    protected $fillable = ['user_id',  'description','receiver_id' ];
 
     public static function list()
     {
         return self::all();
     }
 
-    public static function front_user(): BelongsTo
+    public function front_user(): BelongsTo
     {
         return self::belongsTo(Frontuser::class, 'sender', 'id');
     }
 
-    public static function receiver(): BelongsTo
+    public  function receiver(): BelongsTo
     {
         return self::belongsTo(User::class, 'receiver', 'id');
     }
- 
+
 }

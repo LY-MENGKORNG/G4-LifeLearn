@@ -1,18 +1,39 @@
+
+export default interface Profile {
+    id: any;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password?: string;
+    phone?: string;
+    profile?: string
+}
 export default interface User {
-    profile: {
-        id: any;
-        firstName: string;
-        lastName: string;
-        email: string;
-        password?: string;
-        phone?: string;
-        profile?: string
-    };
+    data: Profile;
     permissions: string[]
     roles: string[]
     isAuthenticated: boolean
 }
 
+export default interface Book {
+    // id: number;
+    title: string;
+    author: string;
+    published_at: string;
+    price?: number;
+}
+
+export default interface Quiz {
+    // id: any;
+    classroom_id: any;
+    title: string;
+    instructions: string;
+    points: any;
+    deadline: string;
+    topics?: string;
+    links?: string;
+    fields?: string;
+}
 
 export default interface RequestPayment {
     school_name: string;
@@ -27,4 +48,11 @@ export default interface Payment {
     amount: number;
     course_id?: number;
     system_id?: number;
+}
+
+export default interface Submit {
+    user_id: string;
+    classroom_id;
+    assignment_id?: number;
+    work?: string;
 }

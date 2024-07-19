@@ -2,9 +2,12 @@
     <SystemLayout>
         <div class="space-y-10">
             <div class="flex items-center space-x-5 bg-white p-2 rounded">
-                <el-icon :size="26">
+                <router-link to="/system/homework">
+                    <el-icon :size="26">
                     <CloseBold />
                 </el-icon>
+                </router-link>
+                
                 <button class="rounded-full bg-pink-500 px-2 py-1">
                     <el-icon :size="26">
                         <Document />
@@ -79,11 +82,15 @@
         </div>
     </SystemLayout>
 </template>
+
 <script setup lang="ts">
 import SystemLayout from "@/Layouts/System/SystemLayout.vue";
 import { Link, Upload, CloseBold, Document } from "@element-plus/icons-vue";
 import { ref, onMounted } from "vue";
 import { useQuizStore } from "@/stores/quiz-store";
+import { RouterLink } from "vue-router";
+import router from '@/router';
+import { ElNotification } from 'element-plus';
 
 const quizStore = useQuizStore();
 
@@ -99,7 +106,6 @@ const toggleLink = () => {
 };
 
 const quizcreate = ref<any>({
-    // id: null,
     classroom_id: null,
     title: '',
     instructions: '',
@@ -110,7 +116,6 @@ const quizcreate = ref<any>({
     fields: ''
 });
 
-
 const handleFileUpload = (event: Event) => {
     const target = event.target as HTMLInputElement;
     if (target.files) {
@@ -120,16 +125,27 @@ const handleFileUpload = (event: Event) => {
 
 onMounted(async () => {
     await quizStore.fetchQuizzes();
-    console.log(quizStore.quizze.data);
 });
 
 const CreateQuiz = async () => {
     try {
         console.log('Creating quiz with data:', quizcreate.value);
         await quizStore.QuizCreate(quizcreate.value);
-        console.log("Quiz created successfully");
+        openSuccess()
+        setTimeout(() => {
+            router.router.push('/system/homework')
+        }, 100)
     } catch (error) {
         console.warn("Error creating quiz:", error);
     }
 };
+
+const openSuccess = () => {
+  ElNotification({
+    title: 'Success',
+    message: 'User updated successfully',
+    type: 'success',
+  })
+}
 </script>
+

@@ -160,9 +160,14 @@ const routes = [
         component: () => import('@/views/Web/Payments/PrinciplePayment.vue'),
     },
     {
-        path: '/system/bookpayment',
-        name: 'system-bookpayment',
-        component: () => import('@/views/Web/Bookpayments/UserPaymentView.vue')
+        path: '/systems/payment',
+        name: 'systems-payment',
+        component: () => import('@/views/Web/Payments/PrinciplePayment.vue'),
+    },
+    {
+        path: '/payment/success',
+        name: 'system-success',
+        component: () => import('@/views/Web/Payments/SuccessPaid.vue')
     },
     {
         path: '/systems/info',
@@ -212,13 +217,19 @@ const routes = [
         component: () => import('@/views/System/LessonView.vue')
     },
     {
-        path: '/system/submitform',
-        name: 'system-submitform',
-        component: () => import('@/views/System/SubmitformView.vue')
+        path: '/system/homework',
+        name: 'system-lesson',
+        component: () => import('@/views/System/HomeworkView.vue')
     },
     {
-        path: '/system/view/profile',
-        name: 'system-view-profile',
+        path: '/system/submitform/:id',
+        name: 'system-submitform',
+        component: () => import('@/views/System/SubmitformView.vue'),
+        props: true
+    },
+    {
+        path: '/system/profile',
+        name: 'system-profile',
         component: () => import('@/views/System/Profile/ViewProfile.vue')
     },
     {
@@ -238,6 +249,12 @@ const routes = [
         component: () => import('@/views/Web/WelcomeView.vue'),
        
     },
+
+    {
+        path:'/user/profile' ,
+        name: 'user-profile',
+        component: () => import('@/views/Web/UserProfileView.vue')
+    }
 ]
 
 export default routes;

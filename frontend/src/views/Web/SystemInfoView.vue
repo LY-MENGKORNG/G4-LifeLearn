@@ -364,10 +364,8 @@
 						</el-button>
 
 					</router-link>
-					<StripeCheckout v-if="oneTimeId" ref="checkoutRef" :pk="publishableKey" :sessionId="oneTimeId" />
 					<StripeCheckout v-if="sessionSubId" ref="checkoutSubRef" :pk="publishableKey" :sessionId="sessionSubId" />
-				</div>
-
+				</div> 
 			</div>
 		</div>
 	</WebLayout>
@@ -386,22 +384,21 @@ store.user.permissions.find((per: any) => {
 	path.value = per.name == 'System buy' ? 'payment' : path.value
 })
 
-const publishableKey = process.env.VITE_STRIPE_PUBLISHABLE_KEY
-const oneTimeId = ref<string>('')
+const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
 const sessionSubId = ref<string>('')
-const checkoutRef = ref()
 const checkoutSubRef = ref()
 
 onMounted(async () => {
 	try {
 		const response = await axiosInstance.get('/session')
-		oneTimeId.value = response.data.oneTime.id
+		console.log(response);
 		sessionSubId.value = response.data.sub.id;
 	} catch (error) {}
 })
 
 const handleSubmit = () => {
-	checkoutRef.value.redirectToCheckout()
+	checkoutSubRef.value.redirectToCheckout()
+	console.log(checkoutSubRef.value)
 }
 </script>
     

@@ -31,7 +31,7 @@ const setCurrentRoute = () => {
 <template>
 	<el-menu
 		:default-active="activeIndex"
-		class="el-menu-demo flex justify-center h-[40px] sticky top-0 left-0 z-50 shadow-md shadow-slate-50/30 backdrop-blur-sm bg-white/80"
+		class="el-menu-demo flex justify-center h-[40px] sticky top-0 left-0 z-40 shadow-md shadow-slate-50/30 backdrop-blur-sm bg-white/80"
 		mode="horizontal"
 		@select="handleSelect"
 	>

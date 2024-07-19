@@ -21,9 +21,10 @@ const { handleSubmit, isSubmitting } = useForm({
     validationSchema: formSchema
 })
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(async (values) => {
     
-    const isUser = store.login(values, '/system/login')
+    const isUser = await store.login(values, '/system/login')
+    console.log(isUser) 
     let isNotUser = !isUser;
     store.user.permissions.map((per: any) => {
         if(per.name != 'Access system') {

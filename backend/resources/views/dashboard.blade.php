@@ -21,7 +21,7 @@
                         </g>
                     </svg>
                 </x-overview-card>
-                <x-overview-card link="admin.payment.index" active="yellow-300" title="Total Income" :number="$payments->count() . ' $'">
+                <x-overview-card link="admin.payment.index" active="yellow-300" title="Total Income" :number="'$ '. $incomes">
                     <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

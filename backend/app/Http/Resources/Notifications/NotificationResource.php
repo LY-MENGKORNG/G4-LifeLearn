@@ -8,6 +8,7 @@ use App\Http\Resources\Users\FrontUserResource;
 // use App\Models\Classroom;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class NotificationResource extends JsonResource
 {
@@ -21,8 +22,10 @@ class NotificationResource extends JsonResource
         return [
             'id' => $this->id,
             'sender' => new FrontUserResource($this->front_user),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'description' => $this->description,
+            'receiver_id'=>$this->receiver_id,
+            'created_at'=>Carbon::parse($this->created_at)->toTimeString()
+            // 'updated_at' => $this->updated_at,
         ];
         
     }

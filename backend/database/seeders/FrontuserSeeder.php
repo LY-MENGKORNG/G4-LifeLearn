@@ -29,9 +29,9 @@ class FrontuserSeeder extends Seeder
             'profile' => 'channy.png',
         ]);
         $user3 = Frontuser::create([
-            'first_name' => 'sokhean',
+            'first_name' => 'sokheang',
             'last_name' => 'both',
-            'email' => 'sokhean.both@student.passerellesnumeriques.org',
+            'email' => 'sokheang.both@student.passerellesnumeriques.org',
             'password' => bcrypt('password'),
             'phone' => '087861976',
             'profile' => 'sokhang.jpg',
