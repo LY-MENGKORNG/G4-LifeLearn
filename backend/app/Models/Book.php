@@ -19,6 +19,11 @@ class Book extends RelationshipModel
         'price',
     ];
 
+    public static function list() 
+    {
+        return self::all();
+    }
+
     public static function createOrUpdate($request, $id = null)
     {
         $book = $request->only('title', 'author', 'user_id', 'published_at', 'price');

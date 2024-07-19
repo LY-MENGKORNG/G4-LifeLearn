@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Charts\MonthlyUsersChart;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\FrontRegisterRequest;
 use App\Http\Requests\Auth\LoginRequest;
@@ -29,10 +30,10 @@ class FrontuserController extends Controller
             ], 401);
         }
 
-        $permissions = $user->permissions; 
-        $roles = $user->roles; 
+        $permissions = $user->permissions;
+        $roles = $user->roles;
 
-        $user->last_seen = now(); 
+        $user->last_seen = now();
         $user->update(); // update the time that user accessed
 
         return response()->json([
@@ -41,7 +42,7 @@ class FrontuserController extends Controller
             'permissions' => PermissionResource::collection($permissions),
             'roles' => RoleResource::collection($roles),
         ]);
-    }   
+    }
 
     public function register(FrontRegisterRequest $request)
     {
@@ -83,32 +84,39 @@ class FrontuserController extends Controller
         ]);
     }
 
+
+    public static function chart()
+    {
+        $chart = new MonthlyUsersChart();
+        return  $chart->build();
+    }
+
     public function getRegistrationsPerDay()
     {
         $registrations = DB::table('frontusers')
-            ->select(DB::raw('MONTHOFYEAR(created_at) as moth_of_year'), DB::raw('count(*) as count'))
-            ->groupBy('moth_of_year')
+            ->select(DB::raw('MONTH(created_at) as month_of_year'), DB::raw('count(*) as count'))
+            ->groupBy('month_of_year')
             ->get();
 
-        // Initialize an array with zero counts for each day of the week (1 = Sunday, 7 = Saturday)
-        $daysOfWeek = array_fill(1, 12, 0);
+        // Initialize an array with zero counts for each month of the year (1 = January, 12 = December)
+        $monthsOfYear = array_fill(1, 12, 0);
 
         // Populate the array with actual data
         foreach ($registrations as $registration) {
-            $daysOfWeek[$registration->moth_of_year] = $registration->count;
+            $monthsOfYear[$registration->month_of_year] = $registration->count;
         }
 
         // Prepare data for the chart
-        $dayNames = [
+        $monthNames = [
             1 => 'Jan',
             2 => 'Feb',
             3 => 'Mar',
             4 => 'Apr',
             5 => 'May',
             6 => 'Jun',
-            7 => 'July',
+            7 => 'Jul',
             8 => 'Aug',
-            9 => 'Seb',
+            9 => 'Sep',
             10 => 'Oct',
             11 => 'Nov',
             12 => 'Dec',
@@ -117,8 +125,8 @@ class FrontuserController extends Controller
         $labels = [];
         $data = [];
 
-        foreach ($daysOfWeek as $dayNumber => $count) {
-            $labels[] = $dayNames[$dayNumber];
+        foreach ($monthsOfYear as $monthNumber => $count) {
+            $labels[] = $monthNames[$monthNumber];
             $data[] = $count;
         }
 
@@ -127,6 +135,4 @@ class FrontuserController extends Controller
             'data' => $data,
         ]);
     }
-
 }
-

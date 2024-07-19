@@ -1,6 +1,7 @@
 <x-app-layout>
     <main class="w-full overflow-x-hidden  bg-gray-100 p-4">
-        <div class="relative flex flex-col w-full overflow-hidden  text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+        <div
+            class="relative flex flex-col w-full overflow-hidden  text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
             <div class="p-6 bg-blue-200">
                 <h5
                     class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
@@ -53,12 +54,13 @@
                     </thead>
                     <tbody>
                         @foreach ($payments as $payment)
+                            {{-- @dd($payment) --}}
                             <tr>
                                 <td class="p-4 border-b border-blue-gray-50">
                                     <div class="flex items-center gap-3">
                                         <p
                                             class="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
-                                            {{$payment->payment_method_details->card->brand}}
+                                            {{ $payment->payment_method_details->card->brand }}
                                         </p>
                                     </div>
                                 </td>
@@ -78,7 +80,7 @@
                                     <div class="w-max">
                                         <div
                                             class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                                            <span class="">{{$payment->status}}</span>
+                                            <span class="">{{ $payment->status }}</span>
                                         </div>
                                     </div>
                                 </td>
@@ -92,7 +94,7 @@
                                         <div class="flex flex-col">
                                             <p
                                                 class="block font-sans text-sm antialiased font-normal leading-normal capitalize text-blue-gray-900">
-                                                {{$payment->billing_details->name}}
+                                                {{ $payment->billing_details->name }}
                                             </p>
                                             <p
                                                 class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
@@ -105,19 +107,27 @@
                                     <button
                                         class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                         type="button">
-                                        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                                aria-hidden="true" class="w-4 h-4">
-                                                <path
-                                                    d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
-                                                </path>
+                                        <span
+                                            class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                    stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path
+                                                        d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16"
+                                                        stroke="#ab4513" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                    </path>
+                                                </g>
                                             </svg>
                                         </span>
                                     </button>
                                 </td>
                             </tr>
                         @endforeach
- 
+
                     </tbody>
                 </table>
             </div>

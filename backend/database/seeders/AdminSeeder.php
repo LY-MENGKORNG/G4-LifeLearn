@@ -63,6 +63,9 @@ class AdminSeeder extends Seeder
         $system_add_permission = Permission::create(['name' => 'System add']);
         $system_delete_permission = Permission::create(['name' => 'System delete']);
 
+        //
+        $book_permissions = Permission::create(['name' => 'Books']);
+
         // 
         $notification_access_permission = Permission::create(['name' => 'Notification access']);
         $notification_edit_permission = Permission::create(['name' => 'Notification edit']);
