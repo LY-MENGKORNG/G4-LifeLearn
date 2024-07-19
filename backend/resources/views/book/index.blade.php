@@ -19,7 +19,7 @@
         </div>
         <ul role="list" class="divide-y divide-gray-100 bg-white rounded-md px-4">
             @foreach ($books as $book)
-                <x-book-table book_id="{{$book->id}}" title="{{$book->title}}" description="{{$book->description}}" />
+                <x-book-table author="{{$book->author}}" cover="{{env('APP_HOST').'/images/'.$book->cover}}" book_id="{{$book->id}}" title="{{$book->title}}" description="{{$book->description}}" />
             @endforeach
         </ul>
     </main>

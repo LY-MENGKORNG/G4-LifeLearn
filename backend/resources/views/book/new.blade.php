@@ -9,7 +9,52 @@
                 <a class="text-lg hover:underline" href="{{ route('admin.books.index') }}">
                     Book
                 </a>
+                / Create
             </h1>
+        </div>
+        <div class="mt-5 bg-white rounded-md px-4 py-6">
+            <form action="{{ route('admin.books.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('post')
+                <div class="flex gap-3 w-full">
+                    <div class="flex flex-col flex-1">
+                        <label for="title">Title</label>
+                        <input id="title" name="title" type="text" placeholder="Title" class="rounded-md" required>
+                    </div>
+                    <div class="flex flex-col flex-1">
+                        <label for="description">Description</label>
+                        <input id="description" name="description" type="text" placeholder="description"
+                            class="rounded-md" required>
+                    </div>
+                </div>
+                <div class="flex gap-3 w-full mt-4">
+                    <div class="flex flex-col flex-1">
+                        <label for="cover">Book Cover</label>
+                        <input id="cover" name="cover" type="file" placeholder="cover" class="rounded-md border" required>
+                    </div>
+                    <div class="flex flex-col flex-1">
+                        <label for="file">Book</label>
+                        <input id="file" name="file" type="file" placeholder="description"
+                            class="rounded-md border" required>
+                    </div>
+                </div>
+                <div class="flex gap-3 w-full mt-4">
+                    <div class="flex flex-col flex-1">
+                        <label for="published_at">Published date</label>
+                        <input id="published_at" name="published_at" type="date" placeholder="published_at" class="rounded-md border" required>
+                    </div>
+                    <div class="flex flex-col flex-1">
+                        <label for="category_id">Book Category</label>
+                        <select name="category_id" id="category_id" class="rounded-md" >  
+                            <option value="1">Free</option>
+                            <option value="2">Charge</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex mt-5">
+                    <x-button class="mx-auto">Submit</x-button>
+                </div>
+            </form>
         </div>
     </main>
 </x-app-layout>

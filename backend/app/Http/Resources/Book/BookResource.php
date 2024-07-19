@@ -22,6 +22,8 @@ class BookResource extends JsonResource
             'user' => new UserResource($this->user),
             'published_at' => $this->published_at,
             'price'=>$this->price,
+            'cover' => env('APP_HOST') . '/images/' . $this->cover,
+            'file' => env('APP_HOST') . '/documents/' . $this->file
         ]; 
     }
 }

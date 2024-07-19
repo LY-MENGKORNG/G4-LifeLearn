@@ -21,6 +21,5 @@ class DatabaseSeeder extends Seeder
         $this->call(MailsettingSeeder::class);
         $this->call(ReferenceSeeder::class);
         $this->call(DocumentSeeder::class);
-        $this->call(BookSeeder::class);
     }
 }

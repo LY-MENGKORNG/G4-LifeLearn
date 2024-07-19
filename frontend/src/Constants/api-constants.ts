@@ -30,3 +30,10 @@ export default interface Payment {
     course_id?: number;
     system_id?: number;
 }
+
+export default interface Book {
+    title: string;
+    description: string;
+    cover: string;
+    
+}

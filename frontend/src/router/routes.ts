@@ -1,4 +1,4 @@
-    const userMeta = {
+const userMeta = {
     requireAuth: false,
     role: 'user'
 }
@@ -147,7 +147,7 @@ const routes = [
         component: () => import('@/Components/teacherLogout.vue')
     },
 
-    
+
     {
         path: '/request-payment',
         name: 'request-payment',
@@ -205,7 +205,7 @@ const routes = [
         component: () => import('@/views/System/Grade/ShowGrade.vue'),
         props: true
     },
-    
+
     {
         path: '/system/lesson',
         name: 'system-lesson',
@@ -240,7 +240,7 @@ const routes = [
         path: '/',
         name: 'welcomepage',
         component: () => import('@/views/Web/WelcomeView.vue'),
-       
+        meta: userMeta
     },
 ]
 

@@ -7,6 +7,7 @@ import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth-store'
 import router from '@/router'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 const authStore = useAuthStore()
 
@@ -25,10 +26,29 @@ const navigations = [
 	{ id: 3, name: 'Books', path: '/book' }
 ]
 
-const dropdownMenu = [
-	{ id: 1, name: 'Account settings', path: '/system/profile' },
-	{ id: 2, name: 'Sign out', path: '/logout' }
-]
+const dropdownMenu = [{ id: 1, name: 'Account settings', path: '/profile' }]
+
+const confirmLogoutForm = () => {
+	ElMessageBox.confirm('Are you sure! you want to logout', 'Comfirmation', {
+		confirmButtonText: 'OK',
+		cancelButtonText: 'Cancel',
+		type: 'warning'
+	})
+		.then(async () => {
+			await authStore.logout();
+			router.router.push('/');
+			ElMessage({
+				type: 'success',
+				message: 'Delete completed'
+			})
+		})
+		.catch(() => {
+			ElMessage({
+				type: 'info',
+				message: 'Delete canceled'
+			})
+		})
+}
 
 const setCurrentRoute = () => {
 	navigations.filter((navigation) => {
@@ -50,7 +70,7 @@ setCurrentRoute()
 			<div class="flex relative items-center">
 				<el-input size="large" placeholder="Search..." :suffix-icon="Search" />
 			</div>
-			<div class="flex gap-4 items-center">
+			<div v-if="profile" class="flex gap-4 items-center">
 				<el-badge :value="1" class="item" type="primary">
 					<el-button class="border-none h-[27px] w-[27px] rounded-circle">
 						<svg
@@ -96,53 +116,32 @@ setCurrentRoute()
 							class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
 						>
 							<div class="py-1">
-								<MenuItem v-slot="{ active }">
-									<a
-										href="#"
+								<MenuItem v-slot="{ active }" v-for="item in dropdownMenu" :key="item.id">
+									<router-link
+										:to="item.path"
 										:class="[
 											active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
 											'block px-4 py-2 text-sm'
 										]"
-										>Account settings</a
+										>{{ item.name }}</router-link
 									>
 								</MenuItem>
-								<MenuItem v-slot="{ active }">
-									<a
-										href="#"
-										:class="[
-											active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-											'block px-4 py-2 text-sm'
-										]"
-										>Support</a
+								<MenuItem>
+									<span
+										@click="confirmLogoutForm"
+										class="text-gray-700 block px-4 py-2 text-sm cursor-pointer hover:bg-gray-200"
+										>Logout</span
 									>
 								</MenuItem>
-								<MenuItem v-slot="{ active }">
-									<a
-										href="#"
-										:class="[
-											active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-											'block px-4 py-2 text-sm'
-										]"
-										>License</a
-									>
-								</MenuItem>
-								<form method="POST" action="#">
-									<MenuItem v-slot="{ active }">
-										<button
-											type="submit"
-											:class="[
-												active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-												'block w-full px-4 py-2 text-left text-sm'
-											]"
-										>
-											Sign out
-										</button>
-									</MenuItem>
-								</form>
 							</div>
 						</MenuItems>
 					</transition>
 				</Menu>
+			</div>
+			<div v-else class="">
+				<router-link to="/login">
+					<el-button type="primary">Sign In</el-button>
+				</router-link>
 			</div>
 		</el-header>
 	</el-container>
