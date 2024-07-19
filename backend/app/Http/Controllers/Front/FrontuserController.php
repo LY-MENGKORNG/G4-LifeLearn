@@ -66,18 +66,18 @@ class FrontuserController extends Controller
     public function login(LoginRequest $request): JsonResponse
     {
 
-        // $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password');
 
-        // if (!Auth::attempt($credentials)) {
-        //     return response()->json([
-        //         'message' => 'Invalid credentials'
-        //     ], 401);
-        // }
+        if (!Auth::attempt($credentials)) {
+            return response()->json([
+                'message' => 'Invalid credentials'
+            ], 401);
+        }
 
         $user   = Frontuser::where('email', $request->email)->firstOrFail();
         $token  = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
+        return  response()->json([
             'message'       => 'Login success',
             'access_token'  => $token,
             'token_type'    => 'Bearer'

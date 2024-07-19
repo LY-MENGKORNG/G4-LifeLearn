@@ -24,14 +24,8 @@ const { handleSubmit, isSubmitting } = useForm({
 const onSubmit = handleSubmit(async (values) => {
     
     const isUser = await store.login(values, '/system/login')
-    console.log(isUser) 
-    let isNotUser = !isUser;
-    store.user.permissions.map((per: any) => {
-        if(per.name != 'Access system') {
-            isNotUser = false;
-        }
-    })
-    router.router.push(isNotUser ? '/system/dashboard' : '/');
+    
+    router.router.push(!isUser ? '/system/dashboard' : '/home');
 })
 
 const { value: password, errorMessage: nameError } = useField('password')
