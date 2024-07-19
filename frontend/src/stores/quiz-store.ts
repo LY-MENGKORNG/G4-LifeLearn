@@ -5,7 +5,6 @@ import type Quiz from '@/Constants/api-constants'
 import { ref } from 'vue'
 
 const QUIZ: Quiz = { 
-        // id: null,
         classroom_id:  1,
         title: '',
         instructions: '',
@@ -18,18 +17,22 @@ const QUIZ: Quiz = {
 
 export const useQuizStore = defineStore('Quiz', {
   state: () => ({
-    quizze: ref<Quiz>(QUIZ)
+    quizze: ref<Quiz>(QUIZ),
+    quiz: ref(),
   }),
   actions: {
     async fetchQuizzes() {
       try {
-        const response = await axiosInstance.get('/quizze', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`
-          }
-        });
-        this.quizze = response.data.data;
-        console.log(this.quizze);
+        const response = await axiosInstance.get('/quizze');
+        this.quizze = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async fetchQuizzesOne(id: string) {
+      try {
+        const response = await axiosInstance.get('/quizze/' + id);
+        this.quiz = response.data;
       } catch (error) {
         console.error(error);
       }
@@ -40,7 +43,7 @@ export const useQuizStore = defineStore('Quiz', {
             const response = await axiosInstance.post('/quizze', quizze);
             console.log(response);
         }catch (error) {
-            // console.warn(error)
+            console.warn(error)
         }
     }
 

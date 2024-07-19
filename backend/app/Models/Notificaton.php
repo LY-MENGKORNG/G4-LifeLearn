@@ -26,5 +26,5 @@ class Notificaton extends RelationshipModel
     {
         return self::belongsTo(User::class, 'receiver', 'id');
     }
- 
+
 }

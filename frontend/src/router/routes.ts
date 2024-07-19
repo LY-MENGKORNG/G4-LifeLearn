@@ -218,9 +218,15 @@ const routes = [
         component: () => import('@/views/System/LessonView.vue')
     },
     {
-        path: '/system/submitform',
+        path: '/system/homework',
+        name: 'system-lesson',
+        component: () => import('@/views/System/HomeworkView.vue')
+    },
+    {
+        path: '/system/submitform/:id',
         name: 'system-submitform',
-        component: () => import('@/views/System/SubmitformView.vue')
+        component: () => import('@/views/System/SubmitformView.vue'),
+        props: true
     },
     {
         path: '/system/view/profile',
@@ -237,6 +243,8 @@ const routes = [
         name: 'system-create-quiz',
         component: () => import('@/views/System/Teacher/QuizCreate.vue')
     },
+<<<<<<< HEAD
+=======
     
     {
         path: '/',
@@ -244,11 +252,15 @@ const routes = [
         component: () => import('@/views/Web/WelcomeView.vue'),
        
     },
+<<<<<<< HEAD
 {
         path:'/user/profile' ,
         name: 'user-profile',
         component: () => import('@/views/Web/UserProfileView.vue')
     }
+=======
+>>>>>>> 4053aa4cd9ea66bdfa0fe0936b58d402e6ad3d28
+>>>>>>> 2186ba229c1ca775df664fb11f52631445305ef4
 ]
 
 export default routes;

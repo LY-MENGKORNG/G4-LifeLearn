@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('points');
             $table->date('deadline');
             $table->string('topics')->nullable();
-            $table->string('links')->nullable();
+            $table->text('links')->nullable();
             $table->string('fields')->nullable(); 
             $table->softDeletes();
             $table->timestamps();
