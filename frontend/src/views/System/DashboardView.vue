@@ -111,19 +111,19 @@
   </SystemLayout>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue' 
-import Chart from 'chart.js/auto' 
+import { ref, onMounted } from 'vue'
+import Chart from 'chart.js/auto'
 
 const props = defineProps({
-  msg: String 
+  msg: String
 })
-let myChart: any 
+let myChart: any
 onMounted(() => {
-  renderChart() 
+  renderChart()
 })
 function renderChart() {
-  const ctx = document.getElementById('myChart') as HTMLCanvasElement 
-  if (!ctx) return 
+  const ctx = document.getElementById('myChart') as HTMLCanvasElement
+  if (!ctx) return
   myChart = new Chart(ctx, {
     type: 'bar',
     data: {
