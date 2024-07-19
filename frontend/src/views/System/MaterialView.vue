@@ -37,9 +37,6 @@
                   <router-link to="/system/liststudent">
                     <el-button class="btn btn-primary">➕ Add Students</el-button>
                   </router-link>
-                  <router-link to="/system/create/quiz">
-                    <el-button class="btn btn-primary">➕ Add Quiz</el-button>
-                  </router-link>
                 </div>
                 <router-link to="/system/lesson">
                   <div

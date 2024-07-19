@@ -101,6 +101,7 @@
         </div>
       </div>
 
+<<<<<<< HEAD
   
    <!-- Permissions modal -->
   <div v-if="formVisible" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
@@ -108,6 +109,45 @@
       <div class="w-150 mx-auto bg-white rounded shadow">
         <div class="mx-16 py-4 px-8 text-black text-xl font-bold border-b border-grey-500 flex justify-center">
           Permission Students
+=======
+      <!-- Permissions modal -->
+      <div v-if="formVisible" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div class="container mx-auto py-8">
+          <div class="w-150 mx-auto bg-white rounded shadow">
+            <div class="mx-16 py-4 px-8 text-black text-xl font-bold border-b border-grey-500 flex justify-center">
+              Permission Students
+            </div>
+            <form @submit.prevent="savePermission" name="student_application" id="student_application">
+              <div class="py-4 px-8">
+                <div class="mb-4">
+                  <label class="block text-grey-darker text-sm font-bold mb-2">Purpose:</label>
+                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="text" name="course_name"
+                    id="course_name" placeholder="Enter Your purpose" />
+                  <p id="error_creater_id"></p>
+                </div>
+                <div class="mb-4">
+                  <label class="block text-grey-darker text-sm font-bold mb-2">Start Date:</label>
+                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="date"
+                    name="admission_date" id="admission_date" />
+                </div>
+                <div class="mb-4">
+                  <label class="block text-grey-darker text-sm font-bold mb-2">End Date:</label>
+                  <input class="border rounded w-full py-2 px-3 text-grey-darker" type="date"
+                    name="admission_date" id="admission_date" />
+                </div>
+                <div class="flex justify-between">
+                  <button type="button"  @click="closePremission"
+                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
+                    Cancel
+                  </button>
+                  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+>>>>>>> d7096781cdd8abc56e3ed93a728f2a73daa69d46
         </div>
         <form @submit.prevent="savePermission">
           <div class="py-4 px-8">

@@ -84,49 +84,50 @@ class FrontuserController extends Controller
     }
 
     public function getRegistrationsPerDay()
-    {
-        $registrations = DB::table('frontusers')
-            ->select(DB::raw('MONTHOFYEAR(created_at) as moth_of_year'), DB::raw('count(*) as count'))
-            ->groupBy('moth_of_year')
-            ->get();
+{
+    $registrations = DB::table('frontusers')
+        ->select(DB::raw('MONTH(created_at) as month_of_year'), DB::raw('count(*) as count'))
+        ->groupBy('month_of_year')
+        ->get();
 
-        // Initialize an array with zero counts for each day of the week (1 = Sunday, 7 = Saturday)
-        $daysOfWeek = array_fill(1, 12, 0);
+    // Initialize an array with zero counts for each month of the year (1 = January, 12 = December)
+    $monthsOfYear = array_fill(1, 12, 0);
 
-        // Populate the array with actual data
-        foreach ($registrations as $registration) {
-            $daysOfWeek[$registration->moth_of_year] = $registration->count;
-        }
-
-        // Prepare data for the chart
-        $dayNames = [
-            1 => 'Jan',
-            2 => 'Feb',
-            3 => 'Mar',
-            4 => 'Apr',
-            5 => 'May',
-            6 => 'Jun',
-            7 => 'July',
-            8 => 'Aug',
-            9 => 'Seb',
-            10 => 'Oct',
-            11 => 'Nov',
-            12 => 'Dec',
-        ];
-
-        $labels = [];
-        $data = [];
-
-        foreach ($daysOfWeek as $dayNumber => $count) {
-            $labels[] = $dayNames[$dayNumber];
-            $data[] = $count;
-        }
-
-        return response()->json([
-            'labels' => $labels,
-            'data' => $data,
-        ]);
+    // Populate the array with actual data
+    foreach ($registrations as $registration) {
+        $monthsOfYear[$registration->month_of_year] = $registration->count;
     }
+
+    // Prepare data for the chart
+    $monthNames = [
+        1 => 'Jan',
+        2 => 'Feb',
+        3 => 'Mar',
+        4 => 'Apr',
+        5 => 'May',
+        6 => 'Jun',
+        7 => 'Jul',
+        8 => 'Aug',
+        9 => 'Sep',
+        10 => 'Oct',
+        11 => 'Nov',
+        12 => 'Dec',
+    ];
+
+    $labels = [];
+    $data = [];
+
+    foreach ($monthsOfYear as $monthNumber => $count) {
+        $labels[] = $monthNames[$monthNumber];
+        $data[] = $count;
+    }
+
+    return response()->json([
+        'labels' => $labels,
+        'data' => $data,
+    ]);
+}
+
 
 }
 
