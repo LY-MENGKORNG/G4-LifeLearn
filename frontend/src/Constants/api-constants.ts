@@ -56,3 +56,9 @@ export default interface Submit {
     assignment_id?: number;
     work?: string;
 }
+
+export default interface Classroom {
+    grade_id?: number;	
+    class_name: string;
+    description: string;
+}

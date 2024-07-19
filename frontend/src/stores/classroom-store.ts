@@ -1,11 +1,21 @@
 import { defineStore } from 'pinia';
 import axiosInstance from '@/plugins/axios';
+import type Classroom from '@/Constants/api-constants'
+import { ref } from 'vue'
+
+const CLASSROOM: Classroom = { 
+  grade_id:  1,
+  class_name: '',
+  description: '',
+}
 
 export const useClassroomStore = defineStore('classroom', {
   state: () => ({
-    classrooms: [] as any[], // Define type for classrooms array
-    selectedClassroomId: null, // Define type for selected classroom id
+    classrooms: ref<Classroom>(CLASSROOM), 
+    class: ref(), 
   }),
+
+
   actions: {
     async fetchClassrooms() {
       try {
@@ -16,14 +26,13 @@ export const useClassroomStore = defineStore('classroom', {
       }
     },
 
-    async addStudentsToClassroom(frontuserId) {
+    async createClassroom(quizze: any) {
       try {
-        const response = await axiosInstance.post(`/classrooms/${this.selectedClassroomId}/add-students`, { frontuser_id: frontuserId });
-        return response.data;
-      } catch (error) {
-        console.error('Error adding students to classroom:', error);
+          const response = await axiosInstance.post('/classroom', quizze);
+          console.log(response);
+      }catch (error) {
+          console.warn(error)
       }
-    }
-    
+  }
   },
 });
