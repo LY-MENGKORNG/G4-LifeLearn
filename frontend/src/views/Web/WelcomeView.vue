@@ -92,7 +92,7 @@ const promos = ref([
 
                 <div class="flex flex-row-reverse" v-if="content.id === 2">
                     <div class="grid grid-cols md:grid-cols-2 gap-6 mt-36">
-                        <el-div class="p-5 w-full h-full">
+                        <div class="p-5 w-full h-full">
                             <h2 class="text-4xl font-bold text-gray-900 mb-4">{{ content.title }}</h2>
                             <p class="text-gray-700 mb-4">
                                 {{ content.description }}
@@ -111,7 +111,7 @@ const promos = ref([
                                         class="hover:opacity-75 transition duration-200" />
                                 </a>
                             </div>
-                        </el-div>
+                        </div>
                         <el-image :src="content.images" alt="Summer Learning" class="object-cover  rounded-md"
                             fit="cover" style="width: 100%; height: 100%"></el-image>
                     </div>
