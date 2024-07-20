@@ -15,7 +15,6 @@ export default interface User {
     isAuthenticated: boolean
 }
 
-<<<<<<< HEAD
 export default interface Book {
     // id: number;
     title: string;
@@ -35,8 +34,6 @@ export default interface Quiz {
     links?: string;
     fields?: string;
 }
-=======
->>>>>>> 4053aa4cd9ea66bdfa0fe0936b58d402e6ad3d28
 
 export default interface RequestPayment {
     school_name: string;
@@ -51,7 +48,6 @@ export default interface Payment {
     amount: number;
     course_id?: number;
     system_id?: number;
-<<<<<<< HEAD
 }
 
 export default interface Submit {
@@ -59,6 +55,4 @@ export default interface Submit {
     classroom_id;
     assignment_id?: number;
     work?: string;
-=======
->>>>>>> 4053aa4cd9ea66bdfa0fe0936b58d402e6ad3d28
 }

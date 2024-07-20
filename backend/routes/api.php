@@ -153,11 +153,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //submit
     Route::resource('/submit', SubmiteController::class);
-    // Route::get('/submit/list', [SubmiteController::class, 'index']);
-    // Route::post('/submit/create', [SubmiteController::class, 'store']);
-    // Route::get('/submit/show/{id}', [SubmiteController::class, 'show']);
-    // Route::put('/submit/update/{id}', [SubmiteController::class, 'update']);
-    // Route::delete('/submit/delete/{id}', [SubmiteController::class, 'destroy']);
 
     //comments
     Route::resource('/comment', CommentController::class);
@@ -186,7 +181,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // student 
     Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
-
+    Route::get('/registrations-per-month', [FrontuserController::class, 'getRegistrationsPerDay']);
     Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
     Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
     // Request to buy system

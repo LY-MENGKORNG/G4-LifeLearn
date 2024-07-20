@@ -19,7 +19,7 @@
                             src="" />
                     </a>
                     <div class="w-40 pt-3 space-y-3 pb-3">
-                        <a :href="quiz.links" class="w-40 text-blue-600">links_here_just_clicked_or_copy</a>
+                        <a :href="quiz.links" class="w-120 text-blue-600 underline">links_here_clicked/copy</a>
                         <p>{{ quiz.instructions }}</p>
                     </div>
                     <div class="py-3 border-t-2 border-blue-500">
@@ -40,15 +40,12 @@
                         <p>Your work</p>
                     </div>
                     <form @submit.prevent="SubmitQuiz">
-                        <button class="border-1 border-gray-500 p-4 rounded items-centerw-max">
-                            <input
-                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="file_input" type="file" @change="handleFileUpload($event)" />
-                        </button>
-                        <input type="number" v-model="quiz.id" required>
-                        <input type="number" v-model="quiz.classroom_id" required>
-                        <button type="submit"
-                            class="border-1 border-gray-500 p-2 mt-2 rounded items-center w-full text-blue-700">
+                        <div class="border-1 border-gray-500 p-4 rounded items-centerw-max">
+                            <input type="file" @change="handleFileUpload($event)" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" />
+                        </div>
+                        <div class="flex"><input type="number" class="text-white" v-model="submitted.classroom_id" />
+                            <input type="number" class="text-white" v-model="submitted.assignment_id" /></div>
+                        <button type="submit" class="border-1 border-gray-500 p-2 rounded items-center w-full text-blue-700">
                             Submit
                         </button>
                     </form>
@@ -73,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch  } from 'vue';
 import FormComment from '@/Components/Classroom/FomComment.vue';
 import SystemLayout from '@/Layouts/System/SystemLayout.vue';
 import { User } from '@element-plus/icons-vue';
@@ -97,8 +94,8 @@ const quiz = ref({
 })
 
 const submitted = ref({
-    classroom_id: 1,
-    assignment_id: 1,
+    classroom_id: null,
+    assignment_id: null,
     work: '',
 })
 
@@ -106,10 +103,10 @@ const id = router.router.currentRoute.value.params.id
 const formVisible = ref(false)
 
 const handleFileUpload = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    if (target.files) {
-        quizcreate.value.fields = target.files[0];
-    }
+  const target = event.target as HTMLInputElement;
+  if (target.files) {
+    submitted.value.work = target.files[0];
+  }
 };
 
 function showForm() {
@@ -125,11 +122,20 @@ onMounted(async () => {
     await submitStore.fetchSubmit();
 });
 
+// Watch quiz changes and update submitted values
+watch(() => quiz.value.classroom_id, (newVal) => {
+    submitted.value.classroom_id = newVal;
+});
+
+watch(() => quiz.value.id, (newVal) => {
+    submitted.value.assignment_id = newVal;
+});
+
 const SubmitQuiz = async () => {
     try {
         console.log('Creating quiz with data:', submitted.value);
         await submitStore.SubmitQuizz(submitted.value);
-        console.log(1);
+        console.log( submitted.value);
 
     } catch (error) {
         console.warn("Error creating quiz:", error);
