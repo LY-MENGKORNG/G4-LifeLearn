@@ -165,7 +165,7 @@
 
 		<div class="flex flex-wrap gap-4 p-5">
 			<div
-				class="block min-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
+				class="block max-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
 			>
 				<div class="relative overflow-hidden bg-cover bg-no-repeat">
 					<img
@@ -175,29 +175,20 @@
 					/>
 				</div>
 				<div class="p-6">
-					<h5 class="mb-2 text-xl text-start font-medium leading-tight">
-						<b>Role</b>
-					</h5>
-					<p class="text-base text-start">
-						Take on responsibilities and tasks within an organization or project to achieve specific
-						objectives.
-					</p>
-					<p class="text-start py-3">Great if you like</p>
-					<div class="flex flex-wrap gap-2">
-						<button class="bg-teal-400 rounded-lg px-3 text-xs leading-tight">
-							Responsibility
-						</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
-							Collaboration
-						</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
-							Goal Achievement
-						</button>
-					</div>
-				</div>
+                    <h5 class="mb-2 text-xl text-start font-medium leading-tight"><b>Role</b></h5>
+                    <p class="text-base text-start">
+                        Take on responsibilities and tasks within an organization or project to achieve specific objectives.
+                    </p>
+                    <p class="text-start py-3">Great if you like</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="bg-gray-300 rounded-lg px-3 text-xs leading-tight">Responsibility</button>
+                        <button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">Collaboration</button>
+                        <button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">Goal Achievement</button>
+                    </div>
+                </div>
 			</div>
 			<div
-				class="block min-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
+				class="block max-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
 			>
 				<div class="relative overflow-hidden bg-cover bg-no-repeat">
 					<img
@@ -216,18 +207,18 @@
 					</p>
 					<p class="text-start py-3">Great if you like</p>
 					<div class="flex flex-wrap gap-2">
-						<button class="bg-teal-400 rounded-lg px-3 text-xs leading-tight">Technology</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
+						<button class="bg-gray-300 rounded-lg px-3 text-xs leading-tight">Technology</button>
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">
 							Efficiency
 						</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">
 							User Experience
 						</button>
 					</div>
 				</div>
 			</div>
 			<div
-				class="block min-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
+				class="block max-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
 			>
 				<div class="relative overflow-hidden bg-cover bg-no-repeat">
 					<img
@@ -245,18 +236,18 @@
 					</p>
 					<p class="text-start py-3">Great if you like</p>
 					<div class="flex flex-wrap gap-2">
-						<button class="bg-teal-400 rounded-lg px-3 text-xs leading-tight">Security</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
+						<button class="bg-gray-300 rounded-lg px-3 text-xs leading-tight">Security</button>
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">
 							Administration
 						</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">
 							Compliance
 						</button>
 					</div>
 				</div>
 			</div>
 			<div
-				class="block min-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
+				class="block max-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
 			>
 				<div class="relative overflow-hidden bg-cover bg-no-repeat">
 					<img
@@ -274,20 +265,20 @@
 					</p>
 					<p class="text-start py-3">Great if you like</p>
 					<div class="flex flex-wrap gap-2">
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">
 							Education
 						</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">
 							Development
 						</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">
 							Community
 						</button>
 					</div>
 				</div>
 			</div>
 			<div
-				class="block min-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
+				class="block max-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
 			>
 				<div class="relative overflow-hidden bg-cover bg-no-repeat">
 					<img
@@ -305,18 +296,18 @@
 					</p>
 					<p class="text-start py-3">Great if you like</p>
 					<div class="flex flex-wrap gap-2">
-						<button class="bg-teal-400 rounded-lg px-3 text-xs leading-tight">Communication</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
+						<button class="bg-gray-300 rounded-lg px-3 text-xs leading-tight">Communication</button>
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">
 							Timeliness
 						</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">
 							Customization
 						</button>
 					</div>
 				</div>
 			</div>
 			<div
-				class="block min-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
+				class="block max-w-[18rem] rounded-lg border mt-5 bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white"
 			>
 				<div class="relative overflow-hidden bg-cover bg-no-repeat">
 					<img
@@ -334,9 +325,9 @@
 					</p>
 					<p class="text-start py-3">Great if you like</p>
 					<div class="flex flex-wrap gap-2">
-						<button class="bg-teal-400 rounded-lg px-3 text-xs leading-tight">Atmosphere</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">Context</button>
-						<button class="bg-teal-400 rounded-lg px-3 py-1 text-xs leading-tight">
+						<button class="bg-gray-300 rounded-lg px-3 text-xs leading-tight">Atmosphere</button>
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">Context</button>
+						<button class="bg-gray-300 rounded-lg px-3 py-1 text-xs leading-tight">
 							Immersion
 						</button>
 					</div>
@@ -375,7 +366,7 @@
 import { onMounted, ref } from 'vue'
 import axiosInstance from '@/plugins/axios';
 import { useAuthStore } from '@/stores/auth-store'
-import { StripeCheckout } from '@vue-stripe/vue-stripe'
+// import { StripeCheckout } from '@vue-stripe/vue-stripe'
 const store = useAuthStore()
 
 const path = ref<string>('/request-payment')

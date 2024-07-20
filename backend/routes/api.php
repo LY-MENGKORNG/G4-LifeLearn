@@ -181,7 +181,11 @@ Route::middleware('auth:sanctum')->group(function () {
     // student 
     Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
+<<<<<<< HEAD
+
+=======
     Route::get('/registrations-per-month', [FrontuserController::class, 'getRegistrationsPerDay']);
+>>>>>>> 8aabaa17b3671a9bf4ecaa4fef863e0cc5bfc37e
     Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
     Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
     // Request to buy system
