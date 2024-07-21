@@ -337,7 +337,7 @@
 		</div>
 		<div class="info p-5">
 			<div class="title">
-				<h3 class="mt-5 text-start text-black-400 font-bold text-2xl">Information</h3>
+				<h3 class="mt-5 text-start text-black-400 font-bold text-2xl text-[#42b883]">Information</h3>
 				<p class="text-center text-gray-400 p-3">
 					If you're interested in our system, please click the "Buy Now" button to make a purchase.
 				</p>
