@@ -149,14 +149,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/favorites', FavoriteController::class);
 
     //Quize
-<<<<<<< HEAD
-    // Route::resource('/quizze', QuizController::class);
-    Route::post('/quizze', [QuizController::class, 'store']);
-    
-=======
     Route::resource('/quizze', QuizController::class);
 
->>>>>>> 8aabaa17b3671a9bf4ecaa4fef863e0cc5bfc37e
     //submit
     Route::resource('/submit', SubmiteController::class);
 
@@ -164,12 +158,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/comment', CommentController::class);
 
     //score
-<<<<<<< HEAD
-    Route::resource('/principle', NotificationsController::class);
-=======
     Route::resource('/score', ScoreController::class);
   
->>>>>>> 8aabaa17b3671a9bf4ecaa4fef863e0cc5bfc37e
     // Route::post('/principle/request',NotificationsController::class, 'create');
 
     //class
