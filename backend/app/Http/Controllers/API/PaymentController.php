@@ -15,7 +15,7 @@ class PaymentController extends Controller
 {
     public function getSession(Request $request)
     {
-        $stripe = new \Stripe\StripeClient('sk_test_51Pd4bxGdke5T1wEHlabBSPoiwmf4ptQGsA6SDDBXneGkDVhVZ4OPokSXoo6gqkKW5cTVWeR56NqrXbwLckhhI27A00QidKfyIF');
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         
         $sub = $stripe->checkout->sessions->create([
             'success_url' => 'http://localhost:5173/payment/success',
@@ -23,11 +23,7 @@ class PaymentController extends Controller
             'line_items' => [
                 [
                     'price' => 'price_1Pd4gJGdke5T1wEHXljs0PjX',
-                    'quantity' => 1,
-                    'product_data' => [
-                        'name' => 'LifeLean System',
-                        'description' => 'Complete payment to enjoy managing your school.'
-                    ],
+                    'quantity' => 1, 
                 ],
             ],
             'mode' => 'subscription',

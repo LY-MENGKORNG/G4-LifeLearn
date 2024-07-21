@@ -68,11 +68,11 @@ class FrontuserSeeder extends Seeder
         $user5->assignRole('user');
         $user6->assignRole('user');
 
-        $user1->givePermissionTo('front access');
-        $user2->givePermissionTo('front access');
-        $user3->givePermissionTo('front access');
-        $user4->givePermissionTo('front access');
-        $user5->givePermissionTo('front access');
-        $user6->givePermissionTo('front access');
+        // $user1->givePermissionTo('front access');
+        // $user2->givePermissionTo('front access');
+        // $user3->givePermissionTo('front access');
+        // $user4->givePermissionTo('front access');
+        // $user5->givePermissionTo('front access');
+        // $user6->givePermissionTo('front access');
     }
 }

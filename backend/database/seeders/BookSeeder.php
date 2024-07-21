@@ -13,11 +13,11 @@ class BookSeeder extends Seeder
     public function run(): void
     {
         Book::create([
-            'title' => 'Tum Teav', 
-            'author' => 'Soum',  
-            'user_id' => 2, 
-            'published_at' => '2015-08-08', 
-            'price' => 2.5,
+            'title' => 'Playing in The Rain', 
+            'published_at' => '2018-08-08', 
+            'cover' => 'playing-in-the-rain.jpg',
+            'file' => 'Playing-in-The-Rain.pdf',
+            'category_id' => 1,
         ]);
     }
 }

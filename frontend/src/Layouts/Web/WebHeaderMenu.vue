@@ -11,7 +11,7 @@ onMounted(() => {
 })
 
 const navigations = [
-	{ id: 1, name: 'Home', path: '/' },
+	{ id: 1, name: 'Home', path: '/home' },
 	{ id: 2, name: 'My Learning', path: '/my-learn' },
 	{ id: 3, name: 'Books', path: '/book' }
 ]

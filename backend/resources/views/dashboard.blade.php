@@ -51,5 +51,5 @@
         <div class="flex flex-col flex-1 overflow-x-hidden">
             <x-chart-card />
         </div>
-    </main>
+    </main> 
 </x-app-layout>

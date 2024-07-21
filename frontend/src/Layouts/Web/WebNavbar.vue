@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import UserProfile from '@/Components/Common/Profile/UserProfile.vue'
 import AppLogo from '@/Components/Common/Logo/AppLogo.vue'
-import BaseButton from '@/Components/Base/BaseButton.vue'
 import { Search } from '@element-plus/icons-vue'
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth-store'
@@ -26,8 +25,10 @@ const navigations = [
 	{ id: 3, name: 'Books', path: '/book' }
 ]
 
-const handleSelect = (key: string, keyPath: string[]) => { }
-const handleclick = (key: string, keyPath: string[]) => { }
+const dropdownMenu = [
+	{ id: 1, name: 'Account settings', path: '/system/profile' },
+	{ id: 2, name: 'Sign out', path: '/logout' }
+]
 
 const setCurrentRoute = () => {
 	navigations.filter((navigation) => {
