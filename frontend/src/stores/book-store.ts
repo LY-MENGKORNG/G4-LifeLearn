@@ -1,24 +1,31 @@
 import { defineStore } from 'pinia';
 import axiosInstance from '@/plugins/axios';
 import { ref } from 'vue'
-import type BookResponse from '@/Constants/api-constants'
 
-export const useBookStore = defineStore('book', {
+export const useBookStore = defineStore('book',  { 
   state: () => ({
-    books: ref<BookResponse>()
+    books: ref<any>(),
+    book: ref<any>()
   }),
   actions: {
     async fetchBooks() {
       try {
-        const response = await axiosInstance.get('/books', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`
-          }
-        });
-        this.books = response.data;
+        const response = await axiosInstance.get('/books');
+        this.books = response.data.data;
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
+    },
+    async  fetchOneBook(id: any) {
+      try {
+        const response = await axiosInstance.get('/books/'+id);
+        this.book  = response.data.data 
+      }catch(e) {
+        console.warn(e)
+      }
+    },
+    async addToFavorite() {
+
     }
   }
 });

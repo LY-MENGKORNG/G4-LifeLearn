@@ -133,7 +133,7 @@
 
 <script setup lang="ts">
 import WebLayout from '@/Layouts/Web/WebLayout.vue'
-import { useBookStore } from '@/stores/store-book.ts';
+import { useBookStore } from '@/stores/book-store.ts';
 const store = useBookStore();
 let stores=store.display;
 </script>

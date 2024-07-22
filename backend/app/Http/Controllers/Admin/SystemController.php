@@ -8,6 +8,7 @@ use App\Models\Frontuser;
 use App\Models\System;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class SystemController extends Controller
 {
@@ -29,7 +30,6 @@ class SystemController extends Controller
      */
     public function index()
     {
-        $principles  = Frontuser::role('principle')->get();
         $systems =  ListSystemResource::collection(System::list());
         foreach ($systems as $system) {
             $system['first_name'] = Frontuser::find($system->frontuser_id)->first_name;

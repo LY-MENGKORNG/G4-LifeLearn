@@ -17,11 +17,6 @@ class MailController extends Controller
             'message' => 'required|string',
         ]);
     }
-    
-    public function isOnline($site = 'https://www.google.com')
-    {
-        return @fopen($site, 'r');
-    }
 
     public function send(Request $request, $content) 
     {

@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ReferencesController;
 use App\Http\Controllers\Admin\SystemController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\API\AssignmentController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\SubjectController;
@@ -14,9 +12,7 @@ use App\Http\Controllers\API\CalendarController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\NotificationsController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Api\QuizzeController;
 use App\Http\Controllers\API\CommentController;
-// use App\Http\Controllers\API\DocumentController;
 use App\Http\Controllers\Api\DocumentController;
 use App\Http\Controllers\Api\SubmiteController;
 use App\Http\Controllers\Front\FrontuserController;
@@ -36,6 +32,7 @@ use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\Api\PermissionStudentController;
+use App\Http\Controllers\API\SendMailController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\API\SystemController as APISystemController;
 use App\Http\Controllers\API\UserController as APIUserController;
@@ -59,17 +56,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // public routes
 Route::post('/register', [FrontuserController::class, 'register']);
+
 // user login
-Route::post('/admin/login', [AuthController::class, 'loginadmin']);
-Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/login', [FrontuserController::class, 'login']);
 Route::post('/system/login', [FrontuserController::class, 'login']);
+
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']) // forgot password reset
     ->middleware('guest:front')
     ->name('password.email');
-Route::get('/course/list', [CourseController::class, 'index'])->name('course.list');
-
-
 
 Route::post('/reset-password', [ForgotPasswordManager::class, 'ResetPasswordPost'])->name('password.update');
 
@@ -81,6 +75,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [FrontuserController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/principle/logout', [AuthController::class, 'principlelogout']);
+
+    // courses
     Route::resource('/course', CourseController::class);
 
     Route::post('/edit-profile', [APIUserController::class, 'editProfile']);
@@ -159,7 +155,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //score
     Route::resource('/score', ScoreController::class);
-  
+
     // Route::post('/principle/request',NotificationsController::class, 'create');
 
     //class
@@ -195,30 +191,34 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/session', [PaymentController::class, 'getSession']);
 
     // create payment list
-    Route::post('/create-payment-intent', [PaymentController::class, 'createPaymentIntent']);
+    // Route::post('/create-payment-intent', [PaymentController::class, 'createPaymentIntent']);
 
     // webhook
     Route::post('/webhook', [PaymentController::class, 'getWebhook']);
 
     //permission student
     Route::resource('/permission', PermissionStudentController::class);
-    
+
     //notification
     Route::resource('/user/notifications', NotificationsController::class);
 
     // event 
-    Route::get('/events', [EventController::class,  'index']);
-    Route::post('events', [EventController::class, 'store']);
-    Route::put('events/{id}', [EventController::class, 'update']);
-    Route::delete('events/{id}', [EventController::class, 'destroy']);
+    Route::resource('/events', EventController::class);
 
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
+
+    // principle send mail to teachers
+    Route::post('/invite-teacher', [SendMailController::class, 'inviteTeacher']);
+
+    // teacher send email to principle
+    Route::post('/accept-invite', [SendMailController::class, 'acceptInvite']); 
+
+    // get users in a system
+    Route::get('/users', [APISystemController::class, 'getUsers']); 
 });
 // student 
 Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
-Route::get('/registrations-per-month', [FrontuserController::class, 'getRegistrationsPerDay']);
 Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
 Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
-

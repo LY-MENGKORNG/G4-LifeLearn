@@ -4,9 +4,11 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Systems\SystemResource;
+use App\Models\Frontuser;
 use App\Models\Reference;
 use App\Models\System;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class SystemController extends Controller
 {
@@ -27,15 +29,12 @@ class SystemController extends Controller
      */
     public function store(Request $request)
     {
-        /**
-         * 'name',
-         * 'frontuser_id',
-         * 'location'
-         */
-        $system = $request->user()->givePermissionTo('Access system');
-        $request->user()->assignRole('principle');
+        $user = $request->user();
+        $system = $user->givePermissionTo('Access system');
+        $user->roles()->detach();
+        $user->assignRole('principle');
 
-        $reference = Reference::where('user_id', $request->user()->id)->firstOrFail();
+        $reference = Reference::where('user_id', $user->id)->firstOrFail();
 
         $school_location = $reference->school_address;
         $school_name = $reference->school_name;
@@ -43,9 +42,12 @@ class SystemController extends Controller
 
         $system = System::create([
             'name' => $school_name,
-            'frontuser_id' => $request->user()->id,
+            'frontuser_id' => $user->id,
             'location' => $school_location,
         ]);
+        $user->system_id = $system->id;
+        $user->save();
+
         return response()->json([
             'data' => $system
         ], 200);
@@ -64,19 +66,8 @@ class SystemController extends Controller
         ], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function getUsers(Request $request)
     {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

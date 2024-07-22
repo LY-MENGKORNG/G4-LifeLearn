@@ -96,6 +96,16 @@ const routes = [
         }
     },
     {
+        path: '/book/:id',
+        name: 'book-detail',
+        component: () => import('@/views/Web/Books/ShowBook.vue'),
+        props: true,
+        meta: {
+            requiresAuth: true,
+            role: 'user'
+        }
+    },
+    {
         path: '/book/add',
         name: 'book-add',
         component: () => import('@/views/Web/Books/AddBook.vue')
@@ -253,7 +263,6 @@ const routes = [
         path: '/',
         name: 'welcomepage',
         component: () => import('@/views/Web/WelcomeView.vue'),
-        meta: userMeta
     },
 
     {

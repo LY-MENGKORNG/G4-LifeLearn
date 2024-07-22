@@ -9,10 +9,10 @@
 ])
 
 <{{ $tag }} class="flex justify-between gap-x-6 py-3">
-    <div class="flex min-w-0 gap-x-4">
+    <div class="flex min-w-0 gap-x-2">
         @if ($src != '')
-            <img class="h-10 w-10 flex-none rounded-full bg-gray-50"
-                src="http://localhost:8000/images/{{ $src }}" alt="">
+            <img class="h-8 w-8 flex-none rounded-full bg-gray-50" src="http://localhost:8000/images/{{ $src }}"
+                alt="">
         @else
             <svg fill="#bababa" style="width: 40px" viewBox="0 0 512 512" id="_x30_1" version="1.1" xml:space="preserve"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke="#bababa">
@@ -25,7 +25,7 @@
                 </g>
             </svg>
         @endif
-        <div class="min-w-0 flex-auto">
+        <div class="min-w-0 flex-auto flex-1">
             <p class="text-sm font-semibold leading-6 text-gray-900">{{ $name }}
                 @foreach ($roles as $role)
                     @if ($role->name == 'user')
@@ -50,7 +50,7 @@
         </div>
     </div>
     @if ($tag == 'li')
-        <div class="hidden shrink-0 sm:flex justify-center sm:flex-col sm:items-end">
+        <div class="hidden flex-1 sm:flex justify-center sm:flex-col sm:items-end">
             @section('content')
                 @php
                     // Convert the timestamps to DateTime objects
@@ -68,24 +68,23 @@
 
                     $humanReadableDuration = '';
                     if ($interval->h > 0) {
-                        $humanReadableDuration .= $interval->h . ' hours ';
+                        $humanReadableDuration .= $interval->h . ' h ';
                     }
                     if ($interval->i > 0) {
-                        $humanReadableDuration .= $interval->i . ' minutes ';
+                        $humanReadableDuration .= $interval->i . ' mn';
                     }
                     if ($humanReadableDuration == '') {
-                        $humanReadableDuration = 'just now';
+                        $humanReadableDuration = ' now';
                     }
                 @endphp
             @endsection
             <p class="mt-1 text-xs leading-5 text-gray-500">
-                Last seen
                 <time datetime="2023-01-23T13:23Z">
                     <span
-                    class="bg-blue-400 inline-flex items-center justify-center px-2 py-1 text-xs leading-none text-white rounded-full">{{ $humanReadableDuration }}
-                    
+                        class="bg-blue-400 inline-flex items-center justify-center px-1 py-1 text-sm leading-none text-white rounded-full">
+                        {{ $humanReadableDuration }}
                     </span>
-                    ago</time>
+                </time>
             </p>
         </div>
     @endif

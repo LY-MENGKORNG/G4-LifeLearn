@@ -349,23 +349,29 @@
 				<p class="text-center text-gray-400 p-3">
 					If you're interested in our system, please click the "Buy Now" button to make a purchase.
 				</p>
-				<div class="flex justify-center">
-					<el-button v-if="path == 'payment'"
+				<div class="flex justify-center" v-if="connection">
+					<el-button
+						v-if="path == 'payment'"
 						@click="handleSubmit()"
 						class="bg-gray-900 text-white font-bold py-4 px-10 hover:bg-gray-900 focus:bg-gray-900"
 					>
 						Buy Now
 					</el-button>
 					<router-link v-else :to="path">
-						<el-button 
+						<el-button
 							class="bg-gray-900 text-white font-bold py-4 px-10 hover:bg-gray-900 focus:bg-gray-900"
 						>
 							Buy Now
 						</el-button>
-
 					</router-link>
-					<StripeCheckout v-if="sessionSubId" ref="checkoutSubRef" :pk="publishableKey" :sessionId="sessionSubId" />
-				</div> 
+					<stripe-checkout
+						v-if="sessionSubId"
+						mode="subscription"
+						ref="checkoutSubRef"
+						:pk="publishableKey"
+						:session-id="sessionSubId"
+					/>
+				</div>
 			</div>
 		</div>
 	</WebLayout>
@@ -373,9 +379,10 @@
 
  <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import axiosInstance from '@/plugins/axios';
+import axiosInstance from '@/plugins/axios'
 import { useAuthStore } from '@/stores/auth-store'
 import { StripeCheckout } from '@vue-stripe/vue-stripe'
+import { ElNotification } from 'element-plus'
 const store = useAuthStore()
 
 const path = ref<string>('/request-payment')
@@ -384,19 +391,33 @@ store.user.permissions.find((per: any) => {
 	path.value = per.name == 'System buy' ? 'payment' : path.value
 })
 
-const publishableKey = 'pk_test_51Pd4bxGdke5T1wEHVhR0EOEZVGmsyxpVEX0o3AwvFG1Jc4MViaxUV4ep66QmNI55YPlBRGoTxv9FNn14BWPPhutd00J6DjE2On';
+const publishableKey = ref(
+	'pk_test_51Pd4bxGdke5T1wEHVhR0EOEZVGmsyxpVEX0o3AwvFG1Jc4MViaxUV4ep66QmNI55YPlBRGoTxv9FNn14BWPPhutd00J6DjE2On'
+)
 const sessionSubId = ref<string>('')
 const checkoutSubRef = ref()
+const connection = ref(true)
 
 onMounted(async () => {
 	try {
 		const response = await axiosInstance.get('/session')
-		console.log(response);
-		sessionSubId.value = response.data.sub.id;
+		if (!response.data.status) {
+			connectionInfo()
+			return (connection.value = false)
+		}
+		sessionSubId.value = response.data.sub.id
 	} catch (error) {
 		console.log(error)
 	}
 })
+
+const connectionInfo = () => {
+	ElNotification({
+		title: 'Warning',
+		message: 'This page required internet! please check your internet connection.',
+		type: 'warning'
+	})
+}
 
 const handleSubmit = () => {
 	checkoutSubRef.value.redirectToCheckout()

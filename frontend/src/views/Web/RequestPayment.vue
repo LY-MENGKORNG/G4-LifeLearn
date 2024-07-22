@@ -52,9 +52,9 @@
 		</form>
 	</div>
 </template>
-  
+ 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import router from '@/router'
 import { ElNotification } from 'element-plus'
 import { useSystemStore } from '@/stores/system-store'
@@ -71,7 +71,7 @@ const handleFileUpload = (event: any) => {
 	form.value.reference.push(Array.from(event.target.files))
 }
 
-const submitForm = async () => {
+const submitForm =  async () => {
 	const data = new FormData()
 	data.append('name', form.value.name)
 	form.value.reference.forEach((file, index) => {
@@ -90,7 +90,7 @@ const submitForm = async () => {
 const successMessage = (response: any) => {
 	ElNotification({
 		title: response,
-		message: 'This is a success message',
+		message: 'Your reference have already been sent! ',
 		type: 'success'
 	})
 }

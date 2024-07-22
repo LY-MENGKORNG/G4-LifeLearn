@@ -41,7 +41,9 @@ export const useAuthStore = defineStore('auth', {
 
                 this.user = response.data;
                 this.user.isAuthenticated = true;
-            } catch (error) { }
+            } catch (error) { 
+                console.warn(error)
+            }
         },
         async login(values: { email: string, password: string }, route: string) {
             try {
@@ -58,7 +60,7 @@ export const useAuthStore = defineStore('auth', {
                 });
                 return isUser
             } catch (error) {
-                console.warn("You didn't login yet!")
+                console.warn(error)
             }
         },
 

@@ -24,6 +24,7 @@ const { handleSubmit, isSubmitting } = useForm({
 const onSubmit = handleSubmit(async (values) => {
     
     const isUser = await store.login(values, '/system/login')
+    console.log(isUser);
     
     router.router.push(!isUser ? '/system/dashboard' : '/home');
 })
@@ -40,7 +41,7 @@ const { value: email, errorMessage: emailError } = useField('email')
                 <p>Don't have an account? <router-link to="/register">Create now</router-link></p>
                 <el-form-item :error="emailError" class="mt-5">
                     <label for="email">Email</label>
-                    <el-input id="email" v-model="email" />
+                    <el-input id="email" v-model="email" autocomplete="true" />
                 </el-form-item>
                 <el-form-item :error="nameError" class="mt-2">
                     <label for="password" show-password>password</label>

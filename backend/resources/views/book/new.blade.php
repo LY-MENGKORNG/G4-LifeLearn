@@ -40,15 +40,12 @@
                 </div>
                 <div class="flex gap-3 w-full mt-4">
                     <div class="flex flex-col flex-1">
-                        <label for="published_at">Published date</label>
-                        <input id="published_at" name="published_at" type="date" placeholder="published_at" class="rounded-md border" required>
+                        <label for="published_date">Published date</label>
+                        <input id="published_date" name="published_date" type="date" placeholder="published_date" class="rounded-md border" required>
                     </div>
                     <div class="flex flex-col flex-1">
-                        <label for="category_id">Book Category</label>
-                        <select name="category_id" id="category_id" class="rounded-md" >  
-                            <option value="1">Free</option>
-                            <option value="2">Charge</option>
-                        </select>
+                        <label for="price">Price  (Obtional)</label>
+                        <input type="number" name="price" id="price" value="0">
                     </div>
                 </div>
                 <div class="flex mt-5">

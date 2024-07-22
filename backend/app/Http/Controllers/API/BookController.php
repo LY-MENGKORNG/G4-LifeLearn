@@ -35,13 +35,18 @@ class BookController extends Controller
             return response()->json($books, 201);
         
     }
-    public function show($id)
+    public function show(string $id)
     {
-        $books = Book::find($id);
-        if ($books) {
-            return response()->json($books);
-        }
-        return response()->json(['message' => 'books not found'], 404);
+        $book = Book::find($id);
+        return $book ? response()->json([
+            'status' => true,
+            'message' => 'book with id' . $id, 
+            'data' => new BookResource($book)
+        ]) : response()->json([
+            'status' => false,
+            'message' => 'book not found with id' . $id,
+            'data' => false
+        ]); 
     }
     public function update(Request $request, $id)
     {

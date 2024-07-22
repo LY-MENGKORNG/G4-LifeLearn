@@ -7,7 +7,11 @@
 				:handle-close="handleClose"
 			/>
 			<div class="flex flex-col w-screen sticky left-0 top-0">
-				<SystemHeader :profile="'http://localhost:8000/images/'+owner.profile" :action="setCollapse" :image="avatar" />
+				<SystemHeader
+					:profile="'http://localhost:8000/images/' + owner.profile"
+					:action="setCollapse"
+					:image="avatar"
+				/>
 				<div class="flex">
 					<el-main>
 						<slot></slot>
@@ -19,9 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import SystemSidebar from '@/Components/Common/SideBar/SystemSidebar.vue'
-import SystemHeader from '@/Components/Common/Header/SystemHeader.vue'
-import { onMounted,  ref } from 'vue'
+import SystemSidebar from './SystemSidebar.vue'
+import SystemHeader from './SystemHeader.vue'
+import { onMounted, ref } from 'vue'
 import avatar from '@/assets/avatar/avatar-profile.jpg'
 import { useSystemStore } from '@/stores/system-store'
 
@@ -37,24 +41,23 @@ const system = ref({
 		phone: '',
 		profile: ''
 	},
-  location: '',
-  name: ''
+	location: '',
+	name: ''
 })
 
 const owner = ref({
-  id: null,
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: '',
-  profile: '',
+	id: null,
+	firstName: '',
+	lastName: '',
+	email: '',
+	phone: '',
+	profile: ''
 })
 
 onMounted(async () => {
 	await systemStore.fetchSystem()
 	system.value = systemStore.system
-  owner.value = system.value.owner
-  console.log(owner.value)
+	owner.value = system.value.owner
 })
 
 const isCollapse = ref<boolean>(false)

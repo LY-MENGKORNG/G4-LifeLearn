@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 class Frontuser extends RelationshipModel
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, HasPermissions;
-    // public $guard = 'front'
+    public $guard = 'front';
     /**
      * The attributes that are mass assignable.
      *
@@ -28,7 +26,8 @@ class Frontuser extends RelationshipModel
         'password',
         'phone',
         'profile',
-        'last_seen'
+        'last_seen',
+        'system_id'
     ];
 
     /**
@@ -49,16 +48,7 @@ class Frontuser extends RelationshipModel
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function permissions()
-    {
-        return $this->belongsToMany(PermissionStudent::class);
-    }
-
-    public function classrooms()
-    {
-        return $this->belongsToMany(Classroom::class, 'classroom_student');
-    }
+ 
     
     public static function createOrUpdate($request, $id = null)
     {

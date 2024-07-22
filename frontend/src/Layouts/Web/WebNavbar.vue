@@ -69,7 +69,6 @@ onMounted(async () => {
   try {
     const { data } = await axiosInstance.get('/user/notifications');
     notificationlist.value = data.data;
-	console.log(notificationlist.value)
   } catch (error) {
     console.error('Error fetching books:', error);
   }

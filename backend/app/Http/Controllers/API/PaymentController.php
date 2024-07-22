@@ -15,37 +15,44 @@ class PaymentController extends Controller
 {
     public function getSession(Request $request)
     {
-        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-        
+        if (!$this->isOnline()) return response()->json([
+            'status' => false,
+            'message' => 'please check you internet connection',
+            'sub' => false
+        ], 200);
+
+        $stripe = new \Stripe\StripeClient('sk_test_51Pd4bxGdke5T1wEHlabBSPoiwmf4ptQGsA6SDDBXneGkDVhVZ4OPokSXoo6gqkKW5cTVWeR56NqrXbwLckhhI27A00QidKfyIF');
+
         $sub = $stripe->checkout->sessions->create([
             'success_url' => 'http://localhost:5173/payment/success',
             'cancel_url' => 'http://localhost:5173/systems/info',
             'line_items' => [
                 [
                     'price' => 'price_1Pd4gJGdke5T1wEHXljs0PjX',
-                    'quantity' => 1, 
+                    'quantity' => 1,
                 ],
             ],
             'mode' => 'subscription',
-        ]); 
+        ]);
 
-
-        return ['sub' => $sub];
+        return response()->json([
+            'status' => true,
+            'sub' => $sub
+        ], 200 );
     }
 
 
-    
+
     public function createPaymentIntent($request)
     {
-
     }
 
     public function getWebhook()
     {
         // \Log::info('webhook');
-        
+
         return response()->json([
-            'message' => 'Successfully!' 
+            'message' => 'Successfully!'
         ], 200);
     }
 }

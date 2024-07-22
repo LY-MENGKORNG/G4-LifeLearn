@@ -23,11 +23,8 @@ class BookController extends Controller
     }
     public function store(Request $request)
     {
-        Book::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'description' => $request->description,
-        ]);
+        $isCreated = Book::createOrUpdate($request);
+        return $isCreated ? redirect()->back()->withSuccess('Book created successfully!') : redirect()->back()->withErrors('Please fill all required fields');
     }
 
     public function show(string $id)
@@ -41,7 +38,8 @@ class BookController extends Controller
     {
     }
 
-    public function destroy()
+    public function destroy(string $id)
     {
+        return redirect()->back()-> ;
     }
 }

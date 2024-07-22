@@ -20,7 +20,7 @@ class FrontUserResource extends JsonResource
             'last_name' => $this->last_name,
             'phone' => $this->phone,
             'email' => $this->email,
-            'profile' => 'http://localhost:8000/images/'.$this->profile,
+            'profile' =>   config('app.url'). ':8000/images/'  .$this->profile,
         ];
     }
 }

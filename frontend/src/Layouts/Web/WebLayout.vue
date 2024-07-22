@@ -31,9 +31,9 @@ onMounted(() => {
 			<WebNavbar :src="profile"></WebNavbar>
 			<WebHeaderMenu v-if="isLogin" />
 			<MainProgress  v-if="isLoading" />
-			<el-main class="p-0">
+			<main class="p-0">
 				<slot></slot>
-			</el-main>
+			</main>
 			<WebFooter></WebFooter>
 		</el-container>
 	</div>
