@@ -111,12 +111,6 @@ const routes = [
         name: 'system-classroom',
         component: () => import('@/views/System/ClassroomView.vue')
     },
-    
-    // {
-    //     path: '/system/create/score',
-    //     name: 'system-create-score',
-    //     component: () => import('@/views/System/Teacher/Score.vue')
-    // },
     {
         path: '/system/material',
         name: 'system-material',
@@ -208,7 +202,7 @@ const routes = [
     {
         path: '/system/score',
         name: 'system-score-list',
-        component: () => import('@/views/System/Classroom/Score.vue'),
+        component: () => import('@/views/System/Classroom/ScoreStudent.vue'),
     },
     {
         path: '/system/grade/:id',

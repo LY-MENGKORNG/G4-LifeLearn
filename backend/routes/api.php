@@ -223,3 +223,4 @@ Route::get('/registrations-per-month', [FrontuserController::class, 'getRegistra
 Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
 Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
 
+Route::resource('/score', ScoreController::class);

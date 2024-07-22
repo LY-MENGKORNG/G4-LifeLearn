@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
+            $table->integer('score');
+            $table->string('feedback');
             $table->integer('student_id');
             $table->integer('subject_id');
             $table->integer('semester_id')->nullable();
