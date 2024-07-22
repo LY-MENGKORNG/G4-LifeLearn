@@ -2,19 +2,19 @@
   <div class=" ">
     <div class="flex justify-end">
       <button class="bg-green-500 hover:bg-green-700 my-3 text-white font-bold mr-5 py-2 px-4 rounded" @click="goToPermissions">
-        Permissions
+        📝 Permissions
       </button>
     </div>
     <div class="scrollable-content " >
 
       <div class="calendar-header flex justify-between items-center mb-4">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="goToPreviousMonth">
-          Previous Month
+          👈 Previous Month
         </button>
         <div class="calendar-title text-xl font-bold">{{ formattedDate(currentDate) }}</div>
 
           <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="goToNextMonth">
-            Next Month
+            👉 Next Month
           </button>
 
       </div>
@@ -50,7 +50,7 @@
       <div v-if="showForm" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
         <div class="bg-white p-6 rounded shadow-md custom-modal">
           <h2 class="text-xl font-bold mb-4">Add Schedule for {{ selectedDate.date.getDate() }}</h2>
-          <form @submit.prevent="saveInfo">
+          <form @submit.prevent="closeForm">
             <div class="mb-4">
               <label for="name" class="block text-sm font-medium text-gray-700">Event Name</label>
               <input type="text" id="name" v-model="inputInfo.name"

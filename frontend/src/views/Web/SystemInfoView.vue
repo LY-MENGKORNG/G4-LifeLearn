@@ -34,7 +34,7 @@
 <div class="card-find p-5 flex flex-wrap gap-10 justify-center">
     <div
         class="mt-5 me-4 block rounded-lg border border-[#42b883] bg-white shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface overflow-hidden hover:shadow-md hover:transform hover:-translate-y-5 transition duration-300 ease-in-out"
-        style="width: 18rem"
+        style="width: 20rem"
     >
         <div class="p-6 flex flex-wrap items-center justify-center">
             <svg
@@ -83,7 +83,7 @@
     </div>
     <div
         class="mt-5 me-4 block rounded-lg border border-[#42b883] bg-white shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface overflow-hidden hover:shadow-md hover:transform hover:-translate-y-5 transition duration-300 ease-in-out"
-        style="width: 18rem"
+        style="width: 20rem"
     >
         <div class="p-6 flex flex-wrap items-center justify-center">
             <svg
@@ -126,7 +126,7 @@
     </div>
     <div
         class="mt-5 me-4 block rounded-lg border border-[#42b883] bg-white shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface overflow-hidden hover:shadow-md hover:transform hover:-translate-y-5 transition duration-300 ease-in-out"
-        style="width: 18rem"
+        style="width: 20rem"
     >
         <div class="p-6 flex flex-wrap items-center justify-center">
             <svg
