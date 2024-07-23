@@ -304,7 +304,6 @@ export default {
 
     mounted() {
     this.savePermission(); // Calls savePermission when component is mounted
- 
   },
   },
   
