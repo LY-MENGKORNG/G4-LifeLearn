@@ -24,7 +24,7 @@
             </div>
             <div class="space-x-10 flex justify-end">
                 <button type="submit" class="btn btn-primary">Save</button>
-                <router-link to="/system/view/profile">
+                <router-link to="/system/profile">
                 <button class="btn btn-danger">Cancel</button>
                 </router-link>
             </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SystemController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
+    BookController,
     DashboardController,
     ProfileController,
     MailSettingController,
@@ -15,6 +16,7 @@ use App\Http\Controllers\Admin\{
 };
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Front\Auth\NewPasswordController;
+use App\Http\Controllers\Front\FrontuserController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Mail;
 
@@ -31,17 +33,6 @@ use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('auth.login');
-});
-
-
-Route::get('/test-mail', function () {
-
-    $message = "Testing mail";
-
-    \Mail::raw('Hi, welcome!', function ($message) {
-        $message->to('mengkorng.ly@student.passerellesnumeriques.org')
-            ->subject('Testing mail');
-    });
 });
 
 Route::middleware('front')->group(function () {
@@ -66,6 +57,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')-
     Route::resource('permissions', PermissionController::class);
     Route::resource('users', UserController::class);
     Route::resource('systems', SystemController::class);
+    Route::resource('books', BookController::class);
     Route::resource('notifications', NotificationController::class);
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
@@ -78,6 +70,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')-
     Route::post('/reject-mail', [SendMailController::class, 'rejectPrinciple'])->name('mail-reject');
 });
 
+Route::get('/registrations-per-month', [FrontuserController::class, 'getRegistrationsPerDay']);
 
 Route::get("/forgot-password",[PasswordResetLinkController::class, "create"])->name("forgot.password");
 Route::post("/forgot-password",[PasswordResetLinkController::class, "store"])->name("forgot.password.post");

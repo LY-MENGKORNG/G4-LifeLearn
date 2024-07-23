@@ -1,7 +1,10 @@
 <x-app-layout>
     <main class="w-full flex flex-wrap gap-4 overflow-x-hidden overflow-y-auto bg-gray-100 p-4">
+        @if (!$status)
+            <p class="text-green-500">Please check your internet connection</p>
+        @else  
         <div class="flex flex-col" style=" min-width: 65%">
-            <div class="mx-auto flex-1  flex  w-full gap-3">
+            <div class="mx-auto flex-3  flex  w-full gap-3 mb-3 ">
                 <x-overview-card link="admin.users.index" active="blue-300" title="Total Users" :number="$users->count()">
                     <svg xmlns="http://www.w3.org/2000/svg" style="width: 30px;" viewBox="0 0 101 101" id="user">
                         <path
@@ -35,7 +38,10 @@
                     </svg>
                 </x-overview-card>
             </div>
-            <div class="mx-auto w-full mt-4">
+            <x-chart-card />
+        </div>
+        <div class="flex flex-col flex-1 overflow-x-hidden ">
+            <div class="mx-auto w-full ">
                 <ul role="list" class="divide-y divide-gray-100 bg-white p-4 rounded-md">
                     <li class="flex justify-between pb-2">
                         <h3 class="font-medium text-blueTotal-600">Visitors</h3>
@@ -48,8 +54,6 @@
                 </ul>
             </div>
         </div>
-        <div class="flex flex-col flex-1 overflow-x-hidden">
-            <x-chart-card />
-        </div>
-    </main>
+        @endif
+    </main> 
 </x-app-layout>

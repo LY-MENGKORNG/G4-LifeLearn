@@ -24,8 +24,8 @@ class NotificationResource extends JsonResource
             'sender' => new FrontUserResource($this->front_user),
             'description' => $this->description,
             'receiver_id'=>$this->receiver_id,
-            'created_at'=>Carbon::parse($this->created_at)->toTimeString()
-            // 'updated_at' => $this->updated_at,
+            'created_at'=> $this->created_at,
+            'document' => $this->document,
         ];
         
     }

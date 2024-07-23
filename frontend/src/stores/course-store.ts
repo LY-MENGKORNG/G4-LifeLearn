@@ -9,7 +9,7 @@ export const useCourseStore = defineStore('course', {
     }),
     actions: {
         async fetchCourses() {
-            const response = await axiosInstance.get('/course/list');
+            const response = await axiosInstance.get('/course');
             this.courses = response.data.data;
         }
     }

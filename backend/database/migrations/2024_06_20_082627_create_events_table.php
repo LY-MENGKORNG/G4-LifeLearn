@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('location');
-            $table->integer('organizer_id');
+            $table->integer('organizer_id')->default();
             $table->softDeletes();
             $table->timestamps();
         });

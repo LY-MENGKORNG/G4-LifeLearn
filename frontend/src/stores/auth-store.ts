@@ -29,11 +29,7 @@ export const useAuthStore = defineStore('auth', {
     actions: {
         async fetchUser() {
             try {
-                const response = await axiosInstance.get('/me', {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                    }
-                });
+                const response = await axiosInstance.get('/me');
                 const rules = () =>
                     defineAclRules((setRule) => {
                         this.user.permissions.forEach((permission: string) => {
@@ -45,15 +41,15 @@ export const useAuthStore = defineStore('auth', {
 
                 this.user = response.data;
                 this.user.isAuthenticated = true;
-            } catch (error) {
-                console.error("You didn't login yet!");
+            } catch (error) { 
+                console.warn(error)
             }
         },
-        async login(values: {email: string, password: string}, route: string) {
+        async login(values: { email: string, password: string }, route: string) {
             try {
                 const { data } = await axiosInstance.post(route, values)
                 localStorage.setItem('access_token', data.access_token)
-        
+
                 this.fetchUser();
 
                 let isUser = true;
@@ -64,15 +60,15 @@ export const useAuthStore = defineStore('auth', {
                 });
                 return isUser
             } catch (error) {
-                console.warn("You didn't login yet!")
+                console.warn(error)
             }
         },
 
-        async resetPassword(values: {email: string}) {
-            try{
-                const { data } = await axiosInstance.post('/forgot-password',values)
+        async resetPassword(values: { email: string }) {
+            try {
+                const { data } = await axiosInstance.post('/forgot-password', values)
                 router.router.push('/forgot-password')
-            }catch(error) {
+            } catch (error) {
                 return error
             }
         },
@@ -80,7 +76,16 @@ export const useAuthStore = defineStore('auth', {
         async editPrfile(profile: any) {
             try {
                 await axiosInstance.post('/edit-profile', profile);
-            }catch (error) {
+            } catch (error) {
+                console.warn(error)
+            }
+        },
+
+        async logout() {
+            try {
+                const response = await axiosInstance.post('/logout');
+                console.log(response)
+            } catch (error) {
                 console.warn(error)
             }
         }

@@ -6,6 +6,7 @@ use App\Http\Controllers\MailController;
 use App\Models\Frontuser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Spatie\Permission\Models\Permission;
 
 class SendMailController extends MailController
 {
@@ -19,11 +20,12 @@ class SendMailController extends MailController
             $request["recipient"] = $request->email;
             $request["subject"] = 'Approve Proposal';
             $request["message"] = 'Your application has been approved🎉';
+            
             $this->send($request, $content);
 
             $recipient = Frontuser::where('email', $request->email)->firstOrFail();
 
-            $recipient->givePermissionTo('System buy');
+            $recipient->givePermissionTo(Permission::where('name', 'System buy')->first());
 
             $this->removeNotifications($recipient->id);
 

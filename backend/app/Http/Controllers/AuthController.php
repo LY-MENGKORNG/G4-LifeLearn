@@ -66,13 +66,7 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request): JsonResponse
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password'  => 'required|string'
-        ]);
-        
-    
+    { 
         $user = $request->user();
 
         if (!$user) {

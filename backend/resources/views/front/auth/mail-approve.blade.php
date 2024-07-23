@@ -52,7 +52,7 @@
     <p>Your application have been agreed!</p>
     <p>Welcome to our system🎉</p>
     <div class="footer">
-        <a href="http://localhost:5173/systems/payment">
+        <a href="http://localhost:5173/systems/info">
             <button>Go to site</button>
         </a>
     </div>

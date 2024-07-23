@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Notificaton extends RelationshipModel
@@ -25,6 +26,11 @@ class Notificaton extends RelationshipModel
     public  function receiver(): BelongsTo
     {
         return self::belongsTo(User::class, 'receiver', 'id');
+    }
+
+    public function documents(): HasMany 
+    {
+        return self::hasMany(Document::class, 'reference_id', 'id');
     }
 
 }

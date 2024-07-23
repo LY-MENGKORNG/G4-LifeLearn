@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'phone' => $this->phone,
             'last_name' => $this->last_name,
             'email' => $this->email,
-            'profile' => 'http://localhost:8000/images/'.$this->profile,
+            'profile' =>   config('app.url')  .$this->profile,
         ];
     }
 }

@@ -11,7 +11,7 @@ onMounted(() => {
 })
 
 const navigations = [
-	{ id: 1, name: 'Home', path: '/' },
+	{ id: 1, name: 'Home', path: '/home' },
 	{ id: 2, name: 'My Learning', path: '/my-learn' },
 	{ id: 3, name: 'Books', path: '/book' }
 ]
@@ -31,7 +31,7 @@ const setCurrentRoute = () => {
 <template>
 	<el-menu
 		:default-active="activeIndex"
-		class="el-menu-demo flex justify-center h-[40px] sticky top-0 left-0 z-40 shadow-md shadow-slate-50/30 backdrop-blur-sm bg-white/80"
+		class="el-menu-demo flex justify-center h-[40px] sticky top-0 left-0 z-40 shadow-md shadow-slate-50/30 bg-white/70 backdrop-blur-md "
 		mode="horizontal"
 		@select="handleSelect"
 	>

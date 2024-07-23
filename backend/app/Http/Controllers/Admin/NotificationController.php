@@ -32,34 +32,34 @@ class NotificationController extends Controller
     public function index(): View
     {
         $notifications = Notificaton::where('status', 0)->get();
-        if(count($notifications) > 0) {
+        if (count($notifications) > 0) {
             foreach ($notifications as $notification) {
                 $notification['sender'] =  Frontuser::find($notification->user_id);
             }
             return view('notification.index', ['notifications' => $notifications]);
         }
         return view('notification.index', ['notifications' => false]);
-
     }
- 
+
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
         $notification = Notificaton::find($id);
-        if($notification->status != 1) {
-            $document = Document::where('reference_id', $notification->id)->get();
+        $notification = new NotificationResource($notification);
+        if ($notification->status != 1) {
+
+            $document = Document::where('reference_id', '=', $notification->id)->get();
             $sender = Frontuser::find($notification->user_id);
-    
             $notification["document"] = $document;
             $notification["sender"] = $sender;
-        }else {
+        } else {
             $notification = false;
         }
 
 
-        return view('notification.show', ['notification' => $notification]);
+        return view('notification.show',  compact('notification'));
     }
 
     /**

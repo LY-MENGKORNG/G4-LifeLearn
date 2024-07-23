@@ -7,7 +7,7 @@
 					Thank you for your purchase. Your transaction has been completed successfully.
 				</p>
 				<span class="text-3xl">🎉</span>
-				<el-button type="success" @click="goToDashboard"> Go to Dashboard </el-button>
+				<el-button type="success" @click="goToDashboard">Go to Dashboard</el-button>
 			</div>
 		</div>
 	</div>
@@ -20,18 +20,21 @@ import { useAuthStore } from '@/stores/auth-store'
 
 const authStore = useAuthStore()
 
-const createSystem = async () => {
-	const response = await axiosInstance.post('/system-create', {
+const createSystem = () => {
+	const response = axiosInstance.post('/system-create', {
 		permissions: authStore.user.permissions
 	})
 	console.log(response)
 	return false
 }
-const goToDashboard = async () => {
-	await createSystem()
-	router.router.push('/system/login');
+const goToDashboard = () => {
+	console.log('hi')
+	createSystem()
+	router.router.push('/system/login')
 }
 </script>
+
+
 <style scoped>
 :root {
 	--background: #f8f9fa;

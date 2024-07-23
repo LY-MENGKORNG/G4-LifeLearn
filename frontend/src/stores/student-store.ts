@@ -19,6 +19,14 @@ export const useStudentStore = defineStore('student', {
         console.error('Error fetching posts:', error);
       }
     }, 
+    async CreateScore(score: any) {
+      try {
+          const response = await axiosInstance.post('/score', score);
+          console.log(response);
+      }catch (error) {
+          console.warn(error)
+      }
+  }
   },
   
 });

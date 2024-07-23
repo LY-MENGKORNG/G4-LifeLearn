@@ -1,10 +1,22 @@
-    const userMeta = {
+const userMeta = {
     requireAuth: false,
     role: 'user'
+}
+const systemMeta = {
+    requireAuth: true,
+    role: ['principle', 'teacher', 'student']
 }
 const principleMeta = {
     requireAuth: true,
     role: 'principle'
+}
+const teacherMeta = {
+    requireAuth: true,
+    role: 'teacher'
+}
+const studentMeta = {
+    requireAuth: true,
+    role: 'student'
 }
 
 const routes = [
@@ -96,6 +108,16 @@ const routes = [
         }
     },
     {
+        path: '/book/:id',
+        name: 'book-detail',
+        component: () => import('@/views/Web/Books/ShowBook.vue'),
+        props: true,
+        meta: {
+            requiresAuth: true,
+            role: 'user'
+        }
+    },
+    {
         path: '/book/add',
         name: 'book-add',
         component: () => import('@/views/Web/Books/AddBook.vue')
@@ -111,12 +133,6 @@ const routes = [
         name: 'system-classroom',
         component: () => import('@/views/System/ClassroomView.vue')
     },
-    
-    // {
-    //     path: '/system/create/score',
-    //     name: 'system-create-score',
-    //     component: () => import('@/views/System/Teacher/Score.vue')
-    // },
     {
         path: '/system/material/',
         name: 'system-material',
@@ -160,7 +176,7 @@ const routes = [
         component: () => import('@/Components/teacherLogout.vue')
     },
 
-    
+
     {
         path: '/request-payment',
         name: 'request-payment',
@@ -215,7 +231,7 @@ const routes = [
     {
         path: '/system/score',
         name: 'system-score-list',
-        component: () => import('@/views/System/Classroom/Score.vue'),
+        component: () => import('@/views/System/Classroom/ScoreStudent.vue'),
     },
     {
         path: '/system/grade/:id',
@@ -223,7 +239,7 @@ const routes = [
         component: () => import('@/views/System/Grade/ShowGrade.vue'),
         props: true
     },
-    
+
     {
         path: '/system/lesson',
         name: 'system-lesson',
@@ -260,12 +276,11 @@ const routes = [
         path: '/',
         name: 'welcomepage',
         component: () => import('@/views/Web/WelcomeView.vue'),
-       
     },
 
     {
-        path:'/user/profile' ,
-        name: 'user-profile',
+        path:'/profile' ,
+        name: 'profile',
         component: () => import('@/views/Web/UserProfileView.vue')
     }
 ]
