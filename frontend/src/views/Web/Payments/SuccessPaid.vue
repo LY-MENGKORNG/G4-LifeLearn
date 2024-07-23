@@ -7,7 +7,7 @@
 					Thank you for your purchase. Your transaction has been completed successfully.
 				</p>
 				<span class="text-3xl">🎉</span>
-				<button @click="goToDashboard">Go to Dashboard</button>
+				<el-button type="success" @click="goToDashboard">Go to Dashboard</el-button>
 			</div>
 		</div>
 	</div>

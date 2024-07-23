@@ -190,9 +190,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // get session
     Route::get('/session', [PaymentController::class, 'getSession']);
 
-    // create payment list
-    // Route::post('/create-payment-intent', [PaymentController::class, 'createPaymentIntent']);
-
     // webhook
     Route::post('/webhook', [PaymentController::class, 'getWebhook']);
 
@@ -212,7 +209,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/invite-teacher', [SendMailController::class, 'inviteTeacher']);
 
     // teacher send email to principle
-    Route::post('/accept-invite', [SendMailController::class, 'acceptInvite']); 
+    Route::post('/accept-invite', [APISystemController::class, 'acceptInvite']); 
 
     // get users in a system
     Route::get('/users', [APISystemController::class, 'getUsers']); 

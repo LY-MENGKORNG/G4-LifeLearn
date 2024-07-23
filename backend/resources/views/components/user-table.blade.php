@@ -81,7 +81,7 @@
             <p class="mt-1 text-xs leading-5 text-gray-500">
                 <time datetime="2023-01-23T13:23Z">
                     <span
-                        class="bg-blue-400 inline-flex items-center justify-center px-1 py-1 text-sm leading-none text-white rounded-full">
+                        class="bg-blue-400 inline-flex items-center justify-center px-1 py-1 text-xs font-light leading-none text-white rounded-full">
                         {{ $humanReadableDuration }}
                     </span>
                 </time>

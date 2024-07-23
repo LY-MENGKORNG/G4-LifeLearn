@@ -35,17 +35,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-
-Route::get('/test-mail', function () {
-
-    $message = "Testing mail";
-
-    \Mail::raw('Hi, welcome!', function ($message) {
-        $message->to('mengkorng.ly@student.passerellesnumeriques.org')
-            ->subject('Testing mail');
-    });
-});
-
 Route::middleware('front')->group(function () {
     Route::get('/dashboard', function () {
         view('front.dashboard');

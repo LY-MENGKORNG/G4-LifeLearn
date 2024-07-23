@@ -29,20 +29,21 @@ import UserList from '@/Components/Common/List/UserList.vue'
 import SystemLayout from '@/Layouts/System/SystemLayout.vue'
 import SendMail from '@/Components/Common/Form/SendMail.vue'
 import { onMounted, ref } from 'vue'
-import { useSystemStore } from '@/stores/system-store';
+import { useSystemStore } from '@/stores/system-store'
 
-const systemStore = useSystemStore();
+const systemStore = useSystemStore()
 const showModal = ref(false)
-const openModal = () =>  {
-    showModal.value = true;
+const openModal = () => {
+	showModal.value = true
 }
 
 const closeModal = () => {
-    showModal.value = false;
+	showModal.value = false
 }
 
 onMounted(async () => {
-    await systemStore.fetchUsers({role: 'teacher'});
+	await systemStore.fetchUsers('teacher')
+	console.log(systemStore.users)
 })
 
 const people = [

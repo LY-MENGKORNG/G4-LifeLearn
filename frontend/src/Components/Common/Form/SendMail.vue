@@ -79,7 +79,7 @@
 import { ref, reactive } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { ElNotification } from 'element-plus'
-import { useSystemStore } from '@/stores/system-store';
+import { useSystemStore } from '@/stores/system-store'
 
 const systemStore = useSystemStore()
 
@@ -89,9 +89,10 @@ const FORM = ref({
 	message: ''
 })
 
-const handleSubmit = async () => {
-	await systemStore.sendMail(FORM.value, '/invite-teacher')
-	if (!systemStore.status) return connectionInfo()
+const handleSubmit = () => {
+	systemStore.sendMail(FORM.value, '/invite-teacher')
+	// if (!systemStore.status) return connectionInfo()
+	successInfo()
 }
 
 const connectionInfo = () => {
@@ -105,6 +106,15 @@ const connectionInfo = () => {
 		email: '',
 		message: ''
 	}
+	close()
+}
+
+const successInfo = () => {
+	ElNotification({
+		title: 'Success',
+		message: 'Your email have been sent successfully',
+		type: 'success'
+	})
 }
 
 defineProps({

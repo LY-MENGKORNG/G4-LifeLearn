@@ -97,7 +97,7 @@ onMounted(async () => {
 				</p>
 				<div class="block">
 					<a href="#course" class="">
-						<el-button class="bg-green-400 text-white hover:bg-green-500" size="large">
+						<el-button class="bg-green-500 text-white hover:bg-green-400" size="large">
 							Explore Course
 						</el-button>
 					</a>

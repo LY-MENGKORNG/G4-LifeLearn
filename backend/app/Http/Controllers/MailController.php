@@ -18,7 +18,7 @@ class MailController extends Controller
         ]);
     }
 
-    public function send(Request $request, $content) 
+    public function send(Request $request, string $content) 
     {
         $mail_data = [
             'from' => $request->user()->email,
@@ -32,6 +32,8 @@ class MailController extends Controller
                 ->to($mail_data['recipient'])
                 ->subject($mail_data['subject']);
         });
+
+        return true;
     }
 
     public function removeNotifications(string $user_id)

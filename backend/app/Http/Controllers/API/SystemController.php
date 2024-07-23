@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Systems\SystemResource;
+use App\Http\Resources\Users\FrontUserResource;
 use App\Models\Frontuser;
 use App\Models\Reference;
 use App\Models\System;
@@ -45,12 +46,23 @@ class SystemController extends Controller
             'frontuser_id' => $user->id,
             'location' => $school_location,
         ]);
-        $user->system_id = $system->id;
-        $user->save();
+
+        $user->update(['system_id' => $system->id])->save();
 
         return response()->json([
+            'status' => true,
             'data' => $system
         ], 200);
+    }
+
+    public function acceptInvite(Request $request)
+    {
+        $user = Frontuser::where('email', $request->email)->firstOrFail();
+        $system = Frontuser::where('email', $request->from_mail)->firstOrFail();
+        $user->roles()->detach();
+        $user->assignRole('teacher');
+        $user->update(['system_id' => $system->id])->save();
+        return redirect()->route('http://localhost:5173/system/dashboard');
     }
 
     /**
@@ -68,6 +80,11 @@ class SystemController extends Controller
 
     public function getUsers(Request $request)
     {
-
+        $users = Frontuser::role($request->role)->get();
+        return response()->json([
+            'status' => true,
+            'message' => 'List of ' . $request->role,
+            'data' => FrontUserResource::collection($users)
+        ], 200);
     }
 }

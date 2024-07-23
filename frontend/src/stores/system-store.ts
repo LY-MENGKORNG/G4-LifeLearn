@@ -30,18 +30,22 @@ export const useSystemStore = defineStore('system', {
         async sendMail(mail: any, path: string) {
             try {
                 const response = await axiosInstance.post(path, mail)
-                this.status = response.status
+                console.log(response)
+                this.status = true
             } catch (error: any) {
+                console.warn(error)
                 this.message = error.message
-                this.status = error.status
+                this.status = false
             }
         },
-        async fetchUsers(request: {role: string}) {
-            console.log(request)
+        async fetchUsers(request: any) {
             try {
-                const response = await axiosInstance.get('/users',)
+                const response = await axiosInstance.get('/users', {
+                    role: request
+                })
                 this.users = response.data
             } catch (error: any) {
+                console.warn(error)
                 this.message = error.message
             }
         }

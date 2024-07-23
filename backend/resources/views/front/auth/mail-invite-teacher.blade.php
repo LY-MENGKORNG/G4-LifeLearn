@@ -56,15 +56,17 @@
 <body>
     <div class="container">
         <h1>LifeLearn App</h1>
-        <p>Dear {{ $recipient }},
-            {{ $message }}
-        </p><br>
+        <p>Dear {{ $recipient }}, </p>
+        <p> Invitation to join the system</p>
         <p>Best regards,</p>
         <p>{{ $from }}</p>
         <div class="footer">
-            <a href="http://localhost:5173/system/dashboard">
+            <form action="http://localhost:8000/api/accept-invite" method="POST">
+                @csrf
+                <input type="hidden" name="email" value="{{ $recipient }}">
+                <input type="hidden" name="from_mail" value="{{ $from }}">
                 <button>Go to site</button>
-            </a>
+            </form> 
         </div>
     </div>
 </body>

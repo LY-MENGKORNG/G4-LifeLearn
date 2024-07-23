@@ -19,18 +19,26 @@
                 <div class="flex gap-3 w-full">
                     <div class="flex flex-col flex-1">
                         <label for="title">Title</label>
-                        <input id="title" name="title" type="text" placeholder="Title" class="rounded-md" required>
+                        <input id="title" name="title" type="text" placeholder="Title" class="rounded-md"
+                            required>
                     </div>
                     <div class="flex flex-col flex-1">
+                        <label for="author">Author</label>
+                        <input id="author" name="author" type="text" placeholder="Author" class="rounded-md"
+                            required>
+                    </div>
+                </div>
+                <div class="flex gap-3 w-full mt-4">
+                    <div class="flex flex-col flex-1">
                         <label for="description">Description</label>
-                        <input id="description" name="description" type="text" placeholder="description"
-                            class="rounded-md" required>
+                        <textarea id="description" name="description" type="text" placeholder="description" class="rounded-md" required></textarea>
                     </div>
                 </div>
                 <div class="flex gap-3 w-full mt-4">
                     <div class="flex flex-col flex-1">
                         <label for="cover">Book Cover</label>
-                        <input id="cover" name="cover" type="file" placeholder="cover" class="rounded-md border" required>
+                        <input id="cover" name="cover" type="file" placeholder="cover"
+                            class="rounded-md border" required>
                     </div>
                     <div class="flex flex-col flex-1">
                         <label for="file">Book</label>
@@ -41,10 +49,11 @@
                 <div class="flex gap-3 w-full mt-4">
                     <div class="flex flex-col flex-1">
                         <label for="published_date">Published date</label>
-                        <input id="published_date" name="published_date" type="date" placeholder="published_date" class="rounded-md border" required>
+                        <input id="published_date" name="published_date" type="date" placeholder="published_date"
+                            class="rounded-md border" required>
                     </div>
                     <div class="flex flex-col flex-1">
-                        <label for="price">Price  (Obtional)</label>
+                        <label for="price">Price (Obtional)</label>
                         <input type="number" name="price" id="price" value="0">
                     </div>
                 </div>

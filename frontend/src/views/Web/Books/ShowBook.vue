@@ -4,7 +4,7 @@
 			<a v-if="book.title != ''" :href="book.file" target="_blank" class="flex gap-3 p-6 mx-auto border-1 border-green-300 rounded-lg">
 				<div class="rounded-md flex items-center justify-center overflow-hidden">
 					<img :src="book.cover" :alt="book.title" class="rounded-md flex-1" />
-				</div>
+				</div>	
 				<div class="flex flex-col justify-between">
 					<div class=" flex flex-col gap-2">
 						<h3 class="text-xl font-medium">{{ book.title }}</h3>
