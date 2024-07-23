@@ -206,13 +206,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     //notification
     Route::resource('/user/notifications', NotificationsController::class);
-
-    // event 
-    Route::get('/events', [EventController::class,  'index']);
-    Route::post('events', [EventController::class, 'store']);
-    Route::put('events/{id}', [EventController::class, 'update']);
-    Route::delete('events/{id}', [EventController::class, 'destroy']);
-
+    
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
 });
@@ -224,3 +218,4 @@ Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class
 Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
 
 Route::resource('/score', ScoreController::class);
+

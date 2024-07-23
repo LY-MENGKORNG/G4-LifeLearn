@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('score');
             $table->string('feedback');
-            $table->integer('student_id');
-            $table->integer('subject_id');
-            $table->integer('semester_id')->nullable();
+            $table->integer('student_id')->default();
+            $table->integer('subject_id')->default();
+            $table->integer('semester_id')->nullable()->default(null);
             $table->timestamps();
         });
     }

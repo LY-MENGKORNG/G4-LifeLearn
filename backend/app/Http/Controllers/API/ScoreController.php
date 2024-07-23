@@ -48,8 +48,10 @@ class ScoreController extends Controller
         }
         
         $score = Score::store($request);
+       
         return response()->json(['message'=>"Score created successfully", "score"=>$score]);
     }
+
     /**
      * Display the specified resource.
      */
