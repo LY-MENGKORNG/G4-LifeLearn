@@ -2,11 +2,7 @@
 
 namespace App\Http\Resources\Submite;
 
-<<<<<<< HEAD
-use App\Http\Controllers\Api\Assigment\AssigmentController;
-=======
 use App\Http\Resources\Assignment\AssignmentResource;
->>>>>>> 8aabaa17b3671a9bf4ecaa4fef863e0cc5bfc37e
 use App\Http\Resources\Users\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

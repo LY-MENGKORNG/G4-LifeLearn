@@ -12,15 +12,6 @@ const contentwelcomes = ref([
     },
     {
         id: 2,
-        images: 'https://blog.schoolspecialty.com/wp-content/uploads/2016/06/Main-6-1200x624.jpg',
-        title: 'Taste the convenience.',
-        description: 'Try us out! Lessons and books are at your fingertips. Go ahead, download LifeLearn now.',
-        app: 'https://www.foodpanda.com/wp-content/uploads/2023/02/app-apple.png',
-        google: 'https://www.foodpanda.com/wp-content/uploads/2023/02/app-google.png',
-        huawei: 'https://www.foodpanda.com/wp-content/uploads/2023/02/app-huawei.png'
-    },
-    {
-        id: 3,
         images: 'https://www.foodpanda.com/wp-content/uploads/2023/04/jason-goodman-Oalh2MojUuk-unsplash-1024x683.jpg',
         title: 'Find the job you love',
         description: 'Hungry to make a difference? There’s a seat at our table! Find out how we connect tech, passions, projects, and people – explore international career opportunities at LifeLearn.',
