@@ -21,7 +21,6 @@ class Event extends Model
         'organizer_id',
     ];
 
-    
     public static function store($request, $id = null)
     {
         $eventData = [
@@ -37,7 +36,7 @@ class Event extends Model
         return self::updateOrCreate(['id' => $id], $eventData);
     }
 
-    public function orgranizer(): BelongsTo
+    public function organizer(): BelongsTo
     {
         return $this->belongsTo(User::class, 'organizer_id', 'id');
     }

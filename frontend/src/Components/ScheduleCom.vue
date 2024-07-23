@@ -2,19 +2,19 @@
   <div class=" ">
     <div class="flex justify-end">
       <button class="bg-green-500 hover:bg-green-700 my-3 text-white font-bold mr-5 py-2 px-4 rounded" @click="goToPermissions">
-        Permissions
+        📝 Permissions
       </button>
     </div>
     <div class="scrollable-content " >
 
       <div class="calendar-header flex justify-between items-center mb-4">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="goToPreviousMonth">
-          Previous Month
+          👈 Previous Month
         </button>
         <div class="calendar-title text-xl font-bold">{{ formattedDate(currentDate) }}</div>
 
           <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="goToNextMonth">
-            Next Month
+            👉 Next Month
           </button>
 
       </div>
@@ -50,54 +50,54 @@
       <div v-if="showForm" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
         <div class="bg-white p-6 rounded shadow-md custom-modal">
           <h2 class="text-xl font-bold mb-4">Add Schedule for {{ selectedDate.date.getDate() }}</h2>
-          <form @submit.prevent="saveInfo">
-            <div class="mb-4">
-              <label for="name" class="block text-sm font-medium text-gray-700">Event Name</label>
-              <input type="text" id="name" v-model="inputInfo.name"
+          <form @submit.prevent="saveEvent">
+          <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Event Name</label>
+            <input type="text" id="name" name="name" v-model="inputInfo.name"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
+          </div>
+          <div class="mb-4">
+            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+            <input type="text" id="description" name="description" v-model="inputInfo.description"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
+          </div>
+          <div class="mb-4">
+            <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+            <input type="text" id="type" name="type" v-model="inputInfo.type"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
+          </div>
+          <div class="mb-4 flex space-x-4">
+            <div class="w-1/2">
+              <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
+              <input type="date" id="start_date" name="start_date" v-model="inputInfo.start_date"
                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
             </div>
-            <div class="mb-4">
-              <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-              <input type="text" id="description" v-model="inputInfo.description"
+            <div class="w-1/2">
+              <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
+              <input type="date" id="end_date" name="end_date" v-model="inputInfo.end_date"
                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
             </div>
-            <div class="mb-4">
-              <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-              <input type="text" id="type" v-model="inputInfo.type"
-                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
-            </div>
-            <div class="mb-4 flex space-x-4">
-              <div class="w-1/2">
-                <label for="startDate" class="block text-sm font-medium text-gray-700">Start Date</label>
-                <input type="date" id="startDate" v-model="inputInfo.start_date"
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
-              </div>
-              <div class="w-1/2">
-                <label for="endDate" class="block text-sm font-medium text-gray-700">End Date</label>
-                <input type="date" id="endDate" v-model="inputInfo.end_date"
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
-              </div>
-            </div>
-            <div class="mb-4">
-              <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
-              <input type="text" id="location" v-model="inputInfo.location"
-                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
-            </div>
-            <div class="mb-4">
-              <label for="organizer_id" class="block text-sm font-medium text-gray-700">Organizer ID</label>
-              <input type="number" id="organizer_id" v-model="inputInfo.organizer_id"
-                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
-            </div>
-            <div class="flex justify-center">
-              <button type="button" @click="closeForm"
-                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
-                Cancel
-              </button>
-              <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Save
-              </button>
-            </div>
-          </form>
+          </div>
+          <div class="mb-4">
+            <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+            <input type="text" id="location" name="location" v-model="inputInfo.location"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
+          </div>
+          <div class="mb-4">
+            <label for="organizer_id" class="block text-sm font-medium text-gray-700">Organizer ID</label>
+            <input type="number" id="organizer_id" name="organizer_id" v-model="inputInfo.organizer_id"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
+          </div>
+          <div class="flex justify-center">
+            <button type="button" @click="closeForm"
+              class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
+              Cancel
+            </button>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Save
+            </button>
+          </div>
+        </form>
         </div>
       </div>
  
@@ -256,24 +256,6 @@ export default {
       this.selectedDate = null;
       this.inputInfo = {};
     },
-    saveInfo() {
-      if (this.selectedDate) {
-        const dateKey = this.formatDay(
-          this.selectedDate.date.getFullYear(),
-          this.selectedDate.date.getMonth() + 1,
-          this.selectedDate.date.getDate()
-        );
-        this.datesInfo = { ...this.datesInfo, [dateKey]: this.inputInfo };
-        axios.post('/events', this.inputInfo)
-          .then(response => {
-            this.datesInfo[dateKey] = response.data;
-            this.closeForm();
-          })
-          .catch(error => {
-            console.error('There was an error saving the event:', error);
-          });
-      }
-    },
   
     async savePermission() {
       try {
@@ -294,6 +276,24 @@ export default {
 
     },
 
+    async saveEvent() {
+      try {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+          throw new Error('No token found');
+        }
+        const response = await axiosInstance.post('/events', this.inputInfo, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log('Event saved:', response.data);
+        this.closeForm(); // Hide the form upon successful save
+      } catch (error) {
+        console.error('Error saving Event:', error);
+      }
+    },
+ 
     closePermission() {
       this.formVisible = false;
     },
@@ -304,6 +304,7 @@ export default {
 
     mounted() {
     this.savePermission(); // Calls savePermission when component is mounted
+ 
   },
   },
   

@@ -113,7 +113,7 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import Chart from 'chart.js/auto'
+// import Chart from 'chart.js/auto'
 
 const props = defineProps({
   msg: String
