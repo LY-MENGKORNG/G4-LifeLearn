@@ -303,8 +303,7 @@ export default {
     },
 
     mounted() {
-    // this.savePermission(); // Calls savePermission when component is mounted
-    this.saveEvent(); // Calls savePermission when component is
+    this.savePermission(); // Calls savePermission when component is mounted
   },
   },
   
