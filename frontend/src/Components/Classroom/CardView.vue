@@ -37,7 +37,7 @@
         class="bg-red-500 px-2 rounded text-white"
         @click="deleteClassroom(classroom.id)"
       >
-        remove{{ classroom.id }}
+        remove
       </button>
       <div class="space-x-8">
         <el-icon color="black">

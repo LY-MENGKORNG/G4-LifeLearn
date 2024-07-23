@@ -30,18 +30,11 @@
         <div
           class="scrollable-content flex flex-wrap px-18 pt-4 space-x-3 space-y-3 items-center"
         >
-          <!-- <router-link
-            to="{ name: 'system-material', params: { id: classroom.id } }"
-            v-for="classroom in classroomList"
-            :key="classroom.id"
-            :classroom="classroom"
-          > -->
           <CardView
             v-for="classroom in classroomList"
             :key="classroom.id"
             :classroom="classroom"
           />
-          <!-- </router-link> -->
         </div>
         <FormclassCreate
           class="w-full"
