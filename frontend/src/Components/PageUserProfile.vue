@@ -22,7 +22,6 @@
                     {{ userProfile.first_name }} {{ userProfile.last_name }}
                 </h1>
                 <p class="mt-2">Hello everyone, welcome to my account</p>
-                <p>Age: 19 | Gender: Male | Status: Active</p>
             </div>
             <div class="w-[90%] sm:w-[80%] mx-auto flex flex-col">
                 <!-- Detail -->
