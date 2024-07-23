@@ -40,8 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'front' => [
-            'driver' => 'session',
+
+        'api' => [
+            'driver' => 'sanctum',
             'provider' => 'frontusers',
         ],
     ],
@@ -68,7 +69,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        
+
         'frontusers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Frontuser::class,
@@ -102,7 +103,7 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        
+
         'frontusers' => [
             'provider' => 'users',
             'table' => 'password_resets',

@@ -18,11 +18,9 @@ router.beforeEach(async (to: any, from: any, next: any) => {
 
     try {
         await store.fetchUser();
-        store.user.isAuthenticated = true;
-    } catch (error) {
-        console.warn('You are not login or register yet')
-    }
+    } catch (error) { }
     if (to.meta.requireAuth && !store.user.isAuthenticated) {
+        store.user.isAuthenticated = true;
         next(page.value)
     } else {
         next()

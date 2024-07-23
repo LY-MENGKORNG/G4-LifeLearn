@@ -16,11 +16,14 @@ export default interface User {
 }
 
 export default interface Book {
-    // id: number;
+    id: any;
     title: string;
     author: string;
-    published_at: string;
+    published_date: string;
     price?: number;
+    cover: string;
+    file: string;
+    category_id: any
 }
 
 export default interface Quiz {

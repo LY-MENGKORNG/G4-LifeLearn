@@ -22,12 +22,12 @@ class DashboardController extends Controller
      */
     public function index(): View
     {
+        if(!$this->isOnline()) return view('dashboard' , ['status' => false]) ;  
         $systems = System::list();
         $users = Frontuser::all();
         $payments = Payment::all();
-        $chart = FrontuserController::chart();
 
-        $test = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        $test = new \Stripe\StripeClient('sk_test_51Pd4bxGdke5T1wEHlabBSPoiwmf4ptQGsA6SDDBXneGkDVhVZ4OPokSXoo6gqkKW5cTVWeR56NqrXbwLckhhI27A00QidKfyIF');
 
         $incomes = 0;
         foreach ($test->charges->all() as $income) {
@@ -35,11 +35,11 @@ class DashboardController extends Controller
         }
         $incomes /= 100;
         return view('dashboard', [
+            'status' => true,
             'systems' => $systems,
             'users' => $users,
             'payments' => $payments,
             'incomes' => $incomes,
-            'chart' => $chart,
         ]);
     }
 }

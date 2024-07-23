@@ -1,6 +1,6 @@
 @props(['title' => '', 'number' => '', 'active' => 'gray-300', 'text' => 'black', 'link' => ''])
 
-<div class="bg-{{ $active }} flex-1 rounded-md flex items-center p-2 py-3 shadow-sm">
+<div class="bg-{{ $active }} flex-1 rounded-md flex items-center p-2 py-3 h-[100px] shadow-sm">
     <div class="bg-white bg-opacity-20 rounded-full p-2 mr-4">
         {!! $slot !!}
     </div>

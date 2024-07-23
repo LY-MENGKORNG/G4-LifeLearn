@@ -20,8 +20,11 @@ class BookResource extends JsonResource
             'title' => $this->title,
             'author' => $this->author,
             'user' => new UserResource($this->user),
-            'published_at' => $this->published_at,
+            'published_date' => $this->published_date,
             'price'=>$this->price,
+            'description'=>$this->description,
+            'cover' =>  'http://localhost:8000/images/' . $this->cover,
+            'file' =>  'http://localhost:8000/documents/' . $this->file
         ]; 
     }
 }

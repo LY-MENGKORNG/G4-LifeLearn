@@ -14,10 +14,12 @@ class BookSeeder extends Seeder
     {
         Book::create([
             'title' => 'Playing in The Rain', 
-            'published_at' => '2018-08-08', 
+            'published_date' => '2018-08-08', 
             'cover' => 'playing-in-the-rain.jpg',
             'file' => 'Playing-in-The-Rain.pdf',
             'category_id' => 1,
+            'price' => 0,
+            'description' => 'Enjoy with this book'
         ]);
     }
 }

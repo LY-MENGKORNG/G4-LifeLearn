@@ -3,7 +3,7 @@ namespace App\Traits;
 
 trait uploadImage{
 
-    function saveImage($image, $path = 'images')
+    public static function saveImage($image, $path = 'images')
     {
         $imageName = time().'_'.$image->getClientOriginalName();
 

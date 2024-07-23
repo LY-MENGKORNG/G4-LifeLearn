@@ -10,4 +10,8 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function isOnline($site = 'https://www.google.com')
+    {
+        return @fopen($site, 'r');
+    }
 }

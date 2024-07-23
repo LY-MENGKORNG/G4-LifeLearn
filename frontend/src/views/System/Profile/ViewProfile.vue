@@ -14,12 +14,7 @@
                     </div>
                 </div>
                 <div class="space-y-2">
-                    <h5 class="text-xl">{{ userProfile.first_name }} {{ userProfile.last_name }}</h5>
-                    <!-- <div class="flex space-x-5 text-xl">
-                        <p>date of birth: {{ userProfile.date_of_birth }}</p>
-                        <p>|</p>
-                        <p>Gender: {{ userProfile.male }}</p>
-                    </div> -->
+                    <h5 class="text-xl">{{ userProfile.first_name }} {{ userProfile.last_name }}</h5> 
                 </div>
                 <div class="flex space-x-40 items-center pt-7">
                     <div class="space-y-9">
@@ -108,7 +103,7 @@ onMounted(async () => {
         await authStore.fetchUser()
         roles.value = authStore.user.roles;
         userProfile.value = authStore.user.data;
-        console.log(userProfile.value);
+        // console.log(userProfile.value);
     } catch (error) {
         console.error('Error fetching auth:', error);
     }

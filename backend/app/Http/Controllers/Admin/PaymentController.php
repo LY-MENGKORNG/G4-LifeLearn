@@ -16,16 +16,19 @@ class PaymentController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:Permission access|Permission create|Permission edit|Permission delete', ['only' => ['index','show']]);
-        $this->middleware('role_or_permission:Permission add', ['only' => ['create','store']]);
-        $this->middleware('role_or_permission:Permission edit', ['only' => ['edit','update']]);
+        $this->middleware('role_or_permission:Permission access|Permission create|Permission edit|Permission delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Permission add', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Permission edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:Permission delete', ['only' => ['destroy']]);
     }
 
     public function index(): View
     {
-        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        if (!$this->isOnline()) return view('payments.index', ['status' => false]);
+
+        $stripe = new \Stripe\StripeClient('sk_test_51Pd4bxGdke5T1wEHlabBSPoiwmf4ptQGsA6SDDBXneGkDVhVZ4OPokSXoo6gqkKW5cTVWeR56NqrXbwLckhhI27A00QidKfyIF');
+
         $payments = $stripe->charges->all(['limit' => 6]);
-        return view('payments.index', ['payments' => $payments]);
+        return view('payments.index', ['payments' => $payments, 'status' => true]);
     }
 }

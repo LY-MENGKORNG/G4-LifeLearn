@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('classroom_frontuser', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('classroom_id');
-            $table->unsignedBigInteger('frontuser_id');
+            $table->integer('classroom_id');
+            $table->integer('frontuser_id');
             $table->timestamps();
-
-            $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
-            $table->foreign('frontuser_id')->references('id')->on('frontusers')->onDelete('cascade');
         });
     }
 
