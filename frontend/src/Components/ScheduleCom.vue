@@ -1,12 +1,11 @@
 <template>
   <div class=" ">
     <div class="flex justify-end">
-      <button class="bg-green-500 hover:bg-green-700 my-3 text-white font-bold mr-5 py-2 px-4 rounded"
-        @click="goToPermissions">
+      <button class="bg-green-500 hover:bg-green-700 my-3 text-white font-bold mr-5 py-2 px-4 rounded" @click="goToPermissions">
         📝 Permissions
       </button>
     </div>
-    <div class="scrollable-content ">
+    <div class="scrollable-content " >
 
       <div class="calendar-header flex justify-between items-center mb-4">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="goToPreviousMonth">
@@ -14,9 +13,9 @@
         </button>
         <div class="calendar-title text-xl font-bold">{{ formattedDate(currentDate) }}</div>
 
-        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="goToNextMonth">
-          👉 Next Month
-        </button>
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="goToNextMonth">
+            👉 Next Month
+          </button>
 
       </div>
 
@@ -50,99 +49,95 @@
       <!-- Modal for input form -->
       <div v-if="showForm" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
         <div class="bg-white p-6 rounded shadow-md custom-modal">
-          <h2 class="text-xl font-bold mb-2">Add Schedule for {{ selectedDate.date.getDate() }}</h2>
+          <h2 class="text-xl font-bold mb-4">Add Schedule for {{ selectedDate.date.getDate() }}</h2>
           <form @submit.prevent="saveEvent">
-            <div class="mb-2">
-              <label for="name">Event Name</label>
-              <input type="text" id="name" name="name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                v-model="inputInfo.name" />
+          <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Event Name</label>
+            <input type="text" id="name" name="name" v-model="inputInfo.name"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
+          </div>
+          <div class="mb-4">
+            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+            <input type="text" id="description" name="description" v-model="inputInfo.description"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
+          </div>
+          <div class="mb-4">
+            <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+            <input type="text" id="type" name="type" v-model="inputInfo.type"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
+          </div>
+          <div class="mb-4 flex space-x-4">
+            <div class="w-1/2">
+              <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
+              <input type="date" id="start_date" name="start_date" v-model="inputInfo.start_date"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
             </div>
-            <div class="mb-2">
-              <label for="description">Description</label>
-              <input type="text" id="description" name="description"
-                class="mt-1 block w-full p-2 border border-gray-300 rounded-md" v-model="inputInfo.description" />
+            <div class="w-1/2">
+              <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
+              <input type="date" id="end_date" name="end_date" v-model="inputInfo.end_date"
+
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
             </div>
-            <div class="mb-2">
-              <label for="type">Type</label>
-              <input type="text" id="type" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" name="type"
-                v-model="inputInfo.type" />
+          </div>
+          <div class="mb-4">
+            <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+            <input type="text" id="location" name="location" v-model="inputInfo.location"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
+          </div>
+          <div class="mb-4">
+            <label for="organizer_id" class="block text-sm font-medium text-gray-700">Organizer ID</label>
+            <input type="number" id="organizer_id" name="organizer_id" v-model="inputInfo.organizer_id"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" />
+          </div>
+          <div class="flex justify-center">
+            <button type="button" @click="closeForm"
+              class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
+              Cancel
+            </button>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Save
+            </button>
+          </div>
+        </form>
+        </div>
+      </div>
+ 
+  
+   <!-- Permissions modal -->
+  <div v-if="formVisible" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+    <div class="container mx-auto py-8">
+      <div class="w-150 mx-auto bg-white rounded shadow">
+        <div class="mx-16 py-4 px-8 text-black text-xl font-bold border-b border-grey-500 flex justify-center">
+          Permission Students
+        </div>
+        <form @submit.prevent="savePermission">
+          <div class="py-4 px-8">
+            <div class="mb-4">
+              <label class="block text-grey-darker text-sm font-bold mb-2">Purpose:</label>
+              <input v-model="form.purpose" class="border rounded w-full py-2 px-3 text-grey-darker" type="text" name="purpose" placeholder="Enter Your Purpose" />
+              <p id="error_purpose"></p>
             </div>
-            <div class="mb-2 flex space-x-4">
-              <div class="w-1/2">
-                <label for="start_date">Start Date</label>
-                <input type="date" id="start_date" name="start_date"
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
-                  v-model="inputInfo.start_date" />
-              </div>
-              <div class="w-1/2">
-                <label for="end_date">End Date</label>
-                <input type="date" id="end_date" name="end_date" v-model="inputInfo.end_date"
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm " />
-              </div>
+            <div class="mb-4">
+              <label class="block text-grey-darker text-sm font-bold mb-2">Start Date:</label>
+              <input v-model="form.start_date" class="border rounded w-full py-2 px-3 text-grey-darker" type="date" name="start_date" />
             </div>
-            <div class="mb-2">
-              <label for="location">Location</label>
-              <input type="text" id="location" name="location"
-                class="mt-1 block w-full p-2 border border-gray-300 rounded-md" v-model="inputInfo.location" />
+            <div class="mb-4">
+              <label class="block text-grey-darker text-sm font-bold mb-2">End Date:</label>
+              <input v-model="form.end_date" class="border rounded w-full py-2 px-3 text-grey-darker" type="date" name="end_date" />
             </div>
-            <div class="mb-2">
-              <label for="organizer_id">organizer ID</label>
-              <input type="number" id="organizer_id" name="organizer_id"
-                class="mt-1 block w-full p-2 border border-gray-300 rounded-md" v-model="inputInfo.organizer_id" />
-            </div>
-            <div class="flex justify-center">
-              <button type="button" @click="closeForm"
-                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
+            <div class="flex justify-between">
+              <button type="button" @click="closePermission" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
                 Cancel
               </button>
               <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Save
               </button>
             </div>
-          </form>
-        </div>
-      </div>
-
-
-      <!-- Permissions modal -->
-      <div v-if="formVisible" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
-        <div class="container mx-auto py-8">
-          <div class="w-150 mx-auto bg-white rounded shadow">
-            <div class="mx-16 py-4 px-8 text-black text-xl font-bold border-b border-grey-500 flex justify-center">
-              Permission Students
-            </div>
-            <form @submit.prevent="savePermission">
-              <div class="py-4 px-8">
-                <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Purpose:</label>
-                  <input v-model="form.purpose" class="border rounded w-full py-2 px-3 text-grey-darker" type="text"
-                    name="purpose" placeholder="Enter Your Purpose" />
-                  <p id="error_purpose"></p>
-                </div>
-                <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Start Date:</label>
-                  <input v-model="form.start_date" class="border rounded w-full py-2 px-3 text-grey-darker" type="date"
-                    name="start_date" />
-                </div>
-                <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">End Date:</label>
-                  <input v-model="form.end_date" class="border rounded w-full py-2 px-3 text-grey-darker" type="date"
-                    name="end_date" />
-                </div>
-                <div class="flex justify-between">
-                  <button type="button" @click="closePermission"
-                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
-                    Cancel
-                  </button>
-                  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Save
-                  </button>
-                </div>
-              </div>
-            </form>
           </div>
-        </div>
+        </form>
       </div>
+    </div>
+  </div>
     </div>
   </div>
 </template>
@@ -160,7 +155,6 @@ export default {
       showForm: false,
       formVisible: false,
       selectedDate: null,
-      events: [],
       inputInfo: {
         name: '',
         description: '',
@@ -168,9 +162,8 @@ export default {
         start_date: '',
         end_date: '',
         location: '',
-        organizer_id: null,
+        organizer_id: ''
       },
-
       datesInfo: {},
       form: {
         purpose: '',
@@ -238,7 +231,7 @@ export default {
     goToPermissions() {
       this.formVisible = true;
     },
-    closePremission() {
+    closePremission(){
       this.formVisible = false;
     },
     formattedDate(date) {
@@ -264,7 +257,7 @@ export default {
       this.selectedDate = null;
       this.inputInfo = {};
     },
-
+  
     async savePermission() {
       try {
         const token = localStorage.getItem('access_token');
@@ -284,80 +277,41 @@ export default {
 
     },
 
-    // async saveEvent() {
-    //   try {
-    //     const token = localStorage.getItem('access_token');
-    //     if (!token) {
-    //       throw new Error('No token found');
-    //     }
-    //     const response = await axiosInstance.post('/events', this.inputInfo, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     });
-    //     console.log('Event saved:', response.data);
-    //     this.closeForm(); // Hide the form upon successful save
-    //   } catch (error) {
-    //     console.error('Error saving Event:', error);
-    //   }
-    // },
+
     async saveEvent() {
       try {
-        const response = await axiosInstance.post('/events', this.inputInfo);
-        // Handle the response, e.g., update the events list
-        this.events.push(response.data);
-        this.closeForm();
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+          throw new Error('No token found');
+        }
+        const response = await axiosInstance.post('/events', this.inputInfo, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log('Event saved:', response.data);
+        this.closeForm(); // Hide the form upon successful save
       } catch (error) {
-        console.error('Error saving event:', error);
+        console.error('Error saving Event:', error);
       }
     },
-    async fetchEvents() {
-      try {
-        const response = await axiosInstance.get('/events');
-        this.events = response.data;
-      } catch (error) {
-        console.error('Error fetching events:', error);
-      }
+ 
+    closePermission() {
+      this.formVisible = false;
     },
-    closeForm() {
-      this.showForm = false;
-      this.resetInputInfo();
+
+    showPermissionForm() {
+      this.formVisible = true;
     },
-    resetInputInfo() {
-      this.inputInfo = {
-        name: '',
-        description: '',
-        type: '',
-        start_date: '',
-        end_date: '',
-        location: '',
-        organizer_id: null,
-      };
-    },
+
+    mounted() {
+    this.savePermission(); // Calls savePermission when component is mounted
   },
-  mounted() {
-    this.fetchEvents();
   },
-
-
-
-
-  closePermission() {
-    this.formVisible = false;
-  },
-
-  showPermissionForm() {
-    this.formVisible = true;
-  },
-
-  mounted() {
-    // this.savePermission(); // Calls savePermission when component is mounted
-    this.saveEvent(); // Calls savePermission when component is
-  },
+  
+    
+  
 };
-
-
-
 </script>
 
 <style scoped>
