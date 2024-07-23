@@ -12,6 +12,8 @@ class Score extends RelationshipModel
     use HasFactory;
 
     protected $fillable = [
+        'score',
+        'feedback',
         'student_id', 
         'subject_id',
         'semester_id',
@@ -29,7 +31,7 @@ class Score extends RelationshipModel
     public static function store($request, $id = null)
     {
 
-        $scoreData = $request->only('student_id', 'subject_id', 'semester_id');
+        $scoreData = $request->only('score','feedback','student_id', 'subject_id', 'semester_id');
         $score = self::updateOrCreate(['id' => $id], $scoreData);
         return $score;
     }

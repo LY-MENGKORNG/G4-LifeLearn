@@ -74,6 +74,7 @@ class ForgotPasswordManager extends Controller
         ]);
     }
 
+    
     // Show reset password form
     public function ResetPassword($token, $email)
     {

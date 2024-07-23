@@ -168,14 +168,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/send-mail', [MailController::class, 'sendMail']);
     Route::post('/principle-invite', [MailController::class, 'sendMail']);
 
-    // Invite Mail
-    // Route::post('/send-mail-to-student', [MailController::class, 'sendMail']);
-
 
     // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
     // student 
-    Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
     Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
     Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
@@ -214,8 +210,4 @@ Route::middleware('auth:sanctum')->group(function () {
     // get users in a system
     Route::get('/users', [APISystemController::class, 'getUsers']); 
 });
-// student 
-Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
-Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
-Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);

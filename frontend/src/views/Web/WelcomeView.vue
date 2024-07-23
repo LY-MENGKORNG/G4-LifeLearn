@@ -9,13 +9,6 @@ const contentwelcomes = ref([
         title: 'Meet the next generation of LifeLearn!',
         description: 'Through innovative technologies and interactive methodologies, LifeLearn empowers individuals to cultivate authentic lifestyles by seamlessly integrating education into their daily lives. By fostering continuous learning and skill development, LifeLearn drives innovation across the globe, transforming traditional educational paradigms and paving the way for a dynamic and accessible future of learning.',
         button: 'Read our story'
-    }, 
-    {
-        id: 2,
-        images: 'https://www.foodpanda.com/wp-content/uploads/2023/04/jason-goodman-Oalh2MojUuk-unsplash-1024x683.jpg',
-        title: 'Find the job you love',
-        description: 'Hungry to make a difference? There’s a seat at our table! Find out how we connect tech, passions, projects, and people – explore international career opportunities at LifeLearn.',
-        button: 'Join us!'
     }
 ]);
 const promos = ref([
@@ -107,7 +100,7 @@ const promos = ref([
                             fit="cover" style="width: 100%; height: 100%"></el-image>
                     </div>
                 </div>
-                <div  class=" grid-cols-1 md:grid-cols-2 gap-6 m-10 flex flex-row " v-if="content.id !== 2">
+                <div class=" grid-cols-1 md:grid-cols-2 gap-6 m-10 flex flex-row " v-if="content.id !== 2">
                     <el-image :src="content.images" alt="Content Image" class="object-cover w-full h-auto rounded-md"
                         fit="cover" style="width: 90%; height: 90%">
                     </el-image>

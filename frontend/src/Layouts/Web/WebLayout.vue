@@ -29,8 +29,8 @@ onMounted(() => {
 	<div class="common-layout bg-white min-h-screen">
 		<el-container class="flex flex-col justify-between relative">
 			<WebNavbar :src="profile"></WebNavbar>
-			<WebHeaderMenu v-if="isLogin" />
 			<MainProgress  v-if="isLoading" />
+			<WebHeaderMenu v-if="isLogin" />
 			<main class="p-0">
 				<slot></slot>
 			</main>

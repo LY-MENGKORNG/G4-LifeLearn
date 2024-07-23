@@ -80,7 +80,7 @@ onMounted(async () => {
 				</div>
 				<div
 					class="absolute inset-0 bg-cover bg-center md:hidden"
-					style="
+					style="	
 						background-image: url('https://img.freepik.com/free-photo/multiracial-group-young-creative-people-smart-casual-wear-discussing-business-brainstorming-meeting-ideas-mobile-application-software-design-project-modern-office-coworker-teamwork-concept_7861-2693.jpg?t=st=1721097774~exp=1721101374~hmac=9d26b88f2fcbb6293130b1694b419b8e42284769797ad35f2efd8a2918c4bb2e&w=996');
 					"
 				></div>
@@ -89,7 +89,7 @@ onMounted(async () => {
 				<h1
 					class="text-3xl md:text-4xl font-bold text-card-foreground dark:text-card-foreground mb-4"
 				>
-					Launch your new career with a Professional Certificate on Coursera
+					Launch your new career with a Professional Content on LifeLearn
 				</h1>
 				<p class="text-lg text-muted-foreground dark:text-muted-foreground mb-6">
 					Professional Certificates offer flexible, online training designed to get you job-ready
