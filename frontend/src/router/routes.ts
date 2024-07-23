@@ -266,8 +266,8 @@ const routes = [
     },
 
     {
-        path:'/user/profile' ,
-        name: 'user-profile',
+        path:'/profile' ,
+        name: 'profile',
         component: () => import('@/views/Web/UserProfileView.vue')
     }
 ]
