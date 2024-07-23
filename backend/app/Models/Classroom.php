@@ -12,7 +12,7 @@ class Classroom extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['grade_id'];
+    protected $fillable = ['grade_id','class_name', 'description','user'];
 
     // public function grade(): BelongsTo 
     // {
@@ -30,6 +30,11 @@ class Classroom extends Model
     {
         return $this->belongsToMany(Frontuser::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(Frontuser::class);
+    }
     public function quiz()
     {
         return $this->belongsToMany(Quiz::class);
@@ -39,5 +44,29 @@ class Classroom extends Model
     {
         return $this->hasMany(Lesson::class);
     }
+
+    public static function list() {
+        return self::all(); 
+    }
+    public static function store($request, $id = null)
+    {
+        $data = [
+            'grade_id' => $request->grade_id,
+            'class_name' => $request->class_name,
+            'description' => $request->description,
+        ];
+    
+        $classroom = self::updateOrCreate(['id' => $id], $data);
+    
+        // Assign the user relationship
+        $classroom->user()->associate($request->user()->id);
+        $classroom->save();
+        dd($classroom);
+    
+        // return $classroom;
+    }
     
 }
+
+    
+

@@ -20,7 +20,7 @@ export default interface Book {
     title: string;
     author: string;
     published_at: string;
-    price?: number;
+    price?: any;
 }
 
 export default interface Quiz {
@@ -42,7 +42,6 @@ export default interface RequestPayment {
     reference: any[];
 }
 
-
 export default interface Payment {
     method: string;
     amount: number;
@@ -59,6 +58,13 @@ export default interface Submit {
 
 export default interface Classroom {
     grade_id?: number;	
-    class_name: string;
+    class_name?: string;
     description: string;
+    user:{ 
+        first_name: string;
+        last_name: string;
+        phone: string;
+        email: string;
+        profile: string;
+      };
 }

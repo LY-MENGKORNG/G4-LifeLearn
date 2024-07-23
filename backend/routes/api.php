@@ -214,12 +214,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('events/{id}', [EventController::class, 'destroy']);
 
     // Route to handle the forgot password form submission
-    Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
+    // Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
 });
 // student 
-Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
+// Route::get('/student/list', [StudentController::class, 'index'])->name('student.list');
 
-Route::get('/registrations-per-month', [FrontuserController::class, 'getRegistrationsPerDay']);
-Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
-Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
+// Route::get('/registrations-per-month', [FrontuserController::class, 'getRegistrationsPerDay']);
+// Route::post('/classrooms/{classroomId}/add-student', [ClassroomController::class, 'addStudents']);
+// Route::get('/classrooms/{classroomId}/list-students', [ClassroomController::class, 'listStudents']);
 

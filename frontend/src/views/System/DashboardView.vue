@@ -54,7 +54,7 @@
         <img
           src="https://img.freepik.com/premium-vector/vector-illustration-growing-money-investment-with-businessman-standing-with-money-graphic_675567-2452.jpg?w=826"
           alt="Avatar"
-          class="w-full h-80"
+          class="w-full h-max shadow"
         />
       </div>
     </div>

@@ -118,10 +118,17 @@ const routes = [
     //     component: () => import('@/views/System/Teacher/Score.vue')
     // },
     {
-        path: '/system/material',
+        path: '/system/material/',
         name: 'system-material',
-        component: () => import('@/views/System/MaterialView.vue')
+        component: () => import('@/views/System/MaterialView.vue'),
+        props: true
     },
+    // {
+    //     path: '/system/material/:id',
+    //     name: 'system-material',
+    //     component: () => import('@/views/System/MaterialView.vue'),
+    //     props: true
+    // },
     {
         path: '/system/people',
         name: 'system-people',
