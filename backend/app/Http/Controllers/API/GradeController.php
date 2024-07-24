@@ -46,7 +46,7 @@ class GradeController extends Controller
         if ($grade) {
             return response()->json([
                 'status' => true,
-                'data' => new ShowGradeResource($grade)
+                'data' => $grade
             ], 200);
         }
         return response()->json(['message' => 'grade not found'], 404);

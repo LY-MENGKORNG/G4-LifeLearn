@@ -3,14 +3,15 @@
 		<div class="flex min-w-0 gap-x-4">
 			 {{name}}
 		</div>
-		<div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-			<el-button :icon="Edit"></el-button>
+		<div class="flex gap-2">
+			<el-button type="warning" :icon="Edit" circle /> 
+			<el-button type="danger" :icon="Delete" circle /> 
 		</div>
 	</li>
 </template>
 
 <script setup lang="ts">
-import {Edit } from '@element-plus/icons-vue'
+import { Edit, Delete } from '@element-plus/icons-vue'
 
 defineProps<{
     name: string

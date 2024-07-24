@@ -129,6 +129,16 @@ class SystemController extends Controller
             'data' => FrontUserResource::collection($teachers)
         ], 200);
     }
+    public function getStudents(Request $request)
+    {
+        $students = Frontuser::where('system_id', $request->user()->system_id);
+        $students = $students->role('student')->get();
+        return response()->json([
+            'status' => true,
+            'message' => 'List of students',
+            'data' => FrontUserResource::collection($students)
+        ], 200);
+    }
 
     public function meterials(Request $request)
     {

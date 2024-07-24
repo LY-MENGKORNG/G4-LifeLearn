@@ -9,7 +9,8 @@ export const useSystemStore = defineStore('system', {
         users: ref<any>(),
         status: ref<boolean>(),
         dashboard: ref(),
-        grades: ref()
+        grades: ref(),
+        grade: ref()
     }),
     actions: {
 
@@ -28,6 +29,14 @@ export const useSystemStore = defineStore('system', {
         async fetchGrades() {
             try {
                 const response : any = await axiosInstance.get('/system/grades');
+                this.grades = response.data.data
+            } catch (error) {
+                
+            }
+        },
+        async fetchOneGrade(id: any) {
+            try {
+                const response : any = await axiosInstance.get('/system/grades/'+ id);
                 this.grades = response.data.data
             } catch (error) {
                 

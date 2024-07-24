@@ -19,12 +19,7 @@ class Grade extends RelationshipModel
         "status"
         
     ];
-
-    public function system(): BelongsTo
-    {
-        return $this->belongsTo(System::class);
-    }
-
+ 
     public function classes(): HasMany
     {
         return $this->hasMany(Classes::class, 'grade_id', 'id');

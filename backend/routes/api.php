@@ -177,11 +177,13 @@ Route::middleware('auth:sanctum')->group(function () {
     // Create system
     Route::post('/system-create', [APISystemController::class, 'store']);
 
-    Route::get('system', [APISystemController::class, 'show']);
-
+    // system routes
     Route::group(['prefix' => 'system'], function () {
+        Route::get('/', [APISystemController::class, 'show']);
         Route::get('/dashboard', [APISystemController::class, 'dashboard']);
         Route::resource('/grades', GradeController::class);
+        Route::get('/teachers', [APISystemController::class, 'getTeachers']);
+        Route::get('/students', [APISystemController::class, 'getStudents']);
         Route::get('/meterials', [APISystemController::class, 'meterials']);
     });
 
@@ -207,7 +209,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // teacher send email to principle
     Route::post('/accept-invite', [APISystemController::class, 'acceptInvite']);
-
-    // get users in a system
-    Route::get('/user/teachers', [APISystemController::class, 'getTeachers']);
 });

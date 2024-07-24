@@ -45,7 +45,8 @@ const navigations = [
 		path: '/system/dashboard',
 		icon: IconMenu,
 		isPrinciple: true,
-		isTeacher: true
+		isTeacher: true,
+		isStudent: false,
 	},
 	{
 		id: 2,
@@ -53,7 +54,8 @@ const navigations = [
 		path: '/system/grade',
 		icon: Document,
 		isPrinciple: true,
-		isTeacher: true
+		isTeacher: false,
+		isStudent: false,
 	},
 	{
 		id: 3,
@@ -61,7 +63,8 @@ const navigations = [
 		path: '/system/teacher',
 		icon: Avatar,
 		isPrinciple: true,
-		isTeacher: true
+		isTeacher: false,
+		isStudent: false,
 	},
 	{
 		id: 4,
@@ -69,7 +72,8 @@ const navigations = [
 		path: '/system/student',
 		icon: UserFilled,
 		isPrinciple: true,
-		isTeacher: true
+		isTeacher: true,
+		isStudent: false,
 	},
 	{
 		id: 5,
@@ -77,7 +81,8 @@ const navigations = [
 		path: '/system/classroom',
 		icon: UserFilled,
 		isPrinciple: true,
-		isTeacher: true
+		isTeacher: true,
+		isStudent: true,
 	},
 	{
 		id: 6,
@@ -85,7 +90,8 @@ const navigations = [
 		path: '/system/schedule',
 		icon: Calendar,
 		isPrinciple: true,
-		isTeacher: true
+		isTeacher: true,
+		isStudent: true,
 	},
 	{
 		id: 7,
@@ -93,7 +99,8 @@ const navigations = [
 		path: '/system/setting',
 		icon: Setting,
 		isPrinciple: true,
-		isTeacher: true
+		isTeacher: true,
+		isStudent: true,
 	}
 ]
 
