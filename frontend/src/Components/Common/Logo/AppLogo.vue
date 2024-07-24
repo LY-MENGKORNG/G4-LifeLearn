@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <router-link to="/" class="flex flex-wrap gap-2 items-center">
-            <img class="object-contain " :src="logo" alt="">
+            <img class="object-contain h-12 w-12" :src="logo" alt="">
             <h3 class="font-medium text-xl">LifeLearn</h3>
         </router-link>
     </div>

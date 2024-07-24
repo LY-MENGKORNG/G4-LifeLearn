@@ -22,7 +22,8 @@ class Book extends RelationshipModel
         'category_id',
         'price',
         'cover',
-        'file'
+        'file',
+        'system_id'
     ];
 
     public static function list()
@@ -47,6 +48,7 @@ class Book extends RelationshipModel
             'published_date' => $request->published_date,
             'category_id' => $request->price == 0 ? 1 : 2,
             'price' => $request->price,
+            'system_id' => $request->system_id ?? null
         ];
 
         $book = self::updateOrCreate(['id' => $id], $book);

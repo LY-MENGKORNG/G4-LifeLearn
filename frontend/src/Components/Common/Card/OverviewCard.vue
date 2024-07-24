@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 defineProps<{
-    count: number,
+    count: number | string,
     title: string,
 }>()
 </script>

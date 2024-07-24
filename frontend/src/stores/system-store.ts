@@ -2,15 +2,28 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import axiosInstance from '@/plugins/axios';
 
-
 export const useSystemStore = defineStore('system', {
     state: () => ({
         system: ref<any>(),
         message: ref<any>(),
         users: ref<any>(),
-        status: ref(),
+        status: ref<boolean>(),
+        dashboard: ref()
     }),
     actions: {
+
+        async dashboard() {
+            try {
+                const response: any = await axiosInstance.get('/system/dashboard');
+                this.dashboard = response.data.data
+                
+                this.message = response.message;
+                this.status = response.status;
+            } catch (error: any) {
+                this.message = error.message
+                this.status = false
+            }
+        },
         async sendRequest(value: any) {
             try {
                 const response: any = await axiosInstance.post('/system-request', value);
@@ -23,8 +36,12 @@ export const useSystemStore = defineStore('system', {
             try {
                 const response = await axiosInstance.get('/system');
                 this.system = response.data.data;
-            } catch (error) {
-                /**empty */
+
+                this.message = response.data.message;
+                this.status = true;
+            } catch (error: any) {
+                this.message = error.message;
+                this.status = false
             }
         },
         async sendMail(mail: any, path: string) {
@@ -38,13 +55,11 @@ export const useSystemStore = defineStore('system', {
                 this.status = false
             }
         },
-        async fetchUsers(request: any) {
+        async fetchUsers(path: string) {
             try {
-                const response = await axiosInstance.get('/users', {
-                    role: request
-                })
-                this.users = response.data
-            } catch (error: any) {
+                const response = await axiosInstance.get(path)
+                this.users = response.data.data
+                } catch (error: any) {
                 console.warn(error)
                 this.message = error.message
             }

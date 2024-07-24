@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->integer('grade_id');
-            $table->string('name')->unique();
+            $table->string('name');
+            $table->integer('system_id');
             $table->softDeletes();
             $table->timestamps();
         });

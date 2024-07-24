@@ -59,8 +59,9 @@ class FrontuserSeeder extends Seeder
                     'password' => bcrypt('password'),
                     'phone' => '087861976',
                     'profile' => '1719935977_photo_2024-05-03_20-11-08.jpg',
+                    'system_id' => 1
                 ],
-                'role' => 'user'
+                'role' => 'student'
             ],
             [
                 'user' =>
@@ -71,8 +72,9 @@ class FrontuserSeeder extends Seeder
                     'password' => bcrypt('password'),
                     'phone' => '087861976',
                     'profile' => 'savorn.jpg',
+                    'system_id' => 1
                 ],
-                'role' => 'user'
+                'role' => 'student'
             ],
             [
                 'user' =>

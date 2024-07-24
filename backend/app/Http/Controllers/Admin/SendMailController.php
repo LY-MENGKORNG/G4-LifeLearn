@@ -53,6 +53,6 @@ class SendMailController extends MailController
 
             return redirect()->back()->with('Success', 'Email sent successfully!');
         }
-        return redirect()->back()->withInput()->with('error', 'Please check your internet connection!');
+        return redirect()->route('admin.notifications.index')->withInput()->with('error', 'Please check your internet connection!');
     }
 }

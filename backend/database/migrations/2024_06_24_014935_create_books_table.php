@@ -22,6 +22,7 @@ class CreateBooksTable extends Migration
             $table->string('cover');
             $table->string('file');
             $table->integer('category_id');
+            $table->integer('system_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

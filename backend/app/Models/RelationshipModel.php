@@ -86,11 +86,10 @@ class RelationshipModel extends Model
         return $this->belongsTo(System::class);
     }
 
-    /// BelongsToMany relationships
-    // public function roles(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(Role::class);
-    // } 
+    public function front_user(): BelongsTo
+    {
+        return $this->belongsTo(Frontuser::class, 'frontuser_id', 'id');
+    }
 
     public function permissions(){
         return $this->belongsToMany(Permission::class);

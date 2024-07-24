@@ -18,9 +18,14 @@
             </a>
         </div>
         <ul role="list" class="divide-y divide-gray-100 bg-white rounded-md px-4">
+            <div class="flex justify-between p-3">
+                <span class="font-bold">Title</span>
+                <span class="font-bold">Author</span>
+                <span class="font-bold">Actions</span>
+            </div>
             @foreach ($books as $book)
                 <x-book-table author="{{ $book->author }}" cover="{{ env('APP_HOST') . '/images/' . $book->cover }}"
-                    book_id="{{ $book->id }}" title="{{ $book->title }}" description="{{ $book->description }}">
+                    book_id="{{ $book->id }}" title="{{ $book->title }}">
                     <form action="{{ route('admin.books.edit', $book->id)}}" method="post" class="inline">
                         @csrf
                         @method('post')

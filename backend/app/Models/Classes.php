@@ -11,6 +11,7 @@ class Classes extends RelationshipModel
     use HasFactory,SoftDeletes;
     protected $fillable = [
         'grade_id',
-        'name'
+        'name',
+        'system_id'
     ];
 }

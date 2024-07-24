@@ -21,8 +21,8 @@ const { handleSubmit, isSubmitting } = useForm({
 })
 
 const onSubmit = handleSubmit(async (values) => {
-	await store.login(values, '/login')
-	router.router.push('/home');
+	const isUser = await store.login(values, '/login')
+	router.router.push(isUser ? '/home' : '/system/dashboard');
 })
 
 const { value: password, errorMessage: nameError } = useField('password')

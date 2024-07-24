@@ -5,11 +5,15 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Systems\SystemResource;
 use App\Http\Resources\Users\FrontUserResource;
-use App\Models\Frontuser;
-use App\Models\Reference;
-use App\Models\System;
+use App\Models\{
+    Book,
+    Classes,
+    Frontuser,
+    Grade,
+    Reference,
+    System,
+};
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 
 class SystemController extends Controller
 {
@@ -22,6 +26,38 @@ class SystemController extends Controller
             'success' => true,
             'message' => 'List of Systems',
             'data' => System::list()
+        ], 200);
+    }
+
+    public function dashboard(Request $request)
+    {
+        $teachers = Frontuser::where('system_id', $request->user()->system_id);
+        $teachers = $teachers->role('teacher')->get();
+
+        $students = Frontuser::where('system_id', $request->user()->system_id);
+        $students = $students->role('student')->get();
+
+        $books = Book::where('system_id', $request->user()->system_id)->get();
+
+        $grades = Grade::where('system_id', $request->user()->system_id)->get();
+
+        $classes = Classes::where('system_id', $request->user()->system_id)->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Contents in Dashboard',
+            'data' => [
+                'teachers' => $teachers,
+                'students' => $students,
+                'grades' => $grades,
+                'classes' => $classes,
+                'books' => $books,
+                'teacher_count' => $teachers->count(),
+                'student_count' => $students->count(),
+                'grade_count' => $grades->count(), 
+                'class_count' => $classes->count(),
+                'books_count' => $books->count(),
+            ]
         ], 200);
     }
 
@@ -78,13 +114,14 @@ class SystemController extends Controller
         ], 200);
     }
 
-    public function getUsers(Request $request)
+    public function getTeachers(Request $request)
     {
-        $users = Frontuser::role($request->role)->get();
+        $teachers = Frontuser::where('system_id', $request->user()->system_id);
+        $teachers = $teachers->role('teacher')->get();
         return response()->json([
             'status' => true,
-            'message' => 'List of ' . $request->role,
-            'data' => FrontUserResource::collection($users)
+            'message' => 'List of teachers',
+            'data' => FrontUserResource::collection($teachers)
         ], 200);
     }
 }

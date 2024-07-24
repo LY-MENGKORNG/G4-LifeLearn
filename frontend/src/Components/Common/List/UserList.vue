@@ -8,9 +8,11 @@
 			</div>
 		</div>
 		<div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-			<p class="text-sm leading-6 text-gray-900">{{ role }}</p>
+			<p class="text-sm leading-6 text-gray-900" v-for="role in roles" :key="role.name">
+				{{ role.name }}
+			</p>
 			<p v-if="lastSeen" class="mt-1 text-xs leading-5 text-gray-500">
-				Last seen <time datetime="2023-01-23T13:23Z">{{ lastSeen }}</time>
+				Last seen <time datetime="2023-01-23T13:23Z">{{ lastSeen  }}</time>
 			</p>
 			<div v-else class="mt-1 flex items-center gap-x-1.5">
 				<div class="flex-none rounded-full bg-emerald-500/20 p-1">
@@ -23,12 +25,13 @@
 </template>
 
 <script setup lang="ts">
+
 defineProps<{
     profile: string,
     fullName: string,
     email: string,
-    role: string,
-    lastSeen: string | null
+    roles: any,
+    lastSeen: string 
 }>()
 </script>
 

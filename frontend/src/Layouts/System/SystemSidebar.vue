@@ -6,12 +6,10 @@
 		@open="handleOpen"
 		@close="handleClose"
 	>
-		<el-menu-item index="0" @click="setRoute('/system/dashboard')" class="hover:bg-slate-600">
-			<el-icon>
-				<IconMenu />
-			</el-icon>
+		<el-menu-item index="0" @click="setRoute('/system/dashboard')" class="hover:bg-slate-600 space-x-2">
+			<img :src="logo" class="h-10 w-10" alt="" >
 			<template #title>
-				<h2 class="text-xl font-medium text-white" >
+				<h2 class="text-xl font-medium text-white overflow-hidden " >
 					{{systemName}}
 				</h2>
 			</template>
@@ -35,7 +33,8 @@
 	</el-menu>
 </template>
   
-<script setup lang="ts">
+<script setup lang="ts"> 
+import logo from "@/assets/app-logo.png"
 import router from '@/router'
 import {
 	DataBoard,

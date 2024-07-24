@@ -3,12 +3,20 @@ import OverviewCard from '@/Components/Common/Card/OverviewCard.vue'
 import { ref, onMounted } from 'vue'
 import Chart from 'chart.js/auto'
 import { User } from '@element-plus/icons-vue'
+import { useSystemStore } from '@/stores/system-store';
 
-const props = defineProps({
-	msg: String
+
+
+const systemStore = useSystemStore()
+const dashboard = ref<any>({
+	teachers: '', 
+	students: '', 
+	teacher_count: '', 
+	student_count: '', 
 })
+
 let myChart: any
-function renderChart() {
+const renderChart = () => {
 	const ctx = document.getElementById('myChart') as HTMLCanvasElement
 	if (!ctx) return
 	myChart = new Chart(ctx, {
@@ -17,7 +25,7 @@ function renderChart() {
 			labels: ['January', 'February', 'March'],
 			datasets: [
 				{
-					label: '# of Sales',
+					label: dashboard.value.teacher_count +' of Sales',
 					data: [1, 2, 2],
 					backgroundColor: 'blue'
 				},
@@ -40,29 +48,30 @@ function renderChart() {
 		}
 	})
 }
-onMounted(() => {
-	renderChart()
+onMounted(async () => {
+	await systemStore.dashboard();
+	dashboard.value = systemStore.dashboard
+	await renderChart()
 })
 </script>
 <template>
 	<SystemLayout>
-		<!-- Sales Summary Section -->
-		<div class="  rounded p-4">
-			<div class="flex items-center justify-between mb-4 h-10">
-				<div>
-					<h4 class="text-lg font-bold">Today's Sales</h4>
-					<h6 class="text-sm text-gray-600">Sales Summary</h6>
-				</div>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 w-full">
-				<overview-card title="Total Teachers" :count=20>
-					<el-icon><User /></el-icon>
-				</overview-card>
-				<overview-card title="Total Students" :count=20>
-					<el-icon><User /></el-icon>
-				</overview-card>
-				 
-			</div>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 w-full">
+			<overview-card title="Total Teachers" :count='dashboard.teacher_count'>
+				<el-icon>
+					<User />
+				</el-icon>
+			</overview-card>
+			<overview-card title="Total Students" :count=dashboard.student_count>
+				<el-icon>
+					<User />
+				</el-icon>
+			</overview-card>
+			<overview-card title="Total Grades" :count=dashboard.grade_count>
+				<el-icon>
+					<User />
+				</el-icon>
+			</overview-card>
 		</div>
 
 		<!-- Chart Section -->

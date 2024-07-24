@@ -156,8 +156,6 @@ Route::middleware('auth:sanctum')->group(function () {
     //score
     Route::resource('/score', ScoreController::class);
 
-    // Route::post('/principle/request',NotificationsController::class, 'create');
-
     //class
     Route::resource('/class', ClassesController::class);
 
@@ -183,6 +181,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('system', [APISystemController::class, 'show']);
 
+    Route::group(['prefix' => 'system'], function () {
+        Route::get('/dashboard', [APISystemController::class, 'dashboard']);
+    });
+
     // get session
     Route::get('/session', [PaymentController::class, 'getSession']);
 
@@ -205,9 +207,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/invite-teacher', [SendMailController::class, 'inviteTeacher']);
 
     // teacher send email to principle
-    Route::post('/accept-invite', [APISystemController::class, 'acceptInvite']); 
+    Route::post('/accept-invite', [APISystemController::class, 'acceptInvite']);
 
     // get users in a system
-    Route::get('/users', [APISystemController::class, 'getUsers']); 
+    Route::get('/user/teachers', [APISystemController::class, 'getTeachers']);
 });
-

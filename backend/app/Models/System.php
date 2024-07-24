@@ -20,12 +20,6 @@ class System extends RelationshipModel
         return self::all();
     }
 
-
-    public function front_user(): BelongsTo
-    {
-        return $this->belongsTo(Frontuser::class, 'frontuser_id');
-    }
-
     public static function createOrUpdate($request, $id = null)
     {
         $system = [

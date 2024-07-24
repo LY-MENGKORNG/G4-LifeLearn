@@ -5,6 +5,7 @@
 				:handle-open="handleOpen"
 				:is-collapse="isCollapse"
 				:handle-close="handleClose"
+				:systemName="system.name"
 			/>
 			<div class="flex flex-col w-screen sticky left-0 top-0">
 				<SystemHeader
