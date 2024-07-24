@@ -8,8 +8,8 @@
     'last_seen' => '',
 ])
 
-<{{ $tag }} class="flex justify-between gap-x-6 py-3">
-    <div class="flex min-w-0 gap-x-2">
+<{{ $tag }} class="flex justify-between gap-x-2 py-3">
+    <div class="flex flex-4 min-w-0 gap-x-2">
         @if ($src != '')
             <img class="h-8 w-8 flex-none rounded-full bg-gray-50" src="http://localhost:8000/images/{{ $src }}"
                 alt="">
@@ -50,7 +50,7 @@
         </div>
     </div>
     @if ($tag == 'li')
-        <div class="hidden flex-1 sm:flex justify-center sm:flex-col sm:items-end">
+        <div class="hidden flex-3  sm:flex justify-center sm:flex-col sm:items-end">
             @section('content')
                 @php
                     // Convert the timestamps to DateTime objects
@@ -68,13 +68,13 @@
 
                     $humanReadableDuration = '';
                     if ($interval->h > 0) {
-                        $humanReadableDuration .= $interval->h . ' h ';
+                        $humanReadableDuration .= $interval->h . 'h ';
                     }
                     if ($interval->i > 0) {
-                        $humanReadableDuration .= $interval->i . ' mn';
+                        $humanReadableDuration .= $interval->i . 'mn';
                     }
                     if ($humanReadableDuration == '') {
-                        $humanReadableDuration = ' now';
+                        $humanReadableDuration = 'now';
                     }
                 @endphp
             @endsection

@@ -1,28 +1,20 @@
         
 <script setup lang="ts">
-import SystemLayout from "@/Layouts/System/SystemLayout.vue"
-import router from "@/router";
-import { useClassStore } from "@/stores/class-store";
-import { useGradeStore } from "@/stores/grade-store";
-import { onMounted, ref } from "vue";
-import ClassCard from '@/Components/Common/Card/ClassCard.vue';
-
-const store = useGradeStore()
-const classList = ref([])
-
-onMounted(async () => {
-    await store.fetchGrades("/grade/" + router.router.currentRoute.value.params.id)
-    classList.value = store.grades.classes;
-})
+import ClassList from "@/Components/Common/List/ClassList.vue"
 </script>
         
 <template>
     <SystemLayout>
-        <div class=" bg-gray-100 rounded-2xl pl-12 ">
-            <div class="book flex flex-wrap g-5 gap-x-12 gap-y-10">
-                <ClassCard v-for="classes in classList" :key="classes.id" :name="classes.name"
-                    :grade_id="classes.grade_id" />
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl">Class List</h2>
+                <button
+                    class="flex gap-2 items-center py-2 px-4 rounded-md bg-green-400 hover:bg-green-400/80 active:bg-green-400/60 transition-all">
+                    <Plus class="w-5" />
+                    <span>Create</span>
+                </button>
             </div>
-        </div>
+            <div class="mt-3">
+                <ClassList name="hi" />
+            </div>
     </SystemLayout>
 </template>

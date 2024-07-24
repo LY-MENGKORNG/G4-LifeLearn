@@ -100,7 +100,6 @@ const navigations = [
 const currentRoute = router.router.currentRoute.value.fullPath
 let activeIndex = ref('1')
 const setCurrentRoute = () => {
-	console.log(activeIndex.value)
 	navigations.filter((navigation) => {
 		if (navigation.path == currentRoute) {
 			activeIndex.value = navigation.id.toString()
@@ -117,7 +116,7 @@ defineProps<{
 	isCollapse: Boolean
 	handleOpen: Function
 	handleClose: Function
-	systemName?: string
+	systemName: string
 }>()
 </script>
 

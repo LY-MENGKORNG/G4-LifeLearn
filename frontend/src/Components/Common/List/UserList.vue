@@ -8,7 +8,7 @@
 			</div>
 		</div>
 		<div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-			<p class="text-sm leading-6 text-gray-900" v-for="role in roles" :key="role.name">
+			<p class="text-sm leading-6 text-gray-900 bg-green-200 px-2 rounded-full" v-for="role in roles" :key="role.name">
 				{{ role.name }}
 			</p>
 			<p v-if="lastSeen" class="mt-1 text-xs leading-5 text-gray-500">

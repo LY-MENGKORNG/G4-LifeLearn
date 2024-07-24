@@ -23,7 +23,7 @@ const renderChart = () => {
 	myChart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: ['January', 'February', 'March'],
+			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
 			datasets: [
 				{
 					label: dashboard.value.teacher_count + ' of Sales',
@@ -91,9 +91,9 @@ onMounted(async () => {
 					<a href="#" class="text-blue-500">Show All</a>
 				</div>
 				<div class="overflow-y-auto">
-					<div class="border-yellow-300 rounded-sm overflow-hidden">
+					<div class="border-yellow-300 rounded-sm overflow-x-hidden overflow-y-scroll">
 						<UserList v-for="user in dashboard.users" :key="user.id" :profile="user.profile" :email="user.email"
-							:fullName="user.first_name + ' ' + user.last_name" />
+							:fullName="user.first_name + ' ' + user.last_name" :roles="user.role" />
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 <template>
   <!-- Footer container -->
-  <footer class="text-center text-surface/75 dark:bg-neutral-700 dark:text-white/75 lg:text-left">
+  <footer class="text-center text-surface/75 dark:bg-neutral-700 dark:text-white/75 lg:text-left border-t-1">
     
     <!-- Main container div: holds the entire content of the footer, including four sections (TW Elements, Products, Useful links, and Contact), with responsive styling and appropriate padding/margins. -->
     <div class="mx-6 py-10 text-center md:text-left">

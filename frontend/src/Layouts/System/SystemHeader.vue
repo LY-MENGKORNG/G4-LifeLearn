@@ -7,7 +7,7 @@
 		<Menu as="div" class="relative inline-block text-left">
 			<div class="flex gap-4 items-center">
 				<div class="el-badge item">
-					<button aria-disabled="false" type="button" plain @click="drawer = true"
+					<button aria-disabled="false" type="button" @click="drawerVisible = true"
 						class="el-button border-none h-[27px] w-[27px] rounded-circle ml-auto">
 						<span>
 							<svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
@@ -24,7 +24,7 @@
 						</span>
 					</button>
 					<sup class="el-badge__content el-badge__content--primary is-fixed">5</sup>
-					<SystemNotification  v-model="drawer"  />
+					<SystemNotification   v-model="drawerVisible" />
 				</div>
 				<MenuButton>
 					<SystemProfile :src="profile"  />
@@ -59,7 +59,8 @@ import { defineProps, ref } from 'vue'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import SystemNotification from '@/Components/Common/Notification/SystemNotification.vue'
 
-const drawer = ref(false)
+const drawerVisible = ref(false)
+
 const props = defineProps({
 	profile: String,
 	action: Function
@@ -71,9 +72,4 @@ const dropdownMenu = [
 	{ id: 3, name: 'Sign out', path: '/logout' }
 ]
 
-const showCodeBlock = ref(false)
-
-const toggleCodeBlock = () => {
-	showCodeBlock.value = !showCodeBlock.value // Toggle the value of showCodeBlock
-}
 </script>

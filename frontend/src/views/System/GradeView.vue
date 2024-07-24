@@ -21,7 +21,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import SystemLayout from '@/Layouts/System/SystemLayout.vue';
 import GradeList from '@/Components/GradeList.vue';
 import FormGrade from '@/Components/FormGrade.vue';
 import { useSystemStore } from '@/stores/system-store';

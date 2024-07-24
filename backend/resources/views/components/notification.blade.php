@@ -8,7 +8,7 @@
     'message' =>  ''
 ])
 
-<li class=" flex justify-between items-center gap-x-6 p-4 my-2  bg-white rounded-md  hover:shadow-md transition-all">
+<li class=" flex justify-between items-center gap-x-2 p-4 my-2  bg-white rounded-md  hover:shadow-md transition-all">
     <div class="flex min-w-0 gap-x-4">
         @if ($src != '')
             <img class="h-10 w-10 flex-none rounded-full bg-gray-50"
@@ -81,7 +81,7 @@
         <p class="mt-1 text-xs leading-5 text-gray-500">
             <time datetime="2023-01-23T13:23Z">
                 <span
-                    class="bg-blue-400 inline-flex items-center justify-center px-2 py-1 text-xs leading-none text-white rounded-full">{{ $humanReadableDuration }}
+                    class="bg-blue-400 inline-flex items-center justify-center px-2 py-1 text-xs leading-5 text-white rounded-full">{{ $humanReadableDuration }}
 
                 </span>
                 @if ($humanReadableDuration != 'just now')

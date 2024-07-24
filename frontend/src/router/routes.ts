@@ -186,12 +186,7 @@ const routes = [
     {
         path: '/systems/payment',
         name: 'systems-payment',
-        component: () => import('@/views/Web/Payments/PrinciplePayment.vue'),
-    },
-    {
-        path: '/systems/payment',
-        name: 'systems-payment',
-        component: () => import('@/views/Web/Payments/PrinciplePayment.vue'),
+        component: () => import('@/views/Web/CheckoutView.vue'),
     },
     {
         path: '/payment/success',

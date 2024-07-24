@@ -1,20 +1,28 @@
 <template>
-    <el-drawer :visible="modelValue" @update:visible="updateValue" title="I am the title" :with-header="false">
-        <span class="text-lg font-semibold">Your notifications</span>
-    </el-drawer>
+  <el-drawer v-model="drawer" title="I am the title" :with-header="false">
+    <span>Hi there!</span>
+  </el-drawer>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
+import { ref, watch, defineEmits, defineProps } from 'vue'
 
 const props = defineProps({
-  modelValue: Boolean
+  modelValue: {
+    type: Boolean,
+    required: true,
+  },
 })
 
 const emits = defineEmits(['update:modelValue'])
 
-const updateValue = (newValue: boolean) => {
-  emits('update:modelValue', newValue)
-}
-</script>
+const drawer = ref(props.modelValue)
 
-<style scoped></style>
+watch(() => props.modelValue, (newVal) => {
+  drawer.value = newVal
+})
+
+watch(drawer, (newVal) => {
+  emits('update:modelValue', newVal)
+})
+</script>

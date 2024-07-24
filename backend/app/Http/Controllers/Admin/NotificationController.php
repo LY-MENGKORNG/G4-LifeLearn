@@ -81,23 +81,8 @@ class NotificationController extends Controller
     public function destroy(string $id)
     {
         $notification = Notificaton::find($id);
-        if (!$notification) {
-            return response()->json([
-                'success' => false,
-                'message' => 'notification not found',
-            ], 404);
-        }
-        $deletedNotification = $notification->delete();
-        if ($deletedNotification) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Notification deleted successfully',
-            ], 200);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to delete the Notification',
-            ], 500);
-        }
+        if (!$notification) return redirect()->back()->with('Error', 'Notification not found');
+        $notification->delete();
+        return redirect()->route('admin.notifications.index')->with('Success', 'Notification deleted successfully');
     }
 }

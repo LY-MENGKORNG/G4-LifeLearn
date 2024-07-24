@@ -45,7 +45,7 @@ class GradeController extends Controller
         $grade = Grade::find($id);
         if ($grade) {
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'data' => new ShowGradeResource($grade)
             ], 200);
         }

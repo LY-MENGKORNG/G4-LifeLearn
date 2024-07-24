@@ -45,7 +45,7 @@
                 <ul role="list" class="divide-y divide-gray-100 bg-white p-4 rounded-md">
                     <li class="flex justify-between pb-2">
                         <h3 class="font-medium text-blueTotal-600">Visitors</h3>
-                        <span class="text-gay-300">Total {{ $users->count() }}</span>
+                        <a href="{{route('admin.users.index')}}" class="text-gay-300">View all</a>
                     </li>
                     @for ($i = 0; $i < 6; $i++)
                         <x-user-table :name="$users[$i]['first_name'] . ' ' . $users[$i]['last_name']" :src="$users[$i]['profile']" :email="$users[$i]['email']" :roles="$users[$i]->roles"
