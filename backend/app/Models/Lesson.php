@@ -12,9 +12,12 @@ class Lesson extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'system_id',
         'classroom_id',
         'title',
         'content',
+        'description',
+        'is_public'
     ];
 
     public static function list()

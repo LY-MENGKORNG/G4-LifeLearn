@@ -72,6 +72,16 @@ export const useSystemStore = defineStore('system', {
                 console.warn(error)
                 this.message = error.message
             }
+        },
+        async fetchMaterials() 
+        {
+            try {
+                const response = await axiosInstance.get('/system/materials');
+                this.status = true
+            } catch (error) {
+                this.status = false
+                
+            }
         }
     }
 })

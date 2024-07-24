@@ -10,6 +10,7 @@ use App\Models\{
     Classes,
     Frontuser,
     Grade,
+    Lesson,
     Reference,
     System,
 };
@@ -126,6 +127,18 @@ class SystemController extends Controller
             'status' => true,
             'message' => 'List of teachers',
             'data' => FrontUserResource::collection($teachers)
+        ], 200);
+    }
+
+    public function meterials(Request $request)
+    {
+        $lessons = Lesson::where('system_id', $request->user()->id)->get();
+        return response()->json([
+            'status' => true,
+            'message' => 'List of meterials',
+            'data' => [
+                'lessons' => $lessons
+            ]
         ], 200);
     }
 }

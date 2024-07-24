@@ -182,6 +182,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'system'], function () {
         Route::get('/dashboard', [APISystemController::class, 'dashboard']);
         Route::resource('/grades', GradeController::class);
+        Route::get('/meterials', [APISystemController::class, 'meterials']);
     });
 
     // get session

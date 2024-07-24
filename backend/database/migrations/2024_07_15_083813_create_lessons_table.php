@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('classroom_id')->constrained()->onDelete('cascade');
+            $table->integer('system_id')->nullable();
+            $table->integer('classroom_id')->nullable();
             $table->string('title');
-            $table->text('content');
+            $table->string('content');
+            $table->string('description')->nullable();
+            $table->boolean('is_public')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });
