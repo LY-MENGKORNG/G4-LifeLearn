@@ -4,15 +4,16 @@ import { ref, onMounted } from 'vue'
 import Chart from 'chart.js/auto'
 import { User } from '@element-plus/icons-vue'
 import { useSystemStore } from '@/stores/system-store';
+import UserList from '@/Components/Common/List/UserList.vue';
 
 
 
 const systemStore = useSystemStore()
 const dashboard = ref<any>({
-	teachers: '', 
-	students: '', 
-	teacher_count: '', 
-	student_count: '', 
+	teachers: '',
+	students: '',
+	teacher_count: '',
+	student_count: '',
 })
 
 let myChart: any
@@ -25,24 +26,24 @@ const renderChart = () => {
 			labels: ['January', 'February', 'March'],
 			datasets: [
 				{
-					label: dashboard.value.teacher_count +' of Sales',
-					data: [1, 2, 2],
-					backgroundColor: 'blue'
+					label: dashboard.value.teacher_count + ' of Sales',
+					data: [dashboard.value.teacher_count + 1, dashboard.value.teacher_count + 2, dashboard.value.teacher_count + 2],
+					backgroundColor: '#86efac'
 				},
 				{
-					label: '# of Customers',
-					data: [3, 3, 5],
-					backgroundColor: 'red'
+					label: dashboard.value.student_count + ' of Student',
+					data: [dashboard.value.student_count + 3, dashboard.value.student_count + 3, dashboard.value.student_count + 5],
+					backgroundColor: '#f9a8d4'
 				},
 				{
-					label: '# of Orders',
-					data: [2, 2, 6],
-					backgroundColor: 'green'
+					label: dashboard.value.grade_count + ' of Orders',
+					data: [dashboard.value.grade_count + 2, dashboard.value.grade_count + 2, dashboard.value.grade_count + 6],
+					backgroundColor: '#fde047'
 				},
 				{
-					label: '# of Sold',
-					data: [3, 3, 5],
-					backgroundColor: 'teal'
+					label: dashboard.value.class_count + ' of Sold',
+					data: [dashboard.value.class_count + 3, dashboard.value.class_count + 3, dashboard.value.class_count + 5],
+					backgroundColor: '#5eead4'
 				}
 			]
 		}
@@ -57,17 +58,22 @@ onMounted(async () => {
 <template>
 	<SystemLayout>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 w-full">
-			<overview-card title="Total Teachers" :count='dashboard.teacher_count'>
+			<overview-card title="Total Teachers" :count='dashboard.teacher_count' bg="bg-green-300">
 				<el-icon>
 					<User />
 				</el-icon>
 			</overview-card>
-			<overview-card title="Total Students" :count=dashboard.student_count>
+			<overview-card title="Total Students" :count=dashboard.student_count bg="bg-pink-300">
 				<el-icon>
 					<User />
 				</el-icon>
 			</overview-card>
-			<overview-card title="Total Grades" :count=dashboard.grade_count>
+			<overview-card title="Total Grades" :count=dashboard.grade_count bg="bg-yellow-300">
+				<el-icon>
+					<User />
+				</el-icon>
+			</overview-card>
+			<overview-card title="Total Classes" :count=dashboard.class_count bg="bg-teal-300">
 				<el-icon>
 					<User />
 				</el-icon>
@@ -75,59 +81,20 @@ onMounted(async () => {
 		</div>
 
 		<!-- Chart Section -->
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 mb-7">
-			<div class="bg-white shadow-md rounded-se-sm p-4">
-				<canvas id="myChart" class="h-44"></canvas>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4  mb-7">
+			<div class="bg-white h-auto shadow-md mt-3 rounded-se-sm p-4">
+				<canvas id="myChart" class="h-30"></canvas>
 			</div>
-			<div class="text-center rounded p-4 bg-white">
+			<div class="text-center rounded p-4 mt-3 bg-white">
 				<div class="flex items-center justify-between mb-4">
 					<h6 class="mb-0">Recent Sales</h6>
 					<a href="#" class="text-blue-500">Show All</a>
 				</div>
-				<div class="border-yellow-300">
-					<table class="table-auto w-full text-left align-middle border mb-0">
-						<thead>
-							<tr class="w-96">
-								<th scope="col" class="px-4 py-2">
-									<input type="checkbox" class="form-checkbox" />
-								</th>
-								<th scope="col" class="px-4 py-2">Date</th>
-								<th scope="col" class="px-4 py-2">Customer</th>
-								<th scope="col" class="px-4 py-2">Amount</th>
-								<th scope="col" class="px-4 py-2">Status</th>
-								<th scope="col" class="px-4 py-2">Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="border-b border-gray-300">
-								<td class="px-4 py-2"><input type="checkbox" class="form-checkbox" /></td>
-								<td class="px-4 py-2">01 Jan 2045</td>
-								<td class="">
-									<h6 class="mb-0 ml-3 text-body">Ashley Garrett</h6>
-								</td>
-								<td class="px-4 py-2">$123</td>
-								<td class="px-4 py-2">Paid</td>
-								<td class="px-4 py-2"><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-							</tr>
-							<tr class="border-b border-gray-300">
-								<td class="px-4 py-2"><input type="checkbox" class="form-checkbox" /></td>
-								<td class="px-4 py-2">01 Jan 2045</td>
-								<td class="px-4 py-2">John Doe</td>
-								<td class="px-4 py-2">$123</td>
-								<td class="px-4 py-2">Paid</td>
-								<td class="px-4 py-2"><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-							</tr>
-							<tr class="border-b border-gray-300">
-								<td class="px-4 py-2"><input type="checkbox" class="form-checkbox" /></td>
-								<td class="px-4 py-2">01 Jan 2045</td>
-								<td class="px-4 py-2">John Doe</td>
-								<td class="px-4 py-2">$123</td>
-								<td class="px-4 py-2">Paid</td>
-								<td class="px-4 py-2"><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-							</tr>
-							<!-- Repeat the above <tr> for each row -->
-						</tbody>
-					</table>
+				<div class="overflow-y-auto">
+					<div class="border-yellow-300 rounded-sm overflow-hidden">
+						<UserList v-for="user in dashboard.users" :key="user.id" :profile="user.profile" :email="user.email"
+							:fullName="user.first_name + ' ' + user.last_name" />
+					</div>
 				</div>
 			</div>
 		</div>

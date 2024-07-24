@@ -123,8 +123,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/delete/{id}', [ReferencesController::class, 'destroy']);
     });
 
-    //grade
-    Route::resource('/grade', GradeController::class);
     //Event
     Route::resource('/event', EventController::class);
 
@@ -183,6 +181,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::group(['prefix' => 'system'], function () {
         Route::get('/dashboard', [APISystemController::class, 'dashboard']);
+        Route::resource('/grades', GradeController::class);
     });
 
     // get session
@@ -200,7 +199,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // event 
     Route::resource('/events', EventController::class);
 
-    // Route to handle the forgot password form submission
     Route::post('/forgot-password', [ForgotPasswordManager::class, 'ForgotPasswordPost'])->name('password.email');
 
     // principle send mail to teachers

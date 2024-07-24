@@ -19,11 +19,16 @@ export default interface Book {
     id: any;
     title: string;
     author: string;
+<<<<<<< HEAD
+    published_at: string;
+    price?: any;
+=======
     published_date: string;
     price?: number;
     cover: string;
     file: string;
     category_id: any
+>>>>>>> 85925ba4f17bb8185dd08a41255b2637f8965d6f
 }
 
 export default interface Quiz {
@@ -45,7 +50,6 @@ export default interface RequestPayment {
     reference: any[];
 }
 
-
 export default interface Payment {
     method: string;
     amount: number;
@@ -58,4 +62,17 @@ export default interface Submit {
     classroom_id;
     assignment_id?: number;
     work?: string;
+}
+
+export default interface Classroom {
+    grade_id?: number;	
+    class_name?: string;
+    description: string;
+    user:{ 
+        first_name: string;
+        last_name: string;
+        phone: string;
+        email: string;
+        profile: string;
+      };
 }

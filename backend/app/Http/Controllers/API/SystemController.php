@@ -31,6 +31,7 @@ class SystemController extends Controller
 
     public function dashboard(Request $request)
     {
+        $users = Frontuser::where('system_id', $request->user()->system_id)->role(['teacher', 'student'])->get();  
         $teachers = Frontuser::where('system_id', $request->user()->system_id);
         $teachers = $teachers->role('teacher')->get();
 
@@ -47,11 +48,14 @@ class SystemController extends Controller
             'status' => true,
             'message' => 'Contents in Dashboard',
             'data' => [
+                'users' => FrontUserResource::collection($users),
                 'teachers' => $teachers,
                 'students' => $students,
                 'grades' => $grades,
                 'classes' => $classes,
                 'books' => $books,
+
+                'user_count' => $users->count(),
                 'teacher_count' => $teachers->count(),
                 'student_count' => $students->count(),
                 'grade_count' => $grades->count(), 

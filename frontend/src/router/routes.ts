@@ -134,10 +134,17 @@ const routes = [
         component: () => import('@/views/System/ClassroomView.vue')
     },
     {
-        path: '/system/material',
+        path: '/system/material/',
         name: 'system-material',
-        component: () => import('@/views/System/MaterialView.vue')
+        component: () => import('@/views/System/MaterialView.vue'),
+        props: true
     },
+    // {
+    //     path: '/system/material/:id',
+    //     name: 'system-material',
+    //     component: () => import('@/views/System/MaterialView.vue'),
+    //     props: true
+    // },
     {
         path: '/system/people',
         name: 'system-people',
@@ -219,7 +226,7 @@ const routes = [
     {
         path: '/system/grade',
         name: 'system-grade-list',
-        component: () => import('@/views/System/Classroom/NewGrade.vue'),
+        component: () => import('@/views/System/GradeView.vue'),
     },
     {
         path: '/system/score',

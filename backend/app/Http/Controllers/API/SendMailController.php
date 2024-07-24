@@ -25,9 +25,10 @@ class SendMailController extends MailController
         $request["message"] = $request->message;
 
         $teacher = Frontuser::where('email', $request['recipient'])->first();
+        if(!$teacher) return response()->json(['status' => false, 'message' => 'User not found'], 404);
         $teacher->roles()->detach();
         $teacher->assignRole('teacher');
-        $teacher->update(['system_id' => $request->user()->system_id])->save();
+        $teacher->update(['system_id' => $request->user()->system_id]);
 
         if (!$this->send($request, $content)) 
         return response()->json([

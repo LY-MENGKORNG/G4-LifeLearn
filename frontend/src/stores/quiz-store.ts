@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import axiosInstance from '@/plugins/axios';
-// import type {Quiz} from '@/Constants/api-constants'
 import type Quiz from '@/Constants/api-constants'
 import { ref } from 'vue'
 

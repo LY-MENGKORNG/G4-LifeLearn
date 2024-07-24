@@ -89,10 +89,10 @@ const FORM = ref({
 	message: ''
 })
 
-const handleSubmit = () => {
-	systemStore.sendMail(FORM.value, '/invite-teacher')
-	// if (!systemStore.status) return connectionInfo()
-	successInfo()
+const handleSubmit = async () => {
+	await systemStore.sendMail(FORM.value, '/invite-teacher')
+	if (!systemStore.status) return connectionInfo()
+	await successInfo()
 }
 
 const connectionInfo = () => {
@@ -109,12 +109,13 @@ const connectionInfo = () => {
 	close()
 }
 
-const successInfo = () => {
+const successInfo = async () => {
 	ElNotification({
 		title: 'Success',
 		message: 'Your email have been sent successfully',
 		type: 'success'
 	})
+	close();
 }
 
 defineProps({

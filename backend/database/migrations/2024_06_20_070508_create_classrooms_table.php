@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->integer('grade_id')->nullable();
+            $table->string('class_name');
+            $table->string('description')->nullable();
+            $table->integer('user_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

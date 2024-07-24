@@ -3,7 +3,7 @@
 		<div class="flex min-w-0 gap-x-4">
 			<img class="h-12 w-12 flex-none rounded-full bg-gray-50" :src="profile" alt="" />
 			<div class="min-w-0 flex-auto">
-				<p class="text-sm font-semibold leading-6 text-gray-900">{{ fullName }}</p>
+				<p class="text-sm font-semibold text-start leading-6 text-gray-900">{{ fullName }}</p>
 				<p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ email }}</p>
 			</div>
 		</div>

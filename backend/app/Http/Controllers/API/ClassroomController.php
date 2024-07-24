@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Classroom\ClassroomRequest;
+use App\Http\Resources\Classes\ClassesResource;
 use App\Models\Classroom;
 use App\Http\Resources\Classroom\ClassroomResource;
 use App\Http\Resources\Classroom\ClassroomStudentResource;
@@ -13,21 +15,22 @@ class ClassroomController extends Controller
 {
     public function index()
     {
-        $classrooms = Classroom::all();
-        $classrooms = ClassroomResource::collection($classrooms);
-        return response()->json($classrooms, 200);
+        // $classrooms = Classroom::list();
+        // $classrooms = ClassroomResource::collection($classrooms);
+        // return response()->json($classrooms, 200);
+        $classrooms = Classroom::with('user')->get();
+        return response()->json(ClassroomResource::collection($classrooms), 200);
     }
-    public function store(Request $request)
-    { {
-            $validatedData = $request->validate([
-                'grade_id' => 'required',
-            ]);
-
-            $classroom = Classroom::create($validatedData);
-
-            return response()->json($classroom, 201);
-        }
+    public function store(ClassroomRequest $request)
+    {
+        $classroom = Classroom::store($request);
+        return response()->json([
+            'success' => true,
+            'message' => 'Classroom created successfully',
+            'data' => new ClassroomResource($classroom),
+        ], 200);
     }
+    
     public function show($id)
     {
         $classroom = Classroom::find($id);

@@ -12,14 +12,16 @@ class GradeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $grades = Grade::list();
+
+    $grades = Grade::where('system_id', $request->user()->system_id)->get();
+
         return response()->json([
-            'success' => true,
+            'status' => true,
+            'message' => 'List of grades',
             'data' =>$grades,
         ], 200);
-
     }
 
     /**
